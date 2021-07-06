@@ -1,7 +1,7 @@
-name: "scRNA_NB_comparison"
+name: scRNA_NB_comparison
 output_dir: ../docs
 navbar:
-  title: "scRNA_NB_comparison"
+  title: scRNA_NB_comparison
   left:
   - text: Home
     href: index.html
@@ -9,9 +9,13 @@ navbar:
     href: about.html
   - text: License
     href: license.html
+  right:
+  - icon: fa-github
+    text: Source code
+    href: https://github.com/saketkc/scRNA_NB_comparison
 output:
   workflowr::wflow_html:
     toc: yes
     toc_float: yes
-    theme: cosmo
+    theme: flatly
     highlight: textmate
