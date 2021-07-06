@@ -1,0 +1,4958 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+
+
+<title>Figure 1</title>
+
+<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/flatly.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-9.12.0/textmate.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+<script src="site_libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="site_libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
+
+<link rel="icon" href="https://github.com/workflowr/workflowr-assets/raw/master/img/reproducible.png">
+<!-- Add a small amount of space between sections. -->
+<style type="text/css">
+div.section {
+  padding-top: 12px;
+}
+</style>
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+<style type="text/css">code{white-space: pre;}</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+
+
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+pre code {
+  padding: 0;
+}
+</style>
+
+
+<style type="text/css">
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #adb5bd;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script type="text/javascript">
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.tab('show');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">scRNA_NB_comparison</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="index.html">Home</a>
+</li>
+<li>
+  <a href="about.html">About</a>
+</li>
+<li>
+  <a href="license.html">License</a>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div id="header">
+
+
+
+<h1 class="title toc-ignore">Figure 1</h1>
+
+</div>
+
+
+<p>
+<button type="button" class="btn btn-default btn-workflowr btn-workflowr-report" data-toggle="collapse" data-target="#workflowr-report">
+<span class="glyphicon glyphicon-list" aria-hidden="true"></span> workflowr <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span>
+</button>
+</p>
+<div id="workflowr-report" class="collapse">
+<ul class="nav nav-tabs">
+<li class="active">
+<a data-toggle="tab" href="#summary">Summary</a>
+</li>
+<li>
+<a data-toggle="tab" href="#checks"> Checks <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span> </a>
+</li>
+<li>
+<a data-toggle="tab" href="#versions">Past versions</a>
+</li>
+</ul>
+<div class="tab-content">
+<div id="summary" class="tab-pane fade in active">
+<p>
+<strong>Last updated:</strong> 2021-07-06
+</p>
+<p>
+<strong>Checks:</strong> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> 6 <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span> 1
+</p>
+<p>
+<strong>Knit directory:</strong> <code>scRNA_NB_comparison/</code> <span class="glyphicon glyphicon-question-sign" aria-hidden="true" title="This is the local directory in which the code in this file was executed."> </span>
+</p>
+<p>
+This reproducible <a href="http://rmarkdown.rstudio.com">R Markdown</a> analysis was created with <a
+  href="https://github.com/jdblischak/workflowr">workflowr</a> (version 1.6.2). The <em>Checks</em> tab describes the reproducibility checks that were applied when the results were created. The <em>Past versions</em> tab lists the development history.
+</p>
+<hr>
+</div>
+<div id="checks" class="tab-pane fade">
+<div id="workflowr-checks" class="panel-group">
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRMarkdownfilestronguncommittedchanges"> <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span> <strong>R Markdown file:</strong> uncommitted changes </a>
+</p>
+</div>
+<div id="strongRMarkdownfilestronguncommittedchanges" class="panel-collapse collapse">
+<div class="panel-body">
+<p>The R Markdown is untracked by Git. To know which version of the R Markdown file created these results, you’ll want to first commit it to the Git repo. If you’re still working on the analysis, you can ignore this warning. When you’re finished, you can run <code>wflow_publish</code> to commit the R Markdown file and build the HTML.</p>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongEnvironmentstrongempty"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Environment:</strong> empty </a>
+</p>
+</div>
+<div id="strongEnvironmentstrongempty" class="panel-collapse collapse">
+<div class="panel-body">
+<p>Great job! The global environment was empty. Objects defined in the global environment can affect the analysis in your R Markdown file in unknown ways. For reproduciblity it’s best to always run the code in an empty environment.</p>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongSeedstrongcodesetseed20210706code"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Seed:</strong> <code>set.seed(20210706)</code> </a>
+</p>
+</div>
+<div id="strongSeedstrongcodesetseed20210706code" class="panel-collapse collapse">
+<div class="panel-body">
+<p>The command <code>set.seed(20210706)</code> was run prior to running the code in the R Markdown file. Setting a seed ensures that any results that rely on randomness, e.g. subsampling or permutations, are reproducible.</p>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongSessioninformationstrongrecorded"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Session information:</strong> recorded </a>
+</p>
+</div>
+<div id="strongSessioninformationstrongrecorded" class="panel-collapse collapse">
+<div class="panel-body">
+<p>Great job! Recording the operating system, R version, and package versions is critical for reproducibility.</p>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongCachestrongnone"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Cache:</strong> none </a>
+</p>
+</div>
+<div id="strongCachestrongnone" class="panel-collapse collapse">
+<div class="panel-body">
+<p>Nice! There were no cached chunks for this analysis, so you can be confident that you successfully produced the results during this run.</p>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongFilepathsstrongrelative"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>File paths:</strong> relative </a>
+</p>
+</div>
+<div id="strongFilepathsstrongrelative" class="panel-collapse collapse">
+<div class="panel-body">
+<p>Great job! Using relative paths to the files within your workflowr project makes it easier to run your code on other machines.</p>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstronge0b7c2c"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> e0b7c2c </a>
+</p>
+</div>
+<div id="strongRepositoryversionstronge0b7c2c" class="panel-collapse collapse">
+<div class="panel-body">
+<p>
+Great! You are using Git for version control. Tracking code development and connecting the code version to the results is critical for reproducibility.
+</p>
+<p>
+The results in this page were generated with repository version e0b7c2c. See the <em>Past versions</em> tab to see a history of the changes made to the R Markdown and HTML files.
+</p>
+<p>
+Note that you need to be careful to ensure that all relevant files for the analysis have been committed to Git prior to generating the results (you can use <code>wflow_publish</code> or <code>wflow_git_commit</code>). workflowr only checks the R Markdown file, but you know if there are other scripts or data files that it depends on. Below is the status of the Git repository when the results were generated:
+</p>
+<pre><code>
+Ignored files:
+    Ignored:    data/raw_data/
+    Ignored:    data/rds_filtered/
+    Ignored:    data/rds_raw/
+    Ignored:    output/snakemake_output/
+
+Untracked files:
+    Untracked:  analysis/01_Smart-seq3.Rmd
+    Untracked:  analysis/02_Mereu.Rmd
+    Untracked:  analysis/03A_Ding-Mixture-HEK-3T3.Rmd
+    Untracked:  analysis/03B_Ding-PBMC.Rmd
+    Untracked:  analysis/03C_Ding-Cortex.Rmd
+    Untracked:  analysis/04_PBMC68k.Rmd
+    Untracked:  analysis/05_Fetal-sciRNAseq3.Rmd
+    Untracked:  analysis/06G_VS2020_Seurat.Rmd
+    Untracked:  analysis/07_Filter_all_datasets.Rmd
+    Untracked:  analysis/08_Downsample_PBMC__Smart-seq3.Rmd
+    Untracked:  analysis/09_Figure1.Rmd
+    Untracked:  analysis/10_Figure2.Rmd
+    Untracked:  analysis/11_Figure3.Rmd
+    Untracked:  analysis/12_SuppFigure-DataStats.Rmd
+    Untracked:  analysis/13_SuppFigure-VST.Rmd
+    Untracked:  analysis/14_SuppFigure-Simulation.Rmd
+    Untracked:  analysis/15_SuppFigure-Upsampling.Rmd
+    Untracked:  data/datasets.csv
+    Untracked:  data/sampled_counts/
+
+Unstaged changes:
+    Modified:   .gitignore
+    Modified:   analysis/_site.yml
+    Modified:   analysis/about.Rmd
+    Modified:   analysis/index.Rmd
+    Modified:   analysis/license.Rmd
+
+</code></pre>
+<p>
+Note that any generated files, e.g. HTML, png, CSS, etc., are not included in this status report because it is ok for generated content to have uncommitted changes.
+</p>
+</div>
+</div>
+</div>
+</div>
+<hr>
+</div>
+<div id="versions" class="tab-pane fade">
+<p>
+There are no past versions. Publish this analysis with <code>wflow_publish()</code> to start tracking its development.
+</p>
+<hr>
+</div>
+</div>
+</div>
+<div id="read-datassets" class="section level2">
+<h2>Read datassets</h2>
+<pre class="r"><code>datasets &lt;- readr::read_csv(here::here(&quot;data&quot;, &quot;datasets.csv&quot;), col_types = readr::cols())
+datasets$datatype &lt;- factor(datasets$datatype, levels = c(&quot;technical-control&quot;, &quot;cell line&quot;, &quot;heterogeneous&quot;))
+datasets &lt;- datasets %&gt;% arrange(datatype)</code></pre>
+</div>
+<div id="read-and-process-poisson-glm-results" class="section level2">
+<h2>Read and process poisson GLM results</h2>
+<pre class="r"><code>QVALUE_THRESHOLD &lt;- 1e-2
+ncells &lt;- &quot;1000&quot;
+residual_type &lt;- &quot;quantile&quot;
+nb_column &lt;- paste0(&quot;qval_ssr&quot;, &quot;_&quot;, residual_type)
+ssr_column &lt;- paste0(&quot;ssr&quot;, &quot;_&quot;, residual_type, &quot;_normalized&quot;)
+root_dir &lt;- here::here(&quot;output/snakemake_output/poisson_glm_output&quot;, ncells)
+
+
+
+fits &lt;- GetFits(root_dir, qval_col = nb_column)
+fits_dfx &lt;- fits[[&quot;fits&quot;]]
+frac_dfx &lt;- fits[[&quot;frac_df&quot;]]
+cell_attrs &lt;- fits[[&quot;cell_attrs&quot;]]
+gene_attrs &lt;- fits[[&quot;gene_attrs&quot;]]
+
+fits_df &lt;- ProcessFits(fits_dfx, datasets, nb_column)
+frac_df &lt;- left_join(frac_dfx, datasets, by = &quot;key&quot;)</code></pre>
+</div>
+<div id="fraction-of-non-poisson-genes" class="section level2">
+<h2>Fraction of non-poisson genes</h2>
+<pre class="r"><code>frac_df_subset &lt;- frac_df[, c(
+  &quot;sample_name&quot;, &quot;datatype&quot;,
+  &quot;median_gene_avg_umi&quot;, &quot;median_cell_total_umi&quot;, &quot;nonpoisson_fraction&quot;
+)] %&gt;% arrange(nonpoisson_fraction)
+frac_df_subset &lt;- frac_df_subset %&gt;% mutate(across(where(is.numeric), round, 3))
+kbl(frac_df_subset, booktabs = T) %&gt;%
+  kable_styling(latex_options = &quot;striped&quot;)</code></pre>
+<table class="table" style="margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:left;">
+sample_name
+</th>
+<th style="text-align:left;">
+datatype
+</th>
+<th style="text-align:right;">
+median_gene_avg_umi
+</th>
+<th style="text-align:right;">
+median_cell_total_umi
+</th>
+<th style="text-align:right;">
+nonpoisson_fraction
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+TechCtrl1 (ChromiumV1)
+</td>
+<td style="text-align:left;">
+technical-control
+</td>
+<td style="text-align:right;">
+0.007
+</td>
+<td style="text-align:right;">
+2264.5
+</td>
+<td style="text-align:right;">
+0.001
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+TechCtrl2 (ChromiumV1)
+</td>
+<td style="text-align:left;">
+technical-control
+</td>
+<td style="text-align:right;">
+0.007
+</td>
+<td style="text-align:right;">
+2165.0
+</td>
+<td style="text-align:right;">
+0.004
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+TechCtrl (inDrops)
+</td>
+<td style="text-align:left;">
+technical-control
+</td>
+<td style="text-align:right;">
+0.365
+</td>
+<td style="text-align:right;">
+32905.0
+</td>
+<td style="text-align:right;">
+0.005
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+PBMC-r2 (Seq-Well)
+</td>
+<td style="text-align:left;">
+heterogeneous
+</td>
+<td style="text-align:right;">
+0.009
+</td>
+<td style="text-align:right;">
+521.0
+</td>
+<td style="text-align:right;">
+0.007
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+HEK-m (ChromiumV2_sn)
+</td>
+<td style="text-align:left;">
+cell line
+</td>
+<td style="text-align:right;">
+0.171
+</td>
+<td style="text-align:right;">
+4967.0
+</td>
+<td style="text-align:right;">
+0.008
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+PBMC-r1 (inDrops)
+</td>
+<td style="text-align:left;">
+heterogeneous
+</td>
+<td style="text-align:right;">
+0.010
+</td>
+<td style="text-align:right;">
+798.0
+</td>
+<td style="text-align:right;">
+0.009
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+HEK-m (inDrops)
+</td>
+<td style="text-align:left;">
+cell line
+</td>
+<td style="text-align:right;">
+0.108
+</td>
+<td style="text-align:right;">
+2943.0
+</td>
+<td style="text-align:right;">
+0.010
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+PBMC68k (ChromiumV1)
+</td>
+<td style="text-align:left;">
+heterogeneous
+</td>
+<td style="text-align:right;">
+0.011
+</td>
+<td style="text-align:right;">
+1513.0
+</td>
+<td style="text-align:right;">
+0.011
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+PBMC-r1 (Drop-seq)
+</td>
+<td style="text-align:left;">
+heterogeneous
+</td>
+<td style="text-align:right;">
+0.012
+</td>
+<td style="text-align:right;">
+1554.5
+</td>
+<td style="text-align:right;">
+0.015
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+PBMC-r2 (CEL-seq2)
+</td>
+<td style="text-align:left;">
+heterogeneous
+</td>
+<td style="text-align:right;">
+0.069
+</td>
+<td style="text-align:right;">
+5917.0
+</td>
+<td style="text-align:right;">
+0.016
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+PBMC-r2 (ChromiumV2)
+</td>
+<td style="text-align:left;">
+heterogeneous
+</td>
+<td style="text-align:right;">
+0.021
+</td>
+<td style="text-align:right;">
+2850.5
+</td>
+<td style="text-align:right;">
+0.016
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+HEK-r1 (inDrops)
+</td>
+<td style="text-align:left;">
+cell line
+</td>
+<td style="text-align:right;">
+0.042
+</td>
+<td style="text-align:right;">
+3132.0
+</td>
+<td style="text-align:right;">
+0.017
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+PBMC-r1 (Seq-Well)
+</td>
+<td style="text-align:left;">
+heterogeneous
+</td>
+<td style="text-align:right;">
+0.011
+</td>
+<td style="text-align:right;">
+1200.0
+</td>
+<td style="text-align:right;">
+0.017
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+PBMC-r1 (ChromiumV2A)
+</td>
+<td style="text-align:left;">
+heterogeneous
+</td>
+<td style="text-align:right;">
+0.016
+</td>
+<td style="text-align:right;">
+2384.0
+</td>
+<td style="text-align:right;">
+0.018
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+PBMC-r2 (inDrops)
+</td>
+<td style="text-align:left;">
+heterogeneous
+</td>
+<td style="text-align:right;">
+0.018
+</td>
+<td style="text-align:right;">
+1690.0
+</td>
+<td style="text-align:right;">
+0.019
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+PBMC-r1 (ChromiumV2B)
+</td>
+<td style="text-align:left;">
+heterogeneous
+</td>
+<td style="text-align:right;">
+0.019
+</td>
+<td style="text-align:right;">
+3286.0
+</td>
+<td style="text-align:right;">
+0.020
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+PBMC-r1 (CEL-seq2)
+</td>
+<td style="text-align:left;">
+heterogeneous
+</td>
+<td style="text-align:right;">
+0.071
+</td>
+<td style="text-align:right;">
+6848.0
+</td>
+<td style="text-align:right;">
+0.021
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+HEK-r2 (inDrops)
+</td>
+<td style="text-align:left;">
+cell line
+</td>
+<td style="text-align:right;">
+0.052
+</td>
+<td style="text-align:right;">
+3973.0
+</td>
+<td style="text-align:right;">
+0.027
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+3T3-r1 (inDrops)
+</td>
+<td style="text-align:left;">
+cell line
+</td>
+<td style="text-align:right;">
+0.051
+</td>
+<td style="text-align:right;">
+2255.0
+</td>
+<td style="text-align:right;">
+0.027
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+PBMC-r2 (Drop-seq)
+</td>
+<td style="text-align:left;">
+heterogeneous
+</td>
+<td style="text-align:right;">
+0.017
+</td>
+<td style="text-align:right;">
+2486.5
+</td>
+<td style="text-align:right;">
+0.028
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+3T3-r2 (Drop-seq)
+</td>
+<td style="text-align:left;">
+cell line
+</td>
+<td style="text-align:right;">
+0.080
+</td>
+<td style="text-align:right;">
+3434.0
+</td>
+<td style="text-align:right;">
+0.031
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Cortex-r2 (ChromiumV2)
+</td>
+<td style="text-align:left;">
+heterogeneous
+</td>
+<td style="text-align:right;">
+0.042
+</td>
+<td style="text-align:right;">
+3980.5
+</td>
+<td style="text-align:right;">
+0.036
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+3T3-r1 (Drop-seq)
+</td>
+<td style="text-align:left;">
+cell line
+</td>
+<td style="text-align:right;">
+0.072
+</td>
+<td style="text-align:right;">
+3152.5
+</td>
+<td style="text-align:right;">
+0.038
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+HEK-r1 (Drop-seq)
+</td>
+<td style="text-align:left;">
+cell line
+</td>
+<td style="text-align:right;">
+0.053
+</td>
+<td style="text-align:right;">
+6015.5
+</td>
+<td style="text-align:right;">
+0.039
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+HEK-r2 (Drop-seq)
+</td>
+<td style="text-align:left;">
+cell line
+</td>
+<td style="text-align:right;">
+0.048
+</td>
+<td style="text-align:right;">
+6312.5
+</td>
+<td style="text-align:right;">
+0.040
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+3T3-r2 (inDrops)
+</td>
+<td style="text-align:left;">
+cell line
+</td>
+<td style="text-align:right;">
+0.107
+</td>
+<td style="text-align:right;">
+4666.5
+</td>
+<td style="text-align:right;">
+0.041
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Cortex-r2 (sci-RNA-seq)
+</td>
+<td style="text-align:left;">
+heterogeneous
+</td>
+<td style="text-align:right;">
+0.029
+</td>
+<td style="text-align:right;">
+3501.5
+</td>
+<td style="text-align:right;">
+0.046
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+PBMC-r1 (ChromiumV3)
+</td>
+<td style="text-align:left;">
+heterogeneous
+</td>
+<td style="text-align:right;">
+0.029
+</td>
+<td style="text-align:right;">
+5839.5
+</td>
+<td style="text-align:right;">
+0.046
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Cortex-r1 (DroNc-seq)
+</td>
+<td style="text-align:left;">
+heterogeneous
+</td>
+<td style="text-align:right;">
+0.043
+</td>
+<td style="text-align:right;">
+3013.5
+</td>
+<td style="text-align:right;">
+0.050
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+3T3-r1 (sci-RNA-seq)
+</td>
+<td style="text-align:left;">
+cell line
+</td>
+<td style="text-align:right;">
+0.188
+</td>
+<td style="text-align:right;">
+6609.5
+</td>
+<td style="text-align:right;">
+0.061
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+PBMC (ChromiumV3)
+</td>
+<td style="text-align:left;">
+heterogeneous
+</td>
+<td style="text-align:right;">
+0.050
+</td>
+<td style="text-align:right;">
+6992.0
+</td>
+<td style="text-align:right;">
+0.064
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+3T3 (ChromiumV3)
+</td>
+<td style="text-align:left;">
+cell line
+</td>
+<td style="text-align:right;">
+0.072
+</td>
+<td style="text-align:right;">
+16184.5
+</td>
+<td style="text-align:right;">
+0.066
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Cortex-r2 (DroNc-seq)
+</td>
+<td style="text-align:left;">
+heterogeneous
+</td>
+<td style="text-align:right;">
+0.050
+</td>
+<td style="text-align:right;">
+3094.0
+</td>
+<td style="text-align:right;">
+0.068
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Cortex-r1 (ChromiumV2)
+</td>
+<td style="text-align:left;">
+heterogeneous
+</td>
+<td style="text-align:right;">
+0.065
+</td>
+<td style="text-align:right;">
+7132.5
+</td>
+<td style="text-align:right;">
+0.071
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+HEK-r1 (sci-RNA-seq)
+</td>
+<td style="text-align:left;">
+cell line
+</td>
+<td style="text-align:right;">
+0.220
+</td>
+<td style="text-align:right;">
+11490.0
+</td>
+<td style="text-align:right;">
+0.072
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Cortex-r1 (sci-RNA-seq)
+</td>
+<td style="text-align:left;">
+heterogeneous
+</td>
+<td style="text-align:right;">
+0.031
+</td>
+<td style="text-align:right;">
+4421.0
+</td>
+<td style="text-align:right;">
+0.074
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+HEK (ChromiumV3)
+</td>
+<td style="text-align:left;">
+cell line
+</td>
+<td style="text-align:right;">
+0.069
+</td>
+<td style="text-align:right;">
+41054.5
+</td>
+<td style="text-align:right;">
+0.116
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+HEK-m (Drop-seq)
+</td>
+<td style="text-align:left;">
+cell line
+</td>
+<td style="text-align:right;">
+0.109
+</td>
+<td style="text-align:right;">
+1907.5
+</td>
+<td style="text-align:right;">
+0.116
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+HEK-m (MARS-seq)
+</td>
+<td style="text-align:left;">
+cell line
+</td>
+<td style="text-align:right;">
+0.235
+</td>
+<td style="text-align:right;">
+11207.5
+</td>
+<td style="text-align:right;">
+0.131
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Fetal (sci-RNA-seq3)
+</td>
+<td style="text-align:left;">
+heterogeneous
+</td>
+<td style="text-align:right;">
+0.030
+</td>
+<td style="text-align:right;">
+6975.5
+</td>
+<td style="text-align:right;">
+0.134
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+3T3-r2 (ChromiumV2)
+</td>
+<td style="text-align:left;">
+cell line
+</td>
+<td style="text-align:right;">
+0.185
+</td>
+<td style="text-align:right;">
+14057.0
+</td>
+<td style="text-align:right;">
+0.141
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+3T3-r1 (ChromiumV2)
+</td>
+<td style="text-align:left;">
+cell line
+</td>
+<td style="text-align:right;">
+0.151
+</td>
+<td style="text-align:right;">
+11834.0
+</td>
+<td style="text-align:right;">
+0.143
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+3T3-r2 (sci-RNA-seq)
+</td>
+<td style="text-align:left;">
+cell line
+</td>
+<td style="text-align:right;">
+0.161
+</td>
+<td style="text-align:right;">
+9199.0
+</td>
+<td style="text-align:right;">
+0.150
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+HEK-r2 (sci-RNA-seq)
+</td>
+<td style="text-align:left;">
+cell line
+</td>
+<td style="text-align:right;">
+0.096
+</td>
+<td style="text-align:right;">
+13298.0
+</td>
+<td style="text-align:right;">
+0.152
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+HEK-r2 (CEL-seq2)
+</td>
+<td style="text-align:left;">
+cell line
+</td>
+<td style="text-align:right;">
+0.389
+</td>
+<td style="text-align:right;">
+43670.0
+</td>
+<td style="text-align:right;">
+0.158
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+HEK-r1 (CEL-seq2)
+</td>
+<td style="text-align:left;">
+cell line
+</td>
+<td style="text-align:right;">
+0.615
+</td>
+<td style="text-align:right;">
+52973.0
+</td>
+<td style="text-align:right;">
+0.160
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+HEK-r1 (ChromiumV2)
+</td>
+<td style="text-align:left;">
+cell line
+</td>
+<td style="text-align:right;">
+0.108
+</td>
+<td style="text-align:right;">
+25193.5
+</td>
+<td style="text-align:right;">
+0.164
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+HEK-r2 (ChromiumV2)
+</td>
+<td style="text-align:left;">
+cell line
+</td>
+<td style="text-align:right;">
+0.096
+</td>
+<td style="text-align:right;">
+23444.0
+</td>
+<td style="text-align:right;">
+0.168
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+3T3-r1 (CEL-seq2)
+</td>
+<td style="text-align:left;">
+cell line
+</td>
+<td style="text-align:right;">
+0.616
+</td>
+<td style="text-align:right;">
+34291.0
+</td>
+<td style="text-align:right;">
+0.172
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+HEK-m (mcSCRB-seq)
+</td>
+<td style="text-align:left;">
+cell line
+</td>
+<td style="text-align:right;">
+0.121
+</td>
+<td style="text-align:right;">
+3266.5
+</td>
+<td style="text-align:right;">
+0.176
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+3T3-r2 (CEL-seq2)
+</td>
+<td style="text-align:left;">
+cell line
+</td>
+<td style="text-align:right;">
+1.045
+</td>
+<td style="text-align:right;">
+53036.0
+</td>
+<td style="text-align:right;">
+0.220
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+HEK (Smart-seq3)
+</td>
+<td style="text-align:left;">
+cell line
+</td>
+<td style="text-align:right;">
+0.286
+</td>
+<td style="text-align:right;">
+106996.0
+</td>
+<td style="text-align:right;">
+0.233
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+HEK-m (CEL-seq2)
+</td>
+<td style="text-align:left;">
+cell line
+</td>
+<td style="text-align:right;">
+0.788
+</td>
+<td style="text-align:right;">
+60592.5
+</td>
+<td style="text-align:right;">
+0.242
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+PBMC (Smart-seq3)
+</td>
+<td style="text-align:left;">
+heterogeneous
+</td>
+<td style="text-align:right;">
+0.032
+</td>
+<td style="text-align:right;">
+9487.5
+</td>
+<td style="text-align:right;">
+0.396
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+HEK-m (ddSeq)
+</td>
+<td style="text-align:left;">
+cell line
+</td>
+<td style="text-align:right;">
+0.205
+</td>
+<td style="text-align:right;">
+5304.5
+</td>
+<td style="text-align:right;">
+0.570
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+HEK-m (ChromiumV2)
+</td>
+<td style="text-align:left;">
+cell line
+</td>
+<td style="text-align:right;">
+0.710
+</td>
+<td style="text-align:right;">
+73333.5
+</td>
+<td style="text-align:right;">
+0.617
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Fibroblasts (Smart-seq3)
+</td>
+<td style="text-align:left;">
+heterogeneous
+</td>
+<td style="text-align:right;">
+0.526
+</td>
+<td style="text-align:right;">
+197151.0
+</td>
+<td style="text-align:right;">
+0.627
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+HEK-m (Quartz-Seq2)
+</td>
+<td style="text-align:left;">
+cell line
+</td>
+<td style="text-align:right;">
+1.576
+</td>
+<td style="text-align:right;">
+167199.0
+</td>
+<td style="text-align:right;">
+0.643
+</td>
+</tr>
+</tbody>
+</table>
+<pre class="r"><code>dir.create(here::here(&quot;output&quot;, &quot;tables&quot;), showWarnings = F)
+print(xtable(frac_df_subset, type = &quot;latex&quot;,  digits=3), include.rownames = FALSE, file = here::here(&quot;output/tables/fraction_nonpoisson.tex&quot;))</code></pre>
+</div>
+<div id="medium-to-high-mean-non-poisson-genes" class="section level2">
+<h2>Medium to high mean non-poisson genes</h2>
+<pre class="r"><code>medium_high_gene_pois &lt;- list()
+for (sample_name in unique(fits_df$sample_name)) {
+  df &lt;- fits_df[fits_df$sample_name == sample_name, ]
+
+  med_abundance &lt;- df[(df$mean &gt; 1),]# &amp; (df$mean &lt;= 10), ]
+  med_abundance_nonpois &lt;- med_abundance[med_abundance$gene_type != &quot;Pass&quot;, ]
+
+  ratio &lt;- dim(med_abundance_nonpois)[1] / dim(med_abundance)[1]
+
+  medium_high_gene_pois[[sample_name]] &lt;- data.frame(ratio = ratio, n_med_high_nonpoisson = dim(med_abundance_nonpois)[1], n_med_high = dim(med_abundance)[1], n_all = dim(df)[1])
+}
+medium_high_gene_pois &lt;- bind_rows(medium_high_gene_pois, .id = &quot;sample_name&quot;)
+
+kbl(medium_high_gene_pois, booktabs = T) %&gt;%
+  kable_styling(latex_options = &quot;striped&quot;)</code></pre>
+<table class="table" style="margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:left;">
+sample_name
+</th>
+<th style="text-align:right;">
+ratio
+</th>
+<th style="text-align:right;">
+n_med_high_nonpoisson
+</th>
+<th style="text-align:right;">
+n_med_high
+</th>
+<th style="text-align:right;">
+n_all
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+TechCtrl1 (ChromiumV1)
+</td>
+<td style="text-align:right;">
+0.1200000
+</td>
+<td style="text-align:right;">
+18
+</td>
+<td style="text-align:right;">
+150
+</td>
+<td style="text-align:right;">
+20167
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+TechCtrl2 (ChromiumV1)
+</td>
+<td style="text-align:right;">
+0.5942029
+</td>
+<td style="text-align:right;">
+82
+</td>
+<td style="text-align:right;">
+138
+</td>
+<td style="text-align:right;">
+20838
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+TechCtrl (inDrops)
+</td>
+<td style="text-align:right;">
+0.0248205
+</td>
+<td style="text-align:right;">
+159
+</td>
+<td style="text-align:right;">
+6406
+</td>
+<td style="text-align:right;">
+25255
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+3T3 (ChromiumV3)
+</td>
+<td style="text-align:right;">
+0.5739750
+</td>
+<td style="text-align:right;">
+1288
+</td>
+<td style="text-align:right;">
+2244
+</td>
+<td style="text-align:right;">
+21920
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+3T3-r1 (CEL-seq2)
+</td>
+<td style="text-align:right;">
+0.4772430
+</td>
+<td style="text-align:right;">
+2915
+</td>
+<td style="text-align:right;">
+6108
+</td>
+<td style="text-align:right;">
+15457
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+3T3-r1 (ChromiumV2)
+</td>
+<td style="text-align:right;">
+0.8469945
+</td>
+<td style="text-align:right;">
+1550
+</td>
+<td style="text-align:right;">
+1830
+</td>
+<td style="text-align:right;">
+15390
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+3T3-r1 (Drop-seq)
+</td>
+<td style="text-align:right;">
+0.6404293
+</td>
+<td style="text-align:right;">
+358
+</td>
+<td style="text-align:right;">
+559
+</td>
+<td style="text-align:right;">
+13904
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+3T3-r1 (inDrops)
+</td>
+<td style="text-align:right;">
+0.8095238
+</td>
+<td style="text-align:right;">
+238
+</td>
+<td style="text-align:right;">
+294
+</td>
+<td style="text-align:right;">
+13337
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+3T3-r1 (sci-RNA-seq)
+</td>
+<td style="text-align:right;">
+0.5337150
+</td>
+<td style="text-align:right;">
+839
+</td>
+<td style="text-align:right;">
+1572
+</td>
+<td style="text-align:right;">
+12806
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+3T3-r2 (CEL-seq2)
+</td>
+<td style="text-align:right;">
+0.5292932
+</td>
+<td style="text-align:right;">
+3939
+</td>
+<td style="text-align:right;">
+7442
+</td>
+<td style="text-align:right;">
+14620
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+3T3-r2 (ChromiumV2)
+</td>
+<td style="text-align:right;">
+0.7796818
+</td>
+<td style="text-align:right;">
+1911
+</td>
+<td style="text-align:right;">
+2451
+</td>
+<td style="text-align:right;">
+15127
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+3T3-r2 (Drop-seq)
+</td>
+<td style="text-align:right;">
+0.5175953
+</td>
+<td style="text-align:right;">
+353
+</td>
+<td style="text-align:right;">
+682
+</td>
+<td style="text-align:right;">
+13977
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+3T3-r2 (inDrops)
+</td>
+<td style="text-align:right;">
+0.5410200
+</td>
+<td style="text-align:right;">
+488
+</td>
+<td style="text-align:right;">
+902
+</td>
+<td style="text-align:right;">
+12354
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+3T3-r2 (sci-RNA-seq)
+</td>
+<td style="text-align:right;">
+0.8837209
+</td>
+<td style="text-align:right;">
+1824
+</td>
+<td style="text-align:right;">
+2064
+</td>
+<td style="text-align:right;">
+15608
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+HEK (ChromiumV3)
+</td>
+<td style="text-align:right;">
+0.6252152
+</td>
+<td style="text-align:right;">
+3268
+</td>
+<td style="text-align:right;">
+5227
+</td>
+<td style="text-align:right;">
+26012
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+HEK (Smart-seq3)
+</td>
+<td style="text-align:right;">
+0.7991825
+</td>
+<td style="text-align:right;">
+7625
+</td>
+<td style="text-align:right;">
+9541
+</td>
+<td style="text-align:right;">
+27097
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+HEK-r1 (CEL-seq2)
+</td>
+<td style="text-align:right;">
+0.5020683
+</td>
+<td style="text-align:right;">
+4248
+</td>
+<td style="text-align:right;">
+8461
+</td>
+<td style="text-align:right;">
+19628
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+HEK-r1 (ChromiumV2)
+</td>
+<td style="text-align:right;">
+0.8846924
+</td>
+<td style="text-align:right;">
+3092
+</td>
+<td style="text-align:right;">
+3495
+</td>
+<td style="text-align:right;">
+21809
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+HEK-r1 (Drop-seq)
+</td>
+<td style="text-align:right;">
+0.5256125
+</td>
+<td style="text-align:right;">
+708
+</td>
+<td style="text-align:right;">
+1347
+</td>
+<td style="text-align:right;">
+19149
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+HEK-r1 (inDrops)
+</td>
+<td style="text-align:right;">
+0.6119048
+</td>
+<td style="text-align:right;">
+257
+</td>
+<td style="text-align:right;">
+420
+</td>
+<td style="text-align:right;">
+17091
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+HEK-r1 (sci-RNA-seq)
+</td>
+<td style="text-align:right;">
+0.5555202
+</td>
+<td style="text-align:right;">
+1746
+</td>
+<td style="text-align:right;">
+3143
+</td>
+<td style="text-align:right;">
+17299
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+HEK-r2 (CEL-seq2)
+</td>
+<td style="text-align:right;">
+0.5539335
+</td>
+<td style="text-align:right;">
+4098
+</td>
+<td style="text-align:right;">
+7398
+</td>
+<td style="text-align:right;">
+20294
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+HEK-r2 (ChromiumV2)
+</td>
+<td style="text-align:right;">
+0.9304878
+</td>
+<td style="text-align:right;">
+3052
+</td>
+<td style="text-align:right;">
+3280
+</td>
+<td style="text-align:right;">
+22655
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+HEK-r2 (Drop-seq)
+</td>
+<td style="text-align:right;">
+0.6598891
+</td>
+<td style="text-align:right;">
+714
+</td>
+<td style="text-align:right;">
+1082
+</td>
+<td style="text-align:right;">
+20614
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+HEK-r2 (inDrops)
+</td>
+<td style="text-align:right;">
+0.6548387
+</td>
+<td style="text-align:right;">
+406
+</td>
+<td style="text-align:right;">
+620
+</td>
+<td style="text-align:right;">
+17862
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+HEK-r2 (sci-RNA-seq)
+</td>
+<td style="text-align:right;">
+0.9221675
+</td>
+<td style="text-align:right;">
+2808
+</td>
+<td style="text-align:right;">
+3045
+</td>
+<td style="text-align:right;">
+23608
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+HEK-m (CEL-seq2)
+</td>
+<td style="text-align:right;">
+0.6930805
+</td>
+<td style="text-align:right;">
+6761
+</td>
+<td style="text-align:right;">
+9755
+</td>
+<td style="text-align:right;">
+21665
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+HEK-m (ChromiumV2)
+</td>
+<td style="text-align:right;">
+0.9761956
+</td>
+<td style="text-align:right;">
+9063
+</td>
+<td style="text-align:right;">
+9284
+</td>
+<td style="text-align:right;">
+21669
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+HEK-m (ChromiumV2_sn)
+</td>
+<td style="text-align:right;">
+0.1847826
+</td>
+<td style="text-align:right;">
+153
+</td>
+<td style="text-align:right;">
+828
+</td>
+<td style="text-align:right;">
+16502
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+HEK-m (ddSeq)
+</td>
+<td style="text-align:right;">
+0.9952525
+</td>
+<td style="text-align:right;">
+2306
+</td>
+<td style="text-align:right;">
+2317
+</td>
+<td style="text-align:right;">
+18354
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+HEK-m (Drop-seq)
+</td>
+<td style="text-align:right;">
+0.9843505
+</td>
+<td style="text-align:right;">
+629
+</td>
+<td style="text-align:right;">
+639
+</td>
+<td style="text-align:right;">
+15794
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+HEK-m (inDrops)
+</td>
+<td style="text-align:right;">
+0.3333333
+</td>
+<td style="text-align:right;">
+174
+</td>
+<td style="text-align:right;">
+522
+</td>
+<td style="text-align:right;">
+13118
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+HEK-m (MARS-seq)
+</td>
+<td style="text-align:right;">
+0.8183222
+</td>
+<td style="text-align:right;">
+1590
+</td>
+<td style="text-align:right;">
+1943
+</td>
+<td style="text-align:right;">
+18091
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+HEK-m (mcSCRB-seq)
+</td>
+<td style="text-align:right;">
+0.9458333
+</td>
+<td style="text-align:right;">
+1135
+</td>
+<td style="text-align:right;">
+1200
+</td>
+<td style="text-align:right;">
+13760
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+HEK-m (Quartz-Seq2)
+</td>
+<td style="text-align:right;">
+0.9814356
+</td>
+<td style="text-align:right;">
+11895
+</td>
+<td style="text-align:right;">
+12120
+</td>
+<td style="text-align:right;">
+21535
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Cortex-r1 (ChromiumV2)
+</td>
+<td style="text-align:right;">
+0.7914110
+</td>
+<td style="text-align:right;">
+903
+</td>
+<td style="text-align:right;">
+1141
+</td>
+<td style="text-align:right;">
+22947
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Cortex-r1 (DroNc-seq)
+</td>
+<td style="text-align:right;">
+0.9180887
+</td>
+<td style="text-align:right;">
+269
+</td>
+<td style="text-align:right;">
+293
+</td>
+<td style="text-align:right;">
+21965
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Cortex-r1 (sci-RNA-seq)
+</td>
+<td style="text-align:right;">
+0.9776248
+</td>
+<td style="text-align:right;">
+568
+</td>
+<td style="text-align:right;">
+581
+</td>
+<td style="text-align:right;">
+22188
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Cortex-r2 (ChromiumV2)
+</td>
+<td style="text-align:right;">
+0.8245614
+</td>
+<td style="text-align:right;">
+329
+</td>
+<td style="text-align:right;">
+399
+</td>
+<td style="text-align:right;">
+22920
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Cortex-r2 (DroNc-seq)
+</td>
+<td style="text-align:right;">
+0.9213251
+</td>
+<td style="text-align:right;">
+445
+</td>
+<td style="text-align:right;">
+483
+</td>
+<td style="text-align:right;">
+21183
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Cortex-r2 (sci-RNA-seq)
+</td>
+<td style="text-align:right;">
+0.9878788
+</td>
+<td style="text-align:right;">
+326
+</td>
+<td style="text-align:right;">
+330
+</td>
+<td style="text-align:right;">
+22492
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Fibroblasts (Smart-seq3)
+</td>
+<td style="text-align:right;">
+0.9940432
+</td>
+<td style="text-align:right;">
+10680
+</td>
+<td style="text-align:right;">
+10744
+</td>
+<td style="text-align:right;">
+24003
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+PBMC-r1 (CEL-seq2)
+</td>
+<td style="text-align:right;">
+0.4225513
+</td>
+<td style="text-align:right;">
+371
+</td>
+<td style="text-align:right;">
+878
+</td>
+<td style="text-align:right;">
+19767
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+PBMC-r1 (ChromiumV2A)
+</td>
+<td style="text-align:right;">
+0.9219512
+</td>
+<td style="text-align:right;">
+189
+</td>
+<td style="text-align:right;">
+205
+</td>
+<td style="text-align:right;">
+21706
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+PBMC-r1 (ChromiumV2B)
+</td>
+<td style="text-align:right;">
+0.8710801
+</td>
+<td style="text-align:right;">
+250
+</td>
+<td style="text-align:right;">
+287
+</td>
+<td style="text-align:right;">
+21922
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+PBMC-r1 (ChromiumV3)
+</td>
+<td style="text-align:right;">
+0.8385214
+</td>
+<td style="text-align:right;">
+431
+</td>
+<td style="text-align:right;">
+514
+</td>
+<td style="text-align:right;">
+22851
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+PBMC-r1 (Drop-seq)
+</td>
+<td style="text-align:right;">
+0.8555556
+</td>
+<td style="text-align:right;">
+154
+</td>
+<td style="text-align:right;">
+180
+</td>
+<td style="text-align:right;">
+21292
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+PBMC-r1 (inDrops)
+</td>
+<td style="text-align:right;">
+0.9696970
+</td>
+<td style="text-align:right;">
+64
+</td>
+<td style="text-align:right;">
+66
+</td>
+<td style="text-align:right;">
+17972
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+PBMC-r1 (Seq-Well)
+</td>
+<td style="text-align:right;">
+0.9624060
+</td>
+<td style="text-align:right;">
+128
+</td>
+<td style="text-align:right;">
+133
+</td>
+<td style="text-align:right;">
+21785
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+PBMC-r2 (CEL-seq2)
+</td>
+<td style="text-align:right;">
+0.4237288
+</td>
+<td style="text-align:right;">
+275
+</td>
+<td style="text-align:right;">
+649
+</td>
+<td style="text-align:right;">
+19705
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+PBMC-r2 (ChromiumV2)
+</td>
+<td style="text-align:right;">
+0.8448276
+</td>
+<td style="text-align:right;">
+196
+</td>
+<td style="text-align:right;">
+232
+</td>
+<td style="text-align:right;">
+22283
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+PBMC-r2 (Drop-seq)
+</td>
+<td style="text-align:right;">
+0.9432314
+</td>
+<td style="text-align:right;">
+216
+</td>
+<td style="text-align:right;">
+229
+</td>
+<td style="text-align:right;">
+23577
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+PBMC-r2 (inDrops)
+</td>
+<td style="text-align:right;">
+0.9754601
+</td>
+<td style="text-align:right;">
+159
+</td>
+<td style="text-align:right;">
+163
+</td>
+<td style="text-align:right;">
+19143
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+PBMC-r2 (Seq-Well)
+</td>
+<td style="text-align:right;">
+0.9411765
+</td>
+<td style="text-align:right;">
+64
+</td>
+<td style="text-align:right;">
+68
+</td>
+<td style="text-align:right;">
+15088
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+PBMC68k (ChromiumV1)
+</td>
+<td style="text-align:right;">
+0.8490566
+</td>
+<td style="text-align:right;">
+135
+</td>
+<td style="text-align:right;">
+159
+</td>
+<td style="text-align:right;">
+19955
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+PBMC (ChromiumV3)
+</td>
+<td style="text-align:right;">
+0.7309645
+</td>
+<td style="text-align:right;">
+576
+</td>
+<td style="text-align:right;">
+788
+</td>
+<td style="text-align:right;">
+17853
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+PBMC (Smart-seq3)
+</td>
+<td style="text-align:right;">
+0.9763514
+</td>
+<td style="text-align:right;">
+1156
+</td>
+<td style="text-align:right;">
+1184
+</td>
+<td style="text-align:right;">
+28768
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Fetal (sci-RNA-seq3)
+</td>
+<td style="text-align:right;">
+0.7037037
+</td>
+<td style="text-align:right;">
+19
+</td>
+<td style="text-align:right;">
+27
+</td>
+<td style="text-align:right;">
+46844
+</td>
+</tr>
+</tbody>
+</table>
+<pre class="r"><code>print(xtable(medium_high_gene_pois,  digits=3), include.rownames = FALSE, digits=3, file = here::here(&quot;output/tables/medium_high_expr_nonpois_fraction.tex&quot;))</code></pre>
+</div>
+<div id="plot-fraction-of-non-poisson-vs-gene-abundance" class="section level2">
+<h2>Plot fraction of non-poisson vs gene abundance</h2>
+<pre class="r"><code>nonpoismeanwise &lt;- GetMeanwiseNonPois(fits_df)
+nonpoismeanwise &lt;- left_join(nonpoismeanwise, datasets, by = &quot;key&quot;)
+nonpoismeanwise_df &lt;- nonpoismeanwise[complete.cases(nonpoismeanwise), ]
+nonpoismeanwise_df$sample_name &lt;- factor(nonpoismeanwise_df$sample_name, levels = datasets$sample_name)
+
+nonpoismeanwise_filtered &lt;- nonpoismeanwise_df[nonpoismeanwise_df$n_total_genes &gt;= 10, ]
+
+
+plot.dots &lt;- ggplot(nonpoismeanwise_filtered, aes(sample_name, mean_quantile,
+  color = nonpoisson_fraction,
+  size = nonpoisson_fraction
+)) +
+  geom_point() +
+  scale_color_viridis_c(
+    direction = -1,
+    breaks = c(0.25, 0.5, 0.75, 1),
+    name = &quot;Non-poisson fraction&quot;
+  ) +
+  scale_size(
+    name = &quot;Non-poisson fraction&quot;,
+    breaks = c(0.25, 0.5, 0.75, 1),
+    range = c(0.5, 5)
+  ) +
+  theme_pubr(base_size = 10) +
+  theme(legend.position = &quot;right&quot;, legend.direction = &quot;horizontal&quot;) +
+  guides(color = guide_legend(), size = guide_legend()) +
+  guides(x = guide_axis(angle = 90)) +
+  xlab(&quot;&quot;) +
+  ylab(&quot;Gene mean&quot;) +
+  theme(legend.position = c(0.8, 1.05))
+
+plot.dots</code></pre>
+<p><img src="figure/09_Figure1.Rmd/fig1a-1.png" width="768" style="display: block; margin: auto;" /></p>
+<pre class="r"><code>nonpoismeanwise_filtered_subset &lt;- nonpoismeanwise_filtered[, c(&quot;sample_name&quot;, &quot;mean_quantile&quot;, &quot;nonpoisson_fraction&quot;)]
+nonpoismeanwise_filtered_subset2 &lt;- tidyr::spread(nonpoismeanwise_filtered_subset, mean_quantile, nonpoisson_fraction)
+
+kbl(nonpoismeanwise_filtered_subset2, booktabs = T) %&gt;%
+  kable_styling(latex_options = &quot;striped&quot;)</code></pre>
+<table class="table" style="margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:left;">
+sample_name
+</th>
+<th style="text-align:right;">
+&lt;0.01
+</th>
+<th style="text-align:right;">
+&gt;0.01
+</th>
+<th style="text-align:right;">
+&gt;0.1
+</th>
+<th style="text-align:right;">
+&gt;1
+</th>
+<th style="text-align:right;">
+&gt;5
+</th>
+<th style="text-align:right;">
+&gt;10
+</th>
+<th style="text-align:right;">
+&gt;25
+</th>
+<th style="text-align:right;">
+&gt;50
+</th>
+<th style="text-align:right;">
+&gt;100
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+TechCtrl1 (ChromiumV1)
+</td>
+<td style="text-align:right;">
+0.0001579
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+0.0083333
+</td>
+<td style="text-align:right;">
+0.1000000
+</td>
+<td style="text-align:right;">
+0.7000000
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+TechCtrl2 (ChromiumV1)
+</td>
+<td style="text-align:right;">
+0.0002289
+</td>
+<td style="text-align:right;">
+0.0001568
+</td>
+<td style="text-align:right;">
+0.0181219
+</td>
+<td style="text-align:right;">
+0.5090909
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+0.9285714
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+TechCtrl (inDrops)
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+0.0002956
+</td>
+<td style="text-align:right;">
+0.0051442
+</td>
+<td style="text-align:right;">
+0.0369069
+</td>
+<td style="text-align:right;">
+0.1264822
+</td>
+<td style="text-align:right;">
+0.4102564
+</td>
+<td style="text-align:right;">
+0.6734694
+</td>
+<td style="text-align:right;">
+0.9285714
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+3T3 (ChromiumV3)
+</td>
+<td style="text-align:right;">
+0.0016598
+</td>
+<td style="text-align:right;">
+0.0071594
+</td>
+<td style="text-align:right;">
+0.0664159
+</td>
+<td style="text-align:right;">
+0.4941676
+</td>
+<td style="text-align:right;">
+0.9889503
+</td>
+<td style="text-align:right;">
+1.0000000
+</td>
+<td style="text-align:right;">
+1.0000000
+</td>
+<td style="text-align:right;">
+1.0000000
+</td>
+<td style="text-align:right;">
+NA
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+3T3-r1 (CEL-seq2)
+</td>
+<td style="text-align:right;">
+0.0071702
+</td>
+<td style="text-align:right;">
+0.0073620
+</td>
+<td style="text-align:right;">
+0.1178304
+</td>
+<td style="text-align:right;">
+0.3713582
+</td>
+<td style="text-align:right;">
+0.8368984
+</td>
+<td style="text-align:right;">
+0.9785933
+</td>
+<td style="text-align:right;">
+1.0000000
+</td>
+<td style="text-align:right;">
+1.0000000
+</td>
+<td style="text-align:right;">
+1.0000000
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+3T3-r1 (ChromiumV2)
+</td>
+<td style="text-align:right;">
+0.0044398
+</td>
+<td style="text-align:right;">
+0.0108141
+</td>
+<td style="text-align:right;">
+0.1958763
+</td>
+<td style="text-align:right;">
+0.8197038
+</td>
+<td style="text-align:right;">
+1.0000000
+</td>
+<td style="text-align:right;">
+1.0000000
+</td>
+<td style="text-align:right;">
+1.0000000
+</td>
+<td style="text-align:right;">
+1.0000000
+</td>
+<td style="text-align:right;">
+NA
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+3T3-r1 (Drop-seq)
+</td>
+<td style="text-align:right;">
+0.0015552
+</td>
+<td style="text-align:right;">
+0.0006245
+</td>
+<td style="text-align:right;">
+0.0542621
+</td>
+<td style="text-align:right;">
+0.6019802
+</td>
+<td style="text-align:right;">
+1.0000000
+</td>
+<td style="text-align:right;">
+1.0000000
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+3T3-r1 (inDrops)
+</td>
+<td style="text-align:right;">
+0.0008782
+</td>
+<td style="text-align:right;">
+0.0010646
+</td>
+<td style="text-align:right;">
+0.0463543
+</td>
+<td style="text-align:right;">
+0.7786561
+</td>
+<td style="text-align:right;">
+1.0000000
+</td>
+<td style="text-align:right;">
+1.0000000
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+3T3-r1 (sci-RNA-seq)
+</td>
+<td style="text-align:right;">
+0.0007918
+</td>
+<td style="text-align:right;">
+0.0033213
+</td>
+<td style="text-align:right;">
+0.0558642
+</td>
+<td style="text-align:right;">
+0.4965612
+</td>
+<td style="text-align:right;">
+0.9873418
+</td>
+<td style="text-align:right;">
+1.0000000
+</td>
+<td style="text-align:right;">
+1.0000000
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+3T3-r2 (CEL-seq2)
+</td>
+<td style="text-align:right;">
+0.0075930
+</td>
+<td style="text-align:right;">
+0.0091783
+</td>
+<td style="text-align:right;">
+0.1038343
+</td>
+<td style="text-align:right;">
+0.3863328
+</td>
+<td style="text-align:right;">
+0.7697466
+</td>
+<td style="text-align:right;">
+0.9505247
+</td>
+<td style="text-align:right;">
+1.0000000
+</td>
+<td style="text-align:right;">
+1.0000000
+</td>
+<td style="text-align:right;">
+1.0000000
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+3T3-r2 (ChromiumV2)
+</td>
+<td style="text-align:right;">
+0.0081105
+</td>
+<td style="text-align:right;">
+0.0062435
+</td>
+<td style="text-align:right;">
+0.1431002
+</td>
+<td style="text-align:right;">
+0.7383721
+</td>
+<td style="text-align:right;">
+1.0000000
+</td>
+<td style="text-align:right;">
+1.0000000
+</td>
+<td style="text-align:right;">
+1.0000000
+</td>
+<td style="text-align:right;">
+1.0000000
+</td>
+<td style="text-align:right;">
+NA
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+3T3-r2 (Drop-seq)
+</td>
+<td style="text-align:right;">
+0.0012251
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+0.0386980
+</td>
+<td style="text-align:right;">
+0.4691558
+</td>
+<td style="text-align:right;">
+0.9534884
+</td>
+<td style="text-align:right;">
+1.0000000
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+3T3-r2 (inDrops)
+</td>
+<td style="text-align:right;">
+0.0009862
+</td>
+<td style="text-align:right;">
+0.0005052
+</td>
+<td style="text-align:right;">
+0.0289113
+</td>
+<td style="text-align:right;">
+0.4843554
+</td>
+<td style="text-align:right;">
+0.9710145
+</td>
+<td style="text-align:right;">
+1.0000000
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+3T3-r2 (sci-RNA-seq)
+</td>
+<td style="text-align:right;">
+0.0048852
+</td>
+<td style="text-align:right;">
+0.0075633
+</td>
+<td style="text-align:right;">
+0.2089249
+</td>
+<td style="text-align:right;">
+0.8717263
+</td>
+<td style="text-align:right;">
+1.0000000
+</td>
+<td style="text-align:right;">
+1.0000000
+</td>
+<td style="text-align:right;">
+1.0000000
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+HEK (ChromiumV3)
+</td>
+<td style="text-align:right;">
+0.0030717
+</td>
+<td style="text-align:right;">
+0.0063885
+</td>
+<td style="text-align:right;">
+0.0762431
+</td>
+<td style="text-align:right;">
+0.5129495
+</td>
+<td style="text-align:right;">
+0.9671642
+</td>
+<td style="text-align:right;">
+1.0000000
+</td>
+<td style="text-align:right;">
+1.0000000
+</td>
+<td style="text-align:right;">
+1.0000000
+</td>
+<td style="text-align:right;">
+1.0000000
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+HEK (Smart-seq3)
+</td>
+<td style="text-align:right;">
+0.0124555
+</td>
+<td style="text-align:right;">
+0.0121248
+</td>
+<td style="text-align:right;">
+0.1717452
+</td>
+<td style="text-align:right;">
+0.7031738
+</td>
+<td style="text-align:right;">
+0.9428066
+</td>
+<td style="text-align:right;">
+0.9871324
+</td>
+<td style="text-align:right;">
+1.0000000
+</td>
+<td style="text-align:right;">
+1.0000000
+</td>
+<td style="text-align:right;">
+1.0000000
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+HEK-r1 (CEL-seq2)
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+0.0084314
+</td>
+<td style="text-align:right;">
+0.0921942
+</td>
+<td style="text-align:right;">
+0.3756942
+</td>
+<td style="text-align:right;">
+0.7605156
+</td>
+<td style="text-align:right;">
+0.9398734
+</td>
+<td style="text-align:right;">
+1.0000000
+</td>
+<td style="text-align:right;">
+1.0000000
+</td>
+<td style="text-align:right;">
+1.0000000
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+HEK-r1 (ChromiumV2)
+</td>
+<td style="text-align:right;">
+0.0054479
+</td>
+<td style="text-align:right;">
+0.0179791
+</td>
+<td style="text-align:right;">
+0.1583698
+</td>
+<td style="text-align:right;">
+0.8531876
+</td>
+<td style="text-align:right;">
+1.0000000
+</td>
+<td style="text-align:right;">
+1.0000000
+</td>
+<td style="text-align:right;">
+1.0000000
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+1.0000000
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+HEK-r1 (Drop-seq)
+</td>
+<td style="text-align:right;">
+0.0004613
+</td>
+<td style="text-align:right;">
+0.0029189
+</td>
+<td style="text-align:right;">
+0.0376685
+</td>
+<td style="text-align:right;">
+0.4732069
+</td>
+<td style="text-align:right;">
+1.0000000
+</td>
+<td style="text-align:right;">
+1.0000000
+</td>
+<td style="text-align:right;">
+1.0000000
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+HEK-r1 (inDrops)
+</td>
+<td style="text-align:right;">
+0.0005487
+</td>
+<td style="text-align:right;">
+0.0011022
+</td>
+<td style="text-align:right;">
+0.0197816
+</td>
+<td style="text-align:right;">
+0.5421348
+</td>
+<td style="text-align:right;">
+1.0000000
+</td>
+<td style="text-align:right;">
+1.0000000
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+HEK-r1 (sci-RNA-seq)
+</td>
+<td style="text-align:right;">
+0.0047764
+</td>
+<td style="text-align:right;">
+0.0069048
+</td>
+<td style="text-align:right;">
+0.0763099
+</td>
+<td style="text-align:right;">
+0.5151621
+</td>
+<td style="text-align:right;">
+0.9710145
+</td>
+<td style="text-align:right;">
+1.0000000
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+HEK-r2 (CEL-seq2)
+</td>
+<td style="text-align:right;">
+0.0051769
+</td>
+<td style="text-align:right;">
+0.0080345
+</td>
+<td style="text-align:right;">
+0.0847489
+</td>
+<td style="text-align:right;">
+0.4479185
+</td>
+<td style="text-align:right;">
+0.9014228
+</td>
+<td style="text-align:right;">
+0.9844098
+</td>
+<td style="text-align:right;">
+1.0000000
+</td>
+<td style="text-align:right;">
+1.0000000
+</td>
+<td style="text-align:right;">
+1.0000000
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+HEK-r2 (ChromiumV2)
+</td>
+<td style="text-align:right;">
+0.0055034
+</td>
+<td style="text-align:right;">
+0.0191110
+</td>
+<td style="text-align:right;">
+0.2030820
+</td>
+<td style="text-align:right;">
+0.9113186
+</td>
+<td style="text-align:right;">
+1.0000000
+</td>
+<td style="text-align:right;">
+1.0000000
+</td>
+<td style="text-align:right;">
+1.0000000
+</td>
+<td style="text-align:right;">
+1.0000000
+</td>
+<td style="text-align:right;">
+NA
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+HEK-r2 (Drop-seq)
+</td>
+<td style="text-align:right;">
+0.0012235
+</td>
+<td style="text-align:right;">
+0.0031302
+</td>
+<td style="text-align:right;">
+0.0587045
+</td>
+<td style="text-align:right;">
+0.6178609
+</td>
+<td style="text-align:right;">
+1.0000000
+</td>
+<td style="text-align:right;">
+1.0000000
+</td>
+<td style="text-align:right;">
+1.0000000
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+HEK-r2 (inDrops)
+</td>
+<td style="text-align:right;">
+0.0008364
+</td>
+<td style="text-align:right;">
+0.0027337
+</td>
+<td style="text-align:right;">
+0.0275229
+</td>
+<td style="text-align:right;">
+0.6014898
+</td>
+<td style="text-align:right;">
+1.0000000
+</td>
+<td style="text-align:right;">
+1.0000000
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+HEK-r2 (sci-RNA-seq)
+</td>
+<td style="text-align:right;">
+0.0058964
+</td>
+<td style="text-align:right;">
+0.0177192
+</td>
+<td style="text-align:right;">
+0.2650504
+</td>
+<td style="text-align:right;">
+0.9149013
+</td>
+<td style="text-align:right;">
+1.0000000
+</td>
+<td style="text-align:right;">
+1.0000000
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+HEK-m (CEL-seq2)
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+0.0187520
+</td>
+<td style="text-align:right;">
+0.1357605
+</td>
+<td style="text-align:right;">
+0.6062354
+</td>
+<td style="text-align:right;">
+0.9279762
+</td>
+<td style="text-align:right;">
+0.9898990
+</td>
+<td style="text-align:right;">
+1.0000000
+</td>
+<td style="text-align:right;">
+1.0000000
+</td>
+<td style="text-align:right;">
+1.0000000
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+HEK-m (ChromiumV2)
+</td>
+<td style="text-align:right;">
+0.1884058
+</td>
+<td style="text-align:right;">
+0.2037037
+</td>
+<td style="text-align:right;">
+0.6752822
+</td>
+<td style="text-align:right;">
+0.9689714
+</td>
+<td style="text-align:right;">
+0.9984825
+</td>
+<td style="text-align:right;">
+1.0000000
+</td>
+<td style="text-align:right;">
+1.0000000
+</td>
+<td style="text-align:right;">
+1.0000000
+</td>
+<td style="text-align:right;">
+1.0000000
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+HEK-m (ChromiumV2_sn)
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+0.0053493
+</td>
+<td style="text-align:right;">
+0.1718171
+</td>
+<td style="text-align:right;">
+0.7333333
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+HEK-m (ddSeq)
+</td>
+<td style="text-align:right;">
+0.2215190
+</td>
+<td style="text-align:right;">
+0.4792910
+</td>
+<td style="text-align:right;">
+0.9116033
+</td>
+<td style="text-align:right;">
+0.9945972
+</td>
+<td style="text-align:right;">
+1.0000000
+</td>
+<td style="text-align:right;">
+1.0000000
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+HEK-m (Drop-seq)
+</td>
+<td style="text-align:right;">
+0.0058252
+</td>
+<td style="text-align:right;">
+0.0138690
+</td>
+<td style="text-align:right;">
+0.2911326
+</td>
+<td style="text-align:right;">
+0.9819820
+</td>
+<td style="text-align:right;">
+1.0000000
+</td>
+<td style="text-align:right;">
+1.0000000
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+HEK-m (inDrops)
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+0.0078245
+</td>
+<td style="text-align:right;">
+0.2494331
+</td>
+<td style="text-align:right;">
+0.6909091
+</td>
+<td style="text-align:right;">
+1.0000000
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+HEK-m (MARS-seq)
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+0.0101597
+</td>
+<td style="text-align:right;">
+0.2094223
+</td>
+<td style="text-align:right;">
+0.7965318
+</td>
+<td style="text-align:right;">
+0.9916667
+</td>
+<td style="text-align:right;">
+1.0000000
+</td>
+<td style="text-align:right;">
+1.0000000
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+HEK-m (mcSCRB-seq)
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+0.0069649
+</td>
+<td style="text-align:right;">
+0.3341531
+</td>
+<td style="text-align:right;">
+0.9397032
+</td>
+<td style="text-align:right;">
+1.0000000
+</td>
+<td style="text-align:right;">
+1.0000000
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+HEK-m (Quartz-Seq2)
+</td>
+<td style="text-align:right;">
+0.1029412
+</td>
+<td style="text-align:right;">
+0.1327694
+</td>
+<td style="text-align:right;">
+0.5254979
+</td>
+<td style="text-align:right;">
+0.9590783
+</td>
+<td style="text-align:right;">
+0.9990378
+</td>
+<td style="text-align:right;">
+1.0000000
+</td>
+<td style="text-align:right;">
+1.0000000
+</td>
+<td style="text-align:right;">
+1.0000000
+</td>
+<td style="text-align:right;">
+1.0000000
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Cortex-r1 (ChromiumV2)
+</td>
+<td style="text-align:right;">
+0.0014268
+</td>
+<td style="text-align:right;">
+0.0094961
+</td>
+<td style="text-align:right;">
+0.1243224
+</td>
+<td style="text-align:right;">
+0.7659784
+</td>
+<td style="text-align:right;">
+1.0000000
+</td>
+<td style="text-align:right;">
+1.0000000
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Cortex-r1 (DroNc-seq)
+</td>
+<td style="text-align:right;">
+0.0012027
+</td>
+<td style="text-align:right;">
+0.0074363
+</td>
+<td style="text-align:right;">
+0.1999300
+</td>
+<td style="text-align:right;">
+0.9130435
+</td>
+<td style="text-align:right;">
+1.0000000
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Cortex-r1 (sci-RNA-seq)
+</td>
+<td style="text-align:right;">
+0.0013945
+</td>
+<td style="text-align:right;">
+0.0112205
+</td>
+<td style="text-align:right;">
+0.2579739
+</td>
+<td style="text-align:right;">
+0.9734694
+</td>
+<td style="text-align:right;">
+1.0000000
+</td>
+<td style="text-align:right;">
+1.0000000
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Cortex-r2 (ChromiumV2)
+</td>
+<td style="text-align:right;">
+0.0008931
+</td>
+<td style="text-align:right;">
+0.0064958
+</td>
+<td style="text-align:right;">
+0.1039261
+</td>
+<td style="text-align:right;">
+0.8044693
+</td>
+<td style="text-align:right;">
+1.0000000
+</td>
+<td style="text-align:right;">
+1.0000000
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Cortex-r2 (DroNc-seq)
+</td>
+<td style="text-align:right;">
+0.0021138
+</td>
+<td style="text-align:right;">
+0.0066360
+</td>
+<td style="text-align:right;">
+0.2039794
+</td>
+<td style="text-align:right;">
+0.9168490
+</td>
+<td style="text-align:right;">
+1.0000000
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Cortex-r2 (sci-RNA-seq)
+</td>
+<td style="text-align:right;">
+0.0010578
+</td>
+<td style="text-align:right;">
+0.0098976
+</td>
+<td style="text-align:right;">
+0.2184623
+</td>
+<td style="text-align:right;">
+0.9862069
+</td>
+<td style="text-align:right;">
+1.0000000
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Fibroblasts (Smart-seq3)
+</td>
+<td style="text-align:right;">
+0.0478043
+</td>
+<td style="text-align:right;">
+0.2743703
+</td>
+<td style="text-align:right;">
+0.7986547
+</td>
+<td style="text-align:right;">
+0.9859772
+</td>
+<td style="text-align:right;">
+1.0000000
+</td>
+<td style="text-align:right;">
+1.0000000
+</td>
+<td style="text-align:right;">
+1.0000000
+</td>
+<td style="text-align:right;">
+1.0000000
+</td>
+<td style="text-align:right;">
+1.0000000
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+PBMC-r1 (CEL-seq2)
+</td>
+<td style="text-align:right;">
+0.0009934
+</td>
+<td style="text-align:right;">
+0.0009949
+</td>
+<td style="text-align:right;">
+0.0172458
+</td>
+<td style="text-align:right;">
+0.3147139
+</td>
+<td style="text-align:right;">
+0.9459459
+</td>
+<td style="text-align:right;">
+1.0000000
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+PBMC-r1 (ChromiumV2A)
+</td>
+<td style="text-align:right;">
+0.0004382
+</td>
+<td style="text-align:right;">
+0.0041029
+</td>
+<td style="text-align:right;">
+0.1088867
+</td>
+<td style="text-align:right;">
+0.8717949
+</td>
+<td style="text-align:right;">
+0.9800000
+</td>
+<td style="text-align:right;">
+1.0000000
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+PBMC-r1 (ChromiumV2B)
+</td>
+<td style="text-align:right;">
+0.0005757
+</td>
+<td style="text-align:right;">
+0.0021887
+</td>
+<td style="text-align:right;">
+0.0786216
+</td>
+<td style="text-align:right;">
+0.7988827
+</td>
+<td style="text-align:right;">
+0.9756098
+</td>
+<td style="text-align:right;">
+1.0000000
+</td>
+<td style="text-align:right;">
+1.0000000
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+PBMC-r1 (ChromiumV3)
+</td>
+<td style="text-align:right;">
+0.0017724
+</td>
+<td style="text-align:right;">
+0.0112500
+</td>
+<td style="text-align:right;">
+0.1449508
+</td>
+<td style="text-align:right;">
+0.7815789
+</td>
+<td style="text-align:right;">
+1.0000000
+</td>
+<td style="text-align:right;">
+1.0000000
+</td>
+<td style="text-align:right;">
+1.0000000
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+PBMC-r1 (Drop-seq)
+</td>
+<td style="text-align:right;">
+0.0001596
+</td>
+<td style="text-align:right;">
+0.0020492
+</td>
+<td style="text-align:right;">
+0.1284247
+</td>
+<td style="text-align:right;">
+0.8289474
+</td>
+<td style="text-align:right;">
+1.0000000
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+PBMC-r1 (inDrops)
+</td>
+<td style="text-align:right;">
+0.0003344
+</td>
+<td style="text-align:right;">
+0.0026207
+</td>
+<td style="text-align:right;">
+0.1887417
+</td>
+<td style="text-align:right;">
+0.9666667
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+PBMC-r1 (Seq-Well)
+</td>
+<td style="text-align:right;">
+0.0008199
+</td>
+<td style="text-align:right;">
+0.0049993
+</td>
+<td style="text-align:right;">
+0.2137652
+</td>
+<td style="text-align:right;">
+0.9586777
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+PBMC-r2 (CEL-seq2)
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+0.0005705
+</td>
+<td style="text-align:right;">
+0.0128744
+</td>
+<td style="text-align:right;">
+0.3000000
+</td>
+<td style="text-align:right;">
+0.9508197
+</td>
+<td style="text-align:right;">
+1.0000000
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+PBMC-r2 (ChromiumV2)
+</td>
+<td style="text-align:right;">
+0.0003797
+</td>
+<td style="text-align:right;">
+0.0011815
+</td>
+<td style="text-align:right;">
+0.0609636
+</td>
+<td style="text-align:right;">
+0.7445255
+</td>
+<td style="text-align:right;">
+0.9756098
+</td>
+<td style="text-align:right;">
+1.0000000
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+PBMC-r2 (Drop-seq)
+</td>
+<td style="text-align:right;">
+0.0009927
+</td>
+<td style="text-align:right;">
+0.0044129
+</td>
+<td style="text-align:right;">
+0.2064865
+</td>
+<td style="text-align:right;">
+0.9150327
+</td>
+<td style="text-align:right;">
+1.0000000
+</td>
+<td style="text-align:right;">
+1.0000000
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+PBMC-r2 (inDrops)
+</td>
+<td style="text-align:right;">
+0.0008128
+</td>
+<td style="text-align:right;">
+0.0051697
+</td>
+<td style="text-align:right;">
+0.1449184
+</td>
+<td style="text-align:right;">
+0.9646018
+</td>
+<td style="text-align:right;">
+1.0000000
+</td>
+<td style="text-align:right;">
+1.0000000
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+PBMC-r2 (Seq-Well)
+</td>
+<td style="text-align:right;">
+0.0002448
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+0.0953177
+</td>
+<td style="text-align:right;">
+0.9344262
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+PBMC68k (ChromiumV1)
+</td>
+<td style="text-align:right;">
+0.0002238
+</td>
+<td style="text-align:right;">
+0.0030616
+</td>
+<td style="text-align:right;">
+0.0694683
+</td>
+<td style="text-align:right;">
+0.7578947
+</td>
+<td style="text-align:right;">
+0.9772727
+</td>
+<td style="text-align:right;">
+1.0000000
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+PBMC (ChromiumV3)
+</td>
+<td style="text-align:right;">
+0.0017918
+</td>
+<td style="text-align:right;">
+0.0107268
+</td>
+<td style="text-align:right;">
+0.1112391
+</td>
+<td style="text-align:right;">
+0.6618123
+</td>
+<td style="text-align:right;">
+0.9464286
+</td>
+<td style="text-align:right;">
+1.0000000
+</td>
+<td style="text-align:right;">
+1.0000000
+</td>
+<td style="text-align:right;">
+1.0000000
+</td>
+<td style="text-align:right;">
+NA
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+PBMC (Smart-seq3)
+</td>
+<td style="text-align:right;">
+0.0307981
+</td>
+<td style="text-align:right;">
+0.3588126
+</td>
+<td style="text-align:right;">
+0.8935789
+</td>
+<td style="text-align:right;">
+0.9724138
+</td>
+<td style="text-align:right;">
+1.0000000
+</td>
+<td style="text-align:right;">
+1.0000000
+</td>
+<td style="text-align:right;">
+1.0000000
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Fetal (sci-RNA-seq3)
+</td>
+<td style="text-align:right;">
+0.1163244
+</td>
+<td style="text-align:right;">
+0.6171036
+</td>
+<td style="text-align:right;">
+0.9902142
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+</tr>
+</tbody>
+</table>
+<pre class="r"><code>print(xtable(nonpoismeanwise_filtered_subset2, type = &quot;latex&quot;,  digits=3), digits=3, include.rownames = FALSE, file = here::here(&quot;output/tables/nonpoisson_meanwise.tex&quot;))</code></pre>
+</div>
+<div id="plot-residual-variance" class="section level2">
+<h2>Plot residual variance</h2>
+<pre class="r"><code>sample_names &lt;- c(
+  &quot;TechCtrl (inDrops)&quot;, &quot;TechCtrl1 (ChromiumV1)&quot;,
+  &quot;HEK (ChromiumV3)&quot;,
+  &quot;PBMC (Smart-seq3)&quot;
+)
+
+fits_df_subset &lt;- fits_df[fits_df$sample_name %in% sample_names, ]
+plot.glmresid4 &lt;- PlotGLMResiduals(fits_df_subset, ssr_column, 4)
+plot.glmresid4</code></pre>
+<p><img src="figure/09_Figure1.Rmd/fig1b-1.png" width="672" style="display: block; margin: auto;" /></p>
+</div>
+<div id="distribution-of-means-of-poisson-and-non-poisson-genes" class="section level2">
+<h2>Distribution of means of poisson and non-poisson genes</h2>
+<pre class="r"><code>plot.kde &lt;- PlotKDEPois(fits_df)
+plot.kde</code></pre>
+<p><img src="figure/09_Figure1.Rmd/unnamed-chunk-6-1.png" width="1152" style="display: block; margin: auto;" /></p>
+<pre class="r"><code>dir.create(here::here(&quot;output&quot;, &quot;figures&quot;), showWarnings = F, recursive = T)
+ggsave(here::here(&quot;output&quot;, &quot;figures&quot;, paste0(&quot;01_PoissonKDE_ncells_&quot;, ncells, &quot;_residtype_&quot;, residual_type, &quot;.pdf&quot;)), width = 12, height = 10)</code></pre>
+</div>
+<div id="plot-fraction-of-non-poisson" class="section level2">
+<h2>Plot fraction of non-poisson</h2>
+<pre class="r"><code>plot.poisvsumi &lt;- PlotPoisVsUMI.cell_line(frac_df)
+plot.poisvsumix &lt;- plot.poisvsumi + theme(legend.position = c(0.5, 1.0))
+plot.poisvsumix</code></pre>
+<p><img src="figure/09_Figure1.Rmd/unnamed-chunk-7-1.png" width="672" style="display: block; margin: auto;" /></p>
+</div>
+<div id="downsampling" class="section level2">
+<h2>Downsampling</h2>
+<pre class="r"><code>sample_name &lt;- &quot;PBMC__Smart-seq3&quot;
+
+root_dir &lt;- here::here(paste0(&quot;output/snakemake_output/&quot;, sample_name, &quot;_sampled_counts/poisson_glm_output/&quot;, ncells))
+
+
+downsampled_umis &lt;- c(
+  10000, 7500, 5000,
+  2000, 1000
+)
+
+
+names(downsampled_umis)&lt;- c(
+  &quot;10,000&quot;, &quot;7,500&quot;, &quot;5,000&quot;,
+  &quot;2,000&quot;, &quot;1,000&quot;
+)
+
+sampled_dataset_keys &lt;- paste0(sample_name, &quot;_sampled_&quot;, downsampled_umis)
+
+sampled_counts &lt;- list()
+
+for (name in downsampled_umis) {
+  seu &lt;- readRDS(here::here(&quot;data&quot;, &quot;sampled_counts&quot;, paste0(sample_name, &quot;_sampled_counts&quot;), paste0(sample_name, &quot;_sampled_&quot;, name, &quot;.rds&quot;)))
+  sampled_counts[[as.character(name)]] &lt;- GetAssayData(seu, assay = &quot;RNA&quot;, slot = &quot;counts&quot;)
+}
+
+sampled &lt;- readRDS(here::here(&quot;data&quot;, &quot;rds_filtered&quot;, paste0(sample_name, &quot;.rds&quot;)))
+counts &lt;- GetAssayData(sampled, assay = &quot;RNA&quot;, slot = &quot;counts&quot;)
+counts_totalumis &lt;- colSums2(counts)
+
+generated_poissons &lt;- list()
+
+PredictPoisson &lt;- function(counts_df) {
+  predicted_poisson &lt;- dpois(counts_df$counts, lambda = mean(counts_df$counts))
+  return(predicted_poisson)
+}
+
+goi &lt;- c(&quot;RPS19&quot;, &quot;TPT1&quot;)
+names(goi) &lt;- goi
+
+PredictPoisson &lt;- function(counts_df) {
+  predicted_poisson &lt;- dpois(counts_df$counts, lambda = mean(counts_df$counts))
+  return(predicted_poisson)
+}
+
+med_libsize &lt;- &quot;8,288&quot; #(median(colSums2(counts)))
+
+for (gene_name in names(goi)) {
+  gene &lt;- goi[[gene_name]]
+  c1 &lt;- &quot;5000&quot;
+  c2 &lt;- &quot;1000&quot;
+  counts_goi_full &lt;- counts[gene, ]
+  counts_goi_full_subset &lt;- counts_goi_full[counts_goi_full &gt; 1]
+  counts_goi_5k &lt;- sampled_counts[[c1]][gene, ]
+  counts_goi_1k &lt;- sampled_counts[[c2]][gene, ]
+
+  counts_df_full &lt;- data.frame(counts = counts_goi_full_subset)
+  counts_df_5k &lt;- data.frame(counts = counts_goi_5k)
+  counts_df_1k &lt;- data.frame(counts = counts_goi_1k)
+
+  labels &lt;- c(
+    paste0(&quot;Original  &quot;, med_libsize, &quot; UMI/cell&quot;),
+    paste0(&quot;Sampled &quot;, so_formatter(as.integer(c1)), &quot; UMI/cell&quot;),
+    paste0(&quot;Sampled &quot;, so_formatter(as.integer(c2)), &quot; UMI/cell&quot;)
+  )
+  counts_df_full$predicted_poisson &lt;- PredictPoisson(counts_df_full)
+  counts_df_full$sampletype &lt;- labels[1]
+  counts_df_5k$predicted_poisson &lt;- PredictPoisson(counts_df_5k)
+  counts_df_5k$sampletype &lt;- labels[2]
+  counts_df_1k$predicted_poisson &lt;- PredictPoisson(counts_df_1k)
+  counts_df_1k$sampletype &lt;- labels[3]
+
+  merged_counts &lt;- rbind(counts_df_full, counts_df_5k, counts_df_1k)
+  merged_counts$sampletype &lt;- factor(merged_counts$sampletype, levels = labels)
+  generated_poissons[[gene_name]] &lt;- merged_counts
+}
+generated_poissons_df &lt;- bind_rows(generated_poissons, .id = &quot;gene&quot;)
+
+
+plot.genespois &lt;- ggplot(generated_poissons_df, aes(x = counts)) +
+  geom_histogram(aes(y = ..density..), binwidth = 1, colour = &quot;gray&quot;, fill = &quot;white&quot;) +
+  geom_line(aes(counts, predicted_poisson), color = &quot;red&quot;) +
+  facet_wrap(gene ~ sampletype, scales = &quot;free&quot;, ncol = 3) +
+  xlab(&quot;Counts&quot;) +
+  ylab(&quot;Density&quot;) +
+  scale_y_continuous(breaks = c(0.00, 0.10, 0.20))
+plot.genespois</code></pre>
+<p><img src="figure/09_Figure1.Rmd/fig1d-1.png" width="672" style="display: block; margin: auto;" /></p>
+<pre class="r"><code>ncells &lt;- &quot;1000&quot;
+residual_type &lt;- &quot;quantile&quot;
+nb_column &lt;- paste0(&quot;qval_ssr&quot;, &quot;_&quot;, residual_type)
+ssr_column &lt;- paste0(&quot;ssr&quot;, &quot;_&quot;, residual_type, &quot;_normalized&quot;)
+
+
+
+
+
+results_df &lt;- GetFits.sampled(root_dir, nb_column)
+fits_df.sampledx &lt;- results_df$fits
+frac_df.sampled &lt;- results_df$frac_df
+
+fits_df.sampled &lt;- ProcessFits.sampled(fits_df.sampledx, nb_column)
+fits_df.sampled$umi &lt;- stringr::str_split_fixed(fits_df.sampled$key, pattern = &quot;_&quot;, n = 5)[, 5]
+frac_df.sampled$umi &lt;- stringr::str_split_fixed(frac_df.sampled$key, pattern = &quot;_&quot;, n = 5)[, 5]
+
+fits_df.sampled$umi &lt;- factor(fits_df.sampled$umi, levels = as.character(downsampled_umis), labels = paste0(&quot;Sampled &quot;, names(downsampled_umis), &quot; UMI/cell&quot;))
+
+frac_df.sampled$umi &lt;- factor(frac_df.sampled$umi, levels = as.character(downsampled_umis), labels = paste0(&quot;Sampled &quot;, names(downsampled_umis), &quot; UMI/cell&quot;))
+fits_df.sampled$sample_name &lt;- fits_df.sampled$umi
+fits_df.sampled$datatype &lt;- &quot;heterogeneous&quot;
+fits_df.sampled$datatype &lt;- factor(fits_df.sampled$datatype, levels = c(&quot;technical-control&quot;, &quot;cell line&quot;, &quot;heterogeneous&quot;))
+fits_df.sampled.subset &lt;- fits_df.sampled[!is.na(fits_df.sampled[, ssr_column]), ]</code></pre>
+<pre class="r"><code>plot.glmresiddownsample &lt;- PlotGLMResiduals.sampled(fits_df.sampled, y = ssr_column, ncol = 5) + ylab(paste0(&quot;Variance of &quot;, residual_type, &quot; residuals&quot;))
+plot.glmresiddownsample</code></pre>
+<p><img src="figure/09_Figure1.Rmd/unnamed-chunk-8-1.png" width="672" style="display: block; margin: auto;" /></p>
+<pre class="r"><code>frac_df.sampled.subset &lt;- frac_df.sampled[, c(
+  &quot;umi&quot;, &quot;median_cell_total_umi&quot;, &quot;median_gene_total_umi&quot;,
+  &quot;median_gene_avg_umi&quot;, &quot;nonpoisson_fraction&quot;
+)]
+
+kbl(frac_df.sampled.subset, booktabs = T) %&gt;%
+  kable_styling(latex_options = &quot;striped&quot;)</code></pre>
+<table class="table" style="margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:left;">
+umi
+</th>
+<th style="text-align:right;">
+median_cell_total_umi
+</th>
+<th style="text-align:right;">
+median_gene_total_umi
+</th>
+<th style="text-align:right;">
+median_gene_avg_umi
+</th>
+<th style="text-align:right;">
+nonpoisson_fraction
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+Sampled 10,000 UMI/cell
+</td>
+<td style="text-align:right;">
+9998
+</td>
+<td style="text-align:right;">
+29
+</td>
+<td style="text-align:right;">
+0.0366162
+</td>
+<td style="text-align:right;">
+0.4677393
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Sampled 7,500 UMI/cell
+</td>
+<td style="text-align:right;">
+7500
+</td>
+<td style="text-align:right;">
+28
+</td>
+<td style="text-align:right;">
+0.0280000
+</td>
+<td style="text-align:right;">
+0.3953927
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Sampled 5,000 UMI/cell
+</td>
+<td style="text-align:right;">
+5000
+</td>
+<td style="text-align:right;">
+23
+</td>
+<td style="text-align:right;">
+0.0230000
+</td>
+<td style="text-align:right;">
+0.2820475
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Sampled 2,000 UMI/cell
+</td>
+<td style="text-align:right;">
+2000
+</td>
+<td style="text-align:right;">
+14
+</td>
+<td style="text-align:right;">
+0.0140000
+</td>
+<td style="text-align:right;">
+0.0219026
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Sampled 1,000 UMI/cell
+</td>
+<td style="text-align:right;">
+999
+</td>
+<td style="text-align:right;">
+11
+</td>
+<td style="text-align:right;">
+0.0110000
+</td>
+<td style="text-align:right;">
+0.0049998
+</td>
+</tr>
+</tbody>
+</table>
+<pre class="r"><code>print(xtable(frac_df.sampled.subset, type = &quot;latex&quot;, digits=3), include.rownames = FALSE, file=here::here(&quot;output&quot;, &quot;tables&quot;, &quot;frac_nonpoisson_sampled.tex&quot;))</code></pre>
+<pre class="r"><code>plot.poisvsumi &lt;- PlotPoisVsUMI.cell_line(frac_df) + # theme(legend.position = &quot;top&quot;)
+theme(legend.position = c(0.5, 1.04))
+layout &lt;- &quot;
+AAAA
+BBBC
+DDDD
+EEEE
+&quot;
+
+
+plot.dots +
+  plot.glmresid4 + plot.poisvsumi +
+  plot.genespois + plot.glmresiddownsample +
+  plot_layout(design = layout, tag_level = &quot;new&quot;) + plot_annotation(tag_levels = &quot;A&quot;) &amp; theme(plot.tag = element_text(face = &quot;bold&quot;))</code></pre>
+<p><img src="figure/09_Figure1.Rmd/unnamed-chunk-10-1.png" width="1152" style="display: block; margin: auto;" /></p>
+<pre class="r"><code>ggsave(here::here(&quot;output&quot;, &quot;figures&quot;, &quot;01_Figure1.pdf&quot;), width = 12, height = 15)</code></pre>
+<pre class="r"><code>sessionInfo()</code></pre>
+<pre><code>R version 4.0.0 (2020-04-24)
+Platform: x86_64-pc-linux-gnu (64-bit)
+Running under: Ubuntu 18.04.5 LTS
+
+Matrix products: default
+BLAS:   /usr/lib/x86_64-linux-gnu/blas/libblas.so.3.7.1
+LAPACK: /usr/lib/x86_64-linux-gnu/lapack/liblapack.so.3.7.1
+
+locale:
+ [1] LC_CTYPE=en_US.UTF-8       LC_NUMERIC=C              
+ [3] LC_TIME=en_US.UTF-8        LC_COLLATE=en_US.UTF-8    
+ [5] LC_MONETARY=en_US.UTF-8    LC_MESSAGES=en_US.UTF-8   
+ [7] LC_PAPER=en_US.UTF-8       LC_NAME=C                 
+ [9] LC_ADDRESS=C               LC_TELEPHONE=C            
+[11] LC_MEASUREMENT=en_US.UTF-8 LC_IDENTIFICATION=C       
+
+attached base packages:
+[1] stats     graphics  grDevices utils     datasets  methods   base     
+
+other attached packages:
+ [1] xtable_1.8-4            sparseMatrixStats_1.2.1 MatrixGenerics_1.2.1   
+ [4] matrixStats_0.59.0      SeuratObject_4.0.2      Seurat_4.0.3           
+ [7] scattermore_0.7         reshape2_1.4.4          readr_1.4.0            
+[10] RColorBrewer_1.1-2      patchwork_1.1.1         kableExtra_1.3.4       
+[13] here_1.0.1              ggridges_0.5.3          ggpubr_0.4.0           
+[16] ggplot2_3.3.5           dplyr_1.0.7             workflowr_1.6.2        
+
+loaded via a namespace (and not attached):
+  [1] readxl_1.3.1           backports_1.2.1        systemfonts_1.0.2     
+  [4] plyr_1.8.6             igraph_1.2.6           lazyeval_0.2.2        
+  [7] splines_4.0.0          listenv_0.8.0          digest_0.6.27         
+ [10] htmltools_0.5.1.1      fansi_0.5.0            magrittr_2.0.1        
+ [13] tensor_1.5             cluster_2.1.0          ROCR_1.0-11           
+ [16] openxlsx_4.2.4         globals_0.14.0         svglite_2.0.0         
+ [19] spatstat.sparse_2.0-0  colorspace_2.0-2       rvest_1.0.0           
+ [22] ggrepel_0.9.1          textshaping_0.3.5      haven_2.4.1           
+ [25] xfun_0.24              crayon_1.4.1           jsonlite_1.7.2        
+ [28] spatstat.data_2.1-0    survival_3.2-7         zoo_1.8-9             
+ [31] glue_1.4.2             polyclip_1.10-0        gtable_0.3.0          
+ [34] webshot_0.5.2          leiden_0.3.8           car_3.0-10            
+ [37] future.apply_1.7.0     abind_1.4-5            scales_1.1.1          
+ [40] DBI_1.1.1              rstatix_0.7.0          miniUI_0.1.1.1        
+ [43] Rcpp_1.0.6             viridisLite_0.4.0      reticulate_1.20       
+ [46] spatstat.core_2.2-0    foreign_0.8-79         htmlwidgets_1.5.3     
+ [49] httr_1.4.2             ellipsis_0.3.2         ica_1.0-2             
+ [52] farver_2.1.0           pkgconfig_2.0.3        uwot_0.1.10           
+ [55] sass_0.4.0             deldir_0.2-10          utf8_1.2.1            
+ [58] labeling_0.4.2         tidyselect_1.1.1       rlang_0.4.11          
+ [61] later_1.2.0            munsell_0.5.0          cellranger_1.1.0      
+ [64] tools_4.0.0            generics_0.1.0         broom_0.7.8           
+ [67] evaluate_0.14          stringr_1.4.0          fastmap_1.1.0         
+ [70] ragg_1.1.3             yaml_2.2.1             goftest_1.2-2         
+ [73] knitr_1.33             fs_1.5.0               fitdistrplus_1.1-5    
+ [76] zip_2.2.0              purrr_0.3.4            RANN_2.6.1            
+ [79] pbapply_1.4-3          future_1.21.0          nlme_3.1-152          
+ [82] mime_0.11              xml2_1.3.2             compiler_4.0.0        
+ [85] rstudioapi_0.13        plotly_4.9.4.1         curl_4.3.2            
+ [88] png_0.1-7              ggsignif_0.6.2         spatstat.utils_2.2-0  
+ [91] tibble_3.1.2           bslib_0.2.5.1          stringi_1.6.2         
+ [94] highr_0.8              forcats_0.5.1          lattice_0.20-41       
+ [97] Matrix_1.3-4           vctrs_0.3.8            pillar_1.6.1          
+[100] lifecycle_1.0.0        spatstat.geom_2.2-0    lmtest_0.9-38         
+[103] jquerylib_0.1.4        RcppAnnoy_0.0.18       data.table_1.14.0     
+[106] cowplot_1.1.1          irlba_2.3.3            httpuv_1.6.1          
+[109] R6_2.5.0               promises_1.2.0.1       KernSmooth_2.23-17    
+[112] gridExtra_2.3          rio_0.5.27             parallelly_1.26.0     
+[115] codetools_0.2-16       MASS_7.3-51.6          assertthat_0.2.1      
+[118] rprojroot_2.0.2        withr_2.4.2            sctransform_0.3.2.9008
+[121] mgcv_1.8-33            parallel_4.0.0         hms_1.1.0             
+[124] rpart_4.1-15           grid_4.0.0             tidyr_1.1.3           
+[127] rmarkdown_2.9          carData_3.0-4          Rtsne_0.15            
+[130] git2r_0.26.1           shiny_1.6.0           </code></pre>
+<br>
+<p>
+<button type="button" class="btn btn-default btn-workflowr btn-workflowr-sessioninfo" data-toggle="collapse" data-target="#workflowr-sessioninfo" style="display: block;">
+<span class="glyphicon glyphicon-wrench" aria-hidden="true"></span> Session information
+</button>
+</p>
+<div id="workflowr-sessioninfo" class="collapse">
+<pre class="r"><code>sessionInfo()</code></pre>
+<pre><code>R version 4.0.0 (2020-04-24)
+Platform: x86_64-pc-linux-gnu (64-bit)
+Running under: Ubuntu 18.04.5 LTS
+
+Matrix products: default
+BLAS:   /usr/lib/x86_64-linux-gnu/blas/libblas.so.3.7.1
+LAPACK: /usr/lib/x86_64-linux-gnu/lapack/liblapack.so.3.7.1
+
+locale:
+ [1] LC_CTYPE=en_US.UTF-8       LC_NUMERIC=C              
+ [3] LC_TIME=en_US.UTF-8        LC_COLLATE=en_US.UTF-8    
+ [5] LC_MONETARY=en_US.UTF-8    LC_MESSAGES=en_US.UTF-8   
+ [7] LC_PAPER=en_US.UTF-8       LC_NAME=C                 
+ [9] LC_ADDRESS=C               LC_TELEPHONE=C            
+[11] LC_MEASUREMENT=en_US.UTF-8 LC_IDENTIFICATION=C       
+
+attached base packages:
+[1] stats     graphics  grDevices utils     datasets  methods   base     
+
+other attached packages:
+ [1] xtable_1.8-4            sparseMatrixStats_1.2.1 MatrixGenerics_1.2.1   
+ [4] matrixStats_0.59.0      SeuratObject_4.0.2      Seurat_4.0.3           
+ [7] scattermore_0.7         reshape2_1.4.4          readr_1.4.0            
+[10] RColorBrewer_1.1-2      patchwork_1.1.1         kableExtra_1.3.4       
+[13] here_1.0.1              ggridges_0.5.3          ggpubr_0.4.0           
+[16] ggplot2_3.3.5           dplyr_1.0.7             workflowr_1.6.2        
+
+loaded via a namespace (and not attached):
+  [1] readxl_1.3.1           backports_1.2.1        systemfonts_1.0.2     
+  [4] plyr_1.8.6             igraph_1.2.6           lazyeval_0.2.2        
+  [7] splines_4.0.0          listenv_0.8.0          digest_0.6.27         
+ [10] htmltools_0.5.1.1      fansi_0.5.0            magrittr_2.0.1        
+ [13] tensor_1.5             cluster_2.1.0          ROCR_1.0-11           
+ [16] openxlsx_4.2.4         globals_0.14.0         svglite_2.0.0         
+ [19] spatstat.sparse_2.0-0  colorspace_2.0-2       rvest_1.0.0           
+ [22] ggrepel_0.9.1          textshaping_0.3.5      haven_2.4.1           
+ [25] xfun_0.24              crayon_1.4.1           jsonlite_1.7.2        
+ [28] spatstat.data_2.1-0    survival_3.2-7         zoo_1.8-9             
+ [31] glue_1.4.2             polyclip_1.10-0        gtable_0.3.0          
+ [34] webshot_0.5.2          leiden_0.3.8           car_3.0-10            
+ [37] future.apply_1.7.0     abind_1.4-5            scales_1.1.1          
+ [40] DBI_1.1.1              rstatix_0.7.0          miniUI_0.1.1.1        
+ [43] Rcpp_1.0.6             viridisLite_0.4.0      reticulate_1.20       
+ [46] spatstat.core_2.2-0    foreign_0.8-79         htmlwidgets_1.5.3     
+ [49] httr_1.4.2             ellipsis_0.3.2         ica_1.0-2             
+ [52] farver_2.1.0           pkgconfig_2.0.3        uwot_0.1.10           
+ [55] sass_0.4.0             deldir_0.2-10          utf8_1.2.1            
+ [58] labeling_0.4.2         tidyselect_1.1.1       rlang_0.4.11          
+ [61] later_1.2.0            munsell_0.5.0          cellranger_1.1.0      
+ [64] tools_4.0.0            generics_0.1.0         broom_0.7.8           
+ [67] evaluate_0.14          stringr_1.4.0          fastmap_1.1.0         
+ [70] ragg_1.1.3             yaml_2.2.1             goftest_1.2-2         
+ [73] knitr_1.33             fs_1.5.0               fitdistrplus_1.1-5    
+ [76] zip_2.2.0              purrr_0.3.4            RANN_2.6.1            
+ [79] pbapply_1.4-3          future_1.21.0          nlme_3.1-152          
+ [82] mime_0.11              xml2_1.3.2             compiler_4.0.0        
+ [85] rstudioapi_0.13        plotly_4.9.4.1         curl_4.3.2            
+ [88] png_0.1-7              ggsignif_0.6.2         spatstat.utils_2.2-0  
+ [91] tibble_3.1.2           bslib_0.2.5.1          stringi_1.6.2         
+ [94] highr_0.8              forcats_0.5.1          lattice_0.20-41       
+ [97] Matrix_1.3-4           vctrs_0.3.8            pillar_1.6.1          
+[100] lifecycle_1.0.0        spatstat.geom_2.2-0    lmtest_0.9-38         
+[103] jquerylib_0.1.4        RcppAnnoy_0.0.18       data.table_1.14.0     
+[106] cowplot_1.1.1          irlba_2.3.3            httpuv_1.6.1          
+[109] R6_2.5.0               promises_1.2.0.1       KernSmooth_2.23-17    
+[112] gridExtra_2.3          rio_0.5.27             parallelly_1.26.0     
+[115] codetools_0.2-16       MASS_7.3-51.6          assertthat_0.2.1      
+[118] rprojroot_2.0.2        withr_2.4.2            sctransform_0.3.2.9008
+[121] mgcv_1.8-33            parallel_4.0.0         hms_1.1.0             
+[124] rpart_4.1-15           grid_4.0.0             tidyr_1.1.3           
+[127] rmarkdown_2.9          carData_3.0-4          Rtsne_0.15            
+[130] git2r_0.26.1           shiny_1.6.0           </code></pre>
+</div>
+</div>
+
+
+<!-- Adjust MathJax settings so that all math formulae are shown using
+TeX fonts only; see
+http://docs.mathjax.org/en/latest/configuration.html.  This will make
+the presentation more consistent at the cost of the webpage sometimes
+taking slightly longer to load. Note that this only works because the
+footer is added to webpages before the MathJax javascript. -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    "HTML-CSS": { availableFonts: ["TeX"] }
+  });
+</script>
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

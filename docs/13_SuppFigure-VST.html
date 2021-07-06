@@ -1,0 +1,866 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+
+
+<title>Supplementary figures on vst</title>
+
+<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/flatly.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-9.12.0/textmate.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+
+<link rel="icon" href="https://github.com/workflowr/workflowr-assets/raw/master/img/reproducible.png">
+<!-- Add a small amount of space between sections. -->
+<style type="text/css">
+div.section {
+  padding-top: 12px;
+}
+</style>
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+<style type="text/css">code{white-space: pre;}</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+
+
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+pre code {
+  padding: 0;
+}
+</style>
+
+
+<style type="text/css">
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #adb5bd;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script type="text/javascript">
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.tab('show');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">scRNA_NB_comparison</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="index.html">Home</a>
+</li>
+<li>
+  <a href="about.html">About</a>
+</li>
+<li>
+  <a href="license.html">License</a>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div id="header">
+
+
+
+<h1 class="title toc-ignore">Supplementary figures on vst</h1>
+
+</div>
+
+
+<p>
+<button type="button" class="btn btn-default btn-workflowr btn-workflowr-report" data-toggle="collapse" data-target="#workflowr-report">
+<span class="glyphicon glyphicon-list" aria-hidden="true"></span> workflowr <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span>
+</button>
+</p>
+<div id="workflowr-report" class="collapse">
+<ul class="nav nav-tabs">
+<li class="active">
+<a data-toggle="tab" href="#summary">Summary</a>
+</li>
+<li>
+<a data-toggle="tab" href="#checks"> Checks <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span> </a>
+</li>
+<li>
+<a data-toggle="tab" href="#versions">Past versions</a>
+</li>
+</ul>
+<div class="tab-content">
+<div id="summary" class="tab-pane fade in active">
+<p>
+<strong>Last updated:</strong> 2021-07-06
+</p>
+<p>
+<strong>Checks:</strong> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> 6 <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span> 1
+</p>
+<p>
+<strong>Knit directory:</strong> <code>scRNA_NB_comparison/</code> <span class="glyphicon glyphicon-question-sign" aria-hidden="true" title="This is the local directory in which the code in this file was executed."> </span>
+</p>
+<p>
+This reproducible <a href="http://rmarkdown.rstudio.com">R Markdown</a> analysis was created with <a
+  href="https://github.com/jdblischak/workflowr">workflowr</a> (version 1.6.2). The <em>Checks</em> tab describes the reproducibility checks that were applied when the results were created. The <em>Past versions</em> tab lists the development history.
+</p>
+<hr>
+</div>
+<div id="checks" class="tab-pane fade">
+<div id="workflowr-checks" class="panel-group">
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRMarkdownfilestronguncommittedchanges"> <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span> <strong>R Markdown file:</strong> uncommitted changes </a>
+</p>
+</div>
+<div id="strongRMarkdownfilestronguncommittedchanges" class="panel-collapse collapse">
+<div class="panel-body">
+<p>The R Markdown is untracked by Git. To know which version of the R Markdown file created these results, you’ll want to first commit it to the Git repo. If you’re still working on the analysis, you can ignore this warning. When you’re finished, you can run <code>wflow_publish</code> to commit the R Markdown file and build the HTML.</p>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongEnvironmentstrongempty"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Environment:</strong> empty </a>
+</p>
+</div>
+<div id="strongEnvironmentstrongempty" class="panel-collapse collapse">
+<div class="panel-body">
+<p>Great job! The global environment was empty. Objects defined in the global environment can affect the analysis in your R Markdown file in unknown ways. For reproduciblity it’s best to always run the code in an empty environment.</p>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongSeedstrongcodesetseed20210706code"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Seed:</strong> <code>set.seed(20210706)</code> </a>
+</p>
+</div>
+<div id="strongSeedstrongcodesetseed20210706code" class="panel-collapse collapse">
+<div class="panel-body">
+<p>The command <code>set.seed(20210706)</code> was run prior to running the code in the R Markdown file. Setting a seed ensures that any results that rely on randomness, e.g. subsampling or permutations, are reproducible.</p>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongSessioninformationstrongrecorded"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Session information:</strong> recorded </a>
+</p>
+</div>
+<div id="strongSessioninformationstrongrecorded" class="panel-collapse collapse">
+<div class="panel-body">
+<p>Great job! Recording the operating system, R version, and package versions is critical for reproducibility.</p>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongCachestrongnone"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Cache:</strong> none </a>
+</p>
+</div>
+<div id="strongCachestrongnone" class="panel-collapse collapse">
+<div class="panel-body">
+<p>Nice! There were no cached chunks for this analysis, so you can be confident that you successfully produced the results during this run.</p>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongFilepathsstrongrelative"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>File paths:</strong> relative </a>
+</p>
+</div>
+<div id="strongFilepathsstrongrelative" class="panel-collapse collapse">
+<div class="panel-body">
+<p>Great job! Using relative paths to the files within your workflowr project makes it easier to run your code on other machines.</p>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstronge0b7c2c"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> e0b7c2c </a>
+</p>
+</div>
+<div id="strongRepositoryversionstronge0b7c2c" class="panel-collapse collapse">
+<div class="panel-body">
+<p>
+Great! You are using Git for version control. Tracking code development and connecting the code version to the results is critical for reproducibility.
+</p>
+<p>
+The results in this page were generated with repository version e0b7c2c. See the <em>Past versions</em> tab to see a history of the changes made to the R Markdown and HTML files.
+</p>
+<p>
+Note that you need to be careful to ensure that all relevant files for the analysis have been committed to Git prior to generating the results (you can use <code>wflow_publish</code> or <code>wflow_git_commit</code>). workflowr only checks the R Markdown file, but you know if there are other scripts or data files that it depends on. Below is the status of the Git repository when the results were generated:
+</p>
+<pre><code>
+Ignored files:
+    Ignored:    data/raw_data/
+    Ignored:    data/rds_filtered/
+    Ignored:    data/rds_raw/
+    Ignored:    output/snakemake_output/
+
+Untracked files:
+    Untracked:  analysis/01_Smart-seq3.Rmd
+    Untracked:  analysis/02_Mereu.Rmd
+    Untracked:  analysis/03A_Ding-Mixture-HEK-3T3.Rmd
+    Untracked:  analysis/03B_Ding-PBMC.Rmd
+    Untracked:  analysis/03C_Ding-Cortex.Rmd
+    Untracked:  analysis/04_PBMC68k.Rmd
+    Untracked:  analysis/05_Fetal-sciRNAseq3.Rmd
+    Untracked:  analysis/06G_VS2020_Seurat.Rmd
+    Untracked:  analysis/07_Filter_all_datasets.Rmd
+    Untracked:  analysis/08_Downsample_PBMC__Smart-seq3.Rmd
+    Untracked:  analysis/09_Figure1.Rmd
+    Untracked:  analysis/10_Figure2.Rmd
+    Untracked:  analysis/11_Figure3.Rmd
+    Untracked:  analysis/12_SuppFigure-DataStats.Rmd
+    Untracked:  analysis/13_SuppFigure-VST.Rmd
+    Untracked:  analysis/14_SuppFigure-Simulation.Rmd
+    Untracked:  analysis/15_SuppFigure-Upsampling.Rmd
+    Untracked:  data/datasets.csv
+    Untracked:  data/sampled_counts/
+    Untracked:  output/figures/
+    Untracked:  output/tables/
+
+Unstaged changes:
+    Modified:   .gitignore
+    Modified:   analysis/_site.yml
+    Modified:   analysis/about.Rmd
+    Modified:   analysis/index.Rmd
+    Modified:   analysis/license.Rmd
+
+</code></pre>
+<p>
+Note that any generated files, e.g. HTML, png, CSS, etc., are not included in this status report because it is ok for generated content to have uncommitted changes.
+</p>
+</div>
+</div>
+</div>
+</div>
+<hr>
+</div>
+<div id="versions" class="tab-pane fade">
+<p>
+There are no past versions. Publish this analysis with <code>wflow_publish()</code> to start tracking its development.
+</p>
+<hr>
+</div>
+</div>
+</div>
+<pre class="r"><code>datasets &lt;- readr::read_csv(here::here(&quot;data&quot;, &quot;datasets.csv&quot;), col_types = readr::cols())
+
+datasets$key_cleaned &lt;- clean_keys(datasets$key)
+dataset_keys &lt;- datasets$key
+datasets$datatype &lt;- factor(datasets$datatype, levels = c(&quot;technical-control&quot;, &quot;cell line&quot;, &quot;heterogeneous&quot;))
+datasets &lt;- datasets %&gt;% arrange(datatype)
+datasets</code></pre>
+<pre><code># A tibble: 58 x 7
+   key      sample_name   technology  tissue datatype raw_data      key_cleaned 
+   &lt;chr&gt;    &lt;chr&gt;         &lt;chr&gt;       &lt;chr&gt;  &lt;fct&gt;    &lt;chr&gt;         &lt;chr&gt;       
+ 1 Technic… TechCtrl1 (C… ChromiumV1  TechC… technic… https://data… TechnicalCo…
+ 2 Technic… TechCtrl2 (C… ChromiumV1  TechC… technic… https://data… TechnicalCo…
+ 3 Technic… TechCtrl (in… inDrops     TechC… technic… https://data… TechnicalCo…
+ 4 3T3__Ch… 3T3 (Chromiu… ChromiumV3  3T3    cell li… https://data… 3T3__Chromi…
+ 5 Ding-Mo… 3T3-r1 (CEL-… CEL-seq2    3T3    cell li… https://www.… Ding-MouseM…
+ 6 Ding-Mo… 3T3-r1 (Chro… ChromiumV2  3T3    cell li… https://www.… Ding-MouseM…
+ 7 Ding-Mo… 3T3-r1 (Drop… Drop-seq    3T3    cell li… https://www.… Ding-MouseM…
+ 8 Ding-Mo… 3T3-r1 (inDr… inDrops     3T3    cell li… https://www.… Ding-MouseM…
+ 9 Ding-Mo… 3T3-r1 (sci-… sci-RNA-seq 3T3    cell li… https://www.… Ding-MouseM…
+10 Ding-Mo… 3T3-r2 (CEL-… CEL-seq2    3T3    cell li… https://www.… Ding-MouseM…
+# … with 48 more rows</code></pre>
+<pre class="r"><code>colors &lt;- brewer.pal(3, &quot;Set2&quot;)
+names(colors) &lt;- c(&quot;technical-control&quot;, &quot;cell line&quot;, &quot;heterogeneous&quot;)</code></pre>
+<div id="collect-sctv2-output" class="section level2">
+<h2>Collect SCT(v2) output</h2>
+<pre class="r"><code>sct_thetas &lt;- lapply(dataset_keys, FUN = function(x) {
+  theta_file &lt;- here::here(&quot;output&quot;, &quot;snakemake_output&quot;, &quot;seurat_output&quot;, clean_keys(x), &quot;vst2&quot;, &quot;gene_attr.csv&quot;)
+  if (file.exists(theta_file)) {
+    theta_df &lt;- read.csv(theta_file)
+    theta_df$key &lt;- x
+    return(theta_df)
+  } else {
+    message(x)
+    return(NULL)
+  }
+})
+sct_thetas_df &lt;- bind_rows(sct_thetas, .id = &quot;dataset&quot;)
+sct_thetas_df &lt;- left_join(sct_thetas_df, datasets)
+sct_thetas_df &lt;- sct_thetas_df %&gt;% arrange(datatype) # , key, technology)
+sct_thetas_df$sample_name &lt;- factor(sct_thetas_df$sample_name, levels = datasets$sample_name)
+head(sct_thetas_df)</code></pre>
+<pre><code>  dataset      X detection_rate       gmean    variance residual_mean
+1       1 TSPAN6    0.010555556 0.007343385 0.010449941            NA
+2       1   DPM1    0.063888889 0.046754565 0.074336360  0.0085481282
+3       1  SCYL3    0.007222222 0.005018614 0.007174047  0.0008756664
+4       1    CFH    0.008888889 0.006180328 0.008814774            NA
+5       1  FUCA2    0.029444444 0.020848957 0.030227904            NA
+6       1   GCLC    0.015555556 0.010840628 0.015322093            NA
+  residual_variance     theta X.Intercept.  log_umi genes_log_gmean_step1
+1         0.9831252       Inf    -12.26490 2.302585                 FALSE
+2         1.0959593 1.4916865    -10.43726 2.302585                  TRUE
+3         1.0402916       Inf    -12.64439 2.302585                 FALSE
+4         0.9232869       Inf    -12.43675 2.302585                 FALSE
+5         0.9111448 0.6253993    -11.22857 2.302585                  TRUE
+6         0.9496819       Inf    -11.87714 2.302585                 FALSE
+  step1_theta step1_.Intercept. step1_log_umi                           key
+1          NA                NA            NA TechnicalControl1__ChromiumV1
+2    1.030067         -10.40856      2.302585 TechnicalControl1__ChromiumV1
+3          NA                NA            NA TechnicalControl1__ChromiumV1
+4          NA                NA            NA TechnicalControl1__ChromiumV1
+5    7.253456         -11.22535      2.302585 TechnicalControl1__ChromiumV1
+6          NA                NA            NA TechnicalControl1__ChromiumV1
+             sample_name technology      tissue          datatype
+1 TechCtrl1 (ChromiumV1) ChromiumV1 TechControl technical-control
+2 TechCtrl1 (ChromiumV1) ChromiumV1 TechControl technical-control
+3 TechCtrl1 (ChromiumV1) ChromiumV1 TechControl technical-control
+4 TechCtrl1 (ChromiumV1) ChromiumV1 TechControl technical-control
+5 TechCtrl1 (ChromiumV1) ChromiumV1 TechControl technical-control
+6 TechCtrl1 (ChromiumV1) ChromiumV1 TechControl technical-control
+                               raw_data                   key_cleaned
+1 https://data.caltech.edu/records/1264 TechnicalControl1__ChromiumV1
+2 https://data.caltech.edu/records/1264 TechnicalControl1__ChromiumV1
+3 https://data.caltech.edu/records/1264 TechnicalControl1__ChromiumV1
+4 https://data.caltech.edu/records/1264 TechnicalControl1__ChromiumV1
+5 https://data.caltech.edu/records/1264 TechnicalControl1__ChromiumV1
+6 https://data.caltech.edu/records/1264 TechnicalControl1__ChromiumV1</code></pre>
+<pre class="r"><code>top_genes &lt;- list()
+NTOP &lt;- 10
+for (key in dataset_keys) {
+  data_subset &lt;- sct_thetas_df[sct_thetas_df$key == key, ]
+  data_subset$gene &lt;- data_subset$X
+  top_genes[[key]] &lt;- subset(data_subset, rank(-residual_variance) &lt;= NTOP)
+}
+top_genes_df &lt;- bind_rows(top_genes, .id = &quot;sample_nameX&quot;)</code></pre>
+</div>
+<div id="plots" class="section level2">
+<h2>Plots</h2>
+<pre class="r"><code>DoPlot &lt;- function(sample_name) {
+  sct_thetas_df_subset1 &lt;- sct_thetas_df[sct_thetas_df$sample_name == sample_name, ]
+  max_resvar &lt;- max(sct_thetas_df_subset1$residual_variance) + 30
+  top20_df_subset1 &lt;- top_genes_df[top_genes_df$sample_name == sample_name, ]
+  p &lt;- ggplot(sct_thetas_df_subset1, aes(gmean, residual_variance)) +
+    geom_scattermore(pointsize = 4, shape = 16, alpha = 0.5, color = &quot;#43a2ca&quot;) +
+    geom_smooth(color = &quot;red&quot;, method = &quot;loess&quot;, span = 0.1, size = 0.9, formula = &quot;y ~ x&quot;) +
+    geom_hline(yintercept = 1, color = &quot;darkgreen&quot;, size = 0.9, linetype = &quot;dashed&quot;) +
+    geom_point(data = top20_df_subset1, size = 0.6, shape = 16, alpha = 1.0, color = &quot;deeppink&quot;) +
+    geom_text_repel(
+      data = top20_df_subset1, aes(label = gene), size = 2.2, color = &quot;gray25&quot;,
+      nudge_y = max_resvar - top20_df_subset1$residual_variance,
+      direction = &quot;x&quot;,
+      angle = 90,
+      vjust = 0.5,
+      hjust = 0.5,
+      segment.size = 0.2,
+      segment.alpha = 0.2
+    ) +
+    scale_y_continuous(trans = &quot;sqrt&quot;, breaks = c(0, 1, 10, 25, 50, 100, 150), limits = c(0, max_resvar + 1)) +
+    scale_x_continuous(trans = &quot;log10&quot;, breaks = c(0.001, 0.01, 0.1, 1, 10, 100), labels = MASS::rational) +
+    xlab(&quot;Gene mean&quot;) +
+    ylab(&quot;Residual variance&quot;) +
+    theme_pubr() +
+    theme(
+      legend.position = &quot;none&quot;
+    ) +
+    ggtitle(sample_name)
+  p
+}
+
+split_keys &lt;- split(datasets$sample_name, ceiling(seq_along(dataset_keys) / 15))
+for (index in names(split_keys)) {
+  keys &lt;- split_keys[[index]]
+  i &lt;- 1
+  plots &lt;- list()
+  for (key in keys) {
+    px &lt;- DoPlot(key)
+    plots[[i]] &lt;- px
+    i &lt;- i + 1
+  }
+  p &lt;- wrap_plots(plots, ncol = 3)
+  p
+  ggsave(here::here(&quot;output&quot;, &quot;figures&quot;, paste0(&quot;SCT2_variance_stabilization-&quot;, index, &quot;.pdf&quot;)), width = 12, height = 15)
+}</code></pre>
+<pre class="r"><code>DoMuThetaPlot &lt;- function(sct_thetas_df_subset){
+  p &lt;- ggplot(sct_thetas_df_subset, aes(gmean, step1_theta, color = datatype)) +
+  scale_color_manual(values = colors, name = &quot;&quot;) +
+  geom_scattermore(pointsize = 4, alpha = 0.5) +
+  geom_smooth(color = &quot;red&quot;, method = &quot;loess&quot;, span = 0.1, size = 0.9, formula = &quot;y ~ x&quot;) + # , se = FALSE) +
+  facet_wrap(~sample_name, scales = &quot;free&quot;, ncol = 3, labeller = label_wrap_gen(width = 10)) +
+  scale_x_continuous(trans = &quot;log10&quot;, breaks = c(0.001, 0.1, 10, 1000), labels = MASS::rational) +
+  scale_y_continuous(trans = &quot;log10&quot;, breaks = c(0.001, 0.1, 10, 1000), labels = MASS::rational) +
+  theme_pubr() +
+  theme(
+    legend.position = &quot;bottom&quot;,
+    legend.direction = &quot;horizontal&quot;,
+    legend.background = element_blank()
+  ) +
+  guides(col = guide_legend(ncol = 3)) +
+  xlab(&quot;Gene geometric mean&quot;) +
+  ylab(expression(theta[NB]))
+p
+}
+sct_thetas_df_subset &lt;- sct_thetas_df[sct_thetas_df$sample_name %in% datasets$sample_name[1:15],]
+
+p1 &lt;- DoMuThetaPlot(sct_thetas_df_subset)
+p1</code></pre>
+<p><img src="figure/13_SuppFigure-VST.Rmd/fig2-1.png" width="768" style="display: block; margin: auto;" /></p>
+<pre class="r"><code>ggsave(here::here(&quot;output&quot;, &quot;figures&quot;, &quot;SCT_theta_unregularized1.pdf&quot;), width = 12, height = 15, dpi = &quot;print&quot;)
+
+sct_thetas_df_subset &lt;- sct_thetas_df[sct_thetas_df$sample_name %in% datasets$sample_name[16:30],]
+p2 &lt;- DoMuThetaPlot(sct_thetas_df_subset)
+p2</code></pre>
+<p><img src="figure/13_SuppFigure-VST.Rmd/fig2-2.png" width="768" style="display: block; margin: auto;" /></p>
+<pre class="r"><code>ggsave(here::here(&quot;output&quot;, &quot;figures&quot;, &quot;SCT_theta_unregularized2.pdf&quot;), width = 12, height = 15, dpi = &quot;print&quot;)
+
+
+sct_thetas_df_subset &lt;- sct_thetas_df[sct_thetas_df$sample_name %in% datasets$sample_name[31:45],]
+
+p3 &lt;- DoMuThetaPlot(sct_thetas_df_subset)
+p3</code></pre>
+<p><img src="figure/13_SuppFigure-VST.Rmd/fig2-3.png" width="768" style="display: block; margin: auto;" /></p>
+<pre class="r"><code>ggsave(here::here(&quot;output&quot;, &quot;figures&quot;, &quot;SCT_theta_unregularized3.pdf&quot;), width = 12, height = 15, dpi = &quot;print&quot;)
+
+
+sct_thetas_df_subset &lt;- sct_thetas_df[sct_thetas_df$sample_name %in% datasets$sample_name[46:58],]
+
+p5 &lt;- DoMuThetaPlot(sct_thetas_df_subset)
+p5</code></pre>
+<p><img src="figure/13_SuppFigure-VST.Rmd/fig2-4.png" width="768" style="display: block; margin: auto;" /></p>
+<pre class="r"><code>ggsave(here::here(&quot;output&quot;, &quot;figures&quot;, &quot;SCT_theta_unregularized4.pdf&quot;), width = 12, height = 15, dpi = &quot;print&quot;)</code></pre>
+<pre class="r"><code>sct_thetas &lt;- lapply(dataset_keys, FUN = function(x) {
+  sct_theta_local &lt;- list()
+  for (method in c(&quot;offset-Inf&quot;, &quot;offset-100&quot;, &quot;offset-10&quot;,  &quot;vst2&quot;)) {
+    theta_file &lt;- here::here(&quot;output&quot;, &quot;snakemake_output&quot;, &quot;seurat_output&quot;, clean_keys(x), method, &quot;gene_attr.csv&quot;)
+    if (file.exists(theta_file)) {
+      theta_df &lt;- read.csv(theta_file)
+      theta_df$key &lt;- x
+      sct_theta_local[[method]] &lt;- theta_df
+    }
+  }
+  if (length(names(sct_theta_local)) &gt;= 1) {
+    sct_theta &lt;- bind_rows(sct_theta_local, .id = &quot;method&quot;)
+    return(sct_theta)
+  }
+  return(NULL)
+})
+sct_thetas_df &lt;- bind_rows(sct_thetas, .id = &quot;dataset&quot;)
+sct_thetas_df &lt;- left_join(sct_thetas_df, datasets)
+sct_thetas_df &lt;- sct_thetas_df %&gt;% arrange(datatype)
+
+methods &lt;- c(
+  &quot;offset-Inf&quot;, &quot;offset-100&quot;,
+  &quot;offset-10&quot;,  &quot;vst2&quot;
+)
+names(methods) &lt;- c(
+  paste(&quot;theta==infinity&quot;),
+  paste(&quot;theta==100&quot;),
+  paste(&quot;theta==10&quot;),
+  paste(&quot;SCT&quot;)
+)
+sct_thetas_df$method &lt;- factor(sct_thetas_df$method, levels = methods, labels = names(methods))
+sct_thetas_df$sample_name &lt;- factor(sct_thetas_df$sample_name, levels = datasets$sample_name)</code></pre>
+<pre class="r"><code>length(unique(sct_thetas_df$key))</code></pre>
+<pre><code>[1] 58</code></pre>
+</div>
+<div id="plot-residual-variances" class="section level2">
+<h2>Plot residual variances</h2>
+<pre class="r"><code>global_labeller &lt;- labeller(
+  sample_name = label_wrap_gen(8),
+  method = label_parsed
+)
+
+DoPlot &lt;- function(gene_attrs_df) {
+  p &lt;- ggplot(gene_attrs_df, aes(gmean, residual_variance)) +
+    geom_scattermore(pointsize = 1.1, shape = 16, alpha = 0.5) +
+    geom_hline(yintercept = 1, color = &quot;#4daf4a&quot;, size = 0.9, linetype = &quot;dashed&quot;) +
+    geom_smooth(aes(color = &quot;red&quot;), method = &quot;loess&quot;, span = 0.1, size = 0.9, formula = &quot;y ~ x&quot;) +
+    scale_y_continuous(trans = &quot;sqrt&quot;, breaks = c(0, 1, 10, 25, 50, 100, 150), limits = c(0, max_resvar + 1)) +
+    scale_x_continuous(trans = &quot;log10&quot;, breaks = c(0.01, 1, 100), labels = MASS::rational) +
+    facet_grid(sample_name ~ method, labeller = global_labeller) +
+    xlab(&quot;Gene mean&quot;) +
+    ylab(&quot;Residual variance&quot;) +
+    plot_layout(guides = &quot;collect&quot;) &amp; theme(
+    legend.position = &quot;none&quot;,
+    legend.key = element_rect(fill = NA),
+    legend.background = element_blank()
+  )
+  return(p)
+}
+
+split_keys &lt;- split(dataset_keys, ceiling(seq_along(dataset_keys) / 10))
+for (index in names(split_keys)) {
+  keys &lt;- split_keys[[index]]
+  gene_attrs_df &lt;- sct_thetas_df[sct_thetas_df$key %in% keys, ]
+  max_resvar &lt;- 25
+  p1 &lt;- DoPlot(gene_attrs_df)
+  p1
+  dir.create(here::here(&quot;output&quot;, &quot;figures&quot;), showWarnings = F)
+  ggsave(here::here(&quot;output&quot;, &quot;figures&quot;, paste0(&quot;full_residvar-&quot;, index, &quot;.pdf&quot;)), width = 8, height = 12, dpi = &quot;print&quot;)
+}</code></pre>
+<pre class="r"><code>sessionInfo()</code></pre>
+<pre><code>R version 4.0.0 (2020-04-24)
+Platform: x86_64-pc-linux-gnu (64-bit)
+Running under: Ubuntu 18.04.5 LTS
+
+Matrix products: default
+BLAS:   /usr/lib/x86_64-linux-gnu/blas/libblas.so.3.7.1
+LAPACK: /usr/lib/x86_64-linux-gnu/lapack/liblapack.so.3.7.1
+
+locale:
+ [1] LC_CTYPE=en_US.UTF-8       LC_NUMERIC=C              
+ [3] LC_TIME=en_US.UTF-8        LC_COLLATE=en_US.UTF-8    
+ [5] LC_MONETARY=en_US.UTF-8    LC_MESSAGES=en_US.UTF-8   
+ [7] LC_PAPER=en_US.UTF-8       LC_NAME=C                 
+ [9] LC_ADDRESS=C               LC_TELEPHONE=C            
+[11] LC_MEASUREMENT=en_US.UTF-8 LC_IDENTIFICATION=C       
+
+attached base packages:
+[1] stats     graphics  grDevices utils     datasets  methods   base     
+
+other attached packages:
+ [1] scattermore_0.7    reshape2_1.4.4     readr_1.4.0        RColorBrewer_1.1-2
+ [5] patchwork_1.1.1    here_1.0.1         ggridges_0.5.3     ggrepel_0.9.1     
+ [9] ggpubr_0.4.0       ggplot2_3.3.5      dplyr_1.0.7        workflowr_1.6.2   
+
+loaded via a namespace (and not attached):
+ [1] sass_0.4.0        tidyr_1.1.3       jsonlite_1.7.2    splines_4.0.0    
+ [5] carData_3.0-4     bslib_0.2.5.1     assertthat_0.2.1  highr_0.8        
+ [9] cellranger_1.1.0  yaml_2.2.1        lattice_0.20-41   pillar_1.6.1     
+[13] backports_1.2.1   glue_1.4.2        digest_0.6.27     promises_1.2.0.1 
+[17] ggsignif_0.6.2    colorspace_2.0-2  Matrix_1.3-4      htmltools_0.5.1.1
+[21] httpuv_1.6.1      plyr_1.8.6        pkgconfig_2.0.3   broom_0.7.8      
+[25] haven_2.4.1       purrr_0.3.4       scales_1.1.1      openxlsx_4.2.4   
+[29] later_1.2.0       rio_0.5.27        git2r_0.26.1      tibble_3.1.2     
+[33] mgcv_1.8-33       farver_2.1.0      generics_0.1.0    car_3.0-10       
+[37] ellipsis_0.3.2    withr_2.4.2       cli_2.5.0         magrittr_2.0.1   
+[41] crayon_1.4.1      readxl_1.3.1      evaluate_0.14     fs_1.5.0         
+[45] fansi_0.5.0       nlme_3.1-152      MASS_7.3-51.6     rstatix_0.7.0    
+[49] forcats_0.5.1     foreign_0.8-79    textshaping_0.3.5 tools_4.0.0      
+[53] data.table_1.14.0 hms_1.1.0         lifecycle_1.0.0   stringr_1.4.0    
+[57] munsell_0.5.0     zip_2.2.0         compiler_4.0.0    jquerylib_0.1.4  
+[61] systemfonts_1.0.2 rlang_0.4.11      grid_4.0.0        rstudioapi_0.13  
+[65] rmarkdown_2.9     gtable_0.3.0      abind_1.4-5       DBI_1.1.1        
+[69] curl_4.3.2        R6_2.5.0          knitr_1.33        utf8_1.2.1       
+[73] rprojroot_2.0.2   ragg_1.1.3        stringi_1.6.2     Rcpp_1.0.6       
+[77] vctrs_0.3.8       tidyselect_1.1.1  xfun_0.24        </code></pre>
+<br>
+<p>
+<button type="button" class="btn btn-default btn-workflowr btn-workflowr-sessioninfo" data-toggle="collapse" data-target="#workflowr-sessioninfo" style="display: block;">
+<span class="glyphicon glyphicon-wrench" aria-hidden="true"></span> Session information
+</button>
+</p>
+<div id="workflowr-sessioninfo" class="collapse">
+<pre class="r"><code>sessionInfo()</code></pre>
+<pre><code>R version 4.0.0 (2020-04-24)
+Platform: x86_64-pc-linux-gnu (64-bit)
+Running under: Ubuntu 18.04.5 LTS
+
+Matrix products: default
+BLAS:   /usr/lib/x86_64-linux-gnu/blas/libblas.so.3.7.1
+LAPACK: /usr/lib/x86_64-linux-gnu/lapack/liblapack.so.3.7.1
+
+locale:
+ [1] LC_CTYPE=en_US.UTF-8       LC_NUMERIC=C              
+ [3] LC_TIME=en_US.UTF-8        LC_COLLATE=en_US.UTF-8    
+ [5] LC_MONETARY=en_US.UTF-8    LC_MESSAGES=en_US.UTF-8   
+ [7] LC_PAPER=en_US.UTF-8       LC_NAME=C                 
+ [9] LC_ADDRESS=C               LC_TELEPHONE=C            
+[11] LC_MEASUREMENT=en_US.UTF-8 LC_IDENTIFICATION=C       
+
+attached base packages:
+[1] stats     graphics  grDevices utils     datasets  methods   base     
+
+other attached packages:
+ [1] scattermore_0.7    reshape2_1.4.4     readr_1.4.0        RColorBrewer_1.1-2
+ [5] patchwork_1.1.1    here_1.0.1         ggridges_0.5.3     ggrepel_0.9.1     
+ [9] ggpubr_0.4.0       ggplot2_3.3.5      dplyr_1.0.7        workflowr_1.6.2   
+
+loaded via a namespace (and not attached):
+ [1] sass_0.4.0        tidyr_1.1.3       jsonlite_1.7.2    splines_4.0.0    
+ [5] carData_3.0-4     bslib_0.2.5.1     assertthat_0.2.1  highr_0.8        
+ [9] cellranger_1.1.0  yaml_2.2.1        lattice_0.20-41   pillar_1.6.1     
+[13] backports_1.2.1   glue_1.4.2        digest_0.6.27     promises_1.2.0.1 
+[17] ggsignif_0.6.2    colorspace_2.0-2  Matrix_1.3-4      htmltools_0.5.1.1
+[21] httpuv_1.6.1      plyr_1.8.6        pkgconfig_2.0.3   broom_0.7.8      
+[25] haven_2.4.1       purrr_0.3.4       scales_1.1.1      openxlsx_4.2.4   
+[29] later_1.2.0       rio_0.5.27        git2r_0.26.1      tibble_3.1.2     
+[33] mgcv_1.8-33       farver_2.1.0      generics_0.1.0    car_3.0-10       
+[37] ellipsis_0.3.2    withr_2.4.2       cli_2.5.0         magrittr_2.0.1   
+[41] crayon_1.4.1      readxl_1.3.1      evaluate_0.14     fs_1.5.0         
+[45] fansi_0.5.0       nlme_3.1-152      MASS_7.3-51.6     rstatix_0.7.0    
+[49] forcats_0.5.1     foreign_0.8-79    textshaping_0.3.5 tools_4.0.0      
+[53] data.table_1.14.0 hms_1.1.0         lifecycle_1.0.0   stringr_1.4.0    
+[57] munsell_0.5.0     zip_2.2.0         compiler_4.0.0    jquerylib_0.1.4  
+[61] systemfonts_1.0.2 rlang_0.4.11      grid_4.0.0        rstudioapi_0.13  
+[65] rmarkdown_2.9     gtable_0.3.0      abind_1.4-5       DBI_1.1.1        
+[69] curl_4.3.2        R6_2.5.0          knitr_1.33        utf8_1.2.1       
+[73] rprojroot_2.0.2   ragg_1.1.3        stringi_1.6.2     Rcpp_1.0.6       
+[77] vctrs_0.3.8       tidyselect_1.1.1  xfun_0.24        </code></pre>
+</div>
+</div>
+
+
+<!-- Adjust MathJax settings so that all math formulae are shown using
+TeX fonts only; see
+http://docs.mathjax.org/en/latest/configuration.html.  This will make
+the presentation more consistent at the cost of the webpage sometimes
+taking slightly longer to load. Note that this only works because the
+footer is added to webpages before the MathJax javascript. -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    "HTML-CSS": { availableFonts: ["TeX"] }
+  });
+</script>
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

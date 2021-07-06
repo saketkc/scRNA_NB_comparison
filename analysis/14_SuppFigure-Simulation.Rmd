@@ -1,0 +1,436 @@
+---
+title: "Supplementary Figure - Simulated theta"
+output:
+  workflowr::wflow_html:
+    toc: false
+editor_options:
+  chunk_output_type: console
+---
+
+
+```{r setup}
+suppressPackageStartupMessages({
+  library(dplyr)
+  library(ggplot2)
+  library(ggpubr)
+  library(glmGamPoi)
+  library(here)
+  library(MASS)
+  library(patchwork)
+  library(RColorBrewer)
+  library(reshape2)
+  library(sctransform)
+  library(scattermore)
+  library(sparseMatrixStats)
+  library(Seurat)
+})
+knitr::opts_chunk$set(warning = FALSE, message = FALSE)
+
+MeanVarFit <- function(counts) {
+  means <- sparseMatrixStats::rowMeans2(counts)
+  variance <- sparseMatrixStats::rowVars(counts)
+  df <- data.frame(mean = means, variance = variance)
+  rownames(df) <- rownames(counts)
+  return(df)
+}
+
+GetOverdisperion_MLE <- function(y) {
+  y.dense <- as.matrix(y)
+  theta <- 1 / glmGamPoi::glm_gp(data = y.dense, design = ~1, size_factors = FALSE)$overdispersions
+  df <- data.frame(amean = rowMeans(y.dense), gmean = sctransform:::row_gmean(y.dense), theta = theta)
+  rownames(df) <- rownames(y)
+  return(df)
+}
+
+SimulateCounts <- function(cm, theta) {
+  n_c <- colSums(cm)
+  p_g <- rowSums(cm) / (sum(rowSums(cm)))
+
+  mu_cg <- as.matrix(n_c) %*% t(as.matrix(p_g))
+  y <- t(rbind(apply(
+    X = mu_cg, MARGIN = 2,
+    FUN = function(x) rnegbin(n = length(x), mu = mean(x), theta = theta)
+  )))
+  y <- as(object = y, Class = "dgCMatrix")
+  rownames(y) <- rownames(cm)
+  colnames(y) <- colnames(cm)
+  return(y)
+}
+
+GetMu_cg <- function(cm) {
+  n_c <- colSums(cm)
+  p_g <- rowSums(cm) / (sum(rowSums(cm)))
+
+  mu_cg <- as.matrix(n_c) %*% t(as.matrix(p_g))
+  return(mu_cg)
+}
+
+SimulateCounts_cg <- function(cm, mu_cg, theta) {
+  y <- t(rbind(apply(
+    X = mu_cg, MARGIN = 2,
+    FUN = function(x) rnegbin(n = length(x), mu = mean(x), theta = theta)
+  )))
+  y <- as(object = y, Class = "dgCMatrix")
+  rownames(y) <- rownames(cm)
+  colnames(y) <- colnames(cm)
+  return(y)
+}
+
+RunSimulation_MLE <- function(cm, mu_cg, theta = 100, niterations = 1) {
+  pb <- txtProgressBar()
+  meanvarfit_results <- list()
+  for (i in seq(1, niterations)) {
+    y <- SimulateCounts_cg(
+      cm = cm,
+      mu_cg = mu_cg,
+      theta = theta
+    )
+
+    meanvarfit <- MeanVarFit(y)
+
+    df <- GetOverdisperion_MLE(y)
+    mle_results <- cbind(meanvarfit, df)
+
+    setTxtProgressBar(pb, i / niterations)
+  }
+  return(mle_results)
+}
+
+RunSimulation <- function(cm, mu_cg, theta = 100, niterations = 1) {
+  pb <- txtProgressBar()
+
+  sct_results <- list()
+  sct2_results <- list()
+  meanvarfit_results <- list()
+  for (i in seq(1, niterations)) {
+    y <- SimulateCounts_cg(
+      cm = cm,
+      mu_cg = mu_cg,
+      theta = theta
+    )
+
+    meanvarfit <- MeanVarFit(y)
+    meanvarfit_results[[i]] <- meanvarfit
+    vst.out.sct <- vst(umi = y, method = "glmGamPoi", verbosity = 0)
+    vst.out.sct2 <- vst(
+      umi = y, vst.flavor = "v2",
+      exclude_poisson = TRUE, verbosity = 0
+    )
+
+    sct_results[[i]] <- vst.out.sct
+    sct2_results[[i]] <- vst.out.sct2
+
+    setTxtProgressBar(pb, i / niterations)
+  }
+  return(list(meanvarfit_results = meanvarfit_results, sct_results = sct_results, sct2_results = sct2_results))
+}
+
+DoComparisonPlot_MLE <- function(mle_results, theta = 100, col = "amean") {
+  p <- ggplot(mle_results, aes_string(col, "theta")) +
+    geom_scattermore(pointsize = 1) +
+    geom_smooth() +
+    geom_hline(yintercept = theta, color = "#e41a1c", linetype = "dashed") +
+    geom_vline(xintercept = theta, color = "#377eb8", linetype = "dotted") +
+    xlab("Gene mean") +
+    ylab(expression(theta)) +
+    scale_x_continuous(trans = "log10", breaks = c(0.001, 0.01, 0.1, 1, 10, 100), labels = MASS::rational) +
+    scale_y_continuous(trans = "log10", breaks = c(0.001, 0.01, 0.1, 1, 10, 100), labels = MASS::rational) +
+    ggtitle(theta)
+
+
+  return(p)
+}
+
+DoComparisonPlot <- function(obj_sct_results, obj_sct2_results, theta = 100, col = "amean", smooth = FALSE) {
+  gene_mean <- as.data.frame(obj_sct_results$gene_attr)
+  gene_mean$gene <- rownames(gene_mean)
+  model_pars_fit <- as.data.frame(obj_sct_results$model_pars_fit)
+  colnames(model_pars_fit) <- paste0("SCT-", colnames(model_pars_fit))
+  model_pars_fit$gene <- rownames(model_pars_fit)
+
+  model_pars_fit2 <- as.data.frame(obj_sct2_results$model_pars_fit)
+  colnames(model_pars_fit2) <- paste0("SCT2-", colnames(model_pars_fit2))
+  model_pars_fit2$gene <- rownames(model_pars_fit2)
+
+  combined <- inner_join(gene_mean, model_pars_fit, by = "gene")
+  combined <- inner_join(combined, model_pars_fit2)
+  combined_melt <- melt(
+    data = combined[, c("gene", col, "SCT-theta", "SCT2-theta")],
+    id.vars = c("gene", col)
+  )
+  combined_melt$variable <- gsub("-theta", "", combined_melt$variable)
+  p <- ggplot(combined_melt, aes_string(col, "value", color = "variable")) +
+    geom_scattermore(pointsize = 1)
+  if (smooth) {
+    p <- p + geom_smooth()
+  }
+  p <- p +
+    geom_hline(yintercept = theta, color = "#e41a1c", linetype = "dashed") +
+    geom_vline(xintercept = theta, color = "#377eb8", linetype = "dotted") +
+    xlab("Gene mean") +
+    scale_color_manual(values = c("#4daf4a", "#984ea3"), name = "") +
+    ylab(expression(theta)) +
+    scale_x_continuous(trans = "log10", breaks = c(0.001, 0.01, 0.1, 1, 10, 100), labels = MASS::rational) +
+    scale_y_continuous(trans = "log10", breaks = c(0.001, 0.01, 0.1, 1, 10, 100), labels = MASS::rational) +
+    ggtitle(theta) + theme_pubr()
+
+  return(p)
+}
+dir.create("output/figures", showWarnings = F, recursive = T)
+```
+
+# Simulate counts with fixed $\theta=\{0.001, 0.01, 0.1, 1, 10, 100, 1000\}$
+
+```{r}
+set.seed(42)
+pbmc.sseq3 <- readRDS(here::here("data", "rds_filtered", "PBMC__Smart-seq3.rds"))
+cm.pbmc.sseq3 <- GetAssayData(pbmc.sseq3, assay = "RNA", slot = "counts")
+mu_cg.sseq3 <- GetMu_cg(cm.pbmc.sseq3)
+
+mu_cg.sseq3_vst_results <- list()
+all_thetas <- c(0.001, 0.01, 0.1, 1, 10, 100, 1000)
+for (theta in all_thetas) {
+  mu_cg.sseq3_vst_results[[as.character(theta)]] <- RunSimulation(cm.pbmc.sseq3, mu_cg.sseq3, theta = theta)
+}
+
+mu_cg.sseq3_mle_results <- list()
+for (theta in all_thetas) {
+  mu_cg.sseq3_mle_results[[as.character(theta)]] <- RunSimulation_MLE(cm.pbmc.sseq3, mu_cg.sseq3, theta = theta)
+}
+```
+
+# Compare estimated $\hat{\theta}$ with $\theta_{\text{true}}$
+
+
+```{r fig.width=9, fig.height=6.5}
+index <- 1
+plots <- list()
+theme_set(theme_bw())
+for (theta in all_thetas) {
+  obj_sct_results <- mu_cg.sseq3_vst_results[[as.character(theta)]]$sct_results[[1]]
+  obj_sct2_results <- mu_cg.sseq3_vst_results[[as.character(theta)]]$sct2_results[[1]]
+
+  p1 <- DoComparisonPlot(obj_sct_results, obj_sct2_results, theta = theta, "amean") + xlab("Gene arithmetic mean")
+  plots[[index]] <- p1
+  index <- index + 1
+}
+
+options(repr.plot.width = 12, repr.plot.height = 8)
+wrap_plots(plots, ncol = 3) + plot_layout(guides = "collect") & theme(legend.position = "bottom")
+```
+
+```{r, fig.width=9, fig.height=6.5}
+index <- 1
+for (theta in all_thetas) {
+  obj_sct_results <- mu_cg.sseq3_vst_results[[as.character(theta)]]$sct_results[[1]]
+  obj_sct2_results <- mu_cg.sseq3_vst_results[[as.character(theta)]]$sct2_results[[1]]
+  mle_results <- mu_cg.sseq3_mle_results[[as.character(theta)]]
+  mle_results$gene <- rownames(mle_results)
+  mle_results$MLE_theta <- mle_results$theta
+
+  mle_results <- mle_results[, c("gene", "MLE_theta"), drop = FALSE]
+
+  gene_mean <- as.data.frame(obj_sct_results$gene_attr)
+  gene_mean$gene <- rownames(gene_mean)
+  model_pars_fit <- as.data.frame(obj_sct_results$model_pars_fit)
+  colnames(model_pars_fit) <- paste0("SCT_", colnames(model_pars_fit))
+  model_pars_fit$gene <- rownames(model_pars_fit)
+
+  model_pars_fit2 <- as.data.frame(obj_sct2_results$model_pars_fit)
+  colnames(model_pars_fit2) <- paste0("SCT2_", colnames(model_pars_fit2))
+  model_pars_fit2$gene <- rownames(model_pars_fit2)
+
+  combined <- inner_join(gene_mean, model_pars_fit, by = "gene")
+  combined <- inner_join(combined, model_pars_fit2, by = "gene")
+  combined <- inner_join(combined, mle_results, by = "gene")
+
+  combined$theta_true <- as.character(theta)
+
+  if (index == 1) {
+    master_theta_df <- combined
+  } else {
+    master_theta_df <- rbind(master_theta_df, combined)
+  }
+
+  index <- index + 1
+}
+
+
+master_theta_df_melt <- melt(master_theta_df[, c("amean", "theta_true", "SCT_theta", "SCT2_theta", "MLE_theta")],
+  id.vars = c("amean", "theta_true")
+)
+master_theta_df_melt$variable <- gsub("_theta", "", master_theta_df_melt$variable)
+p <- ggplot(master_theta_df_melt, aes_string("amean", "value", color = "theta_true")) +
+  geom_scattermore(pointsize = 2) +
+  geom_vline(
+    data = master_theta_df,
+    mapping = aes(
+      xintercept = as.numeric(theta_true),
+      color = theta_true
+    ), linetype = "dashed"
+  ) +
+  geom_hline(
+    data = master_theta_df,
+    mapping = aes(
+      yintercept = as.numeric(theta_true),
+      color = theta_true
+    ), linetype = "dashed"
+  ) +
+  scale_color_manual(values = brewer.pal(n = 8, "Dark2"), name = expression(theta[true])) +
+  facet_wrap(~variable) +
+  scale_x_continuous(trans = "log10", breaks = c(0.001, 0.01, 0.1, 1, 10, 100), labels = MASS::rational) +
+  scale_y_continuous(trans = "log10", breaks = c(0.001, 0.01, 0.1, 1, 10, 100), labels = MASS::rational) +
+  xlab("Gene arithmetic mean") +
+  ylab(expression(theta)) +
+  theme_pubr() +
+  theme(
+    legend.position = "bottom",
+    legend.direction = "horizontal",
+    legend.background = element_blank()
+  ) +
+  guides(col = guide_legend(ncol = 7))
+
+p
+ggsave(here::here("output", "figures", "simulated_theta.pdf"), width = 10, height = 5, dpi = "print")
+```
+
+
+```{r, fig.width=12, fig.height=4}
+master_theta_df_melt <- melt(master_theta_df[, c("amean", "theta_true", "SCT_theta", "SCT2_theta", "MLE_theta")],
+  id.vars = c("amean", "theta_true")
+)
+master_theta_df_melt$variable <- gsub("_theta", "", master_theta_df_melt$variable)
+ggplot(master_theta_df_melt, aes_string("amean", "value", color = "theta_true")) + # geom_scattermore(pointsize = 2) +
+  geom_smooth(se = FALSE) +
+  geom_vline(
+    data = master_theta_df,
+    mapping = aes(
+      xintercept = as.numeric(theta_true),
+      color = theta_true
+    ), linetype = "dashed"
+  ) +
+  geom_hline(
+    data = master_theta_df,
+    mapping = aes(
+      yintercept = as.numeric(theta_true),
+      color = theta_true
+    ), linetype = "dashed"
+  ) +
+  scale_color_manual(values = brewer.pal(n = 8, "Dark2"), name = expression(theta[true])) +
+  facet_wrap(~variable) +
+  scale_x_continuous(trans = "log10", breaks = c(0.001, 0.01, 0.1, 1, 10, 100), labels = MASS::rational) +
+  scale_y_continuous(trans = "log10", breaks = c(0.001, 0.01, 0.1, 1, 10, 100), labels = MASS::rational) +
+  xlab("Gene arithmetic mean") +
+  ylab(expression(theta)) +
+  theme_pubr() +
+  theme(
+    legend.position = "bottom",
+    legend.direction = "horizontal",
+    legend.background = element_blank()
+  ) +
+  guides(col = guide_legend(ncol = 7))
+
+
+ggsave(here::here("output", "figures", "simulated_theta_smooth.pdf"), width = 10, height = 4, dpi = "print")
+```
+
+```{r, fig.width=9, fig.height=9}
+master_theta_df$theta_true_variance <- master_theta_df$variance
+master_theta_df$MLE_predicted_variance <- master_theta_df$amean + master_theta_df$amean^2 / master_theta_df$MLE_theta
+
+master_theta_df$SCT_predicted_variance <- master_theta_df$amean + master_theta_df$amean^2 / master_theta_df$SCT_theta
+
+master_theta_df$SCT2_predicted_variance <- master_theta_df$amean + master_theta_df$amean^2 / master_theta_df$SCT2_theta
+
+master_theta_df$MLE_predicted_variance_diff <- master_theta_df$MLE_predicted_variance - master_theta_df$theta_true_variance
+
+master_theta_df$SCT_predicted_variance_diff <- master_theta_df$SCT_predicted_variance - master_theta_df$theta_true_variance
+
+
+master_theta_df$SCT2_predicted_variance_diff <- master_theta_df$SCT2_predicted_variance - master_theta_df$theta_true_variance
+
+master_theta_df$theta_true_variance_diff <- (master_theta_df$amean + (master_theta_df$amean^2) / as.numeric(master_theta_df$theta_true)) - master_theta_df$variance
+
+
+master_theta_df_melt <- melt(master_theta_df[, c("amean", "theta_true", "theta_true_variance", "MLE_predicted_variance", "SCT_predicted_variance", "SCT2_predicted_variance")], id.vars = c("amean", "theta_true", "theta_true_variance"))
+
+master_theta_df_melt$variable <- gsub("_predicted_variance", "", master_theta_df_melt$variable)
+
+
+ggplot(master_theta_df_melt, aes_string("theta_true_variance", "value", color = "theta_true")) +
+  geom_scattermore(pointsize = 5) +
+  geom_abline(linetype = "dashed", color = "gray") +
+  scale_color_manual(values = brewer.pal(n = 8, "Dark2"), name = expression(theta[true])) +
+  facet_grid(theta_true ~ variable) +
+  scale_x_log10() +
+  scale_y_log10() +
+  xlab("Observed variance") +
+  ylab("Estimated variance") +
+  theme_pubr() +
+  theme(
+    legend.position = "bottom",
+    legend.direction = "horizontal",
+    legend.background = element_blank()
+  ) +
+  guides(col = guide_legend(ncol = 7))
+
+ggsave(here::here("output", "figures", "simulated_theta_variance.pdf"), width = 9, height = 9, dpi = "print")
+```
+
+```{r, fig.width=9, fig.height=9}
+
+
+master_theta_df_melt <- melt(master_theta_df[, c(
+  "amean", "theta_true", "theta_true_variance", "MLE_predicted_variance_diff",
+  "SCT_predicted_variance_diff", "SCT2_predicted_variance_diff"
+)], id.vars = c("amean", "theta_true", "theta_true_variance"))
+
+master_theta_df_melt$variable <- gsub("_predicted_variance_diff", "", master_theta_df_melt$variable)
+
+
+ggplot(master_theta_df_melt, aes_string("amean", "value", color = "theta_true")) +
+  geom_scattermore(pointsize = 6) +
+  geom_hline(yintercept = 0, linetype = "dashed", color = "gray") +
+  scale_color_manual(values = brewer.pal(n = 8, "Dark2"), name = expression(theta[true])) +
+  facet_grid(theta_true ~ variable, scales = "free") +
+  scale_x_continuous(trans = "log10", breaks = c(0.001, 0.01, 0.1, 1, 10, 100), labels = MASS::rational) +
+  xlab("Gene arithmetic mean") +
+  ylab("Variance difference (Estimated - Observed)") +
+  theme_pubr() +
+  theme(
+    legend.position = "bottom",
+    legend.direction = "horizontal",
+    legend.background = element_blank()
+  ) +
+  guides(col = guide_legend(ncol = 7))
+
+ggsave(here::here("output", "figures", "simulated_theta_variance_vs_mu.pdf"), width = 9, height = 9, dpi = "print")
+```
+
+```{r}
+
+master_theta_df_melt <- master_theta_df[, c("amean", "theta_true", "theta_true_variance_diff")]
+
+ggplot(master_theta_df_melt, aes_string("amean", "theta_true_variance_diff", color = "theta_true")) +
+  geom_scattermore(pointsize = 6) +
+  geom_hline(yintercept = 0, linetype = "dashed", color = "gray") +
+  scale_color_manual(values = brewer.pal(n = 8, "Dark2"), name = expression(theta[true])) +
+  facet_wrap(~theta_true, scales = "free_y") +
+  scale_x_continuous(trans = "log10", breaks = c(0.001, 0.01, 0.1, 1, 10, 100), labels = MASS::rational) +
+  xlab("Gene arithmetic mean") +
+  ylab("Variance difference (Simulated - Observed)") +
+  theme_pubr() +
+  theme(
+    legend.position = "bottom",
+    legend.direction = "horizontal",
+    legend.background = element_blank()
+  ) +
+  guides(col = guide_legend(ncol = 7))
+
+ggsave(here::here("output", "figures", "simulated_theta_variance_vs_variance.pdf"), width = 9, height = 9, dpi = "print")
+```
+
+
+```{r}
+sessionInfo()
+```

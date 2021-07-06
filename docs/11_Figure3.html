@@ -1,0 +1,821 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+
+
+<title>Figure 3</title>
+
+<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/flatly.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-9.12.0/textmate.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+
+<link rel="icon" href="https://github.com/workflowr/workflowr-assets/raw/master/img/reproducible.png">
+<!-- Add a small amount of space between sections. -->
+<style type="text/css">
+div.section {
+  padding-top: 12px;
+}
+</style>
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+<style type="text/css">code{white-space: pre;}</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+
+
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+pre code {
+  padding: 0;
+}
+</style>
+
+
+<style type="text/css">
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #adb5bd;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script type="text/javascript">
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.tab('show');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">scRNA_NB_comparison</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="index.html">Home</a>
+</li>
+<li>
+  <a href="about.html">About</a>
+</li>
+<li>
+  <a href="license.html">License</a>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div id="header">
+
+
+
+<h1 class="title toc-ignore">Figure 3</h1>
+
+</div>
+
+
+<p>
+<button type="button" class="btn btn-default btn-workflowr btn-workflowr-report" data-toggle="collapse" data-target="#workflowr-report">
+<span class="glyphicon glyphicon-list" aria-hidden="true"></span> workflowr <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span>
+</button>
+</p>
+<div id="workflowr-report" class="collapse">
+<ul class="nav nav-tabs">
+<li class="active">
+<a data-toggle="tab" href="#summary">Summary</a>
+</li>
+<li>
+<a data-toggle="tab" href="#checks"> Checks <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span> </a>
+</li>
+<li>
+<a data-toggle="tab" href="#versions">Past versions</a>
+</li>
+</ul>
+<div class="tab-content">
+<div id="summary" class="tab-pane fade in active">
+<p>
+<strong>Last updated:</strong> 2021-07-06
+</p>
+<p>
+<strong>Checks:</strong> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> 6 <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span> 1
+</p>
+<p>
+<strong>Knit directory:</strong> <code>scRNA_NB_comparison/</code> <span class="glyphicon glyphicon-question-sign" aria-hidden="true" title="This is the local directory in which the code in this file was executed."> </span>
+</p>
+<p>
+This reproducible <a href="http://rmarkdown.rstudio.com">R Markdown</a> analysis was created with <a
+  href="https://github.com/jdblischak/workflowr">workflowr</a> (version 1.6.2). The <em>Checks</em> tab describes the reproducibility checks that were applied when the results were created. The <em>Past versions</em> tab lists the development history.
+</p>
+<hr>
+</div>
+<div id="checks" class="tab-pane fade">
+<div id="workflowr-checks" class="panel-group">
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRMarkdownfilestronguncommittedchanges"> <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span> <strong>R Markdown file:</strong> uncommitted changes </a>
+</p>
+</div>
+<div id="strongRMarkdownfilestronguncommittedchanges" class="panel-collapse collapse">
+<div class="panel-body">
+<p>The R Markdown is untracked by Git. To know which version of the R Markdown file created these results, you’ll want to first commit it to the Git repo. If you’re still working on the analysis, you can ignore this warning. When you’re finished, you can run <code>wflow_publish</code> to commit the R Markdown file and build the HTML.</p>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongEnvironmentstrongempty"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Environment:</strong> empty </a>
+</p>
+</div>
+<div id="strongEnvironmentstrongempty" class="panel-collapse collapse">
+<div class="panel-body">
+<p>Great job! The global environment was empty. Objects defined in the global environment can affect the analysis in your R Markdown file in unknown ways. For reproduciblity it’s best to always run the code in an empty environment.</p>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongSeedstrongcodesetseed20210706code"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Seed:</strong> <code>set.seed(20210706)</code> </a>
+</p>
+</div>
+<div id="strongSeedstrongcodesetseed20210706code" class="panel-collapse collapse">
+<div class="panel-body">
+<p>The command <code>set.seed(20210706)</code> was run prior to running the code in the R Markdown file. Setting a seed ensures that any results that rely on randomness, e.g. subsampling or permutations, are reproducible.</p>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongSessioninformationstrongrecorded"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Session information:</strong> recorded </a>
+</p>
+</div>
+<div id="strongSessioninformationstrongrecorded" class="panel-collapse collapse">
+<div class="panel-body">
+<p>Great job! Recording the operating system, R version, and package versions is critical for reproducibility.</p>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongCachestrongnone"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Cache:</strong> none </a>
+</p>
+</div>
+<div id="strongCachestrongnone" class="panel-collapse collapse">
+<div class="panel-body">
+<p>Nice! There were no cached chunks for this analysis, so you can be confident that you successfully produced the results during this run.</p>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongFilepathsstrongrelative"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>File paths:</strong> relative </a>
+</p>
+</div>
+<div id="strongFilepathsstrongrelative" class="panel-collapse collapse">
+<div class="panel-body">
+<p>Great job! Using relative paths to the files within your workflowr project makes it easier to run your code on other machines.</p>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstronge0b7c2c"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> e0b7c2c </a>
+</p>
+</div>
+<div id="strongRepositoryversionstronge0b7c2c" class="panel-collapse collapse">
+<div class="panel-body">
+<p>
+Great! You are using Git for version control. Tracking code development and connecting the code version to the results is critical for reproducibility.
+</p>
+<p>
+The results in this page were generated with repository version e0b7c2c. See the <em>Past versions</em> tab to see a history of the changes made to the R Markdown and HTML files.
+</p>
+<p>
+Note that you need to be careful to ensure that all relevant files for the analysis have been committed to Git prior to generating the results (you can use <code>wflow_publish</code> or <code>wflow_git_commit</code>). workflowr only checks the R Markdown file, but you know if there are other scripts or data files that it depends on. Below is the status of the Git repository when the results were generated:
+</p>
+<pre><code>
+Ignored files:
+    Ignored:    data/raw_data/
+    Ignored:    data/rds_filtered/
+    Ignored:    data/rds_raw/
+    Ignored:    output/snakemake_output/
+
+Untracked files:
+    Untracked:  analysis/01_Smart-seq3.Rmd
+    Untracked:  analysis/02_Mereu.Rmd
+    Untracked:  analysis/03A_Ding-Mixture-HEK-3T3.Rmd
+    Untracked:  analysis/03B_Ding-PBMC.Rmd
+    Untracked:  analysis/03C_Ding-Cortex.Rmd
+    Untracked:  analysis/04_PBMC68k.Rmd
+    Untracked:  analysis/05_Fetal-sciRNAseq3.Rmd
+    Untracked:  analysis/06G_VS2020_Seurat.Rmd
+    Untracked:  analysis/07_Filter_all_datasets.Rmd
+    Untracked:  analysis/08_Downsample_PBMC__Smart-seq3.Rmd
+    Untracked:  analysis/09_Figure1.Rmd
+    Untracked:  analysis/10_Figure2.Rmd
+    Untracked:  analysis/11_Figure3.Rmd
+    Untracked:  analysis/12_SuppFigure-DataStats.Rmd
+    Untracked:  analysis/13_SuppFigure-VST.Rmd
+    Untracked:  analysis/14_SuppFigure-Simulation.Rmd
+    Untracked:  analysis/15_SuppFigure-Upsampling.Rmd
+    Untracked:  data/datasets.csv
+    Untracked:  data/sampled_counts/
+    Untracked:  output/figures/
+    Untracked:  output/tables/
+
+Unstaged changes:
+    Modified:   .gitignore
+    Modified:   analysis/_site.yml
+    Modified:   analysis/about.Rmd
+    Modified:   analysis/index.Rmd
+    Modified:   analysis/license.Rmd
+
+</code></pre>
+<p>
+Note that any generated files, e.g. HTML, png, CSS, etc., are not included in this status report because it is ok for generated content to have uncommitted changes.
+</p>
+</div>
+</div>
+</div>
+</div>
+<hr>
+</div>
+<div id="versions" class="tab-pane fade">
+<p>
+There are no past versions. Publish this analysis with <code>wflow_publish()</code> to start tracking its development.
+</p>
+<hr>
+</div>
+</div>
+</div>
+<div id="compare-parameters" class="section level2">
+<h2>Compare parameters</h2>
+<pre class="r"><code>gene_attr &lt;- list()
+root_dir_sct &lt;- here::here(&quot;output/snakemake_output/sct_v1_ncells_benchmarks/Fetal__sci-RNA-seq3&quot;)
+root_dir_sct2 &lt;- here::here(&quot;output/snakemake_output/vst2_ncells_benchmarks/Fetal__sci-RNA-seq3&quot;)
+
+
+for (ncell in list.dirs(root_dir_sct, full.names = F)) {
+  if (ncell == &quot;&quot;) {
+    next
+  }
+  fp1 &lt;- here::here(file.path(root_dir_sct, ncell), &quot;gene_attr_sct.csv&quot;)
+  fp2 &lt;- here::here(file.path(root_dir_sct2, ncell), &quot;gene_attr_sct2.csv&quot;)
+  if (!file.exists(fp1)) next
+  if (!file.exists(fp2)) next
+  df1 &lt;- read.csv(fp1)
+  if (ncell == &quot;Full&quot;) {
+    # seu &lt;- readRDS(&quot;data/rds/Fetal__sci-RNA-seq3.rds&quot;)
+    # dim(seu)
+    #  63561 377456
+    ncell &lt;- 377456
+  }
+  df1$ncells &lt;- as.numeric(ncell)
+  df1$type &lt;- &quot;Regularized parameters (v1)&quot;
+
+  df2 &lt;- read.csv(fp2)
+  df2$ncells &lt;- as.numeric(ncell)
+  df2$type &lt;- &quot;Regularized parameters (v2)&quot;
+
+
+  gene_attr[[ncell]] &lt;- rbind(df1, df2)
+}
+
+gene_attr_df &lt;- bind_rows(gene_attr)
+gene_attr_df$ncells &lt;- factor(gene_attr_df$ncells, levels = sort(unique(gene_attr_df$ncells)), labels = so_formatter(sort(unique(gene_attr_df$ncells))))
+
+plot.theta &lt;- ggplot(gene_attr_df, aes(x = log10(gmean), y = log10(theta), color = ncells)) +
+  scale_color_manual(values = brewer.pal(11, &quot;Paired&quot;), name = &quot;&quot;) +
+  geom_scattermore(pointsize = 1, position = &quot;jitter&quot;, alpha = 0.5) +
+  facet_wrap(~type, ncol=2) +
+  guides(colour = guide_legend(override.aes = list(size = 2))) +
+  xlab(expression(paste(log[10], &quot;(Gene mean)&quot;))) +
+  ylab(expression(paste(log[10], theta))) +
+  theme(legend.position = &quot;right&quot;, legend.direction = &quot;vertical&quot;, 
+        legend.background = element_blank()
+) +
+  guides(color=guide_legend(ncol=2)) +
+  theme(legend.position = c(0.88,0.1)) + theme(legend.key.size = unit(.75, &#39;lines&#39;))
+plot.theta</code></pre>
+<p><img src="figure/11_Figure3.Rmd/unnamed-chunk-1-1.png" width="672" style="display: block; margin: auto;" /></p>
+</div>
+<div id="compare-runtimes" class="section level2">
+<h2>Compare runtimes</h2>
+<pre class="r"><code>times &lt;- list()
+root_dir &lt;- here::here(&quot;output/snakemake_output/vst2_time_benchmarks/Fetal__sci-RNA-seq3&quot;)
+for (ncell in list.dirs(root_dir, full.names = F)) {
+  if (ncell == &quot;&quot;) {
+    next
+  }
+  for (seed in list.dirs(file.path(root_dir, ncell), full.names = F)) {
+    if (seed == &quot;&quot;) {
+      next
+    }
+    fp &lt;- here::here(file.path(root_dir, ncell, seed), &quot;times.csv&quot;)
+    if (!file.exists(fp)) next
+    df &lt;- read.csv(fp)
+    df$ncell &lt;- as.numeric(ncell)
+    df$seed &lt;- as.numeric(seed)
+    times[[paste0(ncell, seed)]] &lt;- df
+  }
+}
+times &lt;- bind_rows(times)
+times_melt &lt;- melt(times, id.vars = c(&quot;ncells&quot;, &quot;seed&quot;), measure.vars = c(&quot;time_sct&quot;, &quot;time_sct2&quot;), variable.name = &quot;type&quot;, value.name = &quot;time&quot;)
+times_melt$ncells &lt;- as.numeric(times_melt$ncells)
+
+
+times_melt &lt;- summarySE(times_melt, measurevar = &quot;time&quot;, groupvars = c(&quot;ncells&quot;, &quot;type&quot;))
+
+times_melt$ncells &lt;- factor(times_melt$ncells, levels = sort(unique(times_melt$ncells)), labels = so_formatter(sort(unique(times_melt$ncells))))
+
+times_melt &lt;- times_melt %&gt;% arrange(ncells)
+
+
+plot.time &lt;- ggplot(times_melt, aes(ncells, time, color = type, group = type)) +
+  geom_errorbar(aes(ymin = time - se, ymax = time + se), width = .1) +
+  geom_line() +
+  geom_point() +
+  geom_line(show.legend = F) +
+  scale_color_manual(values = brewer.pal(3, &quot;Dark2&quot;), labels = c(&quot;all cells&quot;, &quot;n_cells=2,000&quot;), name = &quot;&quot;) +
+  theme(legend.position = c(0.3, 0.9), legend.background = element_blank()) +
+  guides(col = guide_legend(ncol = 1)) +
+  xlab(&quot;Number of cells&quot;) +
+  ylab(&quot;Time (s)&quot;) +
+  #scale_y_log10() +
+  guides(x = guide_axis(angle = 40)) + theme(legend.key.size = unit(0.75, &#39;lines&#39;))
+plot.time</code></pre>
+<p><img src="figure/11_Figure3.Rmd/unnamed-chunk-2-1.png" width="672" style="display: block; margin: auto;" /></p>
+</div>
+<div id="correlations" class="section level2">
+<h2>Correlations</h2>
+<pre class="r"><code>gene_attr &lt;- list()
+common_genes &lt;- NULL
+ncells &lt;- c()
+root_dir &lt;- here::here(&quot;output/snakemake_output/vst2_ncells_benchmarks/Fetal__sci-RNA-seq3/&quot;)
+for (ncell in list.dirs(root_dir, full.names = F)) {
+  if (ncell == &quot;&quot;) {
+    next
+  }
+  fp1 &lt;- here::here(file.path(root_dir, ncell), &quot;gene_attr_sct2.csv&quot;)
+  if (!file.exists(fp1)) next
+  df1 &lt;- read.csv(fp1, row.names = 1)
+  if (is.null(common_genes)) {
+    common_genes &lt;- rownames(df1)
+  } else {
+    common_genes &lt;- intersect(common_genes, rownames(df1))
+  }
+
+  df1 &lt;- df1[common_genes, ]
+  df1$ncells &lt;- ncell
+
+
+
+
+  gene_attr[[ncell]] &lt;- df1
+
+  ncell &lt;- as.integer(ncell)
+  if (!is.na(ncell)) ncells &lt;- c(ncells, ncell)
+}
+ncells_level &lt;- sort(ncells)
+ncells &lt;- c(sort(ncells), &quot;Full&quot;)
+
+mat &lt;- sapply(gene_attr, function(x) x$residual_variance)
+colnames(mat) &lt;- names(gene_attr)
+mat &lt;- as.data.frame(mat)
+rownames(mat) &lt;- common_genes
+mat &lt;- mat[order(-mat$Full),]
+
+matc &lt;- mat
+colnames(matc) &lt;- paste0(&quot;C&quot;, colnames(matc))
+#matc &lt;- log1p(matc)#[1:3000, ]
+plot.resvar &lt;- ggplot(matc, aes_string(&quot;CFull&quot;, &quot;C2000&quot;)) +
+  geom_point(alpha=0.5) +#scattermore(pointsize = 3) +
+  geom_abline(color = &quot;red&quot;, linetype = &quot;dashed&quot;) +
+  xlab(expression(sigma[&quot;AllCells&quot;]^2)) +
+  ylab(expression(sigma[&quot;2k&quot;]^2)) 
+plot.resvar</code></pre>
+<p><img src="figure/11_Figure3.Rmd/unnamed-chunk-3-1.png" width="672" style="display: block; margin: auto;" /></p>
+<pre class="r"><code>plot.thetax &lt;- plot.theta +
+  theme(legend.position = c(0.86,0.28))  
+layout &lt;- &quot;
+AABC
+&quot;
+
+p &lt;- plot.thetax |  plot.resvar | plot.time 
+p + plot_layout(design = layout, tag_level = &quot;new&quot;) &amp; plot_annotation(tag_levels = &quot;A&quot;) &amp; theme(plot.tag = element_text(face = &quot;bold&quot;))</code></pre>
+<p><img src="figure/11_Figure3.Rmd/unnamed-chunk-4-1.png" width="864" style="display: block; margin: auto;" /></p>
+<pre class="r"><code>ggsave(here::here(&quot;output&quot;, &quot;figures&quot;, &quot;03_Figure3.pdf&quot;), width = 9, height=3,  dpi = &quot;print&quot;)
+ggsave(here::here(&quot;output&quot;, &quot;figures&quot;, &quot;03_Figure3.png&quot;),)</code></pre>
+<pre class="r"><code>sessionInfo()</code></pre>
+<pre><code>R version 4.0.0 (2020-04-24)
+Platform: x86_64-pc-linux-gnu (64-bit)
+Running under: Ubuntu 18.04.5 LTS
+
+Matrix products: default
+BLAS:   /usr/lib/x86_64-linux-gnu/blas/libblas.so.3.7.1
+LAPACK: /usr/lib/x86_64-linux-gnu/lapack/liblapack.so.3.7.1
+
+locale:
+ [1] LC_CTYPE=en_US.UTF-8       LC_NUMERIC=C              
+ [3] LC_TIME=en_US.UTF-8        LC_COLLATE=en_US.UTF-8    
+ [5] LC_MONETARY=en_US.UTF-8    LC_MESSAGES=en_US.UTF-8   
+ [7] LC_PAPER=en_US.UTF-8       LC_NAME=C                 
+ [9] LC_ADDRESS=C               LC_TELEPHONE=C            
+[11] LC_MEASUREMENT=en_US.UTF-8 LC_IDENTIFICATION=C       
+
+attached base packages:
+[1] stats     graphics  grDevices utils     datasets  methods   base     
+
+other attached packages:
+ [1] plyr_1.8.6         SeuratObject_4.0.2 Seurat_4.0.3       reshape2_1.4.4    
+ [5] RColorBrewer_1.1-2 purrr_0.3.4        patchwork_1.1.1    here_1.0.1        
+ [9] scattermore_0.7    ggpubr_0.4.0       ggridges_0.5.3     ggplot2_3.3.5     
+[13] forcats_0.5.1      dplyr_1.0.7        workflowr_1.6.2   
+
+loaded via a namespace (and not attached):
+  [1] Rtsne_0.15             colorspace_2.0-2       deldir_0.2-10         
+  [4] ggsignif_0.6.2         ellipsis_0.3.2         rio_0.5.27            
+  [7] rprojroot_2.0.2        fs_1.5.0               spatstat.data_2.1-0   
+ [10] farver_2.1.0           leiden_0.3.8           listenv_0.8.0         
+ [13] ggrepel_0.9.1          fansi_0.5.0            codetools_0.2-16      
+ [16] splines_4.0.0          knitr_1.33             polyclip_1.10-0       
+ [19] jsonlite_1.7.2         broom_0.7.8            ica_1.0-2             
+ [22] cluster_2.1.0          png_0.1-7              uwot_0.1.10           
+ [25] spatstat.sparse_2.0-0  sctransform_0.3.2.9008 shiny_1.6.0           
+ [28] compiler_4.0.0         httr_1.4.2             backports_1.2.1       
+ [31] assertthat_0.2.1       Matrix_1.3-4           fastmap_1.1.0         
+ [34] lazyeval_0.2.2         later_1.2.0            htmltools_0.5.1.1     
+ [37] tools_4.0.0            igraph_1.2.6           gtable_0.3.0          
+ [40] glue_1.4.2             RANN_2.6.1             Rcpp_1.0.6            
+ [43] carData_3.0-4          cellranger_1.1.0       jquerylib_0.1.4       
+ [46] vctrs_0.3.8            nlme_3.1-152           lmtest_0.9-38         
+ [49] xfun_0.24              stringr_1.4.0          globals_0.14.0        
+ [52] openxlsx_4.2.4         mime_0.11              miniUI_0.1.1.1        
+ [55] lifecycle_1.0.0        irlba_2.3.3            goftest_1.2-2         
+ [58] rstatix_0.7.0          future_1.21.0          MASS_7.3-51.6         
+ [61] zoo_1.8-9              scales_1.1.1           spatstat.core_2.2-0   
+ [64] ragg_1.1.3             spatstat.utils_2.2-0   hms_1.1.0             
+ [67] promises_1.2.0.1       parallel_4.0.0         yaml_2.2.1            
+ [70] curl_4.3.2             gridExtra_2.3          reticulate_1.20       
+ [73] pbapply_1.4-3          sass_0.4.0             rpart_4.1-15          
+ [76] stringi_1.6.2          highr_0.8              zip_2.2.0             
+ [79] systemfonts_1.0.2      rlang_0.4.11           pkgconfig_2.0.3       
+ [82] matrixStats_0.59.0     evaluate_0.14          lattice_0.20-41       
+ [85] tensor_1.5             ROCR_1.0-11            labeling_0.4.2        
+ [88] htmlwidgets_1.5.3      cowplot_1.1.1          tidyselect_1.1.1      
+ [91] parallelly_1.26.0      RcppAnnoy_0.0.18       magrittr_2.0.1        
+ [94] R6_2.5.0               generics_0.1.0         DBI_1.1.1             
+ [97] mgcv_1.8-33            pillar_1.6.1           haven_2.4.1           
+[100] foreign_0.8-79         withr_2.4.2            fitdistrplus_1.1-5    
+[103] survival_3.2-7         abind_1.4-5            tibble_3.1.2          
+[106] future.apply_1.7.0     crayon_1.4.1           car_3.0-10            
+[109] KernSmooth_2.23-17     utf8_1.2.1             spatstat.geom_2.2-0   
+[112] plotly_4.9.4.1         rmarkdown_2.9          grid_4.0.0            
+[115] readxl_1.3.1           data.table_1.14.0      git2r_0.26.1          
+[118] digest_0.6.27          xtable_1.8-4           tidyr_1.1.3           
+[121] httpuv_1.6.1           textshaping_0.3.5      munsell_0.5.0         
+[124] viridisLite_0.4.0      bslib_0.2.5.1         </code></pre>
+<br>
+<p>
+<button type="button" class="btn btn-default btn-workflowr btn-workflowr-sessioninfo" data-toggle="collapse" data-target="#workflowr-sessioninfo" style="display: block;">
+<span class="glyphicon glyphicon-wrench" aria-hidden="true"></span> Session information
+</button>
+</p>
+<div id="workflowr-sessioninfo" class="collapse">
+<pre class="r"><code>sessionInfo()</code></pre>
+<pre><code>R version 4.0.0 (2020-04-24)
+Platform: x86_64-pc-linux-gnu (64-bit)
+Running under: Ubuntu 18.04.5 LTS
+
+Matrix products: default
+BLAS:   /usr/lib/x86_64-linux-gnu/blas/libblas.so.3.7.1
+LAPACK: /usr/lib/x86_64-linux-gnu/lapack/liblapack.so.3.7.1
+
+locale:
+ [1] LC_CTYPE=en_US.UTF-8       LC_NUMERIC=C              
+ [3] LC_TIME=en_US.UTF-8        LC_COLLATE=en_US.UTF-8    
+ [5] LC_MONETARY=en_US.UTF-8    LC_MESSAGES=en_US.UTF-8   
+ [7] LC_PAPER=en_US.UTF-8       LC_NAME=C                 
+ [9] LC_ADDRESS=C               LC_TELEPHONE=C            
+[11] LC_MEASUREMENT=en_US.UTF-8 LC_IDENTIFICATION=C       
+
+attached base packages:
+[1] stats     graphics  grDevices utils     datasets  methods   base     
+
+other attached packages:
+ [1] plyr_1.8.6         SeuratObject_4.0.2 Seurat_4.0.3       reshape2_1.4.4    
+ [5] RColorBrewer_1.1-2 purrr_0.3.4        patchwork_1.1.1    here_1.0.1        
+ [9] scattermore_0.7    ggpubr_0.4.0       ggridges_0.5.3     ggplot2_3.3.5     
+[13] forcats_0.5.1      dplyr_1.0.7        workflowr_1.6.2   
+
+loaded via a namespace (and not attached):
+  [1] Rtsne_0.15             colorspace_2.0-2       deldir_0.2-10         
+  [4] ggsignif_0.6.2         ellipsis_0.3.2         rio_0.5.27            
+  [7] rprojroot_2.0.2        fs_1.5.0               spatstat.data_2.1-0   
+ [10] farver_2.1.0           leiden_0.3.8           listenv_0.8.0         
+ [13] ggrepel_0.9.1          fansi_0.5.0            codetools_0.2-16      
+ [16] splines_4.0.0          knitr_1.33             polyclip_1.10-0       
+ [19] jsonlite_1.7.2         broom_0.7.8            ica_1.0-2             
+ [22] cluster_2.1.0          png_0.1-7              uwot_0.1.10           
+ [25] spatstat.sparse_2.0-0  sctransform_0.3.2.9008 shiny_1.6.0           
+ [28] compiler_4.0.0         httr_1.4.2             backports_1.2.1       
+ [31] assertthat_0.2.1       Matrix_1.3-4           fastmap_1.1.0         
+ [34] lazyeval_0.2.2         later_1.2.0            htmltools_0.5.1.1     
+ [37] tools_4.0.0            igraph_1.2.6           gtable_0.3.0          
+ [40] glue_1.4.2             RANN_2.6.1             Rcpp_1.0.6            
+ [43] carData_3.0-4          cellranger_1.1.0       jquerylib_0.1.4       
+ [46] vctrs_0.3.8            nlme_3.1-152           lmtest_0.9-38         
+ [49] xfun_0.24              stringr_1.4.0          globals_0.14.0        
+ [52] openxlsx_4.2.4         mime_0.11              miniUI_0.1.1.1        
+ [55] lifecycle_1.0.0        irlba_2.3.3            goftest_1.2-2         
+ [58] rstatix_0.7.0          future_1.21.0          MASS_7.3-51.6         
+ [61] zoo_1.8-9              scales_1.1.1           spatstat.core_2.2-0   
+ [64] ragg_1.1.3             spatstat.utils_2.2-0   hms_1.1.0             
+ [67] promises_1.2.0.1       parallel_4.0.0         yaml_2.2.1            
+ [70] curl_4.3.2             gridExtra_2.3          reticulate_1.20       
+ [73] pbapply_1.4-3          sass_0.4.0             rpart_4.1-15          
+ [76] stringi_1.6.2          highr_0.8              zip_2.2.0             
+ [79] systemfonts_1.0.2      rlang_0.4.11           pkgconfig_2.0.3       
+ [82] matrixStats_0.59.0     evaluate_0.14          lattice_0.20-41       
+ [85] tensor_1.5             ROCR_1.0-11            labeling_0.4.2        
+ [88] htmlwidgets_1.5.3      cowplot_1.1.1          tidyselect_1.1.1      
+ [91] parallelly_1.26.0      RcppAnnoy_0.0.18       magrittr_2.0.1        
+ [94] R6_2.5.0               generics_0.1.0         DBI_1.1.1             
+ [97] mgcv_1.8-33            pillar_1.6.1           haven_2.4.1           
+[100] foreign_0.8-79         withr_2.4.2            fitdistrplus_1.1-5    
+[103] survival_3.2-7         abind_1.4-5            tibble_3.1.2          
+[106] future.apply_1.7.0     crayon_1.4.1           car_3.0-10            
+[109] KernSmooth_2.23-17     utf8_1.2.1             spatstat.geom_2.2-0   
+[112] plotly_4.9.4.1         rmarkdown_2.9          grid_4.0.0            
+[115] readxl_1.3.1           data.table_1.14.0      git2r_0.26.1          
+[118] digest_0.6.27          xtable_1.8-4           tidyr_1.1.3           
+[121] httpuv_1.6.1           textshaping_0.3.5      munsell_0.5.0         
+[124] viridisLite_0.4.0      bslib_0.2.5.1         </code></pre>
+</div>
+</div>
+
+
+<!-- Adjust MathJax settings so that all math formulae are shown using
+TeX fonts only; see
+http://docs.mathjax.org/en/latest/configuration.html.  This will make
+the presentation more consistent at the cost of the webpage sometimes
+taking slightly longer to load. Note that this only works because the
+footer is added to webpages before the MathJax javascript. -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    "HTML-CSS": { availableFonts: ["TeX"] }
+  });
+</script>
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,63 @@
+---
+title: "Create Fetal sci-RNA-seq3"
+output:
+  workflowr::wflow_html:
+    toc: false
+editor_options:
+  chunk_output_type: console
+---
+
+```{r}
+suppressPackageStartupMessages({
+  library(Seurat)
+})
+set.seed(42)
+```
+
+
+```{r}
+url <- "https://atlas.fredhutch.org/data/bbi/descartes/human_gtex/downloads/data_summarize_fetus_data/gene_count_sampled.RDS"
+
+download_dir <- here::here("data/raw_data/Cao")
+dir.create(here::here("data/rds_raw"), showWarnings = F, recursive = T)
+
+dir.create(download_dir, showWarnings = F, recursive = T)
+file_location <- here::here(download_dir, "Cao_2020_counts.rds")
+if (!file.exists(file_location)) {
+  download.file(url, file_location)
+}
+
+genes_url <- "https://atlas.fredhutch.org/data/bbi/descartes/human_gtex/downloads/data_summarize_fetus_data/df_gene.RDS"
+gene_location <- here::here(download_dir, "gene_names.rds")
+if (!file.exists(gene_location)) {
+  download.file(genes_url, gene_location)
+}
+```
+
+```{r}
+counts <- readRDS(file_location)
+counts[1:5, 1:5]
+```
+```{r}
+gene_ids <- readRDS(gene_location)
+gene_ids$gene_id <- as.character(gene_ids$gene_id)
+gene_ids$gene_type <- as.character(gene_ids$gene_type)
+gene_ids$gene_short_name <- as.character(gene_ids$gene_short_name)
+head(gene_ids)
+```
+
+```{r}
+ids.use <- intersect(rownames(counts), rownames(gene_ids))
+symbols <- gene_ids[ids.use, ]
+fetal.counts <- counts[ids.use, ]
+rownames(fetal.counts) <- make.unique(symbols$gene_short_name)
+dim(fetal.counts)
+```
+
+```{r}
+seu <- CreateSeuratObject(fetal.counts, project="Fetal_sciRNAseq3_Cao2020", min.features=1, min.cells = 1)
+seu[["percent.mt"]] <- PercentageFeatureSet(seu, pattern = "^MT-")
+saveRDS(seu, here::here("data", "rds_raw", "Fetal__sci-RNA-seq3.rds"))
+dim(seu)
+```
+

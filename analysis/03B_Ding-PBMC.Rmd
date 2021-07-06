@@ -1,0 +1,144 @@
+---
+title: "Create Ding et al. datasets - PBMC"
+output:
+  workflowr::wflow_html:
+    toc: false
+editor_options:
+  chunk_output_type: console
+---
+
+```{r}
+suppressPackageStartupMessages({
+  library(Seurat)
+  library(ggplot2)
+  library(patchwork)
+  library(stringr)
+  library(httr)
+  library(XML)
+})
+set.seed(42)
+theme_set(theme_classic())
+
+FetchGEOFiles <- function(geo, download.dir = getwd(), download.files = FALSE, ...) {
+  geo <- trimws(toupper(geo))
+  geo_type <- substr(geo, 1, 3)
+  url.prefix <- "https://ftp.ncbi.nlm.nih.gov/geo/"
+  if (geo_type == "GSE") {
+    url.prefix <- paste0(url.prefix, "series/")
+  } else if (geo_type == "GSM") {
+    url.prefix <- paste0(url.prefix, "samples/")
+  } else if (geotype == "GPL") {
+    url.prefix <- paste0(url.prefix, "platform/")
+  }
+  geo_prefix <- paste0(substr(x = geo, start = 1, stop = nchar(geo) - 3), "nnn")
+  url <- paste0(url.prefix, geo_prefix, "/", geo, "/", "suppl", "/")
+  response <- GET(url = url)
+  html_parsed <- htmlParse(file = response)
+  links <- xpathSApply(doc = html_parsed, path = "//a/@href")
+  suppl_files <- as.character(grep(pattern = "^G", x = links, value = TRUE))
+  if (length(suppl_files) == 0) {
+    return(NULL)
+  }
+  file.url <- paste0(url, suppl_files)
+  file_list <- data.frame(filename = suppl_files, url = file.url)
+  if (download.files) {
+    names(file.url) <- suppl_files
+    download_file <- function(url, filename, ...) {
+      message(paste0("Downloading ", filename, " to ", download.dir))
+      download.file(url = url, destfile = file.path(download.dir, filename), mode = "wb", ...)
+      message("Done!")
+    }
+    lapply(seq_along(file.url), function(y, n, i) {
+      download_file(y[[i]], n[[i]], ...)
+    },
+    y = file.url, n = names(file.url)
+    )
+  }
+  return(file_list)
+}
+```
+
+
+```{r, message=FALSE, warning=FALSE}
+download_dir <- here::here("data/raw_data/Ding")
+dir.create(download_dir, showWarnings = F, recursive = T)
+dir.create(here::here("data/rds_raw"), showWarnings = F, recursive = T)
+
+geo_files <- FetchGEOFiles("GSE132044", download_dir, download.files = T)
+geo_files
+```
+
+
+# PBMC
+
+```{r}
+pbmc <- ReadMtx(
+  mtx = "~/github/scRNA_NB_comparison/data/raw_data/Ding/GSE132044_pbmc_hg38_count_matrix.mtx.gz",
+  cells = "~/github/scRNA_NB_comparison/data/raw_data/Ding/GSE132044_pbmc_hg38_cell.tsv.gz",
+  features = "~/github/scRNA_NB_comparison/data/raw_data/Ding/GSE132044_pbmc_hg38_gene.tsv.gz", feature.column = 1
+)
+pbmc[1:5, 1:5]
+```
+
+
+```{r}
+replicate <- str_split_fixed(colnames(pbmc), pattern = "\\.", n = 3)[, 1]
+technology <- str_split_fixed(colnames(pbmc), pattern = "\\.", n = 3)[, 2]
+metadata <- data.frame(technology = technology, replicate = replicate)
+rownames(metadata) <- colnames(pbmc)
+head(metadata)
+```
+
+
+```{r}
+genes <- rownames(pbmc)
+gene_names <- make.unique(str_split_fixed(genes, pattern = "_", n = 2)[, 2])
+
+rownames(pbmc) <- gene_names
+
+pbmc <- CreateSeuratObject(counts = pbmc, project = "Ding_scBenchmark_PBMC", meta.data = metadata, min.cells = 1, min.features = 1)
+all_technologies <- sort(unique(metadata$technology))
+all_technologies
+```
+
+
+```{r}
+umi_techs <- c(
+  "10x-Chromium-v2", "10x-Chromium-v2-A", "10x-Chromium-v2-B", "10x-Chromium-v3",
+  "CEL-Seq2", "Drop-seq", "inDrops", "Seq-Well"
+)
+
+clean_named_techs <- c(
+  "ChromiumV2", "ChromiumV2A", "ChromiumV2B", "ChromiumV3",
+  "CEL-seq2", "Drop-seq", "inDrops", "Seq-Well"
+)
+
+names(clean_named_techs) <- umi_techs
+clean_named_techs
+```
+
+
+```{r}
+`%notin%` <- Negate(`%in%`)
+
+split_pbmc <- SplitObject(object = pbmc, split.by = "technology")
+names(split_pbmc)
+
+
+for (technology in names(split_pbmc)) {
+  if (technology %notin% umi_techs) next
+  obj <- split_pbmc[[technology]]
+  obj_split <- SplitObject(object = obj, split.by = "replicate")
+
+  clean_tech <- clean_named_techs[[technology]]
+
+  for (sampletype in names(obj_split)) {
+    seu <- obj_split[[sampletype]]
+    seu[["percent.mt"]] <- PercentageFeatureSet(seu, pattern = "^MT-")
+    saveRDS(
+      seu,
+      here::here("data/rds_raw/", paste0("Ding-", sampletype, "__", clean_tech, ".rds"))
+    )
+  }
+}
+```

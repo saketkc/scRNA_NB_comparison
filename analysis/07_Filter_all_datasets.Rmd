@@ -1,0 +1,48 @@
+---
+title: "Filter all datasets"
+output:
+  workflowr::wflow_html:
+    toc: false
+editor_options:
+  chunk_output_type: console
+---
+
+```{r}
+suppressPackageStartupMessages({
+  library(Seurat)
+  library(ggplot2)
+  library(patchwork)
+})
+set.seed(42)
+```
+
+# Pre-Post QC
+
+- Left - Pre-QC
+- Right - Post-QC
+
+```{r, fig.width=12, fig.height=4}
+dir.create(here::here("data/rds_filtered"), showWarnings = F, recursive = T)
+for (rds in list.files(here::here("data/rds_raw"), pattern = "*.rds", full.names = F)) {
+  sample_name <- gsub(pattern = ".rds", replacement = "", x = rds)
+  if (sample_name == "") next
+  seu <- readRDS(here::here("data/rds_raw", rds))
+  Idents(seu) <- sample_name
+  ncount_rna_limits <- as.vector(quantile(seu$nCount_RNA, probs = c(0.05, 0.95)))
+  seu_subset <- subset(seu, subset = nCount_RNA > ncount_rna_limits[1] & nCount_RNA < ncount_rna_limits[2] & percent.mt < 15)
+  if (sample_name == "Fetal__sci-RNA-seq3"){
+    # already filtered (and annotated)
+    seu_subset <- seu
+  }
+  p1 <- VlnPlot(seu, features = c("nFeature_RNA", "nCount_RNA", "percent.mt"), ncol = 3) 
+  p2 <- VlnPlot(seu_subset, features = c("nFeature_RNA", "nCount_RNA", "percent.mt"), ncol = 3)
+
+  p <- p1 | p2
+  print(p)
+
+  saveRDS(seu_subset, here::here("data/rds_filtered", rds))
+  rm(seu) 
+  rm(seu_subset)
+  rm(ncount_rna_limits)
+}
+```

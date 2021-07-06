@@ -1,0 +1,165 @@
+---
+title: "Create VS2020 datasets"
+output:
+  workflowr::wflow_html:
+    toc: false
+editor_options:
+  chunk_output_type: console
+---
+
+```{r}
+suppressPackageStartupMessages({
+  library(Seurat)
+})
+set.seed(42)
+```
+
+```{r}
+root_dir <- here::here("data/raw_data/VS2020/counts/")
+samples <- c("3T3__ChromiumV3", "HEK__ChromiumV3", "PBMC__ChromiumV3", "TechnicalControl1__ChromiumV1", "TechnicalControl2__ChromiumV1", "TechnicalControl__inDrops")
+dir.create(here::here("data/rds_raw"), showWarnings = F, recursive = T)
+
+```
+
+## 3T3
+
+```{r}
+sample_name <- "3T3__ChromiumV3"
+counts <- Read10X(data.dir = here::here(root_dir, sample_name))
+counts[1:5, 1:5]
+seu <- CreateSeuratObject(counts, project = paste0("VS2020_", sample_name), min.features=1, min.cells = 1)
+seu[["percent.mt"]] <- PercentageFeatureSet(seu, pattern = "^mt-")
+
+saveRDS(seu, here::here("data/rds_raw",paste0(sample_name, ".rds")))
+dim(seu)
+rm(seu)
+rm(counts)
+rm(sample_name)
+```
+
+```{r}
+sample_name <- "HEK__ChromiumV3"
+counts <- Read10X(data.dir = here::here(root_dir, sample_name))
+counts[1:5, 1:5]
+seu <- CreateSeuratObject(counts, project = paste0("VS2020_", sample_name), min.features=1, min.cells = 1)
+seu[["percent.mt"]] <- PercentageFeatureSet(seu, pattern = "^MT-")
+
+saveRDS(seu, here::here("data/rds_raw",paste0(sample_name, ".rds")))
+dim(seu)
+rm(seu)
+rm(counts)
+rm(sample_name)
+```
+
+
+```{r}
+sample_name <- "PBMC__ChromiumV3"
+counts <- Read10X(data.dir = here::here(root_dir, sample_name))
+counts[1:5, 1:5]
+seu <- CreateSeuratObject(counts, project = paste0("VS2020_", sample_name), min.features=1, min.cells = 1)
+seu[["percent.mt"]] <- PercentageFeatureSet(seu, pattern = "^MT-")
+
+saveRDS(seu, here::here("data/rds_raw",paste0(sample_name, ".rds")))
+dim(seu)
+rm(seu)
+rm(counts)
+rm(sample_name)
+```
+
+```{r}
+sample_name <- "TechnicalControl1__ChromiumV1"
+counts <- Read10X(data.dir = here::here(root_dir, sample_name), gene.column = 1)
+counts[1:5, 1:5]
+
+gene_ids <- rownames(counts)
+ensembl <- biomaRt::useEnsembl(biomart = "ensembl", dataset = "hsapiens_gene_ensembl")
+symbols <- biomaRt::getBM(attributes = c("ensembl_gene_id", "external_gene_name"), filters = "ensembl_gene_id", 
+    values = gene_ids, mart = ensembl)
+rownames(symbols) <- symbols$ensembl_gene_id
+ids.use <- intersect(rownames(counts), rownames(symbols))
+ids.unique <- setdiff(gene_ids, ids.use)
+
+counts.renamed <- counts[ids.use,]
+
+symbols <- symbols[ids.use, ]
+counts.renamed <- counts[ids.use, ]
+symbols[symbols$external_gene_name=="", "external_gene_name"] <- symbols[symbols$external_gene_name=="", "ensembl_gene_id"]
+rownames(counts.renamed) <- make.unique(symbols$external_gene_name)
+
+
+counts.renamed <- rbind(counts.renamed, counts[ids.unique,])
+
+seu <- CreateSeuratObject(counts.renamed, project = paste0("VS2020_", sample_name), min.features=1, min.cells = 1)
+
+
+seu[["percent.mt"]] <- PercentageFeatureSet(seu, pattern = "^MT-")
+
+saveRDS(seu, here::here("data/rds_raw",paste0(sample_name, ".rds")))
+counts.renamed[1:5, 1:5]
+dim(counts)
+dim(counts.renamed)
+dim(seu)
+rm(seu)
+rm(counts)
+rm(counts.renamed)
+rm(gene_ids)
+rm(sample_name)
+```
+
+
+```{r}
+sample_name <- "TechnicalControl2__ChromiumV1"
+counts <- Read10X(data.dir = here::here(root_dir, sample_name), gene.column = 1)
+counts[1:5, 1:5]
+gene_ids <- rownames(counts)
+ensembl <- biomaRt::useEnsembl(biomart = "ensembl", dataset = "hsapiens_gene_ensembl")
+symbols <- biomaRt::getBM(attributes = c("ensembl_gene_id", "external_gene_name"), filters = "ensembl_gene_id", 
+    values = gene_ids, mart = ensembl)
+rownames(symbols) <- symbols$ensembl_gene_id
+ids.use <- intersect(rownames(counts), rownames(symbols))
+ids.unique <- setdiff(gene_ids, ids.use)
+
+counts.renamed <- counts[ids.use,]
+
+symbols <- symbols[ids.use, ]
+counts.renamed <- counts[ids.use, ]
+symbols[symbols$external_gene_name=="", "external_gene_name"] <- symbols[symbols$external_gene_name=="", "ensembl_gene_id"]
+rownames(counts.renamed) <- make.unique(symbols$external_gene_name)
+
+
+counts.renamed <- rbind(counts.renamed, counts[ids.unique,])
+
+seu <- CreateSeuratObject(counts.renamed, project = paste0("VS2020_", sample_name), min.features=1, min.cells = 1)
+
+
+seu[["percent.mt"]] <- PercentageFeatureSet(seu, pattern = "^MT-")
+
+saveRDS(seu, here::here("data/rds_raw",paste0(sample_name, ".rds")))
+counts.renamed[1:5, 1:5]
+dim(counts)
+dim(counts.renamed)
+dim(seu)
+rm(seu)
+rm(counts)
+rm(counts.renamed)
+rm(gene_ids)
+rm(sample_name)
+```
+
+```{r}
+sample_name <- "TechnicalControl__inDrops"
+counts <- Read10X(data.dir = here::here(root_dir, sample_name), gene.column = 1)
+counts[1:5, 1:5]
+
+seu <- CreateSeuratObject(counts, project = paste0("VS2020_", sample_name), min.features=1, min.cells = 1)
+
+
+seu[["percent.mt"]] <- PercentageFeatureSet(seu, pattern = "^MT-")
+
+saveRDS(seu, here::here("data/rds_raw",paste0(sample_name, ".rds")))
+dim(counts)
+dim(seu)
+rm(seu)
+rm(counts)
+rm(sample_name)
+```

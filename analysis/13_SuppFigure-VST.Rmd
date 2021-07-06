@@ -1,0 +1,260 @@
+---
+title: "Supplementary figures on vst"
+output:
+  workflowr::wflow_html:
+    toc: false
+editor_options:
+  chunk_output_type: console
+---
+
+
+```{r setup, echo=FALSE}
+suppressPackageStartupMessages({
+  library(dplyr)
+  library(ggplot2)
+  library(ggpubr)
+  library(ggrepel)
+  library(ggridges)
+  library(here)
+  library(patchwork)
+  library(RColorBrewer)
+  library(readr)
+  library(reshape2)
+  library(scattermore)
+})
+`%notin%` <- Negate(`%in%`)
+knitr::opts_chunk$set(warning = FALSE, message = FALSE)
+
+theme_set(theme_pubr())
+clean_keys <- function(key) {
+  gsub(
+    pattern = "|\\)", replacement = "",
+    x = gsub(pattern = " |\\(", replacement = "_", x = key)
+  )
+}
+```
+
+```{r process, warning=FALSE, message=FALSE}
+datasets <- readr::read_csv(here::here("data", "datasets.csv"), col_types = readr::cols())
+
+datasets$key_cleaned <- clean_keys(datasets$key)
+dataset_keys <- datasets$key
+datasets$datatype <- factor(datasets$datatype, levels = c("technical-control", "cell line", "heterogeneous"))
+datasets <- datasets %>% arrange(datatype)
+datasets
+
+colors <- brewer.pal(3, "Set2")
+names(colors) <- c("technical-control", "cell line", "heterogeneous")
+```
+
+## Collect SCT(v2) output
+
+```{r}
+sct_thetas <- lapply(dataset_keys, FUN = function(x) {
+  theta_file <- here::here("output", "snakemake_output", "seurat_output", clean_keys(x), "vst2", "gene_attr.csv")
+  if (file.exists(theta_file)) {
+    theta_df <- read.csv(theta_file)
+    theta_df$key <- x
+    return(theta_df)
+  } else {
+    message(x)
+    return(NULL)
+  }
+})
+sct_thetas_df <- bind_rows(sct_thetas, .id = "dataset")
+sct_thetas_df <- left_join(sct_thetas_df, datasets)
+sct_thetas_df <- sct_thetas_df %>% arrange(datatype) # , key, technology)
+sct_thetas_df$sample_name <- factor(sct_thetas_df$sample_name, levels = datasets$sample_name)
+head(sct_thetas_df)
+```
+
+
+
+```{r}
+top_genes <- list()
+NTOP <- 10
+for (key in dataset_keys) {
+  data_subset <- sct_thetas_df[sct_thetas_df$key == key, ]
+  data_subset$gene <- data_subset$X
+  top_genes[[key]] <- subset(data_subset, rank(-residual_variance) <= NTOP)
+}
+top_genes_df <- bind_rows(top_genes, .id = "sample_nameX")
+```
+
+## Plots
+
+```{r}
+DoPlot <- function(sample_name) {
+  sct_thetas_df_subset1 <- sct_thetas_df[sct_thetas_df$sample_name == sample_name, ]
+  max_resvar <- max(sct_thetas_df_subset1$residual_variance) + 30
+  top20_df_subset1 <- top_genes_df[top_genes_df$sample_name == sample_name, ]
+  p <- ggplot(sct_thetas_df_subset1, aes(gmean, residual_variance)) +
+    geom_scattermore(pointsize = 4, shape = 16, alpha = 0.5, color = "#43a2ca") +
+    geom_smooth(color = "red", method = "loess", span = 0.1, size = 0.9, formula = "y ~ x") +
+    geom_hline(yintercept = 1, color = "darkgreen", size = 0.9, linetype = "dashed") +
+    geom_point(data = top20_df_subset1, size = 0.6, shape = 16, alpha = 1.0, color = "deeppink") +
+    geom_text_repel(
+      data = top20_df_subset1, aes(label = gene), size = 2.2, color = "gray25",
+      nudge_y = max_resvar - top20_df_subset1$residual_variance,
+      direction = "x",
+      angle = 90,
+      vjust = 0.5,
+      hjust = 0.5,
+      segment.size = 0.2,
+      segment.alpha = 0.2
+    ) +
+    scale_y_continuous(trans = "sqrt", breaks = c(0, 1, 10, 25, 50, 100, 150), limits = c(0, max_resvar + 1)) +
+    scale_x_continuous(trans = "log10", breaks = c(0.001, 0.01, 0.1, 1, 10, 100), labels = MASS::rational) +
+    xlab("Gene mean") +
+    ylab("Residual variance") +
+    theme_pubr() +
+    theme(
+      legend.position = "none"
+    ) +
+    ggtitle(sample_name)
+  p
+}
+
+split_keys <- split(datasets$sample_name, ceiling(seq_along(dataset_keys) / 15))
+for (index in names(split_keys)) {
+  keys <- split_keys[[index]]
+  i <- 1
+  plots <- list()
+  for (key in keys) {
+    px <- DoPlot(key)
+    plots[[i]] <- px
+    i <- i + 1
+  }
+  p <- wrap_plots(plots, ncol = 3)
+  p
+  ggsave(here::here("output", "figures", paste0("SCT2_variance_stabilization-", index, ".pdf")), width = 12, height = 15)
+}
+```
+
+```{r fig2, fig.width=8, fig.height=12, warning=FALSE, message=FALSE}
+DoMuThetaPlot <- function(sct_thetas_df_subset){
+  p <- ggplot(sct_thetas_df_subset, aes(gmean, step1_theta, color = datatype)) +
+  scale_color_manual(values = colors, name = "") +
+  geom_scattermore(pointsize = 4, alpha = 0.5) +
+  geom_smooth(color = "red", method = "loess", span = 0.1, size = 0.9, formula = "y ~ x") + # , se = FALSE) +
+  facet_wrap(~sample_name, scales = "free", ncol = 3, labeller = label_wrap_gen(width = 10)) +
+  scale_x_continuous(trans = "log10", breaks = c(0.001, 0.1, 10, 1000), labels = MASS::rational) +
+  scale_y_continuous(trans = "log10", breaks = c(0.001, 0.1, 10, 1000), labels = MASS::rational) +
+  theme_pubr() +
+  theme(
+    legend.position = "bottom",
+    legend.direction = "horizontal",
+    legend.background = element_blank()
+  ) +
+  guides(col = guide_legend(ncol = 3)) +
+  xlab("Gene geometric mean") +
+  ylab(expression(theta[NB]))
+p
+}
+sct_thetas_df_subset <- sct_thetas_df[sct_thetas_df$sample_name %in% datasets$sample_name[1:15],]
+
+p1 <- DoMuThetaPlot(sct_thetas_df_subset)
+p1
+ggsave(here::here("output", "figures", "SCT_theta_unregularized1.pdf"), width = 12, height = 15, dpi = "print")
+
+sct_thetas_df_subset <- sct_thetas_df[sct_thetas_df$sample_name %in% datasets$sample_name[16:30],]
+p2 <- DoMuThetaPlot(sct_thetas_df_subset)
+p2
+ggsave(here::here("output", "figures", "SCT_theta_unregularized2.pdf"), width = 12, height = 15, dpi = "print")
+
+
+sct_thetas_df_subset <- sct_thetas_df[sct_thetas_df$sample_name %in% datasets$sample_name[31:45],]
+
+p3 <- DoMuThetaPlot(sct_thetas_df_subset)
+p3
+ggsave(here::here("output", "figures", "SCT_theta_unregularized3.pdf"), width = 12, height = 15, dpi = "print")
+
+
+sct_thetas_df_subset <- sct_thetas_df[sct_thetas_df$sample_name %in% datasets$sample_name[46:58],]
+
+p5 <- DoMuThetaPlot(sct_thetas_df_subset)
+p5
+ggsave(here::here("output", "figures", "SCT_theta_unregularized4.pdf"), width = 12, height = 15, dpi = "print")
+```
+
+```{r}
+sct_thetas <- lapply(dataset_keys, FUN = function(x) {
+  sct_theta_local <- list()
+  for (method in c("offset-Inf", "offset-100", "offset-10",  "vst2")) {
+    theta_file <- here::here("output", "snakemake_output", "seurat_output", clean_keys(x), method, "gene_attr.csv")
+    if (file.exists(theta_file)) {
+      theta_df <- read.csv(theta_file)
+      theta_df$key <- x
+      sct_theta_local[[method]] <- theta_df
+    }
+  }
+  if (length(names(sct_theta_local)) >= 1) {
+    sct_theta <- bind_rows(sct_theta_local, .id = "method")
+    return(sct_theta)
+  }
+  return(NULL)
+})
+sct_thetas_df <- bind_rows(sct_thetas, .id = "dataset")
+sct_thetas_df <- left_join(sct_thetas_df, datasets)
+sct_thetas_df <- sct_thetas_df %>% arrange(datatype)
+
+methods <- c(
+  "offset-Inf", "offset-100",
+  "offset-10",  "vst2"
+)
+names(methods) <- c(
+  paste("theta==infinity"),
+  paste("theta==100"),
+  paste("theta==10"),
+  paste("SCT")
+)
+sct_thetas_df$method <- factor(sct_thetas_df$method, levels = methods, labels = names(methods))
+sct_thetas_df$sample_name <- factor(sct_thetas_df$sample_name, levels = datasets$sample_name)
+```
+
+```{r}
+length(unique(sct_thetas_df$key))
+```
+
+## Plot residual variances
+
+```{r , warning=FALSE, message=FALSE, fig.width=13, fig.height=6, warning=FALSE}
+global_labeller <- labeller(
+  sample_name = label_wrap_gen(8),
+  method = label_parsed
+)
+
+DoPlot <- function(gene_attrs_df) {
+  p <- ggplot(gene_attrs_df, aes(gmean, residual_variance)) +
+    geom_scattermore(pointsize = 1.1, shape = 16, alpha = 0.5) +
+    geom_hline(yintercept = 1, color = "#4daf4a", size = 0.9, linetype = "dashed") +
+    geom_smooth(aes(color = "red"), method = "loess", span = 0.1, size = 0.9, formula = "y ~ x") +
+    scale_y_continuous(trans = "sqrt", breaks = c(0, 1, 10, 25, 50, 100, 150), limits = c(0, max_resvar + 1)) +
+    scale_x_continuous(trans = "log10", breaks = c(0.01, 1, 100), labels = MASS::rational) +
+    facet_grid(sample_name ~ method, labeller = global_labeller) +
+    xlab("Gene mean") +
+    ylab("Residual variance") +
+    plot_layout(guides = "collect") & theme(
+    legend.position = "none",
+    legend.key = element_rect(fill = NA),
+    legend.background = element_blank()
+  )
+  return(p)
+}
+
+split_keys <- split(dataset_keys, ceiling(seq_along(dataset_keys) / 10))
+for (index in names(split_keys)) {
+  keys <- split_keys[[index]]
+  gene_attrs_df <- sct_thetas_df[sct_thetas_df$key %in% keys, ]
+  max_resvar <- 25
+  p1 <- DoPlot(gene_attrs_df)
+  p1
+  dir.create(here::here("output", "figures"), showWarnings = F)
+  ggsave(here::here("output", "figures", paste0("full_residvar-", index, ".pdf")), width = 8, height = 12, dpi = "print")
+}
+```
+
+
+```{r}
+sessionInfo()
+```

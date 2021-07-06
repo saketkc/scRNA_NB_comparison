@@ -1,0 +1,123 @@
+---
+title: "Create Smart-seq3 datasets"
+output:
+  workflowr::wflow_html:
+    toc: false
+editor_options:
+  chunk_output_type: console
+---
+
+```{r}
+suppressPackageStartupMessages({
+  library(Seurat)
+})
+set.seed(42)
+```
+
+
+```{r}
+download_dir <- here::here("data/raw_data/Smart-seq3/E-MTAB")
+dir.create(download_dir, showWarnings = F, recursive = T)
+file_location <- here::here(download_dir, "E-MTAB-8735.processed.3.zip")
+if(! file.exists(file_location)){
+  download.file("https://www.ebi.ac.uk/arrayexpress/files/E-MTAB-8735/E-MTAB-8735.processed.3.zip", file_location)
+}
+unzip(file_location, exdir=download_dir)
+```
+```{r}
+pbmc <- read.csv(here::here(download_dir, "HCA.UMIcounts.PBMC.txt"), stringsAsFactors = F, sep="\t")
+dim(pbmc)
+pbmc[1:5, 1:5]
+
+```
+
+```{r}
+gene_ids <- rownames(pbmc)
+ensembl <- biomaRt::useEnsembl(biomart = "ensembl", dataset = "hsapiens_gene_ensembl")
+symbols <- biomaRt::getBM(attributes = c("ensembl_gene_id", "external_gene_name"), filters = "ensembl_gene_id", 
+    values = gene_ids, mart = ensembl)
+rownames(symbols) <- symbols$ensembl_gene_id
+ids.use <- intersect(rownames(pbmc), rownames(symbols))
+symbols <- symbols[ids.use, ]
+pbmc.counts <- pbmc[ids.use, ]
+symbols[symbols$external_gene_name=="", "external_gene_name"] <- symbols[symbols$external_gene_name=="", "ensembl_gene_id"]
+
+rownames(pbmc.counts) <- make.unique(symbols$external_gene_name)
+dim(pbmc.counts)
+```
+
+# Create Object
+```{r}
+pbmc.seu <- CreateSeuratObject(pbmc.counts, project="PBMC__Smart-seq3", min.cells = 1, min.features = 1)
+pbmc.seu[["percent.mt"]] <- PercentageFeatureSet(pbmc.seu, pattern = "^MT-")
+dir.create(here::here("data/rds_raw"), showWarnings = F, recursive = T)
+saveRDS(pbmc.seu, here::here("data/rds_raw/PBMC__Smart-seq3.rds"))
+dim(pbmc.seu)
+rm(pbmc.seu)
+rm(pbmc.counts)
+```
+
+
+```{r}
+fibroblasts <- read.csv(here::here(download_dir, "Smartseq3.Fibroblasts.NovaSeq.UMIcounts.txt"), stringsAsFactors = F, sep="\t")
+dim(fibroblasts)
+fibroblasts[1:5, 1:5]
+```
+```{r}
+gene_ids <- rownames(fibroblasts)
+ensembl <- biomaRt::useEnsembl(biomart = "ensembl", dataset = "mmusculus_gene_ensembl")
+symbols <- biomaRt::getBM(attributes = c("ensembl_gene_id", "external_gene_name"), filters = "ensembl_gene_id", 
+    values = gene_ids, mart = ensembl)
+rownames(symbols) <- symbols$ensembl_gene_id
+ids.use <- intersect(rownames(fibroblasts), rownames(symbols))
+symbols <- symbols[ids.use, ]
+fibroblasts.counts <- fibroblasts[ids.use, ]
+symbols[symbols$external_gene_name=="", "external_gene_name"] <- symbols[symbols$external_gene_name=="", "ensembl_gene_id"]
+
+rownames(fibroblasts.counts) <- make.unique(symbols$external_gene_name)
+dim(fibroblasts.counts)
+```
+
+```{r}
+fibroblasts.seu <- CreateSeuratObject(fibroblasts.counts, project="Fibroblasts__Smart-seq3")
+fibroblasts.seu[["percent.mt"]] <- PercentageFeatureSet(fibroblasts.seu, pattern = "^mt-")
+saveRDS(fibroblasts.seu, here::here("data/rds_raw/Fibroblasts__Smart-seq3.rds"))
+dim(fibroblasts.seu)
+rm(fibroblasts.seu)
+rm(fibroblasts.counts)
+```
+
+
+```{r}
+hek <- read.csv(here::here(download_dir, "Smartseq3.HEK.fwdprimer.UMIcounts.txt"), stringsAsFactors = F, sep="\t")
+dim(hek)
+hek[1:5, 1:5]
+```
+
+```{r}
+gene_ids <- rownames(hek)
+ensembl <- biomaRt::useEnsembl(biomart = "ensembl", dataset = "hsapiens_gene_ensembl")
+symbols <- biomaRt::getBM(attributes = c("ensembl_gene_id", "external_gene_name"), filters = "ensembl_gene_id", 
+    values = gene_ids, mart = ensembl)
+rownames(symbols) <- symbols$ensembl_gene_id
+ids.use <- intersect(rownames(hek), rownames(symbols))
+symbols <- symbols[ids.use, ]
+hek.counts <- hek[ids.use, ]
+symbols[symbols$external_gene_name=="", "external_gene_name"] <- symbols[symbols$external_gene_name=="", "ensembl_gene_id"]
+
+rownames(hek.counts) <- make.unique(symbols$external_gene_name)
+```
+
+```{r}
+hek.seu <- CreateSeuratObject(hek.counts, project="HEK__Smart-seq3", min.cells = 1, min.features = 1)
+hek.seu[["percent.mt"]] <- PercentageFeatureSet(hek.seu, pattern = "^MT-")
+
+saveRDS(hek.seu, here::here("data/rds_raw/HEK__Smart-seq3.rds"))
+dim(hek.seu)
+rm(hek.seu)
+rm(hek.counts)
+```
+
+```{r}
+sessionInfo()
+```

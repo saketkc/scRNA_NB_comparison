@@ -13,3 +13,4 @@ output/snakemake_output
 data/raw_data 
 data/rds_raw 
 data/rds_filtered
+data/sampled_counts

@@ -1,0 +1,362 @@
+---
+title: "Figure 2"
+output:
+  workflowr::wflow_html:
+    toc: false
+editor_options:
+  chunk_output_type: console
+---
+
+```{r setup, echo=FALSE}
+suppressPackageStartupMessages({
+  library(dplyr)
+  library(ggplot2)
+  library(ggpubr)
+  library(ggridges)
+  library(here)
+  library(patchwork)
+  library(RColorBrewer)
+  library(sctransform)
+  library(scattermore)
+  library(sparseMatrixStats)
+  library(Seurat)
+})
+knitr::opts_chunk$set(warning = FALSE, message = FALSE)
+
+theme_set(theme_pubr())
+clean_keys <- function(key) {
+  gsub(
+    pattern = "|\\)", replacement = "",
+    x = gsub(pattern = " |\\(", replacement = "_", x = key)
+  )
+}
+
+DoThetaPlot <- function(sct_df) {
+  ggplot(sct_df, aes(
+    x = step1_theta,
+    y = reorder(sample_name, step1_theta, FUN = median),
+    step1_theta, fill = datatype
+  )) +
+    scale_x_continuous(limits = c(0.001, 100), trans = "log10", breaks = c(0.001, 0.1, 1, 10, 100, 100000), labels = c("0.001", "0.1", "1", "10", "100", expression(infinity))) +
+    stat_density_ridges(quantile_lines = TRUE, quantiles = 2) +
+    scale_fill_manual(values = colors, name = "") +
+    labs(title = "") +
+    ylab("") +
+    xlab(expression(theta[NB])) +
+    theme_pubr() +
+    theme(
+      legend.position = "bottom",
+      legend.direction = "horizontal",
+      legend.background = element_blank()
+    ) +
+    guides(col = guide_legend(ncol = 2))
+}
+```
+
+## Read datasets
+
+```{r}
+datasets <- readr::read_csv(here::here("data", "datasets.csv"), col_types = readr::cols())
+
+sct_thetas <- lapply(datasets$key, FUN = function(x) {
+  theta_file <- here::here("output", "snakemake_output", "seurat_output", clean_keys(x), "vst2", "gene_attr.csv")
+  if (file.exists(theta_file)) {
+    theta_df <- read.csv(theta_file)
+    theta_df$key <- x
+    return(theta_df)
+  } else {
+    return(NULL)
+  }
+})
+sct_thetas_df <- bind_rows(sct_thetas)
+sct_thetas_df <- left_join(sct_thetas_df, datasets)
+sct_thetas_df <- sct_thetas_df %>% arrange(datatype)
+```
+
+```{r fig, fig.width=8, fig.height=5}
+colors <- brewer.pal(3, "Set2")[2:3]
+names(colors) <- c("cell line", "heterogeneous")
+
+
+sct_thetas_df_modified <- sct_thetas_df[is.finite(sct_thetas_df$step1_theta), ]
+sct_thetas_df_modified <- sct_thetas_df_modified[sct_thetas_df_modified$datatype == "cell line", ]
+p3 <- DoThetaPlot(sct_thetas_df_modified) + theme(legend.position = "none")
+
+
+sct_thetas_df_modified <- sct_thetas_df[is.finite(sct_thetas_df$step1_theta), ]
+sct_thetas_df_modified <- sct_thetas_df_modified[sct_thetas_df_modified$datatype == "heterogeneous", ]
+p4 <- DoThetaPlot(sct_thetas_df_modified) + theme(legend.position = "none")
+
+p0c <- p3 | p4
+p0c
+```
+
+
+## Plot residual variance for $\theta=\inf,\theta=100,\theta=10$
+
+```{r}
+
+
+dataset_keys2 <- c(
+  "Ding-PBMC2__ChromiumV2", "Ding-MouseMixture1__Drop-seq", "HEK__ChromiumV3", "PBMC__Smart-seq3"
+)
+
+dataset_keys <- c(
+  "TechnicalControl1__ChromiumV1", "TechnicalControl2__ChromiumV1", "Ding-HumanMixture1__inDrops", "Ding-HumanMixture1__sci-RNA-seq",
+  "Ding-Cortex2__sci-RNA-seq", "Ding-PBMC2__CEL-seq2", "Fibroblasts__Smart-seq3", "PBMC__ChromiumV3"
+)
+
+
+methods <- c(
+  "offset-Inf", "offset-100",
+  "offset-10"
+)
+names(methods) <- c(
+  paste("theta==infinity"),
+  paste("theta==100"),
+  paste("theta==10")
+)
+```
+
+
+
+## Read residual variances
+
+```{r geneattr, warning=FALSE, message=FALSE, fig.width=15, fig.height=5, warning=FALSE}
+gene_attrs <- list()
+
+for (key in dataset_keys) {
+  for (method in methods) {
+    output_dir <- here::here("output", "snakemake_output", "seurat_output", key, method)
+    gene_attr_tmp <- read.csv(file.path(output_dir, "gene_attr.csv"), row.names = 1)
+    gene_attr_tmp$method <- method
+    if (method == methods[1]) {
+      gene_attr <- gene_attr_tmp
+    } else {
+      common_cols <- intersect(colnames(gene_attr), colnames(gene_attr_tmp))
+      gene_attr <- rbind(gene_attr[, common_cols], gene_attr_tmp[, common_cols])
+    }
+  }
+  gene_attrs[[key]] <- gene_attr
+}
+gene_attrs_df <- bind_rows(gene_attrs, `.id` = "key")
+gene_attrs_df$method <- factor(gene_attrs_df$method, levels = methods, labels = names(methods))
+
+max_resvar <- 25
+gene_attrs_df[gene_attrs_df$residual_variance > max_resvar, "residual_variance"] <- max_resvar
+```
+
+
+```{r}
+gene_attrs <- list()
+
+for (key in dataset_keys2) {
+  for (method in c("offset-10", "offset-100")) {
+    output_dir <- here::here("output", "snakemake_output", "seurat_output", key, method)
+    gene_attr <- read.csv(file.path(output_dir, "gene_attr.csv"), row.names = 1)
+    gene_attr$method <- method
+    gene_attr$key <- key
+    gene_attrs[[paste0(key, method)]] <- gene_attr
+  }
+}
+gene_attrs_df_sampled <- bind_rows(gene_attrs)
+gene_attrs_df_sampled$method <- factor(gene_attrs_df_sampled$method, levels = methods, labels = names(methods))
+
+max_resvar <- 25
+gene_attrs_df_sampled[gene_attrs_df_sampled$residual_variance > max_resvar, "residual_variance"] <- max_resvar
+
+gene_attrs_df_sampled <- left_join(gene_attrs_df_sampled, datasets)
+
+gene_attrs_df_subset <- gene_attrs_df_sampled
+gene_attrs_df_subset$datatype <- factor(gene_attrs_df_subset$datatype, levels = c("cell line", "heterogeneous"))
+gene_attrs_df_subset <- gene_attrs_df_subset[gene_attrs_df_subset$method %in% c("theta==10", "theta==100"), ]
+
+
+colors <- brewer.pal(3, "Set2")[2:3]
+names(colors) <- c("cell line", "heterogeneous")
+
+mylabeller <- labeller(
+  method = label_parsed, sample_name = label_wrap_gen(width = 10)
+)
+
+
+p1 <- ggplot(gene_attrs_df_subset, aes(gmean, residual_variance, color = datatype)) +
+  geom_scattermore(pointsize = 1.1, shape = 16, alpha = 0.5) +
+  geom_smooth(color = "red", method = "loess", span = 0.1, size = 0.9, formula = "y ~ x") + # , se = FALSE) +
+  scale_color_manual(values = colors, name = "") +
+  geom_hline(yintercept = 1, color = "#4daf4a", size = 0.9, linetype = "dashed") +
+  scale_y_continuous(trans = "sqrt", breaks = c(0, 1, 10, 25, 50, 100, 150), limits = c(0, max_resvar + 1)) +
+  scale_x_continuous(trans = "log10", breaks = c(0.001, 1, 10, 100), labels = MASS::rational) +
+  facet_grid(method ~ sample_name, labeller = mylabeller) +
+  xlab("Gene mean") +
+  ylab("Residual variance") +
+  theme_pubr() +
+  theme(
+    legend.position = "none",
+  )
+p1
+```
+
+```{r, warning=FALSE, message=FALSE, fig.width=15, fig.height=5, warning=FALSE}
+gene_attrs_df <- left_join(gene_attrs_df, datasets)
+p2 <- ggplot(gene_attrs_df, aes(gmean, residual_variance, color = sample_name)) +
+  geom_hline(yintercept = 1, color = "#4daf4a", size = 0.9, linetype = "dashed") +
+  geom_smooth(aes(color = sample_name), method = "loess", span = 0.1, size = 0.9, formula = "y ~ x") +
+  scale_y_continuous(trans = "sqrt", breaks = c(0, 1, 10, 25, 50, 100, 150), limits = c(0, max_resvar + 1)) +
+  scale_x_continuous(trans = "log10", breaks = c(0.001, 0.01, 0.1, 1, 10, 100), labels = MASS::rational) +
+  facet_wrap(~method, ncol = 5, labeller = label_parsed) +
+  xlab("Gene mean") +
+  ylab("Residual variance") +
+  theme_pubr() +
+  theme(
+    legend.position = "bottom",
+    legend.key = element_rect(fill = NA),
+    legend.background = element_blank()
+  ) +
+  scale_color_manual(values = brewer.pal(8, "Set1"), name = "") +
+  plot_layout(guides = "collect") &
+  theme(
+    legend.position = "bottom",
+    legend.key = element_rect(fill = NA),
+    legend.background = element_blank()
+  )
+p2
+```
+
+```{r, fig.width=6, fig.height=4}
+p3x <- p3 + theme(text = element_text(size=6))
+p4x <- p4 + theme(text = element_text(size=6))
+p3x
+```
+
+```{r}
+layout <- "
+AB
+CC
+DD
+"
+
+p3x + p4x + p1 + p2 + plot_layout(design = layout, tag_level = "new") + plot_annotation(tag_levels = "A") & theme(plot.tag = element_text(face = "bold"))
+ggsave(here::here("output", "figures", "02_Figure2.pdf"), width = 11, height = 12)
+```
+
+## Supplementary figures
+
+
+```{r fig2s, warning=FALSE, message=FALSE, fig.width=13, fig.height=6, warning=FALSE}
+
+max_resvar <- 25
+gene_attrs_df[gene_attrs_df$residual_variance > max_resvar, "residual_variance"] <- max_resvar
+global_labeller <- labeller(
+  sample_name = label_wrap_gen(8),
+  method = label_parsed
+)
+p1 <- ggplot(gene_attrs_df, aes(gmean, residual_variance)) +
+  geom_scattermore(pointsize = 1.1, shape = 16, alpha = 0.5) +
+  geom_hline(yintercept = 1, color = "#4daf4a", size = 0.9, linetype = "dashed") +
+  geom_smooth(aes(color = "red"), method = "loess", span = 0.1, size = 0.9, formula = "y ~ x") +
+  scale_y_continuous(trans = "sqrt", breaks = c(0, 1, 10, 25, 50, 100, 150), limits = c(0, max_resvar + 1)) +
+  scale_x_continuous(trans = "log10", breaks = c(0.001, 0.1, 10), labels = MASS::rational) +
+  facet_grid(method ~ sample_name, labeller = global_labeller) +
+  xlab("Gene mean") +
+  ylab("Residual variance") +
+  theme_pubr() +
+  plot_layout(guides = "collect") & theme(
+  legend.position = "bottom",
+  legend.key = element_rect(fill = NA),
+  legend.background = element_blank()
+) + theme(legend.position = "none")
+
+p1
+ggsave(here::here("output", "figures", "02_residual_variance_vs_genemean_expanded.pdf"), width = 10, height = 5, dpi = "print")
+```
+
+
+```{r}
+
+methods <- c(
+  "offset-Inf", "offset-100",
+  "offset-10", "vst2"
+)
+names(methods) <- c(
+  paste("theta==infinity"),
+  paste("theta==100"),
+  paste("theta==10"), paste("SCT")
+)
+
+gene_attrs <- list()
+
+
+for (key in dataset_keys) {
+  for (method in methods) {
+    output_dir <- here::here("output", "snakemake_output", "seurat_output", key, method)
+    gene_attr <- read.csv(file.path(output_dir, "gene_attr.csv"), row.names = 1)
+    gene_attr$method <- method
+    gene_attr$key <- key
+    gene_attrs[[paste0(key, method)]] <- gene_attr
+  }
+}
+gene_attrs_df <- bind_rows(gene_attrs)
+
+gene_attrs_df$method <- factor(gene_attrs_df$method, levels = methods, labels = names(methods))
+
+gene_attrs_df <- left_join(gene_attrs_df, datasets)
+max_resvar <- 25
+gene_attrs_df[gene_attrs_df$residual_variance > max_resvar, "residual_variance"] <- max_resvar
+
+global_labeller <- labeller(
+  sample_name = label_wrap_gen(8),
+  method = label_parsed
+)
+p.sup <- ggplot(gene_attrs_df, aes(gmean, residual_variance)) +
+  geom_scattermore(pointsize = 1.1, shape = 16, alpha = 0.5) +
+  geom_hline(yintercept = 1, color = "#4daf4a", size = 0.9, linetype = "dashed") +
+  geom_smooth(aes(color = "red"), method = "loess", span = 0.1, size = 0.9, formula = "y ~ x") +
+  scale_y_continuous(trans = "sqrt", breaks = c(0, 1, 10, 25, 50, 100, 150), limits = c(0, max_resvar + 1)) +
+  scale_x_continuous(trans = "log10", breaks = c(0.001, 0.1, 10), labels = MASS::rational) +
+  facet_grid(method ~ sample_name, labeller = global_labeller) +
+  xlab("Gene mean") +
+  ylab("Residual variance") +
+  theme_pubr() +
+  plot_layout(guides = "collect") & theme(
+  legend.position = "bottom",
+  legend.key = element_rect(fill = NA),
+  legend.background = element_blank()
+) + theme(legend.position = "none")
+
+p.sup
+ggsave(here::here("output", "figures", "Fig2S.pdf"), width = 10, height = 5, dpi = "print")
+```
+
+
+
+```{r}
+p2.expanded <- ggplot(gene_attrs_df, aes(gmean, residual_variance, color = sample_name)) +
+  geom_hline(yintercept = 1, color = "#4daf4a", size = 0.9, linetype = "dashed") +
+  geom_smooth(aes(color = sample_name), method = "loess", span = 0.1, size = 0.9, formula = "y ~ x") +
+  scale_y_continuous(trans = "sqrt", breaks = c(0, 1, 10, 25, 50, 100, 150), limits = c(0, max_resvar + 1)) +
+  scale_x_continuous(trans = "log10", breaks = c(0.001,  0.1, 1, 10, 100), labels = MASS::rational) +
+  facet_wrap(~method, ncol = 5, labeller = label_parsed) +
+  xlab("Gene mean") +
+  ylab("Residual variance") +
+  theme_pubr() +
+  theme(
+    legend.position = "bottom",
+    legend.key = element_rect(fill = NA),
+    legend.background = element_blank()
+  ) +
+  scale_color_manual(values = brewer.pal(8, "Set1"), name = "") +
+  plot_layout(guides = "collect") &
+  theme(
+    legend.position = "bottom",
+    legend.key = element_rect(fill = NA),
+    legend.background = element_blank()
+  )
+p2.expanded
+
+ggsave(here::here("output", "figures", "02_Fig2C_expanded.pdf"), width = 12, height = 4, dpi = "print")
+```
+
+```{r}
+sessionInfo()
+```

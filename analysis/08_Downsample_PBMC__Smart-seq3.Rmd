@@ -1,0 +1,170 @@
+---
+title: "Downsample PBMC__Smart-seq3"
+output:
+  workflowr::wflow_html:
+    toc: false
+editor_options:
+  chunk_output_type: console
+---
+
+
+```{r setup, echo=FALSE}
+suppressPackageStartupMessages({
+  library(dplyr)
+  library(Seurat)
+  library(ggplot2)
+  library(patchwork)
+  library(sparseMatrixStats)
+})
+theme_set(theme_classic())
+`%notin%` <- Negate(`%in%`)
+```
+
+## Read counts
+
+```{r}
+set.seed(42)
+sample_name <- "PBMC__Smart-seq3"
+object <- readRDS(here::here("data", "rds_filtered", paste0(sample_name, ".rds")))
+counts <- GetAssayData(object, assay = "RNA", slot = "counts")
+counts_totalumis <- colSums2(counts)
+dim(object)
+hist(counts_totalumis)
+```
+
+
+## Downsample counts
+
+```{r}
+sampled_counts <- list()
+set.seed(42)
+sampled_counts[["Full"]] <- counts
+downsampled_umis <- c(10000, 7500, 5000,
+                       2000, 1000)
+names(downsampled_umis) <- as.character(downsampled_umis)
+for (umi in downsampled_umis) {
+  sampled_counts[[as.character(umi)]] <- SampleUMI(counts, max.umi = umi, upsample = F)
+}
+
+libsize_sampled <- lapply(sampled_counts, colSums2)
+libsize_sampled_df <- as.data.frame(do.call(cbind, libsize_sampled))
+```
+
+
+
+
+## Library sizes
+
+```{r figlibsize, fig.width=12, fig.height=8, warning=FALSE, message=FALSE}
+plots <- list()
+colnames(libsize_sampled_df) <- paste0("U", colnames(libsize_sampled_df))
+for (name in colnames(libsize_sampled_df)) {
+  plots[[name]] <- ggplot(libsize_sampled_df, aes_string(name)) +
+    geom_histogram() +
+    ggtitle(gsub("U", "", name)) +
+    xlab("# of UMI") 
+}
+wrap_plots(plots, ncol = 3)
+```
+
+## Filter downsampled counts 
+ 
+```{r figlibsizefiltered, fig.width=12, fig.height=8, warning=FALSE, message=FALSE}
+sampled_counts_filtered <- list()
+for (target_umi in downsampled_umis) {
+  umi_dist <- libsize_sampled[[as.character(target_umi)]]
+  sc <- sampled_counts[[as.character(target_umi)]]
+  sampled_counts_filtered[[as.character(target_umi)]] <- sc[, (umi_dist > target_umi - 100) & (umi_dist < target_umi + 100)]
+  print(dim(sampled_counts_filtered[[as.character(target_umi)]]) )
+
+}
+libsize_sampled_filtered <- lapply(sampled_counts_filtered, colSums2)
+libsize_sampled_filtered_df <- as.data.frame(do.call(cbind, libsize_sampled_filtered))
+plots <- list()
+colnames(libsize_sampled_filtered_df) <- paste0("U", colnames(libsize_sampled_filtered_df))
+for (name in colnames(libsize_sampled_filtered_df)) {
+  plots[[name]] <- ggplot(libsize_sampled_filtered_df, aes_string(name)) +
+    geom_histogram() +
+    ggtitle(gsub("U", "", name)) +
+    xlab("# of UMI") 
+}
+
+wrap_plots(plots, ncol = 3)
+```
+
+
+## MeanVar plots
+
+```{r}
+MeanVarPlot <- function(cm){
+  mean <- rowMeans(cm)
+  variance <- rowVars(cm)
+  df <- data.frame(mean=mean, variance=variance)
+  p <- ggplot(df, aes(mean, variance)) + geom_point(alpha=0.5) + geom_abline() + scale_x_log10() + scale_y_log10()
+  p
+}
+
+for (umi in downsampled_umis) {
+p <- MeanVarPlot(sampled_counts[[as.character(umi)]]) + ggtitle(umi)
+print(p)
+}
+```
+```{r, fig.width=9, fig.height=6}
+generated_poissons <- list()
+goi <- c("Rps5", "Rpl4")
+names(goi) <- goi
+
+goi <- c("RPS2", "RPS19", "TPT1", "RPL31" )
+names(goi) <- goi
+
+
+
+PredictPoisson <- function(counts_df) {
+  predicted_poisson <- dpois(counts_df$counts, lambda = mean(counts_df$counts))
+  return(predicted_poisson)
+}
+
+for (gene_name in names(goi)) {
+  gene <- goi[[gene_name]]
+  counts_goi_full <- counts[gene, ]
+  counts_goi_full_subset <- counts_goi_full[counts_goi_full>1]
+  counts_goi_5k <- sampled_counts_filtered[["5000"]][gene, ]
+  counts_goi_1k <- sampled_counts_filtered[["1000"]][gene, ]
+  
+  counts_df_full <- data.frame(counts = counts_goi_full_subset)
+  counts_df_5k <- data.frame(counts = counts_goi_5k)
+  counts_df_1k <- data.frame(counts = counts_goi_1k)
+
+  labels <- c("Original 8,291 UMI/cell", "Sampled 5,000 UMI/cell", "Sampled 1,000 UMI/cell")
+  counts_df_full$predicted_poisson <- PredictPoisson(counts_df_full)
+  counts_df_full$sampletype <- labels[1]
+  counts_df_5k$predicted_poisson <- PredictPoisson(counts_df_5k)
+  counts_df_5k$sampletype <- labels[2]
+  counts_df_1k$predicted_poisson <- PredictPoisson(counts_df_1k)
+  counts_df_1k$sampletype <- labels[3]
+
+  merged_counts <- rbind(counts_df_full, counts_df_5k, counts_df_1k)
+  merged_counts$sampletype <- factor(merged_counts$sampletype, levels = labels)
+  generated_poissons[[gene_name]] <- merged_counts
+}
+generated_poissons_df <- bind_rows(generated_poissons, .id = "gene")
+
+plot.genespois <- ggplot(generated_poissons_df, aes(x = counts)) +
+  geom_histogram(aes(y = ..density..), binwidth = 1, colour = "gray", fill = "white") +
+  geom_line(aes(counts, predicted_poisson), color = "red") +
+  facet_wrap(gene ~ sampletype, ncol=3, scales = "free") +
+  xlab("Counts") +
+  ylab("Density") +
+  scale_y_continuous(breaks = c(0.00, 0.10, 0.20))
+plot.genespois
+```
+
+```{r}
+dataset_keys <- c()
+for (name in names(sampled_counts_filtered)) {
+  seu <- CreateSeuratObject(sampled_counts_filtered[[name]], project = paste0(sample_name, "_sampled_", name))
+  dir.create(here::here("data", "sampled_counts", paste0(sample_name, "_sampled_counts")), showWarnings = F,recursive = T)
+  xdir <- here::here("data", "sampled_counts", paste0(sample_name, "_sampled_counts"))
+  saveRDS(seu, here::here(xdir, paste0(sample_name, "_sampled_", name, ".rds")))
+}
+```

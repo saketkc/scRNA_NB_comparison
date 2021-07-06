@@ -1,0 +1,124 @@
+---
+title: "Create Mereu et al. datasets"
+output:
+  workflowr::wflow_html:
+    toc: false
+editor_options:
+  chunk_output_type: console
+---
+
+```{r}
+suppressPackageStartupMessages({
+  library(Seurat)
+  library(SingleCellExperiment)
+})
+set.seed(42)
+```
+
+
+```{r, message=FALSE, warning=FALSE}
+download_dir <- here::here("data/raw_data/Mereu")
+dir.create(download_dir, showWarnings = F, recursive = T)
+dir.create(here::here("data/rds_raw"), showWarnings = F, recursive = T)
+
+file_location <- here::here(download_dir, "sce.all_classified.technologies.RData")
+if (!file.exists(file_location)) {
+  download.file("https://www.dropbox.com/s/i8mwmyymchx8mn8/sce.all_classified.technologies.RData?dl=0", file_location, method = "wget", extra = "--content-disposition")
+}
+```
+
+```{r}
+load(file = file_location)
+sce
+```
+```{r}
+metadata <- as.data.frame(colData(sce))
+metadata$nnet2 <- as.character(metadata$nnet2)
+metadata$ident <- as.character(metadata$ident)
+metadata$batch <- as.character(metadata$batch)
+head(metadata)
+```
+```{r}
+counts_matrix <- counts(sce)
+counts_matrix <- as(object = counts_matrix, Class = "dgCMatrix")
+common_cols <- intersect(rownames(metadata), colnames(counts_matrix))
+
+counts_matrix <- counts_matrix[, common_cols]
+metadata <- metadata[common_cols, ]
+
+
+colnames(counts_matrix) <- paste0("cell-", colnames(counts_matrix))
+rownames(metadata) <- colnames(counts_matrix)
+
+dim(counts_matrix)
+```
+
+```{r}
+seu <- CreateSeuratObject(counts_matrix, meta.data = metadata, project = "Mereu_2021_scBenchmark_Rdata", min.cells = 1, min.features = 1)
+seu
+```
+
+```{r}
+nonumi.techs <- c("C1HT-medium", "C1HT-small", "ICELL8", "Smart-Seq2")
+table(seu@meta.data$batch)
+```
+
+```{r}
+table(seu@meta.data$ident)
+```
+```{r}
+table(seu@meta.data$nnet2)
+```
+```{r}
+Idents(seu) <- "ident"
+hek <- subset(seu, idents = c("HEK cells", "HEK cells 2", "HEK cells1", "HEK cells 1", "HEK cells3", "HEK cells 3"))
+
+table(hek@meta.data$ident)
+```
+```{r}
+table(hek@meta.data$nnet2)
+```
+```{r}
+Idents(hek) <- "nnet2"
+hek <- subset(hek, idents = c("HEK cells"))
+
+table(hek@meta.data$ident)
+table(hek@meta.data$nnet2)
+
+```
+```{r}
+Idents(hek) <- "batch"
+
+hek.umi <- subset(hek, idents = c(nonumi.techs), invert=TRUE)
+table(hek.umi@meta.data$batch)
+```
+
+```{r}
+umi_techs <- sort(unique(hek.umi$batch))
+umi_techs
+```
+
+```{r}
+clean_named_techs <- c("CEL-seq2", "ChromiumV2", "ChromiumV2_sn", "ddSeq", "Drop-seq", "inDrops", "MARS-seq", "mcSCRB-seq", "Quartz-Seq2")
+
+names(clean_named_techs) <- umi_techs
+clean_named_techs
+```
+
+
+```{r}
+hek_split <- SplitObject(hek.umi, split.by = "batch")
+
+for (given_tech in names(hek_split)){
+    seu <- hek_split[[given_tech]]
+    seu[["percent.mt"]] <- PercentageFeatureSet(seu, pattern = "^MT-")
+
+    clean_tech <- clean_named_techs[[given_tech]]
+    saveRDS(seu, here::here("data/rds_raw", paste0("Mereu-HEK__", clean_tech,".rds")))
+    gc()
+}
+```
+
+```{r}
+sessionInfo()
+```

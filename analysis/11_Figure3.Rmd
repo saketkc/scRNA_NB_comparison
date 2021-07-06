@@ -1,0 +1,260 @@
+---
+title: "Figure 3"
+output:
+  workflowr::wflow_html:
+    toc: false
+editor_options:
+  chunk_output_type: console
+---
+
+
+```{r setup, echo=FALSE}
+suppressPackageStartupMessages({
+  library(dplyr)
+  library(forcats)
+  library(ggplot2)
+  library(ggridges)
+  library(ggpubr)
+  library(scattermore)
+  library(here)
+  library(patchwork)
+  library(purrr)
+  library(RColorBrewer)
+  library(reshape2)
+  library(Seurat)
+})
+`%notin%` <- Negate(`%in%`)
+theme_set(theme_pubr(base_size = 9))
+
+knitr::opts_chunk$set(warning = FALSE, message = FALSE)
+so_formatter <- function(x) {
+  # x <- as.numeric(x)
+  dplyr::case_when(
+    x == "Full" ~ "All",
+    as.numeric(x) == 377456 ~ "All",
+    as.numeric(x) < 1e3 ~ as.character(x),
+    as.numeric(x) < 1e6 ~ paste0(as.character(as.numeric(x) / 1e3), ",000"),
+    as.numeric(x) < 1e9 ~ paste0(as.character(as.numeric(x) / 1e6), "M"),
+    TRUE ~ "To be implemented..."
+  )
+}
+
+clean_keys <- function(key) {
+  gsub(
+    pattern = "|\\)", replacement = "",
+    x = gsub(pattern = " |\\(", replacement = "_", x = key)
+  )
+}
+
+# Credits: http://www.cookbook-r.com/Manipulating_data/Summarizing_data/
+summarySE <- function(data = NULL, measurevar, groupvars = NULL, na.rm = FALSE,
+                      conf.interval = .95, .drop = TRUE) {
+  library(plyr)
+
+  # New version of length which can handle NA's: if na.rm==T, don't count them
+  length2 <- function(x, na.rm = FALSE) {
+    if (na.rm) {
+      sum(!is.na(x))
+    } else {
+      length(x)
+    }
+  }
+
+  # This does the summary. For each group's data frame, return a vector with
+  # N, mean, and sd
+  datac <- ddply(data, groupvars,
+    .drop = .drop,
+    .fun = function(xx, col) {
+      c(
+        N = length2(xx[[col]], na.rm = na.rm),
+        mean = mean(xx[[col]], na.rm = na.rm),
+        sd = sd(xx[[col]], na.rm = na.rm)
+      )
+    },
+    measurevar
+  )
+
+  # Rename the "mean" column
+  datac <- rename(datac, c("mean" = measurevar))
+
+  datac$se <- datac$sd / sqrt(datac$N) # Calculate standard error of the mean
+
+  # Confidence interval multiplier for standard error
+  # Calculate t-statistic for confidence interval:
+  # e.g., if conf.interval is .95, use .975 (above/below), and use df=N-1
+  ciMult <- qt(conf.interval / 2 + .5, datac$N - 1)
+  datac$ci <- datac$se * ciMult
+
+  return(datac)
+}
+```
+
+
+## Compare parameters
+
+```{r}
+gene_attr <- list()
+root_dir_sct <- here::here("output/snakemake_output/sct_v1_ncells_benchmarks/Fetal__sci-RNA-seq3")
+root_dir_sct2 <- here::here("output/snakemake_output/vst2_ncells_benchmarks/Fetal__sci-RNA-seq3")
+
+
+for (ncell in list.dirs(root_dir_sct, full.names = F)) {
+  if (ncell == "") {
+    next
+  }
+  fp1 <- here::here(file.path(root_dir_sct, ncell), "gene_attr_sct.csv")
+  fp2 <- here::here(file.path(root_dir_sct2, ncell), "gene_attr_sct2.csv")
+  if (!file.exists(fp1)) next
+  if (!file.exists(fp2)) next
+  df1 <- read.csv(fp1)
+  if (ncell == "Full") {
+    # seu <- readRDS("data/rds/Fetal__sci-RNA-seq3.rds")
+    # dim(seu)
+    #  63561 377456
+    ncell <- 377456
+  }
+  df1$ncells <- as.numeric(ncell)
+  df1$type <- "Regularized parameters (v1)"
+
+  df2 <- read.csv(fp2)
+  df2$ncells <- as.numeric(ncell)
+  df2$type <- "Regularized parameters (v2)"
+
+
+  gene_attr[[ncell]] <- rbind(df1, df2)
+}
+
+gene_attr_df <- bind_rows(gene_attr)
+gene_attr_df$ncells <- factor(gene_attr_df$ncells, levels = sort(unique(gene_attr_df$ncells)), labels = so_formatter(sort(unique(gene_attr_df$ncells))))
+
+plot.theta <- ggplot(gene_attr_df, aes(x = log10(gmean), y = log10(theta), color = ncells)) +
+  scale_color_manual(values = brewer.pal(11, "Paired"), name = "") +
+  geom_scattermore(pointsize = 1, position = "jitter", alpha = 0.5) +
+  facet_wrap(~type, ncol=2) +
+  guides(colour = guide_legend(override.aes = list(size = 2))) +
+  xlab(expression(paste(log[10], "(Gene mean)"))) +
+  ylab(expression(paste(log[10], theta))) +
+  theme(legend.position = "right", legend.direction = "vertical", 
+        legend.background = element_blank()
+) +
+  guides(color=guide_legend(ncol=2)) +
+  theme(legend.position = c(0.88,0.1)) + theme(legend.key.size = unit(.75, 'lines'))
+plot.theta
+```
+
+## Compare runtimes
+
+```{r}
+times <- list()
+root_dir <- here::here("output/snakemake_output/vst2_time_benchmarks/Fetal__sci-RNA-seq3")
+for (ncell in list.dirs(root_dir, full.names = F)) {
+  if (ncell == "") {
+    next
+  }
+  for (seed in list.dirs(file.path(root_dir, ncell), full.names = F)) {
+    if (seed == "") {
+      next
+    }
+    fp <- here::here(file.path(root_dir, ncell, seed), "times.csv")
+    if (!file.exists(fp)) next
+    df <- read.csv(fp)
+    df$ncell <- as.numeric(ncell)
+    df$seed <- as.numeric(seed)
+    times[[paste0(ncell, seed)]] <- df
+  }
+}
+times <- bind_rows(times)
+times_melt <- melt(times, id.vars = c("ncells", "seed"), measure.vars = c("time_sct", "time_sct2"), variable.name = "type", value.name = "time")
+times_melt$ncells <- as.numeric(times_melt$ncells)
+
+
+times_melt <- summarySE(times_melt, measurevar = "time", groupvars = c("ncells", "type"))
+
+times_melt$ncells <- factor(times_melt$ncells, levels = sort(unique(times_melt$ncells)), labels = so_formatter(sort(unique(times_melt$ncells))))
+
+times_melt <- times_melt %>% arrange(ncells)
+
+
+plot.time <- ggplot(times_melt, aes(ncells, time, color = type, group = type)) +
+  geom_errorbar(aes(ymin = time - se, ymax = time + se), width = .1) +
+  geom_line() +
+  geom_point() +
+  geom_line(show.legend = F) +
+  scale_color_manual(values = brewer.pal(3, "Dark2"), labels = c("all cells", "n_cells=2,000"), name = "") +
+  theme(legend.position = c(0.3, 0.9), legend.background = element_blank()) +
+  guides(col = guide_legend(ncol = 1)) +
+  xlab("Number of cells") +
+  ylab("Time (s)") +
+  #scale_y_log10() +
+  guides(x = guide_axis(angle = 40)) + theme(legend.key.size = unit(0.75, 'lines'))
+plot.time
+```
+
+
+## Correlations
+
+```{r}
+gene_attr <- list()
+common_genes <- NULL
+ncells <- c()
+root_dir <- here::here("output/snakemake_output/vst2_ncells_benchmarks/Fetal__sci-RNA-seq3/")
+for (ncell in list.dirs(root_dir, full.names = F)) {
+  if (ncell == "") {
+    next
+  }
+  fp1 <- here::here(file.path(root_dir, ncell), "gene_attr_sct2.csv")
+  if (!file.exists(fp1)) next
+  df1 <- read.csv(fp1, row.names = 1)
+  if (is.null(common_genes)) {
+    common_genes <- rownames(df1)
+  } else {
+    common_genes <- intersect(common_genes, rownames(df1))
+  }
+
+  df1 <- df1[common_genes, ]
+  df1$ncells <- ncell
+
+
+
+
+  gene_attr[[ncell]] <- df1
+
+  ncell <- as.integer(ncell)
+  if (!is.na(ncell)) ncells <- c(ncells, ncell)
+}
+ncells_level <- sort(ncells)
+ncells <- c(sort(ncells), "Full")
+
+mat <- sapply(gene_attr, function(x) x$residual_variance)
+colnames(mat) <- names(gene_attr)
+mat <- as.data.frame(mat)
+rownames(mat) <- common_genes
+mat <- mat[order(-mat$Full),]
+
+matc <- mat
+colnames(matc) <- paste0("C", colnames(matc))
+#matc <- log1p(matc)#[1:3000, ]
+plot.resvar <- ggplot(matc, aes_string("CFull", "C2000")) +
+  geom_point(alpha=0.5) +#scattermore(pointsize = 3) +
+  geom_abline(color = "red", linetype = "dashed") +
+  xlab(expression(sigma["AllCells"]^2)) +
+  ylab(expression(sigma["2k"]^2)) 
+plot.resvar
+```
+```{r, fig.width=9, fig.height=2.5}
+plot.thetax <- plot.theta +
+  theme(legend.position = c(0.86,0.28))  
+layout <- "
+AABC
+"
+
+p <- plot.thetax |  plot.resvar | plot.time 
+p + plot_layout(design = layout, tag_level = "new") & plot_annotation(tag_levels = "A") & theme(plot.tag = element_text(face = "bold"))
+
+ggsave(here::here("output", "figures", "03_Figure3.pdf"), width = 9, height=3,  dpi = "print")
+ggsave(here::here("output", "figures", "03_Figure3.png"),)
+```
+
+```{r}
+sessionInfo()
+```

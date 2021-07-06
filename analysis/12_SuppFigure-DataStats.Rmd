@@ -1,0 +1,214 @@
+---
+title: "Supplementary Figure 1"
+output:
+  workflowr::wflow_html:
+    toc: false
+editor_options:
+  chunk_output_type: console
+---
+
+
+```{r setup}
+suppressPackageStartupMessages({
+  library(dplyr)
+  library(ggplot2)
+  library(kableExtra)
+  library(ggpubr)
+  library(ggridges)
+  library(here)
+  library(patchwork)
+  library(RColorBrewer)
+  library(readr)
+  library(reshape2)
+  library(scattermore)
+  library(Seurat)
+  library(sparseMatrixStats)
+  library(xtable)
+})
+`%notin%` <- Negate(`%in%`)
+theme_set(theme_pubr(base_size = 9))
+knitr::opts_chunk$set(warning = FALSE, message = FALSE)
+
+
+clean_keys <- function(key) {
+  gsub(
+    pattern = "|\\)", replacement = "",
+    x = gsub(pattern = " |\\(", replacement = "_", x = key)
+  )
+}
+```
+
+
+
+```{r}
+CellSummary <- function(cm) {
+  total_umi_per_cell <- colSums(cm)
+  expressed_features_per_cell <- colSums(x = cm > 0)
+  n_features <- dim(cm)[1]
+  nonexpressed_features_per_cell <- n_features - expressed_features_per_cell
+  median_umi_per_cell <- median(total_umi_per_cell)
+  avg_umi_per_cell <- total_umi_per_cell / n_features
+  avg_umi_per_cell_expressedgenes <- total_umi_per_cell / expressed_features_per_cell
+  cell_amean <- colMeans2(cm)
+  cell_variance <- colVars(cm)
+  cell_attr <- data.frame(
+    total_umi = total_umi_per_cell, n_expressed_genes = expressed_features_per_cell, n_nonexpressed_cells = nonexpressed_features_per_cell, prop_expressed_genes = expressed_features_per_cell / n_features,
+    prop_nonexpressed_genes = nonexpressed_features_per_cell / n_features,
+    avg_umi = avg_umi_per_cell, avg_umi_expressedgenes = avg_umi_per_cell_expressedgenes, cell_amean = cell_amean,
+    cell_variance = cell_variance
+  )
+
+  return(cell_attr)
+}
+
+GeneSummary <- function(cm) {
+
+  # remove genes and cells with zero counts
+
+  cm <- cm[rowSums(cm) > 0, colSums(cm) > 0]
+
+  total_umi_per_gene <- rowSums(cm)
+  expressed_cells_per_gene <- rowSums(cm > 0)
+  n_cells <- dim(cm)[2]
+  nonexpressed_cells_per_gene <- n_cells - expressed_cells_per_gene
+
+  median_umi_per_gene <- median(total_umi_per_gene)
+
+  avg_umi_per_gene <- total_umi_per_gene / n_cells
+  avg_umi_per_gene_expressedcells <- total_umi_per_gene / expressed_cells_per_gene
+
+  gene_amean <- rowMeans(cm)
+  gene_var <- rowVars(cm)
+  gene_gmean <- sctransform:::row_gmean(cm)
+
+  gene_attr <- data.frame(
+    total_umi = total_umi_per_gene, n_expressed_cells = expressed_cells_per_gene, n_nonexpressed_cells = nonexpressed_cells_per_gene, prop_expressed_cells = expressed_cells_per_gene / n_cells,
+    prop_nonexpressed_cells = nonexpressed_cells_per_gene / n_cells,
+    avg_umi = avg_umi_per_gene, avg_umi_expressedcells = avg_umi_per_gene_expressedcells, gene_amean = gene_amean, gene_gmean = gene_gmean, gene_variance = gene_var
+  )
+
+  return(gene_attr)
+}
+
+GetGeneCellSummary <- function(dataset_name, mode = "gene") {
+  cm <- GetAssayData(
+    readRDS(here::here("data", "rds_filtered", paste0(clean_keys(dataset_name), ".rds"))),
+    assay = "RNA", slot = "counts"
+  )
+  if (mode == "gene") {
+    gc_attr <- GeneSummary(cm)
+  } else {
+    gc_attr <- CellSummary(cm)
+  }
+
+  cm <- NULL
+  gc()
+  return(gc_attr)
+}
+```
+
+```{r, fig, fig.width=10, fig.height=12}
+datasets <- readr::read_csv(here::here("data", "datasets.csv"), col_types = readr::cols())
+dataset_keys <- datasets$key
+counts <- sapply(dataset_keys,
+  FUN = function(x) {
+    GetAssayData(
+      readRDS(here::here("data", "rds_filtered", paste0(clean_keys(x), ".rds"))),
+      assay = "RNA", slot = "counts"
+    )
+  },
+  simplify = FALSE, USE.NAMES = TRUE
+)
+
+cell_attrs <- sapply(dataset_keys,
+  FUN = function(x) {
+    message(x)
+    GetGeneCellSummary(x, "cell")
+  },
+  simplify = FALSE, USE.NAMES = TRUE
+)
+
+cell_attrs_df <- bind_rows(cell_attrs, .id = "key")
+cell_attrs_df <- left_join(cell_attrs_df, datasets)
+
+gene_attrs <- sapply(dataset_keys,
+  FUN = function(x) {
+    GetGeneCellSummary(x, "gene")
+  },
+  simplify = FALSE, USE.NAMES = TRUE
+)
+gene_attrs_df <- bind_rows(gene_attrs, .id = "key")
+gene_attrs_df <- left_join(gene_attrs_df, datasets)
+```
+
+## UMI statistics
+
+```{r message=FALSE, warning=FALSE, fig.width=12, fig.height=12}
+
+gene_attrs_df$datatype <- factor(gene_attrs_df$datatype, levels = c("technical-control", "cell line", "heterogeneous"))
+cell_attrs_df$datatype <- factor(cell_attrs_df$datatype, levels = c("technical-control", "cell line", "heterogeneous"))
+
+gene_attrs_df_summary <- gene_attrs_df %>%
+  group_by(sample_name) %>%
+  summarize(median.zero_prop = round(median(prop_nonexpressed_cells), 4), median.detection_rate = round(median(prop_expressed_cells), 4))
+
+gene_attrs_df_summary <- left_join(gene_attrs_df_summary, datasets)
+
+pgeneavg <- ggplot(gene_attrs_df, aes(
+  x = avg_umi,
+  y = reorder(sample_name, avg_umi, FUN = median),
+  avg_umi, fill = datatype
+)) +
+  # scale_x_log10() +
+  scale_x_continuous(trans = "log10", breaks = c(0.0001, 0.01, 1, 100, 10000), labels = c("0.0001", 0.01, 1, 100, 10000)) +
+  stat_density_ridges(quantile_lines = TRUE, quantiles = 2) +
+  scale_fill_manual(values = brewer.pal(3, "Set2"), name = "") +
+  labs(title = "") +
+  ylab("") +
+  theme(
+    legend.position = "bottom",
+    legend.direction = "horizontal",
+    legend.background = element_blank()
+  ) +
+  guides(col = guide_legend(ncol = 3)) +
+  xlab("Mean UMI per gene")
+
+
+
+
+cell_attrs_df_summary <- cell_attrs_df %>%
+  group_by(sample_name, datatype) %>%
+  summarize(median_umi = median(total_umi), median_detection_rate = round(median(prop_expressed_genes), 3))
+# cell_attrs_df_summary
+pcelltot <- ggplot(cell_attrs_df, aes(
+  x = total_umi,
+  y = reorder(sample_name, total_umi, FUN = median),
+  total_umi, fill = datatype
+)) +
+  scale_x_continuous(trans = "log10", breaks = c(0.0001, 0.01, 0.1, 1, 10, 100, 1000, 10000, 100000), labels = c("0.0001", 0.01, 0.1, 1, 10, 100, 1000, 10000, "100000")) +
+  stat_density_ridges(quantile_lines = TRUE, quantiles = 2) +
+  scale_fill_manual(values = brewer.pal(3, "Set2"), name = "") +
+  labs(title = "") +
+  ylab("") +
+  theme(
+    legend.position = "bottom",
+    legend.direction = "horizontal",
+    legend.background = element_blank()
+  ) +
+  guides(col = guide_legend(ncol = 3)) +
+  xlab("Total UMI per cell")
+
+wrap_plots(pcelltot,pgeneavg, ncol = 2) + plot_annotation(tag_levels = "A") + plot_layout(guides = "collect", tag_level = "new") & theme(legend.position = "bottom") & theme(plot.tag = element_text(face = "bold"))
+dir.create(here::here("output", "figures"), showWarnings = F)
+
+ggsave(here::here("output", "figures", "data_stats.pdf"), width = 12, height = 12, dpi = "print")
+```
+
+
+```{r}
+cell_attrs_df_summary <- cell_attrs_df_summary %>% arrange(median_umi)
+kbl(cell_attrs_df_summary, booktabs = T) %>%
+  kable_styling(latex_options = "striped")
+dir.create(here::here("output", "tables"), showWarnings = F)
+print(xtable(cell_attrs_df_summary, type = "latex", digits=3), include.rownames = FALSE, file = here::here("output", "tables", "datasets_umi_stats.tex"))
+```
