@@ -9,3 +9,7 @@ analysis/*png
 analysis/*html
 analysis/*_cache
 analysis/site_libs
+output/snakemake_output
+data/raw_data 
+data/rds_raw 
+data/rds_filtered
