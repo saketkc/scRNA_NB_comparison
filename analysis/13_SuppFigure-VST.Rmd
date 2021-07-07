@@ -1,5 +1,5 @@
 ---
-title: "Supplementary figures on vst"
+title: "Supplementary figures - VST and fixed theta comparisons"
 output:
   workflowr::wflow_html:
     toc: false

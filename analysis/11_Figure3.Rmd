@@ -237,8 +237,8 @@ colnames(matc) <- paste0("C", colnames(matc))
 plot.resvar <- ggplot(matc, aes_string("CFull", "C2000")) +
   geom_point(alpha=0.5) +#scattermore(pointsize = 3) +
   geom_abline(color = "red", linetype = "dashed") +
-  xlab(expression(sigma["AllCells"]^2)) +
-  ylab(expression(sigma["2k"]^2)) 
+  xlab(expression(sigma["all cells"]^2)) +
+  ylab(expression(sigma["n_cells=2,000"]^2)) 
 plot.resvar
 ```
 ```{r, fig.width=9, fig.height=2.5}
