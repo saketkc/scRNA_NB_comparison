@@ -15,7 +15,7 @@
 
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<link href="site_libs/bootstrap-3.3.5/css/flatly.min.css" rel="stylesheet" />
+<link href="site_libs/bootstrap-3.3.5/css/simplex.min.css" rel="stylesheet" />
 <script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
@@ -31,6 +31,8 @@
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
 <link href="site_libs/highlightjs-9.12.0/textmate.css" rel="stylesheet" />
 <script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+<link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
 
 <link rel="icon" href="https://github.com/workflowr/workflowr-assets/raw/master/img/reproducible.png">
 <!-- Add a small amount of space between sections. -->
@@ -259,7 +261,13 @@ $(document).ready(function () {
 </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
-        
+        <li>
+  <a href="https://github.com/saketkc/scRNA_NB_comparison">
+    <span class="fa fa-github"></span>
+     
+    Source code
+  </a>
+</li>
       </ul>
     </div><!--/.nav-collapse -->
   </div><!--/.container -->
@@ -276,7 +284,7 @@ $(document).ready(function () {
 
 <p>
 <button type="button" class="btn btn-default btn-workflowr btn-workflowr-report" data-toggle="collapse" data-target="#workflowr-report">
-<span class="glyphicon glyphicon-list" aria-hidden="true"></span> workflowr <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span>
+<span class="glyphicon glyphicon-list" aria-hidden="true"></span> workflowr <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span>
 </button>
 </p>
 <div id="workflowr-report" class="collapse">
@@ -285,7 +293,7 @@ $(document).ready(function () {
 <a data-toggle="tab" href="#summary">Summary</a>
 </li>
 <li>
-<a data-toggle="tab" href="#checks"> Checks <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span> </a>
+<a data-toggle="tab" href="#checks"> Checks <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> </a>
 </li>
 <li>
 <a data-toggle="tab" href="#versions">Past versions</a>
@@ -294,10 +302,10 @@ $(document).ready(function () {
 <div class="tab-content">
 <div id="summary" class="tab-pane fade in active">
 <p>
-<strong>Last updated:</strong> 2021-07-06
+<strong>Last updated:</strong> 2021-07-07
 </p>
 <p>
-<strong>Checks:</strong> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> 6 <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span> 1
+<strong>Checks:</strong> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> 7 <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span> 0
 </p>
 <p>
 <strong>Knit directory:</strong> <code>scRNA_NB_comparison/</code> <span class="glyphicon glyphicon-question-sign" aria-hidden="true" title="This is the local directory in which the code in this file was executed."> </span>
@@ -313,12 +321,12 @@ This reproducible <a href="http://rmarkdown.rstudio.com">R Markdown</a> analysis
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRMarkdownfilestronguncommittedchanges"> <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span> <strong>R Markdown file:</strong> uncommitted changes </a>
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRMarkdownfilestronguptodate"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>R Markdown file:</strong> up-to-date </a>
 </p>
 </div>
-<div id="strongRMarkdownfilestronguncommittedchanges" class="panel-collapse collapse">
+<div id="strongRMarkdownfilestronguptodate" class="panel-collapse collapse">
 <div class="panel-body">
-<p>The R Markdown is untracked by Git. To know which version of the R Markdown file created these results, you’ll want to first commit it to the Git repo. If you’re still working on the analysis, you can ignore this warning. When you’re finished, you can run <code>wflow_publish</code> to commit the R Markdown file and build the HTML.</p>
+<p>Great! Since the R Markdown file has been committed to the Git repository, you know the exact version of the code that produced these results.</p>
 </div>
 </div>
 </div>
@@ -385,16 +393,16 @@ This reproducible <a href="http://rmarkdown.rstudio.com">R Markdown</a> analysis
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstronge0b7c2c"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> e0b7c2c </a>
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomsaketkcscRNANBcomparisontree052425faff377cce4936df52b27fe35bc6e8896etargetblank052425fa"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/saketkc/scRNA_NB_comparison/tree/052425faff377cce4936df52b27fe35bc6e8896e" target="_blank">052425f</a> </a>
 </p>
 </div>
-<div id="strongRepositoryversionstronge0b7c2c" class="panel-collapse collapse">
+<div id="strongRepositoryversionstrongahrefhttpsgithubcomsaketkcscRNANBcomparisontree052425faff377cce4936df52b27fe35bc6e8896etargetblank052425fa" class="panel-collapse collapse">
 <div class="panel-body">
 <p>
 Great! You are using Git for version control. Tracking code development and connecting the code version to the results is critical for reproducibility.
 </p>
 <p>
-The results in this page were generated with repository version e0b7c2c. See the <em>Past versions</em> tab to see a history of the changes made to the R Markdown and HTML files.
+The results in this page were generated with repository version <a href="https://github.com/saketkc/scRNA_NB_comparison/tree/052425faff377cce4936df52b27fe35bc6e8896e" target="_blank">052425f</a>. See the <em>Past versions</em> tab to see a history of the changes made to the R Markdown and HTML files.
 </p>
 <p>
 Note that you need to be careful to ensure that all relevant files for the analysis have been committed to Git prior to generating the results (you can use <code>wflow_publish</code> or <code>wflow_git_commit</code>). workflowr only checks the R Markdown file, but you know if there are other scripts or data files that it depends on. Below is the status of the Git repository when the results were generated:
@@ -404,37 +412,22 @@ Ignored files:
     Ignored:    data/raw_data/
     Ignored:    data/rds_filtered/
     Ignored:    data/rds_raw/
+    Ignored:    data/sampled_counts/
     Ignored:    output/snakemake_output/
 
 Untracked files:
-    Untracked:  analysis/01_Smart-seq3.Rmd
-    Untracked:  analysis/02_Mereu.Rmd
-    Untracked:  analysis/03A_Ding-Mixture-HEK-3T3.Rmd
-    Untracked:  analysis/03B_Ding-PBMC.Rmd
-    Untracked:  analysis/03C_Ding-Cortex.Rmd
-    Untracked:  analysis/04_PBMC68k.Rmd
-    Untracked:  analysis/05_Fetal-sciRNAseq3.Rmd
-    Untracked:  analysis/06G_VS2020_Seurat.Rmd
-    Untracked:  analysis/07_Filter_all_datasets.Rmd
-    Untracked:  analysis/08_Downsample_PBMC__Smart-seq3.Rmd
-    Untracked:  analysis/09_Figure1.Rmd
-    Untracked:  analysis/10_Figure2.Rmd
-    Untracked:  analysis/11_Figure3.Rmd
-    Untracked:  analysis/12_SuppFigure-DataStats.Rmd
-    Untracked:  analysis/13_SuppFigure-VST.Rmd
-    Untracked:  analysis/14_SuppFigure-Simulation.Rmd
-    Untracked:  analysis/15_SuppFigure-Upsampling.Rmd
-    Untracked:  data/datasets.csv
-    Untracked:  data/sampled_counts/
+    Untracked:  code/01_run_glm.R
+    Untracked:  code/02_run_seurat.R
+    Untracked:  code/03_run_vst2_downsample.R
+    Untracked:  code/04_run_vst_ncells.R
+    Untracked:  code/05_run_metacell.R
+    Untracked:  code/06_run_sct.R
     Untracked:  output/figures/
     Untracked:  output/tables/
+    Untracked:  snakemake/
 
 Unstaged changes:
-    Modified:   .gitignore
-    Modified:   analysis/_site.yml
-    Modified:   analysis/about.Rmd
-    Modified:   analysis/index.Rmd
-    Modified:   analysis/license.Rmd
+    Modified:   code/README.md
 
 </code></pre>
 <p>
@@ -447,9 +440,69 @@ Note that any generated files, e.g. HTML, png, CSS, etc., are not included in t
 <hr>
 </div>
 <div id="versions" class="tab-pane fade">
+
 <p>
-There are no past versions. Publish this analysis with <code>wflow_publish()</code> to start tracking its development.
+These are the previous versions of the repository in which changes were made to the R Markdown (<code>analysis/15_SuppFigure-Upsampling.Rmd</code>) and HTML (<code>docs/15_SuppFigure-Upsampling.html</code>) files. If you’ve configured a remote Git repository (see <code>?wflow_git_remote</code>), click on the hyperlinks in the table below to view the files as they were in that past version.
 </p>
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+File
+</th>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+<th>
+Message
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/saketkc/scRNA_NB_comparison/blob/400797a515495a6738036c2e89d704dbc25d8d5a/analysis/15_SuppFigure-Upsampling.Rmd" target="_blank">400797a</a>
+</td>
+<td>
+Saket Choudhary
+</td>
+<td>
+2021-07-06
+</td>
+<td>
+workflowr::wflow_git_commit(all = TRUE)
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/saketkc/scRNA_NB_comparison/400797a515495a6738036c2e89d704dbc25d8d5a/docs/15_SuppFigure-Upsampling.html" target="_blank">400797a</a>
+</td>
+<td>
+Saket Choudhary
+</td>
+<td>
+2021-07-06
+</td>
+<td>
+workflowr::wflow_git_commit(all = TRUE)
+</td>
+</tr>
+</tbody>
+</table>
+</div>
 <hr>
 </div>
 </div>
@@ -679,6 +732,43 @@ ggplot(all_results, aes(gmean, theta, color = theta_type)) +
   theme_pubr() +
   theme(legend.title = element_blank())</code></pre>
 <p><img src="figure/15_SuppFigure-Upsampling.Rmd/unnamed-chunk-2-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-2-1">
+Past versions of unnamed-chunk-2-1.png
+</button>
+</p>
+<div id="fig-unnamed-chunk-2-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/saketkc/scRNA_NB_comparison/blob/400797a515495a6738036c2e89d704dbc25d8d5a/docs/figure/15_SuppFigure-Upsampling.Rmd/unnamed-chunk-2-1.png" target="_blank">400797a</a>
+</td>
+<td>
+Saket Choudhary
+</td>
+<td>
+2021-07-06
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <pre class="r"><code>dir.create(here::here(&quot;output&quot;, &quot;figures&quot;))
 ggsave(here::here(&quot;output&quot;, &quot;figures/pbmc_ss3_vs_simulation.pdf&quot;))</code></pre>
 <pre class="r"><code>sessionInfo()</code></pre>
@@ -722,7 +812,7 @@ loaded via a namespace (and not attached):
  [19] spatstat.sparse_2.0-0       colorspace_2.0-2           
  [21] ggrepel_0.9.1               textshaping_0.3.5          
  [23] haven_2.4.1                 xfun_0.24                  
- [25] crayon_1.4.1                RCurl_1.98-1.3             
+ [25] RCurl_1.98-1.3              crayon_1.4.1               
  [27] jsonlite_1.7.2              spatstat.data_2.1-0        
  [29] survival_3.2-7              zoo_1.8-9                  
  [31] glue_1.4.2                  polyclip_1.10-0            
@@ -753,34 +843,34 @@ loaded via a namespace (and not attached):
  [81] zip_2.2.0                   purrr_0.3.4                
  [83] RANN_2.6.1                  pbapply_1.4-3              
  [85] future_1.21.0               nlme_3.1-152               
- [87] mime_0.11                   compiler_4.0.0             
- [89] plotly_4.9.4.1              curl_4.3.2                 
- [91] png_0.1-7                   ggsignif_0.6.2             
- [93] spatstat.utils_2.2-0        tibble_3.1.2               
- [95] bslib_0.2.5.1               glmGamPoi_1.2.0            
- [97] stringi_1.6.2               highr_0.8                  
- [99] forcats_0.5.1               lattice_0.20-41            
-[101] Matrix_1.3-4                vctrs_0.3.8                
-[103] pillar_1.6.1                lifecycle_1.0.0            
-[105] spatstat.geom_2.2-0         lmtest_0.9-38              
-[107] jquerylib_0.1.4             RcppAnnoy_0.0.18           
-[109] bitops_1.0-7                data.table_1.14.0          
-[111] cowplot_1.1.1               irlba_2.3.3                
-[113] GenomicRanges_1.42.0        httpuv_1.6.1               
-[115] R6_2.5.0                    promises_1.2.0.1           
-[117] KernSmooth_2.23-17          gridExtra_2.3              
-[119] rio_0.5.27                  IRanges_2.24.1             
-[121] parallelly_1.26.0           codetools_0.2-16           
-[123] assertthat_0.2.1            SummarizedExperiment_1.20.0
-[125] rprojroot_2.0.2             withr_2.4.2                
-[127] GenomeInfoDbData_1.2.4      S4Vectors_0.28.1           
-[129] mgcv_1.8-33                 parallel_4.0.0             
-[131] hms_1.1.0                   grid_4.0.0                 
-[133] rpart_4.1-15                tidyr_1.1.3                
-[135] DelayedMatrixStats_1.12.3   rmarkdown_2.9              
-[137] carData_3.0-4               Rtsne_0.15                 
-[139] git2r_0.26.1                Biobase_2.50.0             
-[141] shiny_1.6.0                </code></pre>
+ [87] whisker_0.4                 mime_0.11                  
+ [89] compiler_4.0.0              plotly_4.9.4.1             
+ [91] curl_4.3.2                  png_0.1-7                  
+ [93] ggsignif_0.6.2              spatstat.utils_2.2-0       
+ [95] tibble_3.1.2                bslib_0.2.5.1              
+ [97] glmGamPoi_1.2.0             stringi_1.6.2              
+ [99] highr_0.8                   forcats_0.5.1              
+[101] lattice_0.20-41             Matrix_1.3-4               
+[103] vctrs_0.3.8                 pillar_1.6.1               
+[105] lifecycle_1.0.0             spatstat.geom_2.2-0        
+[107] lmtest_0.9-38               jquerylib_0.1.4            
+[109] RcppAnnoy_0.0.18            bitops_1.0-7               
+[111] data.table_1.14.0           cowplot_1.1.1              
+[113] irlba_2.3.3                 GenomicRanges_1.42.0       
+[115] httpuv_1.6.1                R6_2.5.0                   
+[117] promises_1.2.0.1            KernSmooth_2.23-17         
+[119] gridExtra_2.3               rio_0.5.27                 
+[121] IRanges_2.24.1              parallelly_1.26.0          
+[123] codetools_0.2-16            assertthat_0.2.1           
+[125] SummarizedExperiment_1.20.0 rprojroot_2.0.2            
+[127] withr_2.4.2                 GenomeInfoDbData_1.2.4     
+[129] S4Vectors_0.28.1            mgcv_1.8-33                
+[131] parallel_4.0.0              hms_1.1.0                  
+[133] grid_4.0.0                  rpart_4.1-15               
+[135] tidyr_1.1.3                 DelayedMatrixStats_1.12.3  
+[137] rmarkdown_2.9               carData_3.0-4              
+[139] Rtsne_0.15                  git2r_0.26.1               
+[141] Biobase_2.50.0              shiny_1.6.0                </code></pre>
 <br>
 <p>
 <button type="button" class="btn btn-default btn-workflowr btn-workflowr-sessioninfo" data-toggle="collapse" data-target="#workflowr-sessioninfo" style="display: block;">
@@ -829,7 +919,7 @@ loaded via a namespace (and not attached):
  [19] spatstat.sparse_2.0-0       colorspace_2.0-2           
  [21] ggrepel_0.9.1               textshaping_0.3.5          
  [23] haven_2.4.1                 xfun_0.24                  
- [25] crayon_1.4.1                RCurl_1.98-1.3             
+ [25] RCurl_1.98-1.3              crayon_1.4.1               
  [27] jsonlite_1.7.2              spatstat.data_2.1-0        
  [29] survival_3.2-7              zoo_1.8-9                  
  [31] glue_1.4.2                  polyclip_1.10-0            
@@ -860,34 +950,34 @@ loaded via a namespace (and not attached):
  [81] zip_2.2.0                   purrr_0.3.4                
  [83] RANN_2.6.1                  pbapply_1.4-3              
  [85] future_1.21.0               nlme_3.1-152               
- [87] mime_0.11                   compiler_4.0.0             
- [89] plotly_4.9.4.1              curl_4.3.2                 
- [91] png_0.1-7                   ggsignif_0.6.2             
- [93] spatstat.utils_2.2-0        tibble_3.1.2               
- [95] bslib_0.2.5.1               glmGamPoi_1.2.0            
- [97] stringi_1.6.2               highr_0.8                  
- [99] forcats_0.5.1               lattice_0.20-41            
-[101] Matrix_1.3-4                vctrs_0.3.8                
-[103] pillar_1.6.1                lifecycle_1.0.0            
-[105] spatstat.geom_2.2-0         lmtest_0.9-38              
-[107] jquerylib_0.1.4             RcppAnnoy_0.0.18           
-[109] bitops_1.0-7                data.table_1.14.0          
-[111] cowplot_1.1.1               irlba_2.3.3                
-[113] GenomicRanges_1.42.0        httpuv_1.6.1               
-[115] R6_2.5.0                    promises_1.2.0.1           
-[117] KernSmooth_2.23-17          gridExtra_2.3              
-[119] rio_0.5.27                  IRanges_2.24.1             
-[121] parallelly_1.26.0           codetools_0.2-16           
-[123] assertthat_0.2.1            SummarizedExperiment_1.20.0
-[125] rprojroot_2.0.2             withr_2.4.2                
-[127] GenomeInfoDbData_1.2.4      S4Vectors_0.28.1           
-[129] mgcv_1.8-33                 parallel_4.0.0             
-[131] hms_1.1.0                   grid_4.0.0                 
-[133] rpart_4.1-15                tidyr_1.1.3                
-[135] DelayedMatrixStats_1.12.3   rmarkdown_2.9              
-[137] carData_3.0-4               Rtsne_0.15                 
-[139] git2r_0.26.1                Biobase_2.50.0             
-[141] shiny_1.6.0                </code></pre>
+ [87] whisker_0.4                 mime_0.11                  
+ [89] compiler_4.0.0              plotly_4.9.4.1             
+ [91] curl_4.3.2                  png_0.1-7                  
+ [93] ggsignif_0.6.2              spatstat.utils_2.2-0       
+ [95] tibble_3.1.2                bslib_0.2.5.1              
+ [97] glmGamPoi_1.2.0             stringi_1.6.2              
+ [99] highr_0.8                   forcats_0.5.1              
+[101] lattice_0.20-41             Matrix_1.3-4               
+[103] vctrs_0.3.8                 pillar_1.6.1               
+[105] lifecycle_1.0.0             spatstat.geom_2.2-0        
+[107] lmtest_0.9-38               jquerylib_0.1.4            
+[109] RcppAnnoy_0.0.18            bitops_1.0-7               
+[111] data.table_1.14.0           cowplot_1.1.1              
+[113] irlba_2.3.3                 GenomicRanges_1.42.0       
+[115] httpuv_1.6.1                R6_2.5.0                   
+[117] promises_1.2.0.1            KernSmooth_2.23-17         
+[119] gridExtra_2.3               rio_0.5.27                 
+[121] IRanges_2.24.1              parallelly_1.26.0          
+[123] codetools_0.2-16            assertthat_0.2.1           
+[125] SummarizedExperiment_1.20.0 rprojroot_2.0.2            
+[127] withr_2.4.2                 GenomeInfoDbData_1.2.4     
+[129] S4Vectors_0.28.1            mgcv_1.8-33                
+[131] parallel_4.0.0              hms_1.1.0                  
+[133] grid_4.0.0                  rpart_4.1-15               
+[135] tidyr_1.1.3                 DelayedMatrixStats_1.12.3  
+[137] rmarkdown_2.9               carData_3.0-4              
+[139] Rtsne_0.15                  git2r_0.26.1               
+[141] Biobase_2.50.0              shiny_1.6.0                </code></pre>
 </div>
 
 

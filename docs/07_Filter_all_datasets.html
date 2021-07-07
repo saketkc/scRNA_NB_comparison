@@ -15,7 +15,7 @@
 
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<link href="site_libs/bootstrap-3.3.5/css/flatly.min.css" rel="stylesheet" />
+<link href="site_libs/bootstrap-3.3.5/css/simplex.min.css" rel="stylesheet" />
 <script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
@@ -31,6 +31,8 @@
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
 <link href="site_libs/highlightjs-9.12.0/textmate.css" rel="stylesheet" />
 <script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+<link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
 
 <link rel="icon" href="https://github.com/workflowr/workflowr-assets/raw/master/img/reproducible.png">
 <!-- Add a small amount of space between sections. -->
@@ -259,7 +261,13 @@ $(document).ready(function () {
 </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
-        
+        <li>
+  <a href="https://github.com/saketkc/scRNA_NB_comparison">
+    <span class="fa fa-github"></span>
+     
+    Source code
+  </a>
+</li>
       </ul>
     </div><!--/.nav-collapse -->
   </div><!--/.container -->
@@ -276,7 +284,7 @@ $(document).ready(function () {
 
 <p>
 <button type="button" class="btn btn-default btn-workflowr btn-workflowr-report" data-toggle="collapse" data-target="#workflowr-report">
-<span class="glyphicon glyphicon-list" aria-hidden="true"></span> workflowr <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span>
+<span class="glyphicon glyphicon-list" aria-hidden="true"></span> workflowr <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span>
 </button>
 </p>
 <div id="workflowr-report" class="collapse">
@@ -285,7 +293,7 @@ $(document).ready(function () {
 <a data-toggle="tab" href="#summary">Summary</a>
 </li>
 <li>
-<a data-toggle="tab" href="#checks"> Checks <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span> </a>
+<a data-toggle="tab" href="#checks"> Checks <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> </a>
 </li>
 <li>
 <a data-toggle="tab" href="#versions">Past versions</a>
@@ -294,10 +302,10 @@ $(document).ready(function () {
 <div class="tab-content">
 <div id="summary" class="tab-pane fade in active">
 <p>
-<strong>Last updated:</strong> 2021-07-06
+<strong>Last updated:</strong> 2021-07-07
 </p>
 <p>
-<strong>Checks:</strong> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> 6 <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span> 1
+<strong>Checks:</strong> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> 7 <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span> 0
 </p>
 <p>
 <strong>Knit directory:</strong> <code>scRNA_NB_comparison/</code> <span class="glyphicon glyphicon-question-sign" aria-hidden="true" title="This is the local directory in which the code in this file was executed."> </span>
@@ -313,12 +321,12 @@ This reproducible <a href="http://rmarkdown.rstudio.com">R Markdown</a> analysis
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRMarkdownfilestronguncommittedchanges"> <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span> <strong>R Markdown file:</strong> uncommitted changes </a>
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRMarkdownfilestronguptodate"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>R Markdown file:</strong> up-to-date </a>
 </p>
 </div>
-<div id="strongRMarkdownfilestronguncommittedchanges" class="panel-collapse collapse">
+<div id="strongRMarkdownfilestronguptodate" class="panel-collapse collapse">
 <div class="panel-body">
-<p>The R Markdown is untracked by Git. To know which version of the R Markdown file created these results, you’ll want to first commit it to the Git repo. If you’re still working on the analysis, you can ignore this warning. When you’re finished, you can run <code>wflow_publish</code> to commit the R Markdown file and build the HTML.</p>
+<p>Great! Since the R Markdown file has been committed to the Git repository, you know the exact version of the code that produced these results.</p>
 </div>
 </div>
 </div>
@@ -385,16 +393,16 @@ This reproducible <a href="http://rmarkdown.rstudio.com">R Markdown</a> analysis
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstronge0b7c2c"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> e0b7c2c </a>
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomsaketkcscRNANBcomparisontree052425faff377cce4936df52b27fe35bc6e8896etargetblank052425fa"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/saketkc/scRNA_NB_comparison/tree/052425faff377cce4936df52b27fe35bc6e8896e" target="_blank">052425f</a> </a>
 </p>
 </div>
-<div id="strongRepositoryversionstronge0b7c2c" class="panel-collapse collapse">
+<div id="strongRepositoryversionstrongahrefhttpsgithubcomsaketkcscRNANBcomparisontree052425faff377cce4936df52b27fe35bc6e8896etargetblank052425fa" class="panel-collapse collapse">
 <div class="panel-body">
 <p>
 Great! You are using Git for version control. Tracking code development and connecting the code version to the results is critical for reproducibility.
 </p>
 <p>
-The results in this page were generated with repository version e0b7c2c. See the <em>Past versions</em> tab to see a history of the changes made to the R Markdown and HTML files.
+The results in this page were generated with repository version <a href="https://github.com/saketkc/scRNA_NB_comparison/tree/052425faff377cce4936df52b27fe35bc6e8896e" target="_blank">052425f</a>. See the <em>Past versions</em> tab to see a history of the changes made to the R Markdown and HTML files.
 </p>
 <p>
 Note that you need to be careful to ensure that all relevant files for the analysis have been committed to Git prior to generating the results (you can use <code>wflow_publish</code> or <code>wflow_git_commit</code>). workflowr only checks the R Markdown file, but you know if there are other scripts or data files that it depends on. Below is the status of the Git repository when the results were generated:
@@ -404,34 +412,12 @@ Ignored files:
     Ignored:    data/raw_data/
     Ignored:    data/rds_filtered/
     Ignored:    data/rds_raw/
+    Ignored:    data/sampled_counts/
     Ignored:    output/snakemake_output/
 
 Untracked files:
-    Untracked:  analysis/01_Smart-seq3.Rmd
-    Untracked:  analysis/02_Mereu.Rmd
-    Untracked:  analysis/03A_Ding-Mixture-HEK-3T3.Rmd
-    Untracked:  analysis/03B_Ding-PBMC.Rmd
-    Untracked:  analysis/03C_Ding-Cortex.Rmd
-    Untracked:  analysis/04_PBMC68k.Rmd
-    Untracked:  analysis/05_Fetal-sciRNAseq3.Rmd
-    Untracked:  analysis/06G_VS2020_Seurat.Rmd
-    Untracked:  analysis/07_Filter_all_datasets.Rmd
-    Untracked:  analysis/08_Downsample_PBMC__Smart-seq3.Rmd
-    Untracked:  analysis/09_Figure1.Rmd
-    Untracked:  analysis/10_Figure2.Rmd
-    Untracked:  analysis/11_Figure3.Rmd
-    Untracked:  analysis/12_SuppFigure-DataStats.Rmd
-    Untracked:  analysis/13_SuppFigure-VST.Rmd
-    Untracked:  analysis/14_SuppFigure-Simulation.Rmd
-    Untracked:  analysis/15_SuppFigure-Upsampling.Rmd
-    Untracked:  data/datasets.csv
-
-Unstaged changes:
-    Modified:   .gitignore
-    Modified:   analysis/_site.yml
-    Modified:   analysis/about.Rmd
-    Modified:   analysis/index.Rmd
-    Modified:   analysis/license.Rmd
+    Untracked:  output/figures/
+    Untracked:  output/tables/
 
 </code></pre>
 <p>
@@ -444,9 +430,69 @@ Note that any generated files, e.g. HTML, png, CSS, etc., are not included in t
 <hr>
 </div>
 <div id="versions" class="tab-pane fade">
+
 <p>
-There are no past versions. Publish this analysis with <code>wflow_publish()</code> to start tracking its development.
+These are the previous versions of the repository in which changes were made to the R Markdown (<code>analysis/07_Filter_all_datasets.Rmd</code>) and HTML (<code>docs/07_Filter_all_datasets.html</code>) files. If you’ve configured a remote Git repository (see <code>?wflow_git_remote</code>), click on the hyperlinks in the table below to view the files as they were in that past version.
 </p>
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+File
+</th>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+<th>
+Message
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/saketkc/scRNA_NB_comparison/blob/400797a515495a6738036c2e89d704dbc25d8d5a/analysis/07_Filter_all_datasets.Rmd" target="_blank">400797a</a>
+</td>
+<td>
+Saket Choudhary
+</td>
+<td>
+2021-07-06
+</td>
+<td>
+workflowr::wflow_git_commit(all = TRUE)
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/saketkc/scRNA_NB_comparison/400797a515495a6738036c2e89d704dbc25d8d5a/docs/07_Filter_all_datasets.html" target="_blank">400797a</a>
+</td>
+<td>
+Saket Choudhary
+</td>
+<td>
+2021-07-06
+</td>
+<td>
+workflowr::wflow_git_commit(all = TRUE)
+</td>
+</tr>
+</tbody>
+</table>
+</div>
 <hr>
 </div>
 </div>
@@ -486,19 +532,2220 @@ for (rds in list.files(here::here(&quot;data/rds_raw&quot;), pattern = &quot;*.r
   rm(seu_subset)
   rm(ncount_rna_limits)
 }</code></pre>
-<p><img src="figure/07_Filter_all_datasets.Rmd/unnamed-chunk-2-1.png" width="1152" style="display: block; margin: auto;" /><img src="figure/07_Filter_all_datasets.Rmd/unnamed-chunk-2-2.png" width="1152" style="display: block; margin: auto;" /><img src="figure/07_Filter_all_datasets.Rmd/unnamed-chunk-2-3.png" width="1152" style="display: block; margin: auto;" /><img src="figure/07_Filter_all_datasets.Rmd/unnamed-chunk-2-4.png" width="1152" style="display: block; margin: auto;" /><img src="figure/07_Filter_all_datasets.Rmd/unnamed-chunk-2-5.png" width="1152" style="display: block; margin: auto;" /><img src="figure/07_Filter_all_datasets.Rmd/unnamed-chunk-2-6.png" width="1152" style="display: block; margin: auto;" /><img src="figure/07_Filter_all_datasets.Rmd/unnamed-chunk-2-7.png" width="1152" style="display: block; margin: auto;" /><img src="figure/07_Filter_all_datasets.Rmd/unnamed-chunk-2-8.png" width="1152" style="display: block; margin: auto;" /><img src="figure/07_Filter_all_datasets.Rmd/unnamed-chunk-2-9.png" width="1152" style="display: block; margin: auto;" /><img src="figure/07_Filter_all_datasets.Rmd/unnamed-chunk-2-10.png" width="1152" style="display: block; margin: auto;" /><img src="figure/07_Filter_all_datasets.Rmd/unnamed-chunk-2-11.png" width="1152" style="display: block; margin: auto;" /><img src="figure/07_Filter_all_datasets.Rmd/unnamed-chunk-2-12.png" width="1152" style="display: block; margin: auto;" /><img src="figure/07_Filter_all_datasets.Rmd/unnamed-chunk-2-13.png" width="1152" style="display: block; margin: auto;" /><img src="figure/07_Filter_all_datasets.Rmd/unnamed-chunk-2-14.png" width="1152" style="display: block; margin: auto;" /><img src="figure/07_Filter_all_datasets.Rmd/unnamed-chunk-2-15.png" width="1152" style="display: block; margin: auto;" /><img src="figure/07_Filter_all_datasets.Rmd/unnamed-chunk-2-16.png" width="1152" style="display: block; margin: auto;" /><img src="figure/07_Filter_all_datasets.Rmd/unnamed-chunk-2-17.png" width="1152" style="display: block; margin: auto;" /><img src="figure/07_Filter_all_datasets.Rmd/unnamed-chunk-2-18.png" width="1152" style="display: block; margin: auto;" /><img src="figure/07_Filter_all_datasets.Rmd/unnamed-chunk-2-19.png" width="1152" style="display: block; margin: auto;" /><img src="figure/07_Filter_all_datasets.Rmd/unnamed-chunk-2-20.png" width="1152" style="display: block; margin: auto;" /><img src="figure/07_Filter_all_datasets.Rmd/unnamed-chunk-2-21.png" width="1152" style="display: block; margin: auto;" /><img src="figure/07_Filter_all_datasets.Rmd/unnamed-chunk-2-22.png" width="1152" style="display: block; margin: auto;" /><img src="figure/07_Filter_all_datasets.Rmd/unnamed-chunk-2-23.png" width="1152" style="display: block; margin: auto;" /><img src="figure/07_Filter_all_datasets.Rmd/unnamed-chunk-2-24.png" width="1152" style="display: block; margin: auto;" /><img src="figure/07_Filter_all_datasets.Rmd/unnamed-chunk-2-25.png" width="1152" style="display: block; margin: auto;" /><img src="figure/07_Filter_all_datasets.Rmd/unnamed-chunk-2-26.png" width="1152" style="display: block; margin: auto;" /><img src="figure/07_Filter_all_datasets.Rmd/unnamed-chunk-2-27.png" width="1152" style="display: block; margin: auto;" /><img src="figure/07_Filter_all_datasets.Rmd/unnamed-chunk-2-28.png" width="1152" style="display: block; margin: auto;" /><img src="figure/07_Filter_all_datasets.Rmd/unnamed-chunk-2-29.png" width="1152" style="display: block; margin: auto;" /><img src="figure/07_Filter_all_datasets.Rmd/unnamed-chunk-2-30.png" width="1152" style="display: block; margin: auto;" /><img src="figure/07_Filter_all_datasets.Rmd/unnamed-chunk-2-31.png" width="1152" style="display: block; margin: auto;" /><img src="figure/07_Filter_all_datasets.Rmd/unnamed-chunk-2-32.png" width="1152" style="display: block; margin: auto;" /><img src="figure/07_Filter_all_datasets.Rmd/unnamed-chunk-2-33.png" width="1152" style="display: block; margin: auto;" /><img src="figure/07_Filter_all_datasets.Rmd/unnamed-chunk-2-34.png" width="1152" style="display: block; margin: auto;" /><img src="figure/07_Filter_all_datasets.Rmd/unnamed-chunk-2-35.png" width="1152" style="display: block; margin: auto;" /><img src="figure/07_Filter_all_datasets.Rmd/unnamed-chunk-2-36.png" width="1152" style="display: block; margin: auto;" /><img src="figure/07_Filter_all_datasets.Rmd/unnamed-chunk-2-37.png" width="1152" style="display: block; margin: auto;" /><img src="figure/07_Filter_all_datasets.Rmd/unnamed-chunk-2-38.png" width="1152" style="display: block; margin: auto;" /></p>
+<p><img src="figure/07_Filter_all_datasets.Rmd/unnamed-chunk-2-1.png" width="1152" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-2-1">
+Past versions of unnamed-chunk-2-1.png
+</button>
+</p>
+<div id="fig-unnamed-chunk-2-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/saketkc/scRNA_NB_comparison/blob/400797a515495a6738036c2e89d704dbc25d8d5a/docs/figure/07_Filter_all_datasets.Rmd/unnamed-chunk-2-1.png" target="_blank">400797a</a>
+</td>
+<td>
+Saket Choudhary
+</td>
+<td>
+2021-07-06
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p><img src="figure/07_Filter_all_datasets.Rmd/unnamed-chunk-2-2.png" width="1152" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-2-2">
+Past versions of unnamed-chunk-2-2.png
+</button>
+</p>
+<div id="fig-unnamed-chunk-2-2" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/saketkc/scRNA_NB_comparison/blob/400797a515495a6738036c2e89d704dbc25d8d5a/docs/figure/07_Filter_all_datasets.Rmd/unnamed-chunk-2-2.png" target="_blank">400797a</a>
+</td>
+<td>
+Saket Choudhary
+</td>
+<td>
+2021-07-06
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p><img src="figure/07_Filter_all_datasets.Rmd/unnamed-chunk-2-3.png" width="1152" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-2-3">
+Past versions of unnamed-chunk-2-3.png
+</button>
+</p>
+<div id="fig-unnamed-chunk-2-3" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/saketkc/scRNA_NB_comparison/blob/400797a515495a6738036c2e89d704dbc25d8d5a/docs/figure/07_Filter_all_datasets.Rmd/unnamed-chunk-2-3.png" target="_blank">400797a</a>
+</td>
+<td>
+Saket Choudhary
+</td>
+<td>
+2021-07-06
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p><img src="figure/07_Filter_all_datasets.Rmd/unnamed-chunk-2-4.png" width="1152" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-2-4">
+Past versions of unnamed-chunk-2-4.png
+</button>
+</p>
+<div id="fig-unnamed-chunk-2-4" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/saketkc/scRNA_NB_comparison/blob/400797a515495a6738036c2e89d704dbc25d8d5a/docs/figure/07_Filter_all_datasets.Rmd/unnamed-chunk-2-4.png" target="_blank">400797a</a>
+</td>
+<td>
+Saket Choudhary
+</td>
+<td>
+2021-07-06
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p><img src="figure/07_Filter_all_datasets.Rmd/unnamed-chunk-2-5.png" width="1152" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-2-5">
+Past versions of unnamed-chunk-2-5.png
+</button>
+</p>
+<div id="fig-unnamed-chunk-2-5" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/saketkc/scRNA_NB_comparison/blob/400797a515495a6738036c2e89d704dbc25d8d5a/docs/figure/07_Filter_all_datasets.Rmd/unnamed-chunk-2-5.png" target="_blank">400797a</a>
+</td>
+<td>
+Saket Choudhary
+</td>
+<td>
+2021-07-06
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p><img src="figure/07_Filter_all_datasets.Rmd/unnamed-chunk-2-6.png" width="1152" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-2-6">
+Past versions of unnamed-chunk-2-6.png
+</button>
+</p>
+<div id="fig-unnamed-chunk-2-6" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/saketkc/scRNA_NB_comparison/blob/400797a515495a6738036c2e89d704dbc25d8d5a/docs/figure/07_Filter_all_datasets.Rmd/unnamed-chunk-2-6.png" target="_blank">400797a</a>
+</td>
+<td>
+Saket Choudhary
+</td>
+<td>
+2021-07-06
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p><img src="figure/07_Filter_all_datasets.Rmd/unnamed-chunk-2-7.png" width="1152" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-2-7">
+Past versions of unnamed-chunk-2-7.png
+</button>
+</p>
+<div id="fig-unnamed-chunk-2-7" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/saketkc/scRNA_NB_comparison/blob/400797a515495a6738036c2e89d704dbc25d8d5a/docs/figure/07_Filter_all_datasets.Rmd/unnamed-chunk-2-7.png" target="_blank">400797a</a>
+</td>
+<td>
+Saket Choudhary
+</td>
+<td>
+2021-07-06
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p><img src="figure/07_Filter_all_datasets.Rmd/unnamed-chunk-2-8.png" width="1152" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-2-8">
+Past versions of unnamed-chunk-2-8.png
+</button>
+</p>
+<div id="fig-unnamed-chunk-2-8" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/saketkc/scRNA_NB_comparison/blob/400797a515495a6738036c2e89d704dbc25d8d5a/docs/figure/07_Filter_all_datasets.Rmd/unnamed-chunk-2-8.png" target="_blank">400797a</a>
+</td>
+<td>
+Saket Choudhary
+</td>
+<td>
+2021-07-06
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p><img src="figure/07_Filter_all_datasets.Rmd/unnamed-chunk-2-9.png" width="1152" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-2-9">
+Past versions of unnamed-chunk-2-9.png
+</button>
+</p>
+<div id="fig-unnamed-chunk-2-9" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/saketkc/scRNA_NB_comparison/blob/400797a515495a6738036c2e89d704dbc25d8d5a/docs/figure/07_Filter_all_datasets.Rmd/unnamed-chunk-2-9.png" target="_blank">400797a</a>
+</td>
+<td>
+Saket Choudhary
+</td>
+<td>
+2021-07-06
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p><img src="figure/07_Filter_all_datasets.Rmd/unnamed-chunk-2-10.png" width="1152" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-2-10">
+Past versions of unnamed-chunk-2-10.png
+</button>
+</p>
+<div id="fig-unnamed-chunk-2-10" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/saketkc/scRNA_NB_comparison/blob/400797a515495a6738036c2e89d704dbc25d8d5a/docs/figure/07_Filter_all_datasets.Rmd/unnamed-chunk-2-10.png" target="_blank">400797a</a>
+</td>
+<td>
+Saket Choudhary
+</td>
+<td>
+2021-07-06
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p><img src="figure/07_Filter_all_datasets.Rmd/unnamed-chunk-2-11.png" width="1152" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-2-11">
+Past versions of unnamed-chunk-2-11.png
+</button>
+</p>
+<div id="fig-unnamed-chunk-2-11" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/saketkc/scRNA_NB_comparison/blob/400797a515495a6738036c2e89d704dbc25d8d5a/docs/figure/07_Filter_all_datasets.Rmd/unnamed-chunk-2-11.png" target="_blank">400797a</a>
+</td>
+<td>
+Saket Choudhary
+</td>
+<td>
+2021-07-06
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p><img src="figure/07_Filter_all_datasets.Rmd/unnamed-chunk-2-12.png" width="1152" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-2-12">
+Past versions of unnamed-chunk-2-12.png
+</button>
+</p>
+<div id="fig-unnamed-chunk-2-12" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/saketkc/scRNA_NB_comparison/blob/400797a515495a6738036c2e89d704dbc25d8d5a/docs/figure/07_Filter_all_datasets.Rmd/unnamed-chunk-2-12.png" target="_blank">400797a</a>
+</td>
+<td>
+Saket Choudhary
+</td>
+<td>
+2021-07-06
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p><img src="figure/07_Filter_all_datasets.Rmd/unnamed-chunk-2-13.png" width="1152" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-2-13">
+Past versions of unnamed-chunk-2-13.png
+</button>
+</p>
+<div id="fig-unnamed-chunk-2-13" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/saketkc/scRNA_NB_comparison/blob/400797a515495a6738036c2e89d704dbc25d8d5a/docs/figure/07_Filter_all_datasets.Rmd/unnamed-chunk-2-13.png" target="_blank">400797a</a>
+</td>
+<td>
+Saket Choudhary
+</td>
+<td>
+2021-07-06
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p><img src="figure/07_Filter_all_datasets.Rmd/unnamed-chunk-2-14.png" width="1152" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-2-14">
+Past versions of unnamed-chunk-2-14.png
+</button>
+</p>
+<div id="fig-unnamed-chunk-2-14" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/saketkc/scRNA_NB_comparison/blob/400797a515495a6738036c2e89d704dbc25d8d5a/docs/figure/07_Filter_all_datasets.Rmd/unnamed-chunk-2-14.png" target="_blank">400797a</a>
+</td>
+<td>
+Saket Choudhary
+</td>
+<td>
+2021-07-06
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p><img src="figure/07_Filter_all_datasets.Rmd/unnamed-chunk-2-15.png" width="1152" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-2-15">
+Past versions of unnamed-chunk-2-15.png
+</button>
+</p>
+<div id="fig-unnamed-chunk-2-15" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/saketkc/scRNA_NB_comparison/blob/400797a515495a6738036c2e89d704dbc25d8d5a/docs/figure/07_Filter_all_datasets.Rmd/unnamed-chunk-2-15.png" target="_blank">400797a</a>
+</td>
+<td>
+Saket Choudhary
+</td>
+<td>
+2021-07-06
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p><img src="figure/07_Filter_all_datasets.Rmd/unnamed-chunk-2-16.png" width="1152" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-2-16">
+Past versions of unnamed-chunk-2-16.png
+</button>
+</p>
+<div id="fig-unnamed-chunk-2-16" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/saketkc/scRNA_NB_comparison/blob/400797a515495a6738036c2e89d704dbc25d8d5a/docs/figure/07_Filter_all_datasets.Rmd/unnamed-chunk-2-16.png" target="_blank">400797a</a>
+</td>
+<td>
+Saket Choudhary
+</td>
+<td>
+2021-07-06
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p><img src="figure/07_Filter_all_datasets.Rmd/unnamed-chunk-2-17.png" width="1152" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-2-17">
+Past versions of unnamed-chunk-2-17.png
+</button>
+</p>
+<div id="fig-unnamed-chunk-2-17" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/saketkc/scRNA_NB_comparison/blob/400797a515495a6738036c2e89d704dbc25d8d5a/docs/figure/07_Filter_all_datasets.Rmd/unnamed-chunk-2-17.png" target="_blank">400797a</a>
+</td>
+<td>
+Saket Choudhary
+</td>
+<td>
+2021-07-06
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p><img src="figure/07_Filter_all_datasets.Rmd/unnamed-chunk-2-18.png" width="1152" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-2-18">
+Past versions of unnamed-chunk-2-18.png
+</button>
+</p>
+<div id="fig-unnamed-chunk-2-18" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/saketkc/scRNA_NB_comparison/blob/400797a515495a6738036c2e89d704dbc25d8d5a/docs/figure/07_Filter_all_datasets.Rmd/unnamed-chunk-2-18.png" target="_blank">400797a</a>
+</td>
+<td>
+Saket Choudhary
+</td>
+<td>
+2021-07-06
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p><img src="figure/07_Filter_all_datasets.Rmd/unnamed-chunk-2-19.png" width="1152" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-2-19">
+Past versions of unnamed-chunk-2-19.png
+</button>
+</p>
+<div id="fig-unnamed-chunk-2-19" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/saketkc/scRNA_NB_comparison/blob/400797a515495a6738036c2e89d704dbc25d8d5a/docs/figure/07_Filter_all_datasets.Rmd/unnamed-chunk-2-19.png" target="_blank">400797a</a>
+</td>
+<td>
+Saket Choudhary
+</td>
+<td>
+2021-07-06
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p><img src="figure/07_Filter_all_datasets.Rmd/unnamed-chunk-2-20.png" width="1152" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-2-20">
+Past versions of unnamed-chunk-2-20.png
+</button>
+</p>
+<div id="fig-unnamed-chunk-2-20" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/saketkc/scRNA_NB_comparison/blob/400797a515495a6738036c2e89d704dbc25d8d5a/docs/figure/07_Filter_all_datasets.Rmd/unnamed-chunk-2-20.png" target="_blank">400797a</a>
+</td>
+<td>
+Saket Choudhary
+</td>
+<td>
+2021-07-06
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p><img src="figure/07_Filter_all_datasets.Rmd/unnamed-chunk-2-21.png" width="1152" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-2-21">
+Past versions of unnamed-chunk-2-21.png
+</button>
+</p>
+<div id="fig-unnamed-chunk-2-21" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/saketkc/scRNA_NB_comparison/blob/400797a515495a6738036c2e89d704dbc25d8d5a/docs/figure/07_Filter_all_datasets.Rmd/unnamed-chunk-2-21.png" target="_blank">400797a</a>
+</td>
+<td>
+Saket Choudhary
+</td>
+<td>
+2021-07-06
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p><img src="figure/07_Filter_all_datasets.Rmd/unnamed-chunk-2-22.png" width="1152" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-2-22">
+Past versions of unnamed-chunk-2-22.png
+</button>
+</p>
+<div id="fig-unnamed-chunk-2-22" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/saketkc/scRNA_NB_comparison/blob/400797a515495a6738036c2e89d704dbc25d8d5a/docs/figure/07_Filter_all_datasets.Rmd/unnamed-chunk-2-22.png" target="_blank">400797a</a>
+</td>
+<td>
+Saket Choudhary
+</td>
+<td>
+2021-07-06
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p><img src="figure/07_Filter_all_datasets.Rmd/unnamed-chunk-2-23.png" width="1152" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-2-23">
+Past versions of unnamed-chunk-2-23.png
+</button>
+</p>
+<div id="fig-unnamed-chunk-2-23" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/saketkc/scRNA_NB_comparison/blob/400797a515495a6738036c2e89d704dbc25d8d5a/docs/figure/07_Filter_all_datasets.Rmd/unnamed-chunk-2-23.png" target="_blank">400797a</a>
+</td>
+<td>
+Saket Choudhary
+</td>
+<td>
+2021-07-06
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p><img src="figure/07_Filter_all_datasets.Rmd/unnamed-chunk-2-24.png" width="1152" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-2-24">
+Past versions of unnamed-chunk-2-24.png
+</button>
+</p>
+<div id="fig-unnamed-chunk-2-24" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/saketkc/scRNA_NB_comparison/blob/400797a515495a6738036c2e89d704dbc25d8d5a/docs/figure/07_Filter_all_datasets.Rmd/unnamed-chunk-2-24.png" target="_blank">400797a</a>
+</td>
+<td>
+Saket Choudhary
+</td>
+<td>
+2021-07-06
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p><img src="figure/07_Filter_all_datasets.Rmd/unnamed-chunk-2-25.png" width="1152" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-2-25">
+Past versions of unnamed-chunk-2-25.png
+</button>
+</p>
+<div id="fig-unnamed-chunk-2-25" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/saketkc/scRNA_NB_comparison/blob/400797a515495a6738036c2e89d704dbc25d8d5a/docs/figure/07_Filter_all_datasets.Rmd/unnamed-chunk-2-25.png" target="_blank">400797a</a>
+</td>
+<td>
+Saket Choudhary
+</td>
+<td>
+2021-07-06
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p><img src="figure/07_Filter_all_datasets.Rmd/unnamed-chunk-2-26.png" width="1152" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-2-26">
+Past versions of unnamed-chunk-2-26.png
+</button>
+</p>
+<div id="fig-unnamed-chunk-2-26" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/saketkc/scRNA_NB_comparison/blob/400797a515495a6738036c2e89d704dbc25d8d5a/docs/figure/07_Filter_all_datasets.Rmd/unnamed-chunk-2-26.png" target="_blank">400797a</a>
+</td>
+<td>
+Saket Choudhary
+</td>
+<td>
+2021-07-06
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p><img src="figure/07_Filter_all_datasets.Rmd/unnamed-chunk-2-27.png" width="1152" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-2-27">
+Past versions of unnamed-chunk-2-27.png
+</button>
+</p>
+<div id="fig-unnamed-chunk-2-27" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/saketkc/scRNA_NB_comparison/blob/400797a515495a6738036c2e89d704dbc25d8d5a/docs/figure/07_Filter_all_datasets.Rmd/unnamed-chunk-2-27.png" target="_blank">400797a</a>
+</td>
+<td>
+Saket Choudhary
+</td>
+<td>
+2021-07-06
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p><img src="figure/07_Filter_all_datasets.Rmd/unnamed-chunk-2-28.png" width="1152" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-2-28">
+Past versions of unnamed-chunk-2-28.png
+</button>
+</p>
+<div id="fig-unnamed-chunk-2-28" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/saketkc/scRNA_NB_comparison/blob/400797a515495a6738036c2e89d704dbc25d8d5a/docs/figure/07_Filter_all_datasets.Rmd/unnamed-chunk-2-28.png" target="_blank">400797a</a>
+</td>
+<td>
+Saket Choudhary
+</td>
+<td>
+2021-07-06
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p><img src="figure/07_Filter_all_datasets.Rmd/unnamed-chunk-2-29.png" width="1152" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-2-29">
+Past versions of unnamed-chunk-2-29.png
+</button>
+</p>
+<div id="fig-unnamed-chunk-2-29" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/saketkc/scRNA_NB_comparison/blob/400797a515495a6738036c2e89d704dbc25d8d5a/docs/figure/07_Filter_all_datasets.Rmd/unnamed-chunk-2-29.png" target="_blank">400797a</a>
+</td>
+<td>
+Saket Choudhary
+</td>
+<td>
+2021-07-06
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p><img src="figure/07_Filter_all_datasets.Rmd/unnamed-chunk-2-30.png" width="1152" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-2-30">
+Past versions of unnamed-chunk-2-30.png
+</button>
+</p>
+<div id="fig-unnamed-chunk-2-30" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/saketkc/scRNA_NB_comparison/blob/400797a515495a6738036c2e89d704dbc25d8d5a/docs/figure/07_Filter_all_datasets.Rmd/unnamed-chunk-2-30.png" target="_blank">400797a</a>
+</td>
+<td>
+Saket Choudhary
+</td>
+<td>
+2021-07-06
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p><img src="figure/07_Filter_all_datasets.Rmd/unnamed-chunk-2-31.png" width="1152" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-2-31">
+Past versions of unnamed-chunk-2-31.png
+</button>
+</p>
+<div id="fig-unnamed-chunk-2-31" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/saketkc/scRNA_NB_comparison/blob/400797a515495a6738036c2e89d704dbc25d8d5a/docs/figure/07_Filter_all_datasets.Rmd/unnamed-chunk-2-31.png" target="_blank">400797a</a>
+</td>
+<td>
+Saket Choudhary
+</td>
+<td>
+2021-07-06
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p><img src="figure/07_Filter_all_datasets.Rmd/unnamed-chunk-2-32.png" width="1152" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-2-32">
+Past versions of unnamed-chunk-2-32.png
+</button>
+</p>
+<div id="fig-unnamed-chunk-2-32" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/saketkc/scRNA_NB_comparison/blob/400797a515495a6738036c2e89d704dbc25d8d5a/docs/figure/07_Filter_all_datasets.Rmd/unnamed-chunk-2-32.png" target="_blank">400797a</a>
+</td>
+<td>
+Saket Choudhary
+</td>
+<td>
+2021-07-06
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p><img src="figure/07_Filter_all_datasets.Rmd/unnamed-chunk-2-33.png" width="1152" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-2-33">
+Past versions of unnamed-chunk-2-33.png
+</button>
+</p>
+<div id="fig-unnamed-chunk-2-33" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/saketkc/scRNA_NB_comparison/blob/400797a515495a6738036c2e89d704dbc25d8d5a/docs/figure/07_Filter_all_datasets.Rmd/unnamed-chunk-2-33.png" target="_blank">400797a</a>
+</td>
+<td>
+Saket Choudhary
+</td>
+<td>
+2021-07-06
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p><img src="figure/07_Filter_all_datasets.Rmd/unnamed-chunk-2-34.png" width="1152" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-2-34">
+Past versions of unnamed-chunk-2-34.png
+</button>
+</p>
+<div id="fig-unnamed-chunk-2-34" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/saketkc/scRNA_NB_comparison/blob/400797a515495a6738036c2e89d704dbc25d8d5a/docs/figure/07_Filter_all_datasets.Rmd/unnamed-chunk-2-34.png" target="_blank">400797a</a>
+</td>
+<td>
+Saket Choudhary
+</td>
+<td>
+2021-07-06
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p><img src="figure/07_Filter_all_datasets.Rmd/unnamed-chunk-2-35.png" width="1152" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-2-35">
+Past versions of unnamed-chunk-2-35.png
+</button>
+</p>
+<div id="fig-unnamed-chunk-2-35" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/saketkc/scRNA_NB_comparison/blob/400797a515495a6738036c2e89d704dbc25d8d5a/docs/figure/07_Filter_all_datasets.Rmd/unnamed-chunk-2-35.png" target="_blank">400797a</a>
+</td>
+<td>
+Saket Choudhary
+</td>
+<td>
+2021-07-06
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p><img src="figure/07_Filter_all_datasets.Rmd/unnamed-chunk-2-36.png" width="1152" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-2-36">
+Past versions of unnamed-chunk-2-36.png
+</button>
+</p>
+<div id="fig-unnamed-chunk-2-36" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/saketkc/scRNA_NB_comparison/blob/400797a515495a6738036c2e89d704dbc25d8d5a/docs/figure/07_Filter_all_datasets.Rmd/unnamed-chunk-2-36.png" target="_blank">400797a</a>
+</td>
+<td>
+Saket Choudhary
+</td>
+<td>
+2021-07-06
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p><img src="figure/07_Filter_all_datasets.Rmd/unnamed-chunk-2-37.png" width="1152" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-2-37">
+Past versions of unnamed-chunk-2-37.png
+</button>
+</p>
+<div id="fig-unnamed-chunk-2-37" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/saketkc/scRNA_NB_comparison/blob/400797a515495a6738036c2e89d704dbc25d8d5a/docs/figure/07_Filter_all_datasets.Rmd/unnamed-chunk-2-37.png" target="_blank">400797a</a>
+</td>
+<td>
+Saket Choudhary
+</td>
+<td>
+2021-07-06
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p><img src="figure/07_Filter_all_datasets.Rmd/unnamed-chunk-2-38.png" width="1152" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-2-38">
+Past versions of unnamed-chunk-2-38.png
+</button>
+</p>
+<div id="fig-unnamed-chunk-2-38" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/saketkc/scRNA_NB_comparison/blob/400797a515495a6738036c2e89d704dbc25d8d5a/docs/figure/07_Filter_all_datasets.Rmd/unnamed-chunk-2-38.png" target="_blank">400797a</a>
+</td>
+<td>
+Saket Choudhary
+</td>
+<td>
+2021-07-06
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <pre><code>Warning in SingleExIPlot(type = type, data = data[, x, drop = FALSE], idents =
 idents, : All cells have the same value of percent.mt.
 
 Warning in SingleExIPlot(type = type, data = data[, x, drop = FALSE], idents =
 idents, : All cells have the same value of percent.mt.</code></pre>
-<p><img src="figure/07_Filter_all_datasets.Rmd/unnamed-chunk-2-39.png" width="1152" style="display: block; margin: auto;" /><img src="figure/07_Filter_all_datasets.Rmd/unnamed-chunk-2-40.png" width="1152" style="display: block; margin: auto;" /><img src="figure/07_Filter_all_datasets.Rmd/unnamed-chunk-2-41.png" width="1152" style="display: block; margin: auto;" /><img src="figure/07_Filter_all_datasets.Rmd/unnamed-chunk-2-42.png" width="1152" style="display: block; margin: auto;" /><img src="figure/07_Filter_all_datasets.Rmd/unnamed-chunk-2-43.png" width="1152" style="display: block; margin: auto;" /><img src="figure/07_Filter_all_datasets.Rmd/unnamed-chunk-2-44.png" width="1152" style="display: block; margin: auto;" /><img src="figure/07_Filter_all_datasets.Rmd/unnamed-chunk-2-45.png" width="1152" style="display: block; margin: auto;" /><img src="figure/07_Filter_all_datasets.Rmd/unnamed-chunk-2-46.png" width="1152" style="display: block; margin: auto;" /><img src="figure/07_Filter_all_datasets.Rmd/unnamed-chunk-2-47.png" width="1152" style="display: block; margin: auto;" /><img src="figure/07_Filter_all_datasets.Rmd/unnamed-chunk-2-48.png" width="1152" style="display: block; margin: auto;" /><img src="figure/07_Filter_all_datasets.Rmd/unnamed-chunk-2-49.png" width="1152" style="display: block; margin: auto;" /><img src="figure/07_Filter_all_datasets.Rmd/unnamed-chunk-2-50.png" width="1152" style="display: block; margin: auto;" /><img src="figure/07_Filter_all_datasets.Rmd/unnamed-chunk-2-51.png" width="1152" style="display: block; margin: auto;" /><img src="figure/07_Filter_all_datasets.Rmd/unnamed-chunk-2-52.png" width="1152" style="display: block; margin: auto;" /><img src="figure/07_Filter_all_datasets.Rmd/unnamed-chunk-2-53.png" width="1152" style="display: block; margin: auto;" /><img src="figure/07_Filter_all_datasets.Rmd/unnamed-chunk-2-54.png" width="1152" style="display: block; margin: auto;" /></p>
+<p><img src="figure/07_Filter_all_datasets.Rmd/unnamed-chunk-2-39.png" width="1152" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-2-39">
+Past versions of unnamed-chunk-2-39.png
+</button>
+</p>
+<div id="fig-unnamed-chunk-2-39" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/saketkc/scRNA_NB_comparison/blob/400797a515495a6738036c2e89d704dbc25d8d5a/docs/figure/07_Filter_all_datasets.Rmd/unnamed-chunk-2-39.png" target="_blank">400797a</a>
+</td>
+<td>
+Saket Choudhary
+</td>
+<td>
+2021-07-06
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p><img src="figure/07_Filter_all_datasets.Rmd/unnamed-chunk-2-40.png" width="1152" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-2-40">
+Past versions of unnamed-chunk-2-40.png
+</button>
+</p>
+<div id="fig-unnamed-chunk-2-40" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/saketkc/scRNA_NB_comparison/blob/400797a515495a6738036c2e89d704dbc25d8d5a/docs/figure/07_Filter_all_datasets.Rmd/unnamed-chunk-2-40.png" target="_blank">400797a</a>
+</td>
+<td>
+Saket Choudhary
+</td>
+<td>
+2021-07-06
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p><img src="figure/07_Filter_all_datasets.Rmd/unnamed-chunk-2-41.png" width="1152" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-2-41">
+Past versions of unnamed-chunk-2-41.png
+</button>
+</p>
+<div id="fig-unnamed-chunk-2-41" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/saketkc/scRNA_NB_comparison/blob/400797a515495a6738036c2e89d704dbc25d8d5a/docs/figure/07_Filter_all_datasets.Rmd/unnamed-chunk-2-41.png" target="_blank">400797a</a>
+</td>
+<td>
+Saket Choudhary
+</td>
+<td>
+2021-07-06
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p><img src="figure/07_Filter_all_datasets.Rmd/unnamed-chunk-2-42.png" width="1152" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-2-42">
+Past versions of unnamed-chunk-2-42.png
+</button>
+</p>
+<div id="fig-unnamed-chunk-2-42" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/saketkc/scRNA_NB_comparison/blob/400797a515495a6738036c2e89d704dbc25d8d5a/docs/figure/07_Filter_all_datasets.Rmd/unnamed-chunk-2-42.png" target="_blank">400797a</a>
+</td>
+<td>
+Saket Choudhary
+</td>
+<td>
+2021-07-06
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p><img src="figure/07_Filter_all_datasets.Rmd/unnamed-chunk-2-43.png" width="1152" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-2-43">
+Past versions of unnamed-chunk-2-43.png
+</button>
+</p>
+<div id="fig-unnamed-chunk-2-43" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/saketkc/scRNA_NB_comparison/blob/400797a515495a6738036c2e89d704dbc25d8d5a/docs/figure/07_Filter_all_datasets.Rmd/unnamed-chunk-2-43.png" target="_blank">400797a</a>
+</td>
+<td>
+Saket Choudhary
+</td>
+<td>
+2021-07-06
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p><img src="figure/07_Filter_all_datasets.Rmd/unnamed-chunk-2-44.png" width="1152" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-2-44">
+Past versions of unnamed-chunk-2-44.png
+</button>
+</p>
+<div id="fig-unnamed-chunk-2-44" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/saketkc/scRNA_NB_comparison/blob/400797a515495a6738036c2e89d704dbc25d8d5a/docs/figure/07_Filter_all_datasets.Rmd/unnamed-chunk-2-44.png" target="_blank">400797a</a>
+</td>
+<td>
+Saket Choudhary
+</td>
+<td>
+2021-07-06
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p><img src="figure/07_Filter_all_datasets.Rmd/unnamed-chunk-2-45.png" width="1152" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-2-45">
+Past versions of unnamed-chunk-2-45.png
+</button>
+</p>
+<div id="fig-unnamed-chunk-2-45" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/saketkc/scRNA_NB_comparison/blob/400797a515495a6738036c2e89d704dbc25d8d5a/docs/figure/07_Filter_all_datasets.Rmd/unnamed-chunk-2-45.png" target="_blank">400797a</a>
+</td>
+<td>
+Saket Choudhary
+</td>
+<td>
+2021-07-06
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p><img src="figure/07_Filter_all_datasets.Rmd/unnamed-chunk-2-46.png" width="1152" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-2-46">
+Past versions of unnamed-chunk-2-46.png
+</button>
+</p>
+<div id="fig-unnamed-chunk-2-46" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/saketkc/scRNA_NB_comparison/blob/400797a515495a6738036c2e89d704dbc25d8d5a/docs/figure/07_Filter_all_datasets.Rmd/unnamed-chunk-2-46.png" target="_blank">400797a</a>
+</td>
+<td>
+Saket Choudhary
+</td>
+<td>
+2021-07-06
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p><img src="figure/07_Filter_all_datasets.Rmd/unnamed-chunk-2-47.png" width="1152" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-2-47">
+Past versions of unnamed-chunk-2-47.png
+</button>
+</p>
+<div id="fig-unnamed-chunk-2-47" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/saketkc/scRNA_NB_comparison/blob/400797a515495a6738036c2e89d704dbc25d8d5a/docs/figure/07_Filter_all_datasets.Rmd/unnamed-chunk-2-47.png" target="_blank">400797a</a>
+</td>
+<td>
+Saket Choudhary
+</td>
+<td>
+2021-07-06
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p><img src="figure/07_Filter_all_datasets.Rmd/unnamed-chunk-2-48.png" width="1152" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-2-48">
+Past versions of unnamed-chunk-2-48.png
+</button>
+</p>
+<div id="fig-unnamed-chunk-2-48" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/saketkc/scRNA_NB_comparison/blob/400797a515495a6738036c2e89d704dbc25d8d5a/docs/figure/07_Filter_all_datasets.Rmd/unnamed-chunk-2-48.png" target="_blank">400797a</a>
+</td>
+<td>
+Saket Choudhary
+</td>
+<td>
+2021-07-06
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p><img src="figure/07_Filter_all_datasets.Rmd/unnamed-chunk-2-49.png" width="1152" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-2-49">
+Past versions of unnamed-chunk-2-49.png
+</button>
+</p>
+<div id="fig-unnamed-chunk-2-49" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/saketkc/scRNA_NB_comparison/blob/400797a515495a6738036c2e89d704dbc25d8d5a/docs/figure/07_Filter_all_datasets.Rmd/unnamed-chunk-2-49.png" target="_blank">400797a</a>
+</td>
+<td>
+Saket Choudhary
+</td>
+<td>
+2021-07-06
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p><img src="figure/07_Filter_all_datasets.Rmd/unnamed-chunk-2-50.png" width="1152" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-2-50">
+Past versions of unnamed-chunk-2-50.png
+</button>
+</p>
+<div id="fig-unnamed-chunk-2-50" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/saketkc/scRNA_NB_comparison/blob/400797a515495a6738036c2e89d704dbc25d8d5a/docs/figure/07_Filter_all_datasets.Rmd/unnamed-chunk-2-50.png" target="_blank">400797a</a>
+</td>
+<td>
+Saket Choudhary
+</td>
+<td>
+2021-07-06
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p><img src="figure/07_Filter_all_datasets.Rmd/unnamed-chunk-2-51.png" width="1152" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-2-51">
+Past versions of unnamed-chunk-2-51.png
+</button>
+</p>
+<div id="fig-unnamed-chunk-2-51" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/saketkc/scRNA_NB_comparison/blob/400797a515495a6738036c2e89d704dbc25d8d5a/docs/figure/07_Filter_all_datasets.Rmd/unnamed-chunk-2-51.png" target="_blank">400797a</a>
+</td>
+<td>
+Saket Choudhary
+</td>
+<td>
+2021-07-06
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p><img src="figure/07_Filter_all_datasets.Rmd/unnamed-chunk-2-52.png" width="1152" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-2-52">
+Past versions of unnamed-chunk-2-52.png
+</button>
+</p>
+<div id="fig-unnamed-chunk-2-52" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/saketkc/scRNA_NB_comparison/blob/400797a515495a6738036c2e89d704dbc25d8d5a/docs/figure/07_Filter_all_datasets.Rmd/unnamed-chunk-2-52.png" target="_blank">400797a</a>
+</td>
+<td>
+Saket Choudhary
+</td>
+<td>
+2021-07-06
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p><img src="figure/07_Filter_all_datasets.Rmd/unnamed-chunk-2-53.png" width="1152" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-2-53">
+Past versions of unnamed-chunk-2-53.png
+</button>
+</p>
+<div id="fig-unnamed-chunk-2-53" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/saketkc/scRNA_NB_comparison/blob/400797a515495a6738036c2e89d704dbc25d8d5a/docs/figure/07_Filter_all_datasets.Rmd/unnamed-chunk-2-53.png" target="_blank">400797a</a>
+</td>
+<td>
+Saket Choudhary
+</td>
+<td>
+2021-07-06
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p><img src="figure/07_Filter_all_datasets.Rmd/unnamed-chunk-2-54.png" width="1152" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-2-54">
+Past versions of unnamed-chunk-2-54.png
+</button>
+</p>
+<div id="fig-unnamed-chunk-2-54" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/saketkc/scRNA_NB_comparison/blob/400797a515495a6738036c2e89d704dbc25d8d5a/docs/figure/07_Filter_all_datasets.Rmd/unnamed-chunk-2-54.png" target="_blank">400797a</a>
+</td>
+<td>
+Saket Choudhary
+</td>
+<td>
+2021-07-06
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <pre><code>Warning in SingleExIPlot(type = type, data = data[, x, drop = FALSE], idents =
 idents, : All cells have the same value of percent.mt.
 
 Warning in SingleExIPlot(type = type, data = data[, x, drop = FALSE], idents =
 idents, : All cells have the same value of percent.mt.</code></pre>
-<p><img src="figure/07_Filter_all_datasets.Rmd/unnamed-chunk-2-55.png" width="1152" style="display: block; margin: auto;" /><img src="figure/07_Filter_all_datasets.Rmd/unnamed-chunk-2-56.png" width="1152" style="display: block; margin: auto;" /><img src="figure/07_Filter_all_datasets.Rmd/unnamed-chunk-2-57.png" width="1152" style="display: block; margin: auto;" /><img src="figure/07_Filter_all_datasets.Rmd/unnamed-chunk-2-58.png" width="1152" style="display: block; margin: auto;" /></p>
+<p><img src="figure/07_Filter_all_datasets.Rmd/unnamed-chunk-2-55.png" width="1152" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-2-55">
+Past versions of unnamed-chunk-2-55.png
+</button>
+</p>
+<div id="fig-unnamed-chunk-2-55" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/saketkc/scRNA_NB_comparison/blob/400797a515495a6738036c2e89d704dbc25d8d5a/docs/figure/07_Filter_all_datasets.Rmd/unnamed-chunk-2-55.png" target="_blank">400797a</a>
+</td>
+<td>
+Saket Choudhary
+</td>
+<td>
+2021-07-06
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p><img src="figure/07_Filter_all_datasets.Rmd/unnamed-chunk-2-56.png" width="1152" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-2-56">
+Past versions of unnamed-chunk-2-56.png
+</button>
+</p>
+<div id="fig-unnamed-chunk-2-56" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/saketkc/scRNA_NB_comparison/blob/400797a515495a6738036c2e89d704dbc25d8d5a/docs/figure/07_Filter_all_datasets.Rmd/unnamed-chunk-2-56.png" target="_blank">400797a</a>
+</td>
+<td>
+Saket Choudhary
+</td>
+<td>
+2021-07-06
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p><img src="figure/07_Filter_all_datasets.Rmd/unnamed-chunk-2-57.png" width="1152" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-2-57">
+Past versions of unnamed-chunk-2-57.png
+</button>
+</p>
+<div id="fig-unnamed-chunk-2-57" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/saketkc/scRNA_NB_comparison/blob/400797a515495a6738036c2e89d704dbc25d8d5a/docs/figure/07_Filter_all_datasets.Rmd/unnamed-chunk-2-57.png" target="_blank">400797a</a>
+</td>
+<td>
+Saket Choudhary
+</td>
+<td>
+2021-07-06
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p><img src="figure/07_Filter_all_datasets.Rmd/unnamed-chunk-2-58.png" width="1152" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-2-58">
+Past versions of unnamed-chunk-2-58.png
+</button>
+</p>
+<div id="fig-unnamed-chunk-2-58" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/saketkc/scRNA_NB_comparison/blob/400797a515495a6738036c2e89d704dbc25d8d5a/docs/figure/07_Filter_all_datasets.Rmd/unnamed-chunk-2-58.png" target="_blank">400797a</a>
+</td>
+<td>
+Saket Choudhary
+</td>
+<td>
+2021-07-06
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <br>
 <p>
 <button type="button" class="btn btn-default btn-workflowr btn-workflowr-sessioninfo" data-toggle="collapse" data-target="#workflowr-sessioninfo" style="display: block;">
@@ -562,14 +2809,14 @@ loaded via a namespace (and not attached):
  [85] parallelly_1.26.0      RcppAnnoy_0.0.18       plyr_1.8.6            
  [88] magrittr_2.0.1         R6_2.5.0               generics_0.1.0        
  [91] DBI_1.1.1              withr_2.4.2            mgcv_1.8-33           
- [94] pillar_1.6.1           fitdistrplus_1.1-5     survival_3.2-7        
- [97] abind_1.4-5            tibble_3.1.2           future.apply_1.7.0    
-[100] crayon_1.4.1           KernSmooth_2.23-17     utf8_1.2.1            
-[103] spatstat.geom_2.2-0    plotly_4.9.4.1         rmarkdown_2.9         
-[106] grid_4.0.0             data.table_1.14.0      git2r_0.26.1          
-[109] digest_0.6.27          xtable_1.8-4           tidyr_1.1.3           
-[112] httpuv_1.6.1           munsell_0.5.0          viridisLite_0.4.0     
-[115] bslib_0.2.5.1         </code></pre>
+ [94] pillar_1.6.1           whisker_0.4            fitdistrplus_1.1-5    
+ [97] survival_3.2-7         abind_1.4-5            tibble_3.1.2          
+[100] future.apply_1.7.0     crayon_1.4.1           KernSmooth_2.23-17    
+[103] utf8_1.2.1             spatstat.geom_2.2-0    plotly_4.9.4.1        
+[106] rmarkdown_2.9          grid_4.0.0             data.table_1.14.0     
+[109] git2r_0.26.1           digest_0.6.27          xtable_1.8-4          
+[112] tidyr_1.1.3            httpuv_1.6.1           munsell_0.5.0         
+[115] viridisLite_0.4.0      bslib_0.2.5.1         </code></pre>
 </div>
 </div>
 
