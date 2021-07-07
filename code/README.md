@@ -1,3 +1,3 @@
 # Code
 
-Save command-line scripts and shared R code here.
+All scripts here were run through Snakemake.
