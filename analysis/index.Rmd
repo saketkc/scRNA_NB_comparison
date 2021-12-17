@@ -28,7 +28,10 @@ editor_options:
 
 # Run DE Simulation 
 
-- Run `07A_simulate_muscat.R` and `07B_process_muscat.R`
+- Run `07A_simulate_muscat_mast_wilcox.R`
+- Run `07A_simulate_muscat_deseq2.R`
+- Run `07B_process_muscat_mast_wilcox.R`
+- Run `07B_process_muscat_deseq2.R`
 
 
 # Figures
