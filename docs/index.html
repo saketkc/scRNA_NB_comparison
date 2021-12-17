@@ -336,16 +336,16 @@ This reproducible <a href="http://rmarkdown.rstudio.com">R Markdown</a> analysis
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomsaketkcscRNANBcomparisontree8afc4867872b849d56f119090f10b0bf46fa9bd4targetblank8afc486a"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/saketkc/scRNA_NB_comparison/tree/8afc4867872b849d56f119090f10b0bf46fa9bd4" target="_blank">8afc486</a> </a>
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomsaketkcscRNANBcomparisontree0848de4a4e640d62ac967e2506beaf28dd8ac489targetblank0848de4a"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/saketkc/scRNA_NB_comparison/tree/0848de4a4e640d62ac967e2506beaf28dd8ac489" target="_blank">0848de4</a> </a>
 </p>
 </div>
-<div id="strongRepositoryversionstrongahrefhttpsgithubcomsaketkcscRNANBcomparisontree8afc4867872b849d56f119090f10b0bf46fa9bd4targetblank8afc486a" class="panel-collapse collapse">
+<div id="strongRepositoryversionstrongahrefhttpsgithubcomsaketkcscRNANBcomparisontree0848de4a4e640d62ac967e2506beaf28dd8ac489targetblank0848de4a" class="panel-collapse collapse">
 <div class="panel-body">
 <p>
 Great! You are using Git for version control. Tracking code development and connecting the code version to the results is critical for reproducibility.
 </p>
 <p>
-The results in this page were generated with repository version <a href="https://github.com/saketkc/scRNA_NB_comparison/tree/8afc4867872b849d56f119090f10b0bf46fa9bd4" target="_blank">8afc486</a>. See the <em>Past versions</em> tab to see a history of the changes made to the R Markdown and HTML files.
+The results in this page were generated with repository version <a href="https://github.com/saketkc/scRNA_NB_comparison/tree/0848de4a4e640d62ac967e2506beaf28dd8ac489" target="_blank">0848de4</a>. See the <em>Past versions</em> tab to see a history of the changes made to the R Markdown and HTML files.
 </p>
 <p>
 Note that you need to be careful to ensure that all relevant files for the analysis have been committed to Git prior to generating the results (you can use <code>wflow_publish</code> or <code>wflow_git_commit</code>). workflowr only checks the R Markdown file, but you know if there are other scripts or data files that it depends on. Below is the status of the Git repository when the results were generated:
@@ -362,11 +362,12 @@ Ignored files:
 
 Untracked files:
     Untracked:  code/02_run_seurat_noclip.R
-    Untracked:  code/07AA_deseq2_muscat_simulate.R
-    Untracked:  code/07A_muscat_simulate.R
+    Untracked:  code/07A_muscat_simulate_deseq2.R
+    Untracked:  code/07A_muscat_simulate_mast_wilcox.R
     Untracked:  code/07A_simulate_muscat.R
-    Untracked:  code/07BB_deseq2_muscat_process.R
     Untracked:  code/07B_muscat_process.R
+    Untracked:  code/07B_muscat_process_deseq2.R
+    Untracked:  code/07B_muscat_process_mast_wilcox.R
     Untracked:  code/07B_process_muscat.R
     Untracked:  code/08_run_presto.R
     Untracked:  code/17A_HEK_SS3_dropseq.Rmd
@@ -486,6 +487,40 @@ Message
 Rmd
 </td>
 <td>
+<a href="https://github.com/saketkc/scRNA_NB_comparison/blob/0848de4a4e640d62ac967e2506beaf28dd8ac489/analysis/index.Rmd" target="_blank">0848de4</a>
+</td>
+<td>
+Saket Choudhary
+</td>
+<td>
+2021-12-17
+</td>
+<td>
+workflowr::wflow_publish(“analysis/index.Rmd”)
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/saketkc/scRNA_NB_comparison/0a2e80d437d2c72fc6fd86aeda6c904602c9e67d/docs/index.html" target="_blank">0a2e80d</a>
+</td>
+<td>
+Saket Choudhary
+</td>
+<td>
+2021-12-17
+</td>
+<td>
+Build site.
+</td>
+</tr>
+<tr>
+<td>
+Rmd
+</td>
+<td>
 <a href="https://github.com/saketkc/scRNA_NB_comparison/blob/8afc4867872b849d56f119090f10b0bf46fa9bd4/analysis/index.Rmd" target="_blank">8afc486</a>
 </td>
 <td>
@@ -596,7 +631,10 @@ Start workflowr project.
 <div id="run-de-simulation" class="section level1">
 <h1>Run DE Simulation</h1>
 <ul>
-<li>Run <code>07A_simulate_muscat.R</code> and <code>07B_process_muscat.R</code></li>
+<li>Run <code>07A_simulate_muscat_mast_wilcox.R</code></li>
+<li>Run <code>07A_simulate_muscat_deseq2.R</code></li>
+<li>Run <code>07B_process_muscat_mast_wilcox.R</code></li>
+<li>Run <code>07B_process_muscat_deseq2.R</code></li>
 </ul>
 </div>
 <div id="figures" class="section level1">
