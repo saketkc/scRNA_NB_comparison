@@ -50,6 +50,7 @@ rule run_poisson_glm:
     shell:
         r"""Rscript --vanilla {input.scriptx} {input.rds} {params.ncells} {params.glmtype} {output}"""
 
+
 rule run_seurat:
     input:
         rds=RAWDATA_DIR_RDS + "/" + "{sample_name}.rds",

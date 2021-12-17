@@ -13,7 +13,6 @@ SCRIPTS_DIR = abspath("../code")
 SAMPLE_NAMES = ["PBMC__Smart-seq3"]
 
 
-
 workdir: OUTPUT_DIR
 
 

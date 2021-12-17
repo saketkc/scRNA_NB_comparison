@@ -36,7 +36,7 @@ gc()
 
 ## sct2
 start_time <- Sys.time()
-vst.out.sct2 <- SCTransform(obj, method = "glmGamPoi_offset", exclude_poisson=TRUE, 
+vst.out.sct2 <- SCTransform(obj, method = "glmGamPoi_offset", exclude_poisson=TRUE, min_variance = "umi_median",
                              ncells = ncells,  do.correct.umi=FALSE, conserve.memory = TRUE, verbosity = 2)
 end_time <- Sys.time()
 sct2_difftime <-  as.numeric( as.numeric(end_time-start_time, units="secs"))

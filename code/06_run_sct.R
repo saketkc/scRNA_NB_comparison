@@ -26,6 +26,7 @@ if (sct_method == "vst2"){
                         ncells = ncells , 
                         n_genes = n_genes,
                         method = "glmGamPoi_offset",
+                        min_variance = "umi_median",
                         exclude_poisson = TRUE,
                         conserve.memory = TRUE,
                         seed.use = seed,

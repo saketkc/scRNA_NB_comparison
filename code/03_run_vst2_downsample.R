@@ -32,6 +32,7 @@ start_time <- Sys.time()
 vst.out.sct2 <- sctransform::vst(
   umi = cm, 
   method = "glmGamPoi_offset",
+  min_variance = "umi_median",
   exclude_poisson = TRUE,
   n_genes = 2000, n_cells = 5000,
   verbosity = 0
