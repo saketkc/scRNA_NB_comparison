@@ -1,0 +1,353 @@
+---
+title: "Figure 4"
+output:
+  html_document:
+    df_print: paged
+---
+
+```{r}
+suppressMessages({
+  library(Seurat)
+  library(ggpubr)
+  library(ggridges)
+  library(patchwork)
+  library(dplyr)
+  library(ggupset)
+  library(tidyverse)
+  library(ggplot2)
+  library(xtable)
+  library(ComplexUpset)
+  library(SeuratData)
+
+})
+data("bmcite")
+knitr::opts_chunk$set(warning = FALSE, message = FALSE)
+
+theme_set(theme_pubr())
+```
+
+# Meta marker coverage
+
+```{r, fig.width=12, fig.height=5}
+datasets <- read.csv(here::here("data/datasets.csv"))
+n_markers <- readRDS(here::here("output/vargenes/n_markers.rds"))
+# select datasets where we detect at least 3000 markers
+n_markers_3k <- n_markers %>% filter(n_markers > 2999)
+
+
+var_genes_df <- readRDS(here::here("output/vargenes/compare_variable_genes_df_long.rds"))
+var_genes_df <- left_join(var_genes_df, datasets, by = "sample_name")
+var_genes_df <- var_genes_df[var_genes_df$sample_name %in% n_markers_3k$sample_name,]
+
+var_genes_df_summary2 <- var_genes_df %>%
+  group_by(technology, variable, rank) %>%
+  summarise(median_overlap = median(value)) %>%
+  ungroup()
+
+var_genes_df_summary3 <- var_genes_df %>%
+  group_by(tissue, variable, rank) %>%
+  summarise(median_overlap = median(value)) %>%
+  ungroup()
+
+
+
+
+var_genes_prop_df <- readRDS(here::here("output/vargenes/compare_variable_genes_prop_df_long.rds"))
+var_genes_prop_df <- left_join(var_genes_prop_df, datasets, by = "sample_name")
+var_genes_prop_df <- var_genes_prop_df[var_genes_prop_df$sample_name %in% n_markers_3k$sample_name,]
+
+var_genes_prop_df_summary2 <- var_genes_prop_df %>%
+  group_by(technology, variable, rank) %>%
+  summarise(median_overlap = median(value)) %>%
+  ungroup()
+var_genes_prop_df_summary3 <- var_genes_prop_df %>%
+  group_by(tissue, variable, rank) %>%
+  summarise(median_overlap = median(value)) %>%
+  ungroup()
+
+var_genes_prop_df_summary2$variable <- factor(as.character(var_genes_prop_df_summary2$variable),
+  levels = c("offset100", "offset10", "sct", "sct2")
+)
+
+var_genes_prop_df_summary3$variable <- factor(as.character(var_genes_prop_df_summary3$variable),
+  levels = c("offset100", "offset10", "sct", "sct2")
+)
+
+labels <- c(expression(theta == 100), expression(theta == 10), "SCT v1", "SCT v2")
+names(labels) <- c("offset100", "offset10", "sct", "sct2")
+
+
+p1.tech <- ggplot(var_genes_prop_df_summary2, aes(rank, median_overlap, color = variable)) +
+  geom_point(size = 0.1) +
+  facet_wrap(~technology, scales = "free_y") +
+  # geom_line() +
+  scale_color_brewer(type = "qual", palette = "Set1", name = "", labels = labels) +
+  guides(colour = guide_legend(override.aes = list(size = 2))) +
+  xlab("Variable feature rank") +
+  ylab("Median proportion of marker genes") 
+
+
+
+p1.system <- ggplot(var_genes_prop_df_summary3, aes(rank, median_overlap, color = variable)) +
+  geom_point(size = 0.1) +
+  facet_wrap(~tissue, scales = "free_y", ncol = 4) +
+  # geom_line() +
+  scale_color_brewer(type = "qual", palette = "Set2", name = "", labels = labels) +
+  guides(colour = guide_legend(override.aes = list(size = 2))) +
+  xlab("Variable feature rank") +
+  ylab("Median proportion of marker genes") #+ theme(legend.position = c(0.9, 0.24),legend.background=element_blank(), legend.text.align = 0)
+p1.system
+
+summary_df <- var_genes_prop_df_summary3[var_genes_prop_df_summary3$rank %in% c(1000,2000,3000), ]
+
+print(xtable(summary_df, type = "latex", digits=3), include.rownames = FALSE)
+
+summary_df <- tidyr::spread(summary_df, key = "variable", value = "median_overlap")
+print(xtable(summary_df, type = "latex", digits=3), include.rownames = FALSE)
+
+summary_df <- var_genes_df_summary3[var_genes_df_summary3$rank %in% c(1000,2000,3000), ]
+
+summary_df <- tidyr::spread(summary_df, key = "variable", value = "median_overlap")
+print(xtable(summary_df, type = "latex", digits=1), include.rownames = FALSE)
+```
+
+
+# Contrast feature lists
+
+```{r}
+datasets <- read.csv(here::here("data/datasets.csv"))
+read_gene_attr <- function(filepath) {
+  gene_attr <- read.csv(filepath, row.names = 1)
+  gene_attr$gene <- rownames(gene_attr)
+  gene_attr <- gene_attr %>%
+    arrange(desc(residual_variance)) %>%
+    pull(gene)
+  return(gene_attr[1:3000])
+}
+
+dataset_sub <- datasets[datasets$key == "PBMC__ChromiumV3", ]
+
+overlap_list <- list()
+overlap_list_prop <- list()
+sample_name <- unique(dataset_sub$sample_name)
+dataset <- unique(dataset_sub$key)
+all_genes <- rownames(read.csv(here::here("output/snakemake_output/seurat_output", dataset, "glmGamPoi", "gene_attr.csv"), row.names = 1))
+gene_attr <- read.csv(here::here("output/snakemake_output/seurat_output", dataset, "glmGamPoi", "gene_attr.csv"), row.names = 1)
+gene_attr$gene <- rownames(gene_attr)
+sct <- read_gene_attr(here::here("output/snakemake_output/seurat_output", dataset, "glmGamPoi", "gene_attr.csv"))
+
+offset100 <- read_gene_attr(here::here("output/snakemake_output/seurat_output", dataset, "offset-100", "gene_attr.csv"))
+offset10 <- read_gene_attr(here::here("output/snakemake_output/seurat_output", dataset, "offset-10", "gene_attr.csv"))
+
+sct2 <- read_gene_attr(here::here("output/snakemake_output/seurat_output", dataset, "vst2", "gene_attr.csv"))
+
+
+presto_output <- readRDS(here::here("output/snakemake_output/presto_output", dataset, "presto_markers.rds"))
+#marker_genes <- unique(presto_output %>% filter(p_val_adj < 0.01) %>% filter(avg_log2FC > 0.5) %>% arrange(p_val_adj) %>% pull(gene))
+
+presto_subset <- presto_output %>%
+    group_by(gene) %>%
+    arrange(desc(avg_log2FC)) %>%
+    filter(row_number() == 1) %>%
+    ungroup() %>%
+    filter(p_val < 0.05) %>%
+    filter(avg_log2FC > 0.25)
+
+  # marker_genes <- unique(presto_output %>% filter(p_val_adj < 0.01) %>% filter(avg_log2FC > 0.5) %>% arrange(p_val_adj) %>% pull(gene))
+  marker_genes <- presto_subset %>%
+    arrange(desc(avg_log2FC), p_val_adj) %>%
+    pull(gene)
+  if (length(marker_genes) > length(sct2)) {
+    marker_genes <- marker_genes[1:length(sct2)]
+  }
+  
+all_methods <- list(sct2 = sct2, offset10 = offset10, offset100 = offset100, sct = sct)
+
+gene_methods_list <- list()
+index <- 1
+for (gene in unique(unlist(all_methods))) {
+  gene_methods <- c()
+  for (method in names(all_methods)) {
+    if (gene %in% all_methods[[method]]) {
+      gene_methods <- c(gene_methods, method)
+    }
+  }
+  gene_methods_list[[index]] <- list(gene = gene, methods = gene_methods)
+  index <- index + 1
+}
+gene_methods_list_df <- data.frame(gene = names(gene_methods_list))
+gene_methods_list_df$methods <- gene_methods_list[gene_methods_list_df$gene]
+
+
+gene_methods_df <- data.frame(gene = unique(unlist(all_methods)))
+rownames(gene_methods_df) <- gene_methods_df$gene
+for (method in names(all_methods)) {
+  gene_methods_df[, method] <- 0
+  gene_methods_df[all_methods[[method]], method] <- 1
+}
+gene_methods_df <- left_join(gene_methods_df, gene_attr, by = "gene")
+gene_methods_df$marker_prop <- 0
+gene_methods_df$marker_prop[gene_methods_df$gene %in% marker_genes] <- 100*1/length(marker_genes)
+
+gene_methods_df$is_marker <- "No"
+gene_methods_df$is_marker[gene_methods_df$gene %in% marker_genes] <- "Yes"
+
+gene_methods_df <- as_tibble(gene_methods_df)
+
+gene_methods_df[, "SCT v1"] <- gene_methods_df$sct
+gene_methods_df[, "SCT v2"] <- gene_methods_df$sct2
+gene_methods_df[, "Offset 100"] <- gene_methods_df$offset100
+gene_methods_df[, "Offset 10"] <- gene_methods_df$offset10
+sct_sp_genes <- setdiff(sct, union(sct2, union(offset10, offset100)))
+summary(gene_methods_df[gene_methods_df$gene %in% sct_sp_genes,] %>% pull(gmean))
+
+sct2_sp_genes <- setdiff(sct2, union(sct, union(offset10, offset100)))
+summary(gene_methods_df[gene_methods_df$gene %in% sct2_sp_genes,] %>% pull(gmean))
+length(intersect(sct2_sp_genes, marker_genes))
+
+p2 <- upset(
+  gene_methods_df,
+  c("SCT v1", "SCT v2", "Offset 100", "Offset 10"),
+  base_annotations=list(
+        'Intersection size'=intersection_size(
+            counts=TRUE,
+            mapping=aes(fill=is_marker), 
+
+        ) + scale_fill_brewer(type="qual", palette =  "Dark2", name = "Top 3000 marker")
+  ),
+  annotations = list(
+    "log2(1 + Gene mean)" = ggplot(mapping = aes(x = intersection, y = log(1+gmean, base = 2)))
+    +
+      ggbeeswarm::geom_quasirandom(groupOnX = TRUE, size = 0.1) +
+      stat_summary(
+        geom = "crossbar", color = "red",
+        fun = median, fun.min = median, fun.max = median,
+        fatten = 1.2, width = 0.5
+      ) + ylim(0,3)
+  ),
+ 
+  min_size = 10,
+  width_ratio = 0.1,
+  set_sizes = FALSE
+)
+p2 
+```
+
+
+
+
+```{r}
+all_fdr_tpr_df_melt <- readRDS(here::here("output/muscat_simulation/results/all_fdr_tpr_df_melt.rds"))
+all_fdr_tpr_df_melt[all_fdr_tpr_df_melt$method == "SCT2", "method"] <- "SCT v2"
+all_fdr_tpr_df_melt[all_fdr_tpr_df_melt$method == "SCT", "method"] <- "SCT v1"
+all_fdr_tpr_df_melt$method <- factor(all_fdr_tpr_df_melt$method, levels = c("lognorm", "scran", "SCT v1", "SCT v2"))
+
+labels <- c("LogNorm", "Scran", "SCT v1", "SCT v2")
+names(labels) <- c("LogNorm", "Scran", "SCT v1", "SCT v2")
+
+
+p3 <- ggplot(all_fdr_tpr_df_melt[all_fdr_tpr_df_melt$de_percent > 0.01, ], aes(FDR, TPR, color = method)) +
+  geom_point() +
+  geom_line() +
+  geom_vline(xintercept = c(0.01, 0.05, 0.1), linetype = "dashed") +
+  xlim(0, 1) +
+  scale_x_continuous(trans = "log", breaks = c(0.01, 0.05, 0.1, 0.5,1), guide = guide_axis(angle = 50)) +
+  facet_wrap(~de_percent, ncol = 4) +
+  theme_pubr() +
+  theme(
+    panel.grid.minor = element_line(size = (0.2), colour = "grey")
+  ) +
+  scale_color_brewer(type = "qual", palette = "Dark2", name = "", labels = labels) + 
+  theme(axis.text.x=element_text(size=rel(0.7), angle=45))
+p3
+```
+
+```{r}
+nk_markers <- readRDS(here::here("output/simulation_NK_downsampling/NK_downsampling_DE_sig.rds"))
+
+nk_markers$method <- factor(nk_markers$method, levels = c("LogNorm", "Scran", "SCT v1", "SCT v2"))
+nk_markers_summary <- nk_markers %>%
+  group_by(method) %>%
+  summarise(count = n())
+nk_markers_empty <- data.frame(method = c("LogNorm", "Scran", "SCT v1", "SCT v2"))
+nk_markers_empty$count <- 1
+nk_markers_summary2 <- rbind(nk_markers_empty, nk_markers_summary)
+nk_markers_summary2 <- nk_markers_summary2 %>%
+  group_by(method) %>%
+  summarise(count = sum(count))
+
+
+p4 <- ggplot(nk_markers_summary2, aes(method, y = count, fill = method)) +
+  geom_bar(width = 0.5, stat = "identity") +
+  scale_y_log10() +
+  scale_fill_brewer(type = "qual", palette = "Dark2", name = "") +
+  ylab("Number of DE genes") +
+  xlab("") +
+  scale_x_discrete(guide = guide_axis(angle = 30)) +
+  NoLegend()
+p4
+```
+
+
+
+
+
+```{r, fig.width=16, fig.height=7}
+layout <- "
+AAABB
+CCDBB"
+
+p <- p1.system + p2 + p3 + p4
+p + plot_layout(design = layout) & plot_annotation(tag_levels = "A") & theme(plot.tag = element_text(face = "bold"))
+ggsave(here::here("output/figures/Figure4.pdf"))#, width = 14, height = 8)
+ggsave(here::here("output/figures/Figure4.png"))#, width = 12, height = 8)
+
+```
+
+
+```{r, fig.width=10, fig.height=10}
+
+nbfits.sct <- readRDS(here::here("output/11C_VST/nbfits.sct.rds"))
+nbfits.sct2 <- readRDS(here::here("output/11C_VST/nbfits.sct2.rds"))
+
+pl <- VlnPlot(bmcite, "RP11-290C10.1", slot = "counts", group.by = "celltype.l2") + NoLegend()
+pr <- VlnPlot(bmcite, "CD86", slot = "counts", group.by = "celltype.l2") + NoLegend()
+px <- pl | pr
+
+p1 <- ggplot(nbfits.sct, aes(umi, res, color = gene)) +
+  geom_jitter(alpha = 0.5, size=0.5) +
+  scale_color_manual(values = RColorBrewer::brewer.pal(3, "Set1"), name = "") +
+  ylab("Pearson residual") + xlab("UMI")
+p3 <- ggplot(nbfits.sct, aes(sd, res, color = gene)) +
+  geom_jitter(alpha = 0.5, size=0.5) +
+  scale_color_manual(values = RColorBrewer::brewer.pal(3, "Set1"), name = "") +
+  ylab("Pearson residual") + xlab("Standard deviation (model)")
+pup <- p1 | p3 + patchwork::plot_annotation(title = "sctransform (v1)")
+
+p1 <- ggplot(nbfits.sct2, aes(umi, res, color = gene)) +
+  geom_jitter(alpha = 0.5, size=0.5) +
+  scale_color_manual(values = RColorBrewer::brewer.pal(3, "Set1"), name = "") +
+  ylab("Pearson residual") + xlab("UMI")
+p3 <- ggplot(nbfits.sct2, aes(sd, res, color = gene)) +
+  geom_jitter(alpha = 0.5, size=0.5) +
+  scale_color_manual(values = RColorBrewer::brewer.pal(3, "Set1"), name = "") +
+  ylab("Pearson residual") + xlab("Standard deviation (model)")
+pdown <- p1 | p3 + patchwork::plot_annotation(title = "sctransform (v2)")
+
+#px / pup / pdown
+layout <- "
+AB
+CD
+EF"
+
+p <- px / pup / pdown
+p & plot_annotation(tag_levels = "A") & theme(plot.tag = element_text(face = "bold"))
+
+ggsave(here::here("output/figures/varcomp.pdf"))
+ggsave(here::here("output/figures/varcomp.png"))
+```
+
+
+```{r}
+sessionInfo()
+```

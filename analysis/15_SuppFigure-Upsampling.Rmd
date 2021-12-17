@@ -242,7 +242,7 @@ ggplot(all_results, aes(gmean, theta, color = theta_type)) +
   theme_pubr() +
   theme(legend.title = element_blank())
 
-dir.create(here::here("output", "figures"))
+dir.create(here::here("output", "figures"), showWarnings = F)
 ggsave(here::here("output", "figures/pbmc_ss3_vs_simulation.pdf"))
 ```
 

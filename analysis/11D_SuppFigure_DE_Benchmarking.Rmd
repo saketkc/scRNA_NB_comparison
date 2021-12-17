@@ -1,0 +1,215 @@
+---
+title: "R Notebook"
+output:
+  html_document:
+    df_print: paged
+---
+
+
+```{r}
+suppressMessages({
+  library(Seurat)
+  library(ggpubr)
+  library(ggridges)
+  library(patchwork)
+  library(dplyr)
+  library(ggupset)
+  library(tidyverse)
+  library(ggplot2)
+  library(xtable)
+  library(ComplexUpset)
+  library(SeuratData)
+})
+data("bmcite")
+knitr::opts_chunk$set(warning = FALSE, message = FALSE)
+theme_set(theme_pubr())
+```
+
+```{r}
+all_fdr_tpr_df_melt1 <- readRDS(here::here("output/muscat_simulation/results/all_fdr_tpr_df_melt.rds"))
+all_fdr_tpr_df_melt2 <- readRDS(here::here("output/muscat_simulation/results/all_fdr_tpr_df_melt_DESeq2.rds"))
+all_fdr_tpr_df_melt <- rbind(all_fdr_tpr_df_melt1, all_fdr_tpr_df_melt2)
+
+all_fdr_tpr_df_melt$method <- as.character(all_fdr_tpr_df_melt$method)
+
+
+
+# For DESeq2 - input is always raw counts
+# For MAST - input is LogNorm or Scran or log(corrected counts) or pearson residuals
+# For wilcoxon - input is either LogNorm or Scran or log(corrected counts) or pearson residual
+
+all_fdr_tpr_df_melt <- all_fdr_tpr_df_melt %>% filter(test.use != "DESeq2" && method != "scran")
+
+
+
+all_fdr_tpr_df_melt[all_fdr_tpr_df_melt$test.use == "negbinom", "test.use"] <- "NB"
+all_fdr_tpr_df_melt[all_fdr_tpr_df_melt$test.use == "wilcox", "test.use"] <- "Wilcoxon"
+
+all_fdr_tpr_df_melt[(all_fdr_tpr_df_melt$test.use == "DESeq2") & (all_fdr_tpr_df_melt$method == "lognorm"), "method"] <- "Raw counts"
+all_fdr_tpr_df_melt[(all_fdr_tpr_df_melt$test.use == "NB") & (all_fdr_tpr_df_melt$method == "lognorm"), "method"] <- "Raw counts"
+
+all_fdr_tpr_df_melt$method[all_fdr_tpr_df_melt$method == "SCT v1"] <- "Pearson residuals (SCT v1)"
+all_fdr_tpr_df_melt$method[all_fdr_tpr_df_melt$method == "SCT v2"] <- "Corrected counts (SCT v2)"
+all_fdr_tpr_df_melt$method[all_fdr_tpr_df_melt$method == "scran"] <- "Scran"
+all_fdr_tpr_df_melt$method[all_fdr_tpr_df_melt$method == "lognorm"] <- "LogNorm"
+
+all_fdr_tpr_df_melt <- all_fdr_tpr_df_melt[(all_fdr_tpr_df_melt$method != "Pearson residuals (SCT v1)") | (all_fdr_tpr_df_melt$test.use != "DESeq2"), ]
+
+all_fdr_tpr_df_melt <- all_fdr_tpr_df_melt[(all_fdr_tpr_df_melt$method != "Pearson residuals (SCT v1)") | (all_fdr_tpr_df_melt$test.use != "NB"), ]
+
+all_fdr_tpr_df_melt <- all_fdr_tpr_df_melt[all_fdr_tpr_df_melt$test.use!="NB",]
+
+all_fdr_tpr_df_melt$method <- factor(all_fdr_tpr_df_melt$method, levels = c("LogNorm", "Scran", "Pearson residuals (SCT v1)", "Raw counts", "Corrected counts (SCT v2)"))
+
+labels <- c("LogNorm", "Scran", "Pearson residuals (SCT v1)", "Raw counts", "Corrected counts (SCT v2)")
+names(labels) <- c("LogNorm", "Scran", "Pearson residuals (SCT v1)", "Raw counts", "Corrected counts (SCT v2)")
+
+p3 <- ggplot(all_fdr_tpr_df_melt[all_fdr_tpr_df_melt$de_percent > 0.01, ], aes(FDR, TPR, color = method)) +
+  geom_point() +
+  geom_line() +
+  geom_vline(xintercept = c(0.01, 0.05, 0.1), linetype = "dashed") +
+  xlim(0, 1) +
+  scale_x_continuous(trans = "log", breaks = c(0.01, 0.05, 0.1, 0.5, 1), guide = guide_axis(angle = 50)) +
+  facet_grid(test.use ~ de_percent) +
+  theme_pubr() +
+  theme(
+    panel.grid.minor = element_line(size = (0.2), colour = "grey")
+  ) +
+  scale_color_brewer(type = "qual", palette = "Dark2", name = "", labels = labels) +
+  theme(axis.text.x = element_text(size = rel(0.7), angle = 45))
+p3
+
+ggsave(here::here("output/figures/SuppFigure_DE_benchmarking_muscat_count_methods.pdf"), width = 9, height = 5)
+```
+
+
+
+```{r}
+hek_markers <- readRDS(here::here("output/simulation_HEK_QuartzSeq2_Dropseq_downsampling/HEK_downsampling_DE_sig.rds"))
+
+hek_markers[hek_markers$test.use == "negbinom", "test"] <- "NB"
+hek_markers[hek_markers$test.use == "wilcox", "test"] <- "Wilcoxon"
+
+hek_markers[(hek_markers$test == "DESeq2") & (hek_markers$method == "lognorm"), "method"] <- "Raw counts"
+hek_markers$method[hek_markers$method == "SCT v1"] <- "Pearson residuals (SCT v1)"
+hek_markers$method[hek_markers$method == "SCT v2"] <- "Corrected counts (SCT v2)"
+hek_markers$method[hek_markers$method == "scran"] <- "Scran"
+hek_markers$method[hek_markers$method == "lognorm"] <- "LogNorm"
+hek_markers$method <- factor(hek_markers$method, levels = c("LogNorm", "Scran", "Pearson residuals (SCT v1)", "Raw counts", "Corrected counts (SCT v2)"))
+
+labels <- c("LogNorm", "Scran", "Pearson residuals (SCT v1)", "Raw counts", "Corrected counts (SCT v2)")
+names(labels) <- c("LogNorm", "Scran", "Pearson residuals (SCT v1)", "Raw counts", "Corrected counts (SCT v2)")
+
+hek_markers_summary <- hek_markers %>%
+  group_by(method, test) %>%
+  summarise(count = n()) %>%
+  ungroup() %>%
+  as.data.frame()
+
+# remove PR on DESeq2
+hek_markers_summary <- hek_markers_summary[(hek_markers_summary$method != "Pearson residuals (SCT v1)") | (hek_markers_summary$test != "DESeq2"), ]
+hek_markers_summary <- hek_markers_summary[(hek_markers_summary$method != "Scran") | (hek_markers_summary$test != "DESeq2"), ]
+
+hek_markers_summary <- hek_markers_summary[(hek_markers_summary$method != "Pearson residuals (SCT v1)") | (hek_markers_summary$test != "negbinom"), ]
+
+hek_markers_summary[(hek_markers_summary$method == "LogNorm") & (hek_markers_summary$test == "DESeq2"), "method"] <- "Raw counts"
+hek_markers_summary[(hek_markers_summary$method == "LogNorm") & (hek_markers_summary$test == "negbinom"), "method"] <- "Raw counts"
+hek_markers_summary[(hek_markers_summary$test == "negbinom"), "test"] <- "NB"
+hek_markers_summary[(hek_markers_summary$test == "wilcox"), "test"] <- "Wilcoxon"
+
+# Rename negbinom and DEseq2 on log norm
+hek_markers_summary <- hek_markers_summary[hek_markers_summary$test!="NB",]
+
+hek_markers_summary$method <- factor(as.character(hek_markers_summary$method),
+  levels = c("LogNorm", "Scran", "Pearson residuals (SCT v1)", "Raw counts", "Corrected counts (SCT v2)")
+)
+
+p4 <- ggplot(hek_markers_summary, aes(method, y = count, fill = method)) +
+  geom_bar(width = 0.5, stat = "identity") +
+  facet_wrap(~test, scales = "free_x") +
+  # scale_fill_brewer(type = "qual", palette = "Dark2", name = "") +
+  scale_fill_brewer(type = "qual", palette = "Dark2", name = "", labels = labels) +
+  #scale_fill_manual(values = c("#D95F02", "#7570B3", "#E7298A", "#66A61E"), name = "") + #"#1B9E77", 
+  ylab("Number of DE genes") +
+  xlab("") +
+  scale_x_discrete(guide = guide_axis(angle = 30)) +
+  scale_y_continuous(breaks = c(1000, 2500, 5000, 10000, 12500, 15000)) +
+  NoLegend()
+p4
+ggsave(here::here("output/figures/SuppFigure_DE_benchmarking_HEK_count_methods.pdf"), width = 9, height = 4)
+```
+
+
+```{r}
+nk_markers <- readRDS(here::here("output/simulation_NK_downsampling/NK_downsampling_DE_multtest_sig.rds"))
+nk_markers[nk_markers$test == "negbinom", "test"] <- "NB"
+nk_markers[nk_markers$test == "wilcox", "test"] <- "Wilcoxon"
+
+nk_markers[(nk_markers$test == "DESeq2") & (nk_markers$method == "lognorm"), "method"] <- "Raw counts"
+nk_markers$method[nk_markers$method == "SCT v1"] <- "Pearson residuals (SCT v1)"
+nk_markers$method[nk_markers$method == "SCT v2"] <- "Corrected counts (SCT v2)"
+nk_markers$method[nk_markers$method == "scran"] <- "Scran"
+nk_markers$method[nk_markers$method == "lognorm"] <- "LogNorm"
+nk_markers$method <- factor(nk_markers$method, levels = c("LogNorm", "Scran", "Pearson residuals (SCT v1)", "Raw counts", "Corrected counts (SCT v2)"))
+
+labels <- c("LogNorm", "Scran", "Pearson residuals (SCT v1)", "Raw counts", "Corrected counts (SCT v2)")
+names(labels) <- c("LogNorm", "Scran", "Pearson residuals (SCT v1)", "Raw counts", "Corrected counts (SCT v2)")
+
+nk_markers_summary <- nk_markers %>%
+  group_by(method, test) %>%
+  summarise(count = n()) %>%
+  ungroup() %>%
+  as.data.frame()
+
+# remove PR on DESeq2
+nk_markers_summary <- nk_markers_summary[(nk_markers_summary$method != "Pearson residuals (SCT v1)") | (nk_markers_summary$test != "DESeq2"), ]
+nk_markers_summary <- nk_markers_summary[(nk_markers_summary$method != "Scran") | (nk_markers_summary$test != "DESeq2"), ]
+
+nk_markers_summary <- nk_markers_summary[(nk_markers_summary$method != "Pearson residuals (SCT v1)") | (nk_markers_summary$test != "negbinom"), ]
+nk_markers_summary <- nk_markers_summary[(nk_markers_summary$method != "Scran") | (nk_markers_summary$test != "negbinom"), ]
+
+nk_markers_summary[(nk_markers_summary$method == "LogNorm") & (nk_markers_summary$test == "DESeq2"), "method"] <- "Raw counts"
+nk_markers_summary[(nk_markers_summary$method == "LogNorm") & (nk_markers_summary$test == "negbinom"), "method"] <- "Raw counts"
+nk_markers_summary[(nk_markers_summary$test == "negbinom"), "test"] <- "NB"
+nk_markers_summary[(nk_markers_summary$test == "wilcox"), "test"] <- "Wilcoxon"
+
+# Rename negbinom and DEseq2 on log norm
+nk_markers_summary <- nk_markers_summary[nk_markers_summary$test!="NB",]
+
+nk_markers_empty <- data.frame(expand.grid(labels, c("DESeq2", "MAST", "Wilcoxon")))
+colnames(nk_markers_empty) <- c("method", "test")
+nk_markers_empty$count <- 0
+
+nk_markers_summary <- rbind(nk_markers_summary, nk_markers_empty)
+nk_markers_summary <- nk_markers_summary %>% group_by(method, test) %>% summarise(count = sum(count))
+
+nk_markers_summary <- nk_markers_summary[!((nk_markers_summary$method == "LogNorm") & (nk_markers_summary$test == "DESeq2")), ]
+nk_markers_summary <- nk_markers_summary[!((nk_markers_summary$method == "Pearson residuals (SCT v1)") & (nk_markers_summary$test == "DESeq2")), ]
+nk_markers_summary <- nk_markers_summary[!((nk_markers_summary$method == "Scran") & (nk_markers_summary$test == "DESeq2")), ]
+
+nk_markers_summary <- nk_markers_summary[!((nk_markers_summary$method == "LogNorm") & (nk_markers_summary$test == "NB")), ]
+nk_markers_summary <- nk_markers_summary[!((nk_markers_summary$method == "Pearson residuals (SCT v1)") & (nk_markers_summary$test == "NB")), ]
+nk_markers_summary <- nk_markers_summary[!((nk_markers_summary$method == "Scran") & (nk_markers_summary$test == "NB")), ]
+
+nk_markers_summary <- nk_markers_summary[!((nk_markers_summary$method == "Raw counts") & (nk_markers_summary$test == "MAST")), ]
+nk_markers_summary <- nk_markers_summary[!((nk_markers_summary$method == "Raw counts") & (nk_markers_summary$test == "Wilcoxon")), ]
+
+
+nk_markers_summary$method <- factor(as.character(nk_markers_summary$method),
+  levels = c("LogNorm", "Scran", "Pearson residuals (SCT v1)", "Raw counts", "Corrected counts (SCT v2)")
+)
+
+p4 <- ggplot(nk_markers_summary, aes(method, y = count, fill = method)) +
+  geom_bar(width = 0.5, stat = "identity") +
+  facet_wrap(~test, scales = "free") +
+  # scale_fill_brewer(type = "qual", palette = "Dark2", name = "") +
+  scale_fill_brewer(type = "qual", palette = "Dark2", name = "", labels = labels) +
+  #scale_fill_manual(values = c("#D95F02", "#7570B3", "#E7298A", "#66A61E"), name = "") + #"#1B9E77", 
+  ylab("Number of DE genes") +
+  xlab("") +
+  scale_x_discrete(guide = guide_axis(angle = 30)) +
+  NoLegend()
+p4
+ggsave(here::here("output/figures/SuppFigure_DE_benchmarking_NK_count_methods.pdf"), width = 9, height = 4)
+
+```

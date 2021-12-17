@@ -1,0 +1,376 @@
+---
+title: "DE analysis of downsampled NK cells"
+output:
+  html_document:
+    toc: no
+    df_print: paged
+  workflowr::wflow_html:
+    toc: no
+editor_options:
+  chunk_output_type: console
+---
+
+```{r}
+suppressMessages({
+  library(Seurat)
+  library(ggpubr)
+  library(scattermore)
+  library(patchwork)
+  library(ggridges)
+  library(SingleCellExperiment)
+  library(tidyverse)
+  library(scran)
+})
+
+theme_set(theme_pubr())
+`%notin%` <- Negate(`%in%`)
+```
+
+
+```{r}
+set.seed(42)
+ss3 <- readRDS(here::here("data/rds_filtered/PBMC__Smart-seq3.rds"))
+ss3.preds <- read.delim(here::here("data/azimuth_predictions/PBMC__Smart-seq3___azimuth_pred.tsv"), row.names = 1)
+ss3 <- AddMetaData(ss3, ss3.preds)
+
+Idents(ss3) <- "predicted.celltype.l2"
+nk_cells <- Cells(subset(ss3, idents = "NK"))
+
+
+ss3_nk1 <- subset(ss3, cells = nk_cells)
+ss3_nk2 <- subset(ss3, cells = nk_cells)
+
+cm_nk1 <- GetAssayData(ss3_nk1, assay = "RNA", slot = "counts")
+seu_nk1 <- CreateSeuratObject(counts = cm_nk1)
+seu_nk1 <- RenameCells(seu_nk1, add.cell.id = "NK_full")
+seu_nk1$counts_type <- "NK_full"
+
+
+
+# downsample nk2 by 50%
+set.seed(42)
+cm_nk2_downsampled <- scuttle::downsampleMatrix(cm_nk1, prop = 0.2, bycol = FALSE)
+seu_nk2_downsampled <- CreateSeuratObject(counts = cm_nk2_downsampled)
+seu_nk2_downsampled$counts_type <- "NK_downsampled"
+seu_nk2_downsampled <- RenameCells(seu_nk2_downsampled, add.cell.id = "NK_downsampled")
+
+min_median_umi <- min(c(median(seu_nk1$nCount_RNA), median(seu_nk2_downsampled$nCount_RNA)))
+seu_list <- list(nk1 = seu_nk1, nk2_downsampled = seu_nk2_downsampled)
+seu_lognorm <- merge(seu_list[["nk1"]], y = seu_list[2])
+
+seu_scran <- as.SingleCellExperiment(merge(seu_list[["nk1"]], y = seu_list[[2]]))
+
+seu_lognorm <- NormalizeData(seu_lognorm)
+
+seu_list_sct1 <- lapply(
+  X = seu_list,
+  FUN = SCTransform,
+  method = "glmGamPoi",
+  verbose = FALSE,
+  return.only.var.genes = FALSE
+)
+seu_sct1 <- merge(seu_list_sct1[["nk1"]], y = seu_list_sct1[2])
+
+seu_list_sct2 <- lapply(
+  X = seu_list,
+  FUN = SCTransform,
+  vst.flavor = "v2",
+  scale_factor = min_median_umi,
+  min_variance = "umi_median",
+  verbose = FALSE,
+  return.only.var.genes = FALSE
+)
+seu_sct2 <- merge(seu_list_sct2[["nk1"]], y = seu_list_sct2[2])
+
+seu_list_sct2_medianscale <- lapply(
+  X = seu_list,
+  FUN = SCTransform,
+  vst.flavor = "v2",
+  min_variance = "umi_median",
+  verbose = FALSE,
+  return.only.var.genes = FALSE
+)
+seu_sct2_medianscale <- merge(seu_list_sct2_medianscale[["nk1"]], y = seu_list_sct2_medianscale[2])
+
+RescaleCounts <- function(merged_object) {
+  model_names <- names(merged_object[["SCT"]]@SCTModel.list)
+  min_umi <- min(sapply(X = model_names, FUN = function(model_name) median(merged_object[["SCT"]]@SCTModel.list[[model_name]]@cell.attributes$umi)))
+  merged_umi <- GetAssayData(merged_object, assay = "RNA", slot = "counts")
+
+  cell_attributes <- lapply(
+    X = model_names,
+    FUN = function(model_name) SCTResults(object = merged_object, assay = "SCT", model = model_name, slot = "cell.attributes")
+  )
+
+  arguments <- lapply(X = model_names, FUN = function(model_name) SCTResults(object = merged_object, assay = "SCT", model = model_name, slot = "arguments"))
+
+  # correct counts
+  x <- list(arguments = arguments)
+  x <- sctransform::correct_counts(x)
+  min_umi <- min(lapply(X = model_names, FUN = function(model_name) median(merged_object[["SCT"]]@SCTModel.list[[model_name]]@cell.attributes$umi)))
+}
+
+NormalizeDataSCT <- function(object, scale_factor = "median") {
+  corrected_counts <- expm1(GetAssayData(object, assay = "SCT", slot = "counts"))
+  if (scale_factor == "median") {
+    scale_factor <- median(object$nCount_RNA)
+  }
+  if (!is.numeric(scale_factor)) {
+    stop("scale_factor should be 'median' for median UMI or a numeric vaule.")
+  }
+  normalized_counts <- log1p(scale_factor * corrected_counts / colSums(corrected_counts))
+  object <- SetAssayData(object, slot = "data", new.data = normalized_counts)
+  return(object)
+}
+
+
+seu_list_sct2_10k <- lapply(
+  X = seu_list,
+  FUN = SCTransform,
+  vst.flavor = "v2",
+  scale_factor = 10000,
+  min_variance = "umi_median",
+  verbose = FALSE,
+  return.only.var.genes = FALSE
+)
+seu_sct2_10k <- merge(seu_list_sct2_10k[["nk1"]], y = seu_list_sct2_10k[2])
+
+
+all_de_results <- list()
+
+for (test in c("wilcox")) {
+  Idents(seu_sct1) <- "counts_type"
+
+  sct1pr_de_nk1VSnk2_downsampled <- FindMarkers(seu_sct1, ident.1 = "NK_full", ident.2 = "NK_downsampled", slot = "scale.data", test.use = test, logfc.threshold = 0.1)
+  colnames(sct1pr_de_nk1VSnk2_downsampled)[2] <- "avg_log2FC"
+  sct1pr_de_nk1VSnk2_downsampled$contrast <- "NK vs NK-downsampled"
+  sct1pr_de_nk1VSnk2_downsampled$method <- "SCT v1"
+
+
+  Idents(seu_sct2) <- "counts_type"
+  sct2_de_nk1VSnk2_downsampled <- FindMarkers(seu_sct2, ident.1 = "NK_full", ident.2 = "NK_downsampled", slot = "data", test.use = test, logfc.threshold = 0.1)
+  sct2_de_nk1VSnk2_downsampled$contrast <- "NK vs NK-downsampled"
+  sct2_de <- sct2_de_nk1VSnk2_downsampled
+  sct2_de$method <- "SCT v2"
+
+  Idents(seu_lognorm) <- "counts_type"
+
+  lognorm_de_nk1VSnk2_downsampled <- FindMarkers(seu_lognorm, ident.1 = "NK_full", ident.2 = "NK_downsampled", slot = "data", test.use = test, logfc.threshold = 0.1)
+  lognorm_de_nk1VSnk2_downsampled$contrast <- "NK vs NK-downsampled"
+
+  lognorm_de <- lognorm_de_nk1VSnk2_downsampled
+  lognorm_de$method <- "LogNorm"
+
+  clusters <- quickCluster(seu_scran, min.size = 100)
+  scran.sce <- computeSumFactors(seu_scran, cluster = clusters)
+  scran.sce <- logNormCounts(scran.sce)
+  seu_scran <- CreateSeuratObject(counts = counts(scran.sce), min.cells = 1, min.features = 1)
+  seu_scran <- AddMetaData(seu_scran, metadata = as.data.frame(colData(scran.sce)))
+  seu_scran@assays$RNA@data <- logcounts(scran.sce)[, colnames(seu_scran@assays$RNA@counts)]
+  Idents(seu_scran) <- "counts_type"
+
+  scran_de_nk1VSnk2_downsampled <- FindMarkers(seu_scran, ident.1 = "NK_full", ident.2 = "NK_downsampled", slot = "data", test.use = test, logfc.threshold = 0.1)
+  scran_de_nk1VSnk2_downsampled$contrast <- "NK vs NK-downsampled"
+
+  scran_de <- scran_de_nk1VSnk2_downsampled
+  scran_de$method <- "Scran"
+
+  all_de <- rbind(sct1pr_de_nk1VSnk2_downsampled, sct2_de)
+  all_de <- rbind(all_de, lognorm_de)
+  all_de <- rbind(all_de, scran_de)
+
+  all_de_results[[test]] <- all_de
+}
+
+all_de_results_df <- bind_rows(all_de_results, .id = "test")
+all_de_results_df_sig <- all_de_results_df %>% filter(p_val_adj < 0.05)
+all_de_results_df_sig %>%
+  group_by(method) %>%
+  summarise(total = n())
+dir.create(here::here("output/simulation_NK_downsampling"), showWarnings = F, recursive = T)
+saveRDS(all_de_results_df, here::here("output/simulation_NK_downsampling/NK_downsampling_DE.rds"))
+saveRDS(all_de_results_df_sig, here::here("output/simulation_NK_downsampling/NK_downsampling_DE_sig.rds"))
+ggplot(all_de_results_df_sig, aes(method)) +
+  geom_bar() +
+  facet_grid(contrast ~ test)
+```
+
+
+```{r}
+ggplot(all_de_results_df, aes(y = method, x = -log10(p_val), fill = method)) +
+  stat_density_ridges() +
+  scale_fill_brewer(type = "qual", palette = "Set1")
+```
+
+
+```{r}
+nk_markers <- all_de_results_df_sig
+nk_markers_summary <- nk_markers %>%
+  group_by(method) %>%
+  summarise(count = n())
+nk_markers_empty <- data.frame(method = unique(all_de$method))
+nk_markers_empty$count <- 1
+nk_markers_summary2 <- rbind(nk_markers_empty, nk_markers_summary)
+nk_markers_summary2 <- nk_markers_summary2 %>%
+  group_by(method) %>%
+  summarise(count = sum(count))
+
+
+p4 <- ggplot(nk_markers_summary2, aes(method, y = count, fill = method)) +
+  geom_bar(width = 0.5, stat = "identity") +
+  scale_y_log10() +
+  scale_fill_brewer(type = "qual", palette = "Dark2", name = "") +
+  ylab("Number of DE genes") +
+  xlab("") +
+  scale_x_discrete(guide = guide_axis(angle = 30)) +
+  NoLegend()
+p4
+```
+
+
+
+```{r}
+# downsample nk2 by 50%
+set.seed(42)
+cm_nk2_downsampled <- scuttle::downsampleMatrix(cm_nk1, prop = 0.2, bycol = FALSE)
+seu_nk2_downsampled <- CreateSeuratObject(counts = cm_nk2_downsampled)
+seu_nk2_downsampled$counts_type <- "NK_downsampled"
+seu_nk2_downsampled <- RenameCells(seu_nk2_downsampled, add.cell.id = "NK_downsampled")
+
+min_median_umi <- min(c(median(seu_nk1$nCount_RNA), median(seu_nk2_downsampled$nCount_RNA)))
+seu_list <- list(nk1 = seu_nk1, nk2_downsampled = seu_nk2_downsampled)
+seu_lognorm <- merge(seu_list[["nk1"]], y = seu_list[2])
+
+seu_scran <- as.SingleCellExperiment(merge(seu_list[["nk1"]], y = seu_list[[2]]))
+
+seu_lognorm <- NormalizeData(seu_lognorm)
+
+seu_list_sct1 <- lapply(
+  X = seu_list,
+  FUN = SCTransform,
+  method = "glmGamPoi",
+  verbose = FALSE,
+  return.only.var.genes = FALSE
+)
+seu_sct1 <- merge(seu_list_sct1[["nk1"]], y = seu_list_sct1[2])
+
+seu_list_sct2 <- lapply(
+  X = seu_list,
+  FUN = SCTransform,
+  vst.flavor = "v2",
+  scale_factor = min_median_umi,
+  min_variance = "umi_median",
+  verbose = FALSE,
+  return.only.var.genes = FALSE
+)
+seu_sct2 <- merge(seu_list_sct2[["nk1"]], y = seu_list_sct2[2])
+
+seu_list_sct2_medianscale <- lapply(
+  X = seu_list,
+  FUN = SCTransform,
+  vst.flavor = "v2",
+  min_variance = "umi_median",
+  verbose = FALSE,
+  return.only.var.genes = FALSE
+)
+seu_sct2_medianscale <- merge(seu_list_sct2_medianscale[["nk1"]], y = seu_list_sct2_medianscale[2])
+
+RescaleCounts <- function(merged_object) {
+  model_names <- names(merged_object[["SCT"]]@SCTModel.list)
+  min_umi <- min(sapply(X = model_names, FUN = function(model_name) median(merged_object[["SCT"]]@SCTModel.list[[model_name]]@cell.attributes$umi)))
+  merged_umi <- GetAssayData(merged_object, assay = "RNA", slot = "counts")
+
+  cell_attributes <- lapply(
+    X = model_names,
+    FUN = function(model_name) SCTResults(object = merged_object, assay = "SCT", model = model_name, slot = "cell.attributes")
+  )
+
+  arguments <- lapply(X = model_names, FUN = function(model_name) SCTResults(object = merged_object, assay = "SCT", model = model_name, slot = "arguments"))
+
+  # correct counts
+  x <- list(arguments = arguments)
+  x <- sctransform::correct_counts(x)
+  min_umi <- min(lapply(X = model_names, FUN = function(model_name) median(merged_object[["SCT"]]@SCTModel.list[[model_name]]@cell.attributes$umi)))
+}
+
+NormalizeDataSCT <- function(object, scale_factor = "median") {
+  corrected_counts <- expm1(GetAssayData(object, assay = "SCT", slot = "counts"))
+  if (scale_factor == "median") {
+    scale_factor <- median(object$nCount_RNA)
+  }
+  if (!is.numeric(scale_factor)) {
+    stop("scale_factor should be 'median' for median UMI or a numeric vaule.")
+  }
+  normalized_counts <- log1p(scale_factor * corrected_counts / colSums(corrected_counts))
+  object <- SetAssayData(object, slot = "data", new.data = normalized_counts)
+  return(object)
+}
+
+
+seu_list_sct2_10k <- lapply(
+  X = seu_list,
+  FUN = SCTransform,
+  vst.flavor = "v2",
+  scale_factor = 10000,
+  min_variance = "umi_median",
+  verbose = FALSE,
+  return.only.var.genes = FALSE
+)
+seu_sct2_10k <- merge(seu_list_sct2_10k[["nk1"]], y = seu_list_sct2_10k[2])
+
+
+all_de_results <- list()
+for (test in c("wilcox", "DESeq2", "MAST")) {
+  Idents(seu_sct1) <- "counts_type"
+
+  sct1pr_de_nk1VSnk2_downsampled <- FindMarkers(seu_sct1, ident.1 = "NK_full", ident.2 = "NK_downsampled", slot = "scale.data", test.use = test, logfc.threshold = 0.1)
+  colnames(sct1pr_de_nk1VSnk2_downsampled)[2] <- "avg_log2FC"
+  sct1pr_de_nk1VSnk2_downsampled$contrast <- "NK vs NK-downsampled"
+  sct1pr_de_nk1VSnk2_downsampled$method <- "SCT v1"
+
+
+  Idents(seu_sct2) <- "counts_type"
+  sct2_de_nk1VSnk2_downsampled <- FindMarkers(seu_sct2, ident.1 = "NK_full", ident.2 = "NK_downsampled", slot = "data", test.use = test, logfc.threshold = 0.1)
+  sct2_de_nk1VSnk2_downsampled$contrast <- "NK vs NK-downsampled"
+  sct2_de <- sct2_de_nk1VSnk2_downsampled
+  sct2_de$method <- "SCT v2"
+
+  Idents(seu_lognorm) <- "counts_type"
+
+  lognorm_de_nk1VSnk2_downsampled <- FindMarkers(seu_lognorm, ident.1 = "NK_full", ident.2 = "NK_downsampled", slot = "data", test.use = test, logfc.threshold = 0.1)
+  lognorm_de_nk1VSnk2_downsampled$contrast <- "NK vs NK-downsampled"
+
+  lognorm_de <- lognorm_de_nk1VSnk2_downsampled
+  lognorm_de$method <- "LogNorm"
+  
+  seu_scran <- as.SingleCellExperiment(merge(seu_list[["nk1"]], y = seu_list[[2]]))
+  clusters <- quickCluster(seu_scran, min.size = 100)
+  scran.sce <- computeSumFactors(seu_scran, cluster = clusters)
+  scran.sce <- logNormCounts(scran.sce)
+  seu_scran <- CreateSeuratObject(counts = counts(scran.sce), min.cells = 1, min.features = 1)
+  seu_scran <- AddMetaData(seu_scran, metadata = as.data.frame(colData(scran.sce)))
+  seu_scran@assays$RNA@data <- logcounts(scran.sce)[, colnames(seu_scran@assays$RNA@counts)]
+  Idents(seu_scran) <- "counts_type"
+
+  scran_de_nk1VSnk2_downsampled <- FindMarkers(seu_scran, ident.1 = "NK_full", ident.2 = "NK_downsampled", slot = "data", test.use = test, logfc.threshold = 0.1)
+  scran_de_nk1VSnk2_downsampled$contrast <- "NK vs NK-downsampled"
+
+  scran_de <- scran_de_nk1VSnk2_downsampled
+  scran_de$method <- "Scran"
+
+  all_de <- rbind(sct1pr_de_nk1VSnk2_downsampled, sct2_de)
+  all_de <- rbind(all_de, lognorm_de)
+  all_de <- rbind(all_de, scran_de)
+
+  all_de_results[[test]] <- all_de
+}
+
+all_de_results_df <- bind_rows(all_de_results, .id = "test")
+all_de_results_df_sig <- all_de_results_df %>% filter(p_val_adj < 0.05)
+all_de_results_df_sig %>%
+  group_by(method) %>%
+  summarise(total = n())
+dir.create(here::here("output/simulation_NK_downsampling"), showWarnings = F, recursive = T)
+saveRDS(all_de_results_df, here::here("output/simulation_NK_downsampling/NK_downsampling_DE_multtest.rds"))
+saveRDS(all_de_results_df_sig, here::here("output/simulation_NK_downsampling/NK_downsampling_DE_multtest_sig.rds"))
+```

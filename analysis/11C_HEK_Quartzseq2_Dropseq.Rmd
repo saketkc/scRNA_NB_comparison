@@ -1,0 +1,169 @@
+---
+title: "DE analysis of Quartz-seq2 and Drop-seq HEK cells"
+output:
+  html_document:
+    toc: no
+    df_print: paged
+  workflowr::wflow_html:
+    toc: no
+editor_options:
+  chuhek_output_type: console
+---
+
+```{r}
+suppressMessages({
+  library(Seurat)
+  library(ggpubr)
+  library(scattermore)
+  library(patchwork)
+  library(ggridges)
+  library(SingleCellExperiment)
+  library(tidyverse)
+  library(scran)
+  library(MAST)
+  library(DESeq2)
+})
+
+theme_set(theme_pubr())
+`%notin%` <- Negate(`%in%`)
+```
+
+
+```{r}
+DoSCT <- function(object, maxdims = 50) {
+  object <- SCTransform(object,
+    method = "glmGamPoi_offset",
+    min_variance = "umi_median",
+    exclude_poisson = TRUE,
+    return.only.var.genes = FALSE
+  )
+  object <- RunPCA(object = object, npcs = min(maxdims, 50), verbose = FALSE)
+  object <- RunUMAP(object = object, dims = 1:maxdims, verbose = FALSE)
+  object <- FindNeighbors(object = object, dims = 1:maxdims, verbose = FALSE)
+  object <- FindClusters(object = object, verbose = FALSE)
+  return(object)
+}
+
+DoSCT.merged <- function(object, sct_method, split_by = "sample_id") {
+  object_split <- SplitObject(object, split.by = split_by)
+  print(lapply(object_split, FUN = function(x) median(x$nCount_RNA)))
+  min_median_umi <- min(sapply(object_split, FUN = function(x) median(x$nCount_RNA)))
+  message(paste("Min median umi: ", min_median_umi))
+  for (name in names(object_split)) {
+    obj <- object_split[[name]]
+    if (sct_method == "SCT") {
+      obj <- SCTransform(obj, method = "glmGamPoi", verbose = FALSE, do.center = FALSE, do.scale = FALSE)
+    } else if (sct_method == "SCT2") {
+      obj <- SCTransform(obj, vst.flavor = "v2", verbose = FALSE, scale_factor = min_median_umi, do.center = FALSE, do.scale = FALSE)
+    } else if (sct_method == "SCT2medianscale") {
+      obj <- SCTransform(obj, vst.flavor = "v2", verbose = FALSE, do.center = FALSE, do.scale = FALSE)
+    }
+    object_split[[name]] <- obj
+  }
+  merged_obj <- merge(object_split[[1]], object_split[2:length(object_split)])
+
+  return(merged_obj)
+}
+
+
+hek.drop <- readRDS(here::here("data/rds_filtered/Mereu-HEK__Drop-seq.rds"))
+hek.quartz <- readRDS(here::here("data/rds_filtered/Mereu-HEK__Quartz-Seq2.rds"))
+hek.drop$technology <- "Drop-seq"
+hek.quartz$technology <- "Quartz-seq2"
+```
+
+
+# Calculate DE between HEK Quartz-seq2 and Drop-seq
+
+```{r}
+
+hek.quartz.subset <- subset(hek.quartz, downsample = dim(hek.drop)[2])
+
+
+hek.merged <- merge(hek.quartz.subset, hek.drop)
+```
+
+```{r}
+seu_list <- list(dropseq = hek.drop, quartzseq = hek.quartz.subset)
+
+seu_list_sct1 <- lapply(
+  X = seu_list,
+  FUN = SCTransform,
+  method = "glmGamPoi",
+  verbose = FALSE,
+  return.only.var.genes = FALSE
+)
+seu_sct1 <- merge(seu_list_sct1[[1]], y = seu_list_sct1[2])
+Idents(seu_sct1) <- "technology"
+
+seu_sct2 <- DoSCT.merged(hek.merged, "SCT2", "technology")
+Idents(seu_sct2) <- "technology"
+
+seu_lognorm <- merge(seu_list[[1]], seu_list[[2]])
+DefaultAssay(seu_lognorm) <- "RNA"
+seu_lognorm <- NormalizeData(seu_lognorm)
+
+merged_seu_scran <- merge(seu_list[[1]], y = seu_list[[2]])
+DefaultAssay(merged_seu_scran) <- "RNA"
+```
+
+
+```{r}
+all_de_results <- list()
+ident.1 <- unique(hek.merged$technology)[1]
+ident.2 <- unique(hek.merged$technology)[2]
+
+for (test in c("MAST", "wilcox", "DESeq2")) {
+  message(test)
+  print(test)
+
+  Idents(seu_sct1) <- "technology"
+  sct1pr_de <- FindMarkers(seu_sct1, ident.1 = ident.1, ident.2 = ident.2, slot = "scale.data", test.use = test, logfc.threshold = 0.1)
+  colnames(sct1pr_de)[2] <- "avg_log2FC"
+  sct1pr_de$method <- "SCT v1"
+
+
+  Idents(seu_sct2) <- "technology"
+  sct2_de <- FindMarkers(seu_sct2, ident.1 = ident.1, ident.2 = ident.2, slot = "data", test.use = test, logfc.threshold = 0.1)
+  sct2_de <- sct2_de
+  sct2_de$method <- "SCT v2"
+
+
+  Idents(seu_lognorm) <- "technology"
+  lognorm_de <- FindMarkers(seu_lognorm, ident.1 = ident.1, ident.2 = ident.2, slot = "data", test.use = test, logfc.threshold = 0.1)
+  lognorm_de <- lognorm_de
+  lognorm_de$method <- "LogNorm"
+  all_de <- rbind(sct1pr_de, sct2_de)
+  all_de <- rbind(all_de, lognorm_de)
+
+
+  seu_scran <- as.SingleCellExperiment(merged_seu_scran)
+
+  clusters <- quickCluster(seu_scran, min.size = 10)
+  scran.sce <- computeSumFactors(seu_scran, cluster = clusters)
+  scran.sce <- logNormCounts(scran.sce)
+  seu_scran <- CreateSeuratObject(counts = counts(scran.sce), min.cells = 1, min.features = 1)
+  seu_scran <- AddMetaData(seu_scran, metadata = as.data.frame(colData(scran.sce)))
+  seu_scran@assays$RNA@data <- logcounts(scran.sce)[, colnames(seu_scran@assays$RNA@counts)]
+  Idents(seu_scran) <- "technology"
+  scran_de <- FindMarkers(seu_scran, ident.1 = ident.1, ident.2 = ident.2, slot = "data", test.use = test, logfc.threshold = 0.1)
+  scran_de$method <- "Scran"
+  all_de <- rbind(all_de, scran_de)
+  # }
+
+
+
+  all_de_results[[test]] <- all_de
+}
+
+all_de_results_df <- bind_rows(all_de_results, .id = "test")
+
+all_de_results_df <- bind_rows(all_de_results, .id = "test")
+all_de_results_df_sig <- all_de_results_df %>% filter(p_val_adj < 0.05)
+all_de_results_df_sig %>%
+  group_by(method) %>%
+  summarise(total = n())
+dir.create(here::here("output/simulation_HEK_Quartzseq2_Dropseq_downsampling"), showWarnings = F, recursive = T)
+saveRDS(all_de_results_df, here::here("output/simulation_HEK_Quartzseq2_Dropseq_downsampling/HEK_downsampling_DE.rds"))
+saveRDS(all_de_results_df_sig, here::here("output/simulation_HEK_Quartzseq2_Dropseq_downsampling/HEK_downsampling_DE_sig.rds"))
+```

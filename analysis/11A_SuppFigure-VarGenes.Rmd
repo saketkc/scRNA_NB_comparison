@@ -1,0 +1,163 @@
+---
+title: "Supplementary Figure - Feature genes overlap"
+output:
+  html_document:
+    df_print: paged
+---
+
+```{r setup, echo=FALSE}
+suppressPackageStartupMessages({
+  library(ggplot2)
+  library(ggpubr)
+  library(here)
+  library(patchwork)
+  library(RColorBrewer)
+  library(readr)
+  library(reshape2)
+  library(tidyverse)
+  library(kableExtra)
+  library(xtable)
+})
+knitr::opts_chunk$set(warning = FALSE, message = FALSE)
+
+`%notin%` <- Negate(`%in%`)
+theme_set(theme_pubr(base_size = 10))
+dir.create(here::here("output", "figures"), showWarnings = F)
+clean_keys <- function(key) {
+  gsub(
+    pattern = "|\\)", replacement = "",
+    x = gsub(pattern = " |\\(", replacement = "_", x = key)
+  )
+}
+```
+
+
+```{r}
+datasets <- readr::read_csv(here::here("data", "datasets.csv"), col_types = readr::cols())
+
+read_gene_attr <- function(filepath) {
+  gene_attr <- read.csv(filepath, row.names = 1)
+  gene_attr$gene <- rownames(gene_attr)
+  gene_attr <- gene_attr %>%
+    arrange(desc(residual_variance)) %>%
+    pull(gene)
+  return(gene_attr[1:3000])
+  # genes <- VariableFeatures(readRDS(gsub(pattern = "gene_attr.csv", replacement = "seurat_sct_object.rds", filepath)))
+  # return(genes)
+}
+datasets <- datasets[datasets$tissue %in% c("Fetus", "PBMC", "Bone Marrow", "Cortex"), ]
+
+datasets$datatype <- factor(datasets$datatype, levels = c("technical-control", "cell line", "heterogeneous"))
+
+overlap_list <- list()
+overlap_list_prop <- list()
+# keys <- c("BoneMarrow__CITE-seq", "Fetal__sci-RNA-seq3", "PBMC__CITE-seq", "PBMC__Smart-seq3", "PBMC68k__ChromiumV1")
+keys <- datasets$key
+n_markers_list <- list()
+for (dataset in keys) {
+  sample_name <- datasets[datasets$key == dataset, ] %>% pull(sample_name)
+  all_genes <- rownames(read.csv(here::here("output/snakemake_output/seurat_output", dataset, "glmGamPoi", "gene_attr.csv"), row.names = 1))
+
+  sct <- read_gene_attr(here::here("output/snakemake_output/seurat_output", dataset, "glmGamPoi", "gene_attr.csv"))
+
+  offset100 <- read_gene_attr(here::here("output/snakemake_output/seurat_output", dataset, "offset-100", "gene_attr.csv"))
+  offset10 <- read_gene_attr(here::here("output/snakemake_output/seurat_output", dataset, "offset-10", "gene_attr.csv"))
+  sct2 <- read_gene_attr(here::here("output/snakemake_output/seurat_output", dataset, "vst2", "gene_attr.csv"))
+
+
+  presto_output <- readRDS(here::here("output/snakemake_output/presto_output", dataset, "presto_markers.rds"))
+  presto_subset <- presto_output %>%
+    group_by(gene) %>%
+    arrange(desc(avg_log2FC)) %>%
+    filter(row_number() == 1) %>%
+    ungroup() %>%
+    filter(p_val < 0.05) %>%
+    filter(avg_log2FC > 0.25)
+
+  # marker_genes <- unique(presto_output %>% filter(p_val_adj < 0.01) %>% filter(avg_log2FC > 0.5) %>% arrange(p_val_adj) %>% pull(gene))
+  marker_genes <- presto_subset %>%
+    arrange(desc(avg_log2FC), p_val_adj) %>%
+    pull(gene)
+  if (length(marker_genes) > length(sct2)) {
+    marker_genes <- marker_genes[1:length(sct2)]
+  }
+  all_methods <- list(sct2 = sct2, offset10 = offset10, offset100 = offset100, sct = sct)
+  overlaps_list <- list()
+  for (name in names(all_methods)) {
+    obj <- all_methods[[name]]
+    overlap <- sapply(seq_along(obj), function(i) length(intersect(marker_genes, obj[1:i])))
+    overlaps_list[[name]] <- overlap
+  }
+
+  overlap_df <- as.data.frame(overlaps_list)
+  overlap_df_prop <- overlap_df
+  n <- length(marker_genes)
+  overlap_df_prop <- overlap_df_prop / n
+
+  n_markers_list[[sample_name]] <- data.frame(total_markers = n, sample_name = sample_name)
+
+  overlap_df$rank <- seq(1, 3000)
+  overlap_df$sample_name <- sample_name
+  overlap_list[[sample_name]] <- overlap_df
+
+  overlap_df_prop$rank <- seq(1, 3000)
+  overlap_df_prop$sample_name <- sample_name
+  overlap_list_prop[[sample_name]] <- overlap_df_prop
+}
+n_markers <- bind_rows(n_markers_list)
+
+kbl(n_markers, booktabs = T) %>%
+  kable_styling(latex_options = "striped")
+```
+
+```{r, fig.width=13, fig.height=6}
+overlap_master_df <- bind_rows(overlap_list)
+overlap_master_df_melt <- reshape2::melt(overlap_master_df, id.vars = c("rank", "sample_name"))
+
+overlap_master_prop_df <- bind_rows(overlap_list_prop)
+overlap_master_prop_df_melt <- reshape2::melt(overlap_master_prop_df, id.vars = c("rank", "sample_name"))
+
+overlap_master_df_melt$variable <- factor(as.character(overlap_master_df_melt$variable),
+  levels = c("offset100", "offset10", "sct", "sct2")
+)
+overlap_master_prop_df_melt$variable <- factor(as.character(overlap_master_prop_df_melt$variable),
+  levels = c("offset100", "offset10", "sct", "sct2")
+)
+
+labels <- c(expression(theta == 100), expression(theta == 10), "SCT v1", "SCT v2")
+names(labels) <- c("offset100", "offset10", "sct", "sct2")
+
+mylabeller <- labeller(
+  method = label_parsed, sample_name = label_wrap_gen(width = 15)
+)
+
+ggplot(overlap_master_df_melt, aes(rank, value, color = variable)) +
+  geom_point(size = 0.1) +
+  # geom_line() +
+  facet_wrap(~sample_name, labeller = mylabeller, ncol = 6, scales = "free_y") +
+  scale_color_brewer(type = "qual", palette = "Dark2", name = "", labels = labels) +
+  guides(colour = guide_legend(override.aes = list(size = 2))) +
+  xlab("Variable feature rank") +
+  ylab("Number of marker genes")
+ggsave(here::here("output/figures/Sfigure_vargenes_overlap.pdf"))
+ggsave(here::here("output/figures/Sfigure_vargenes_overlap.png"))
+
+
+ggplot(overlap_master_prop_df_melt, aes(rank, value, color = variable)) +
+  geom_point(size = 0.1) +
+  # geom_line() +
+  facet_wrap(~sample_name, labeller = mylabeller, ncol = 6, scales = "free_y") +
+  scale_color_brewer(type = "qual", palette = "Dark2", name = "", labels = labels) +
+  guides(colour = guide_legend(override.aes = list(size = 2))) +
+  xlab("Variable feature rank") +
+  ylab("Proportion of marker genes")
+ggsave(here::here("output/figures/Sfigure_vargenes_overlap_prop.pdf"))
+ggsave(here::here("output/figures/Sfigure_vargenes_overlap_prop.png"))
+```
+
+```{r}
+dir.create(here::here("output/vargenes/"), showWarnings = F, recursive = T )
+saveRDS(overlap_master_df_melt, here::here("output/vargenes/compare_variable_genes_df_long.rds"))
+saveRDS(overlap_master_prop_df_melt, here::here("output/vargenes/compare_variable_genes_prop_df_long.rds"))
+saveRDS(n_markers, here::here("output/vargenes/n_markers.rds"))
+```

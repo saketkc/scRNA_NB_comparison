@@ -42,7 +42,7 @@ capitalize <- function(string) {
 }
 
 global_labeller <- labeller(
-  .default = capitalize, sample_name = label_wrap_gen(width = 10)
+  .default = capitalize, sample_name = label_wrap_gen(width = 15)
 )
 
 so_formatter <- function(x) {
@@ -497,7 +497,7 @@ plot.dots <- ggplot(nonpoismeanwise_filtered, aes(sample_name, mean_quantile,
   guides(x = guide_axis(angle = 90)) +
   xlab("") +
   ylab("Gene mean") +
-  theme(legend.position = c(0.8, 1.05))
+  theme(legend.position = c(0.8, 1.06))
 
 plot.dots
 ```

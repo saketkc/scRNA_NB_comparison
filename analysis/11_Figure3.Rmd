@@ -95,7 +95,7 @@ summarySE <- function(data = NULL, measurevar, groupvars = NULL, na.rm = FALSE,
 ```{r}
 gene_attr <- list()
 root_dir_sct <- here::here("output/snakemake_output/sct_v1_ncells_benchmarks/Fetal__sci-RNA-seq3")
-root_dir_sct2 <- here::here("output/snakemake_output/vst2_ncells_benchmarks/Fetal__sci-RNA-seq3")
+root_dir_sct2 <- here::here("output/snakemake_output/sct_ncells_benchmarks/Fetal__sci-RNA-seq3")
 
 
 for (ncell in list.dirs(root_dir_sct, full.names = F)) {
@@ -197,7 +197,7 @@ plot.time
 gene_attr <- list()
 common_genes <- NULL
 ncells <- c()
-root_dir <- here::here("output/snakemake_output/vst2_ncells_benchmarks/Fetal__sci-RNA-seq3/")
+root_dir <- here::here("output/snakemake_output/sct_ncells_benchmarks/Fetal__sci-RNA-seq3/")
 for (ncell in list.dirs(root_dir, full.names = F)) {
   if (ncell == "") {
     next

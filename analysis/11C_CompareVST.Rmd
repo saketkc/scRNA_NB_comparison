@@ -1,0 +1,133 @@
+---
+title: "R Notebook"
+output:
+  pdf_document: default
+  html_document:
+    df_print: paged
+---
+
+```{r}
+
+suppressMessages({
+  library(Seurat)
+  library(ggpubr)
+  library(patchwork)
+  library(tidyverse)
+  library(SeuratData)
+  library(sctransform)
+})
+
+theme_set(theme_pubr())
+
+data("bmcite")
+```
+
+
+
+```{r, fig.width=13, fig.height=9}
+
+bmcite.sct2 <- vst(
+  umi = bmcite@assays$RNA@counts,
+  return_cell_attr = T, return_gene_attr = T,
+  res_clip_range = c(-sqrt(ncol(bmcite) / 30), sqrt(ncol(bmcite) / 30)),
+  vst.flavor = "v2"
+)
+
+bmcite.sct <- vst(
+  umi = bmcite@assays$RNA@counts,
+  return_cell_attr = T, return_gene_attr = T,
+  res_clip_range = c(-sqrt(ncol(bmcite) / 30), sqrt(ncol(bmcite) / 30)),
+  n_genes = 2000, n_cells = 2000,
+  method = "glmGamPoi"
+)
+
+get_nb_fit <- function(x, umi, gene, cell_attr, as_poisson = FALSE) {
+  regressor_data <- model.matrix(as.formula(gsub("^y", "", x$model_str)), cell_attr)
+
+  coefs <- x$model_pars_fit[gene, -1, drop = FALSE]
+  theta <- x$model_pars_fit[gene, 1]
+  if (as_poisson) {
+    theta <- Inf
+  }
+  mu <- exp(coefs %*% t(regressor_data))[1, ]
+  sd <- sqrt(mu + mu^2 / theta)
+
+  min_variance <- x$arguments$min_variance
+  if (min_variance == "umi_median") {
+    min_variance <- 0.04
+  }
+  min_sd <- sqrt(min_variance)
+  sd[sd < min_sd] <- min_sd
+
+  res <- (umi[gene, ] - mu) / sd
+  res <- pmin(res, x$arguments$res_clip_range[2])
+  res <- pmax(res, x$arguments$res_clip_range[1])
+  ret_df <- data.frame(mu = mu, sd = sd, res = res, umi = umi[gene, ])
+  # in case we have individual (non-regularized) parameters
+  if (gene %in% rownames(x$model_pars)) {
+    coefs <- x$model_pars[gene, -1, drop = FALSE]
+    theta <- x$model_pars[gene, 1]
+    ret_df$mu_nr <- exp(coefs %*% t(regressor_data))[1, ]
+    ret_df$sd_nr <- sqrt(ret_df$mu_nr + ret_df$mu_nr^2 / theta)
+    ret_df$res_nr <- (umi[gene, ] - ret_df$mu_nr) / ret_df$sd_nr
+    ret_df$res_nr <- pmin(ret_df$res_nr, x$arguments$res_clip_range[2])
+    ret_df$res_nr <- pmax(ret_df$res_nr, x$arguments$res_clip_range[1])
+  } else {
+    ret_df$mu_nr <- NA_real_
+    ret_df$sd_nr <- NA_real_
+    ret_df$res_nr <- NA_real_
+  }
+  return(ret_df)
+}
+
+getFit <- function(vstx, genes) {
+  nbfits <- list()
+  for (gene in genes) {
+    print(gene)
+    nbfit <- get_nb_fit(vstx, bmcite@assays$RNA@counts, gene = gene, cell_attr = vstx$cell_attr)
+    # remove umis which are zero as they are not problematic
+    nbfit <- nbfit %>% filter(umi > 0)
+    nbfit$gene <- gene
+    nbfits[[gene]] <- nbfit
+  }
+  nbfits_df <- bind_rows(nbfits)
+  return(nbfits_df)
+}
+
+
+
+genes <- c("RP11-290C10.1", "CD86")
+nbfits.sct <- getFit(bmcite.sct, genes)
+nbfits.sct2 <- getFit(bmcite.sct2, genes)
+dir.create(here::here("output/11C_VST"), recursive = T, showWarnings = F)
+
+saveRDS(nbfits.sct, here::here("output/11C_VST/nbfits.sct.rds"))
+saveRDS(nbfits.sct2, here::here("output/11C_VST/nbfits.sct2.rds"))
+
+pl <- VlnPlot(bmcite, "RP11-290C10.1", slot = "counts", group.by = "celltype.l2") + NoLegend()
+pr <- VlnPlot(bmcite, "CD86", slot = "counts", group.by = "celltype.l2") + NoLegend()
+px <- pl | pr
+
+p1 <- ggplot(nbfits.sct, aes(umi, res, color = gene)) +
+  geom_jitter(alpha = 0.5) +
+  scale_color_manual(values = RColorBrewer::brewer.pal(3, "Set1"), name = "") +
+  ylab("Pearson residual")
+p3 <- ggplot(nbfits.sct, aes(sd, res, color = gene)) +
+  geom_jitter(alpha = 0.5) +
+  scale_color_manual(values = RColorBrewer::brewer.pal(3, "Set1"), name = "") +
+  ylab("Pearson residual")
+pup <- p3 | p1 + patchwork::plot_annotation(title = "sctransform (v1)")
+
+p1 <- ggplot(nbfits.sct2, aes(umi, res, color = gene)) +
+  geom_jitter(alpha = 0.5) +
+  scale_color_manual(values = RColorBrewer::brewer.pal(3, "Set1"), name = "") +
+  ylab("Pearson residual")
+p3 <- ggplot(nbfits.sct2, aes(sd, res, color = gene)) +
+  geom_jitter(alpha = 0.5) +
+  scale_color_manual(values = RColorBrewer::brewer.pal(3, "Set1"), name = "") +
+  ylab("Pearson residual")
+pdown <- p3 | p1 + patchwork::plot_annotation(title = "sctransform (v2)")
+
+px / pup / pdown
+ggsave(here::here("output/figures/varcomp.pdf"))
+```

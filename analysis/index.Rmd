@@ -16,7 +16,8 @@ editor_options:
 - [Ding et al. HEK and 3T3](03A_Ding-Mixture-HEK-3T3.html)
 - [Ding et al. 2020 - PBMC](03B_Ding-PBMC.html)
 - [Ding et al. 2020 - Mouse Cortex](03C_Ding-Cortex.html)
-- [PBMC68k 10X Genomics - PBMC](04_PBMC68k.html)
+- [PBMC68k 10X Genomics - PBMC](04A_PBMC68k.html)
+- [Bone Marrow - CITE-seq](04B_BoneMarrow.html)
 - [Cao et al. - Fetal sci-RNA-seq3](05_Fetal-sciRNAseq3.html)
 - [Svensson 2020 - Technical Controls, HEK, PBMC ](06G_VS2020_Seurat.html)
 
@@ -25,12 +26,28 @@ editor_options:
 
 - [Filter All Datasets](07_Filter_all_datasets.html)
 
+# Run DE Simulation 
+
+- Run `07A_simulate_muscat.R` and `07B_process_muscat.R`
+
+
 # Figures
 
-- [Figure 1 and Supplementary Figure 2](09_Figure1.html)
-- [Figure 2 and Supplementary Figures 3 and 4](10_Figure2.html)
+- [Figure 1](09_Figure1.html)
+- [Figure 2](10_Figure2.html)
 - [Figure 3](11_Figure3.html)
+- [Figure 4](11B_Figure4.html)
 - [Supplmenetary Figure 1](12_SuppFigure-DataStats.html)
-- [Supplmenetary Figures 5-14; 17-20](13_SuppFigure-VST.html)
+- [Supplementary Figure 2](09_Figure1.html)
+- [Supplementary Figures 3 and 4](10_Figure2.html)
+- [Supplmenetary Figures 5-14](13_SuppFigure-VST.html)
 - [Supplementary Figure 15](14_SuppFigure-Simulation.html)
 - [Supplementary Figure 16](15_SuppFigure-Upsampling.html)
+- [Supplementary Figure 17](11B_Figure4.html)
+- [Supplmenetary Figures 18-21](13_SuppFigure-VST.html)
+- [Supplementary Figure 22](11A_SuppFigure-VarGenes.html)
+- [Supplementary Figure 23](11D_SuppFigure_DE_Benchmarking.html)
+- [Supplementary Figure 24-1](11B_NK_Downsampling.html)  and [Supplementary Figure 24-2](11D_SuppFigure_DE_Benchmarking.html)
+- [Supplementary Figure 25-1](11C_HEK_Quartzseq2_Dropseq.html) and [Supplementary Figure 25-2](11D_SuppFigure_DE_Benchmarking.html)
+
+

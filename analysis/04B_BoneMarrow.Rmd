@@ -1,0 +1,26 @@
+---
+title: "Create BoneMarrow"
+output:
+  workflowr::wflow_html:
+    toc: false
+editor_options:
+  chunk_output_type: console
+---
+
+```{r}
+suppressPackageStartupMessages({
+  library(Seurat)
+  library(SeuratData)
+
+})
+# bmcite
+data("bmcite")
+DefaultAssay(bmcite) <- "RNA"
+bmcite[["ADT"]] <- NULL
+bmcite[["spca"]] <- NULL
+VariableFeatures(bmcite) <- NULL
+bmcite[["percent.mt"]] <- PercentageFeatureSet(bmcite, pattern = "^MT-")
+
+dir.create(here::here("data/rds_raw"), showWarnings = F, recursive = T)
+saveRDS(bmcite, here::here("data", "rds_raw", "BoneMarrow__CITE-seq.rds"))
+```

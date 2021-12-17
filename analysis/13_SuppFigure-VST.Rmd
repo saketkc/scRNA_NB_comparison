@@ -170,7 +170,7 @@ p3
 ggsave(here::here("output", "figures", "SCT_theta_unregularized3.pdf"), width = 12, height = 15, dpi = "print")
 
 
-sct_thetas_df_subset <- sct_thetas_df[sct_thetas_df$sample_name %in% datasets$sample_name[46:58],]
+sct_thetas_df_subset <- sct_thetas_df[sct_thetas_df$sample_name %in% datasets$sample_name[46:59],]
 
 p5 <- DoMuThetaPlot(sct_thetas_df_subset)
 p5
@@ -220,7 +220,7 @@ length(unique(sct_thetas_df$key))
 
 ```{r , warning=FALSE, message=FALSE, fig.width=13, fig.height=6, warning=FALSE}
 global_labeller <- labeller(
-  sample_name = label_wrap_gen(8),
+  sample_name = label_wrap_gen(15),
   method = label_parsed
 )
 

@@ -159,7 +159,6 @@ pgeneavg <- ggplot(gene_attrs_df, aes(
   y = reorder(sample_name, avg_umi, FUN = median),
   avg_umi, fill = datatype
 )) +
-  # scale_x_log10() +
   scale_x_continuous(trans = "log10", breaks = c(0.0001, 0.01, 1, 100, 10000), labels = c("0.0001", 0.01, 1, 100, 10000)) +
   stat_density_ridges(quantile_lines = TRUE, quantiles = 2) +
   scale_fill_manual(values = brewer.pal(3, "Set2"), name = "") +
