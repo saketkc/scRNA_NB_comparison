@@ -13,7 +13,8 @@
 
 <title>Create VS2020 datasets</title>
 
-<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<script src="site_libs/header-attrs-2.11/header-attrs.js"></script>
+<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/simplex.min.css" rel="stylesheet" />
 <script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
@@ -41,6 +42,8 @@ div.section {
   padding-top: 12px;
 }
 </style>
+
+
 
 <style type="text/css">
   code{white-space: pre-wrap;}
@@ -302,13 +305,13 @@ $(document).ready(function () {
 <div class="tab-content">
 <div id="summary" class="tab-pane fade in active">
 <p>
-<strong>Last updated:</strong> 2021-07-07
+<strong>Last updated:</strong> 2021-12-17
 </p>
 <p>
 <strong>Checks:</strong> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> 7 <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span> 0
 </p>
 <p>
-<strong>Knit directory:</strong> <code>scRNA_NB_comparison/</code> <span class="glyphicon glyphicon-question-sign" aria-hidden="true" title="This is the local directory in which the code in this file was executed."> </span>
+<strong>Knit directory:</strong> <code>sct2_revision/</code> <span class="glyphicon glyphicon-question-sign" aria-hidden="true" title="This is the local directory in which the code in this file was executed."> </span>
 </p>
 <p>
 This reproducible <a href="http://rmarkdown.rstudio.com">R Markdown</a> analysis was created with <a
@@ -393,22 +396,24 @@ This reproducible <a href="http://rmarkdown.rstudio.com">R Markdown</a> analysis
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomsaketkcscRNANBcomparisontree052425faff377cce4936df52b27fe35bc6e8896etargetblank052425fa"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/saketkc/scRNA_NB_comparison/tree/052425faff377cce4936df52b27fe35bc6e8896e" target="_blank">052425f</a> </a>
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomsaketkcscRNANBcomparisontree8afc4867872b849d56f119090f10b0bf46fa9bd4targetblank8afc486a"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/saketkc/scRNA_NB_comparison/tree/8afc4867872b849d56f119090f10b0bf46fa9bd4" target="_blank">8afc486</a> </a>
 </p>
 </div>
-<div id="strongRepositoryversionstrongahrefhttpsgithubcomsaketkcscRNANBcomparisontree052425faff377cce4936df52b27fe35bc6e8896etargetblank052425fa" class="panel-collapse collapse">
+<div id="strongRepositoryversionstrongahrefhttpsgithubcomsaketkcscRNANBcomparisontree8afc4867872b849d56f119090f10b0bf46fa9bd4targetblank8afc486a" class="panel-collapse collapse">
 <div class="panel-body">
 <p>
 Great! You are using Git for version control. Tracking code development and connecting the code version to the results is critical for reproducibility.
 </p>
 <p>
-The results in this page were generated with repository version <a href="https://github.com/saketkc/scRNA_NB_comparison/tree/052425faff377cce4936df52b27fe35bc6e8896e" target="_blank">052425f</a>. See the <em>Past versions</em> tab to see a history of the changes made to the R Markdown and HTML files.
+The results in this page were generated with repository version <a href="https://github.com/saketkc/scRNA_NB_comparison/tree/8afc4867872b849d56f119090f10b0bf46fa9bd4" target="_blank">8afc486</a>. See the <em>Past versions</em> tab to see a history of the changes made to the R Markdown and HTML files.
 </p>
 <p>
 Note that you need to be careful to ensure that all relevant files for the analysis have been committed to Git prior to generating the results (you can use <code>wflow_publish</code> or <code>wflow_git_commit</code>). workflowr only checks the R Markdown file, but you know if there are other scripts or data files that it depends on. Below is the status of the Git repository when the results were generated:
 </p>
 <pre><code>
 Ignored files:
+    Ignored:    .Rhistory
+    Ignored:    .Rproj.user/
     Ignored:    data/raw_data/
     Ignored:    data/rds_filtered/
     Ignored:    data/rds_raw/
@@ -416,8 +421,88 @@ Ignored files:
     Ignored:    output/snakemake_output/
 
 Untracked files:
+    Untracked:  code/02_run_seurat_noclip.R
+    Untracked:  code/07AA_deseq2_muscat_simulate.R
+    Untracked:  code/07A_muscat_simulate.R
+    Untracked:  code/07A_simulate_muscat.R
+    Untracked:  code/07BB_deseq2_muscat_process.R
+    Untracked:  code/07B_muscat_process.R
+    Untracked:  code/07B_process_muscat.R
+    Untracked:  code/08_run_presto.R
+    Untracked:  code/17A_HEK_SS3_dropseq.Rmd
+    Untracked:  code/17A_HEK_SS3_dropseq_files/
+    Untracked:  code/17C_HEK_Quartzeseq2_dropseq.Rmd
+    Untracked:  code/17C_HEK_Quartzeseq2_dropseq_files/
+    Untracked:  code/17_HEK_SS3_ChromiumV3.Rmd
+    Untracked:  code/17_HEK_SS3_ChromiumV3.nb.html
+    Untracked:  code/17_HEK_SS3_ChromiumV3_files/
+    Untracked:  code/AA_process_muscat.R
+    Untracked:  code/BB_process_muscat.R
+    Untracked:  code/DD_simulate_muscat.R
+    Untracked:  code/EE_simulate_muscat.R
+    Untracked:  code/XX_process_muscat.R
+    Untracked:  code/XX_simulate_muscat.R
+    Untracked:  code/YY_simulate_muscat.R
+    Untracked:  code/ZZ_simulate_muscat.R
+    Untracked:  code/kang_muscat.R
+    Untracked:  code/prep_sce.R
+    Untracked:  code/prep_sce_ss3_dropseq.R
+    Untracked:  data/azimuth_predictions/
+    Untracked:  junk/
+    Untracked:  mamba_update_changes.txt
+    Untracked:  output/11C_VST/
+    Untracked:  output/AAmuscat_simulated/
+    Untracked:  output/BBmuscat_simulated/
+    Untracked:  output/CCmuscat_simulated/
+    Untracked:  output/CD4_NK_downsampling_DE.rds
+    Untracked:  output/DDmuscat_simulated/
+    Untracked:  output/EEmuscat_simulated/
+    Untracked:  output/KANGmuscat_simulated/
+    Untracked:  output/NK_downsampling/
+    Untracked:  output/XXmuscat_simulated/
+    Untracked:  output/YYmuscat_simulated/
+    Untracked:  output/ZZmuscat_simulated/
     Untracked:  output/figures/
+    Untracked:  output/kang_prepsce.rds
+    Untracked:  output/muscat_simulated/
+    Untracked:  output/muscat_simulation/
+    Untracked:  output/seu_sct2_sim.rds
+    Untracked:  output/simulation_HEK_QuartzSeq2_Dropseq_downsampling/
+    Untracked:  output/simulation_HEK_SS3_ChromiumV3_downsampling/
+    Untracked:  output/simulation_HEK_SS3_Dropseq_downsampling/
+    Untracked:  output/simulation_HEK_downsampling/
+    Untracked:  output/simulation_NK_downsampling/
+    Untracked:  output/ss3_dropseq_prepsim.rds
     Untracked:  output/tables/
+    Untracked:  output/vargenes/
+    Untracked:  snakemake/.snakemake/
+    Untracked:  snakemake/Snakefile_noclip.smk
+    Untracked:  snakemake/Snakefile_presto.smk
+    Untracked:  snakemake/cluster.yaml
+    Untracked:  snakemake/install_glm.R
+    Untracked:  snakemake/jobscript.sh
+    Untracked:  snakemake/jobscript_ncells.sh
+    Untracked:  snakemake/local_run_downsampling.sh
+    Untracked:  snakemake/local_run_glm.sh
+    Untracked:  snakemake/local_run_ncells.sh
+    Untracked:  snakemake/local_run_noclip.sh
+    Untracked:  snakemake/local_run_presto.sh
+    Untracked:  snakemake/local_run_time.sh
+    Untracked:  snakemake/run_glm.sh
+    Untracked:  snakemake/run_ncells.sh
+    Untracked:  snakemake/sct2_revision_env.yml
+    Untracked:  temp_figures/
+
+Unstaged changes:
+    Deleted:    analysis/04_PBMC68k.Rmd
+    Modified:   code/02_run_seurat.R
+    Modified:   code/03_run_vst2_downsample.R
+    Modified:   code/04_run_vst_ncells.R
+    Modified:   code/06_run_sct.R
+    Modified:   data/datasets.csv
+    Modified:   snakemake/Snakefile_downsampling.smk
+    Modified:   snakemake/Snakefile_glm_seurat.smk
+    Modified:   snakemake/Snakefile_metacell.smk
 
 </code></pre>
 <p>
@@ -456,6 +541,40 @@ Message
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/saketkc/scRNA_NB_comparison/blob/8afc4867872b849d56f119090f10b0bf46fa9bd4/analysis/06G_VS2020_Seurat.Rmd" target="_blank">8afc486</a>
+</td>
+<td>
+Saket Choudhary
+</td>
+<td>
+2021-12-17
+</td>
+<td>
+workflowr::wflow_publish("analysis/*")
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/saketkc/scRNA_NB_comparison/d736ec81cfc39938f365e9236e8b1fc69ed5283d/docs/06G_VS2020_Seurat.html" target="_blank">d736ec8</a>
+</td>
+<td>
+Saket Choudhary
+</td>
+<td>
+2021-07-07
+</td>
+<td>
+Build site.
+</td>
+</tr>
 <tr>
 <td>
 Rmd
@@ -522,10 +641,10 @@ Gm26206                        .                  .
 Xkr4                           .                  .
 Gm18956                        .                  .
 Gm37180                        .                  .</code></pre>
-<pre class="r"><code>seu &lt;- CreateSeuratObject(counts, project = paste0(&quot;VS2020_&quot;, sample_name), min.features=1, min.cells = 1)
+<pre class="r"><code>seu &lt;- CreateSeuratObject(counts, project = paste0(&quot;VS2020_&quot;, sample_name), min.features = 1, min.cells = 1)
 seu[[&quot;percent.mt&quot;]] &lt;- PercentageFeatureSet(seu, pattern = &quot;^mt-&quot;)
 
-saveRDS(seu, here::here(&quot;data/rds_raw&quot;,paste0(sample_name, &quot;.rds&quot;)))
+saveRDS(seu, here::here(&quot;data/rds_raw&quot;, paste0(sample_name, &quot;.rds&quot;)))
 dim(seu)</code></pre>
 <pre><code>[1] 22280  2458</code></pre>
 <pre class="r"><code>rm(seu)
@@ -547,12 +666,12 @@ WASH7P                      .                  .
 MIR1302-10                  .                  .
 FAM138A                     .                  .
 OR4G4P                      .                  .</code></pre>
-<pre class="r"><code>seu &lt;- CreateSeuratObject(counts, project = paste0(&quot;VS2020_&quot;, sample_name), min.features=1, min.cells = 1)</code></pre>
+<pre class="r"><code>seu &lt;- CreateSeuratObject(counts, project = paste0(&quot;VS2020_&quot;, sample_name), min.features = 1, min.cells = 1)</code></pre>
 <pre><code>Warning: Feature names cannot have underscores (&#39;_&#39;), replacing with dashes
 (&#39;-&#39;)</code></pre>
 <pre class="r"><code>seu[[&quot;percent.mt&quot;]] &lt;- PercentageFeatureSet(seu, pattern = &quot;^MT-&quot;)
 
-saveRDS(seu, here::here(&quot;data/rds_raw&quot;,paste0(sample_name, &quot;.rds&quot;)))
+saveRDS(seu, here::here(&quot;data/rds_raw&quot;, paste0(sample_name, &quot;.rds&quot;)))
 dim(seu)</code></pre>
 <pre><code>[1] 27221  2378</code></pre>
 <pre class="r"><code>rm(seu)
@@ -574,10 +693,10 @@ FAM138A                      .                  .
 OR4F5                        .                  .
 AL627309.1                   .                  .
 AL627309.3                   .                  .</code></pre>
-<pre class="r"><code>seu &lt;- CreateSeuratObject(counts, project = paste0(&quot;VS2020_&quot;, sample_name), min.features=1, min.cells = 1)
+<pre class="r"><code>seu &lt;- CreateSeuratObject(counts, project = paste0(&quot;VS2020_&quot;, sample_name), min.features = 1, min.cells = 1)
 seu[[&quot;percent.mt&quot;]] &lt;- PercentageFeatureSet(seu, pattern = &quot;^MT-&quot;)
 
-saveRDS(seu, here::here(&quot;data/rds_raw&quot;,paste0(sample_name, &quot;.rds&quot;)))
+saveRDS(seu, here::here(&quot;data/rds_raw&quot;, paste0(sample_name, &quot;.rds&quot;)))
 dim(seu)</code></pre>
 <pre><code>[1] 18391  1222</code></pre>
 <pre class="r"><code>rm(seu)
@@ -607,28 +726,30 @@ ENSG00000000460                        .
 ENSG00000000938                        .</code></pre>
 <pre class="r"><code>gene_ids &lt;- rownames(counts)
 ensembl &lt;- biomaRt::useEnsembl(biomart = &quot;ensembl&quot;, dataset = &quot;hsapiens_gene_ensembl&quot;)
-symbols &lt;- biomaRt::getBM(attributes = c(&quot;ensembl_gene_id&quot;, &quot;external_gene_name&quot;), filters = &quot;ensembl_gene_id&quot;, 
-    values = gene_ids, mart = ensembl)
+symbols &lt;- biomaRt::getBM(
+  attributes = c(&quot;ensembl_gene_id&quot;, &quot;external_gene_name&quot;), filters = &quot;ensembl_gene_id&quot;,
+  values = gene_ids, mart = ensembl
+)
 rownames(symbols) &lt;- symbols$ensembl_gene_id
 ids.use &lt;- intersect(rownames(counts), rownames(symbols))
 ids.unique &lt;- setdiff(gene_ids, ids.use)
 
-counts.renamed &lt;- counts[ids.use,]
+counts.renamed &lt;- counts[ids.use, ]
 
 symbols &lt;- symbols[ids.use, ]
 counts.renamed &lt;- counts[ids.use, ]
-symbols[symbols$external_gene_name==&quot;&quot;, &quot;external_gene_name&quot;] &lt;- symbols[symbols$external_gene_name==&quot;&quot;, &quot;ensembl_gene_id&quot;]
+symbols[symbols$external_gene_name == &quot;&quot;, &quot;external_gene_name&quot;] &lt;- symbols[symbols$external_gene_name == &quot;&quot;, &quot;ensembl_gene_id&quot;]
 rownames(counts.renamed) &lt;- make.unique(symbols$external_gene_name)
 
 
-counts.renamed &lt;- rbind(counts.renamed, counts[ids.unique,])
+counts.renamed &lt;- rbind(counts.renamed, counts[ids.unique, ])
 
-seu &lt;- CreateSeuratObject(counts.renamed, project = paste0(&quot;VS2020_&quot;, sample_name), min.features=1, min.cells = 1)</code></pre>
+seu &lt;- CreateSeuratObject(counts.renamed, project = paste0(&quot;VS2020_&quot;, sample_name), min.features = 1, min.cells = 1)</code></pre>
 <pre><code>Warning: Feature names cannot have underscores (&#39;_&#39;), replacing with dashes
 (&#39;-&#39;)</code></pre>
 <pre class="r"><code>seu[[&quot;percent.mt&quot;]] &lt;- PercentageFeatureSet(seu, pattern = &quot;^MT-&quot;)
 
-saveRDS(seu, here::here(&quot;data/rds_raw&quot;,paste0(sample_name, &quot;.rds&quot;)))
+saveRDS(seu, here::here(&quot;data/rds_raw&quot;, paste0(sample_name, &quot;.rds&quot;)))
 counts.renamed[1:5, 1:5]</code></pre>
 <pre><code>5 x 5 sparse Matrix of class &quot;dgCMatrix&quot;
          cell20311_AAAAAAAAAAAAAC cell20311_AAACATACGATAAG
@@ -684,28 +805,30 @@ ENSG00000000460                        .
 ENSG00000000938                        .</code></pre>
 <pre class="r"><code>gene_ids &lt;- rownames(counts)
 ensembl &lt;- biomaRt::useEnsembl(biomart = &quot;ensembl&quot;, dataset = &quot;hsapiens_gene_ensembl&quot;)
-symbols &lt;- biomaRt::getBM(attributes = c(&quot;ensembl_gene_id&quot;, &quot;external_gene_name&quot;), filters = &quot;ensembl_gene_id&quot;, 
-    values = gene_ids, mart = ensembl)
+symbols &lt;- biomaRt::getBM(
+  attributes = c(&quot;ensembl_gene_id&quot;, &quot;external_gene_name&quot;), filters = &quot;ensembl_gene_id&quot;,
+  values = gene_ids, mart = ensembl
+)
 rownames(symbols) &lt;- symbols$ensembl_gene_id
 ids.use &lt;- intersect(rownames(counts), rownames(symbols))
 ids.unique &lt;- setdiff(gene_ids, ids.use)
 
-counts.renamed &lt;- counts[ids.use,]
+counts.renamed &lt;- counts[ids.use, ]
 
 symbols &lt;- symbols[ids.use, ]
 counts.renamed &lt;- counts[ids.use, ]
-symbols[symbols$external_gene_name==&quot;&quot;, &quot;external_gene_name&quot;] &lt;- symbols[symbols$external_gene_name==&quot;&quot;, &quot;ensembl_gene_id&quot;]
+symbols[symbols$external_gene_name == &quot;&quot;, &quot;external_gene_name&quot;] &lt;- symbols[symbols$external_gene_name == &quot;&quot;, &quot;ensembl_gene_id&quot;]
 rownames(counts.renamed) &lt;- make.unique(symbols$external_gene_name)
 
 
-counts.renamed &lt;- rbind(counts.renamed, counts[ids.unique,])
+counts.renamed &lt;- rbind(counts.renamed, counts[ids.unique, ])
 
-seu &lt;- CreateSeuratObject(counts.renamed, project = paste0(&quot;VS2020_&quot;, sample_name), min.features=1, min.cells = 1)</code></pre>
+seu &lt;- CreateSeuratObject(counts.renamed, project = paste0(&quot;VS2020_&quot;, sample_name), min.features = 1, min.cells = 1)</code></pre>
 <pre><code>Warning: Feature names cannot have underscores (&#39;_&#39;), replacing with dashes
 (&#39;-&#39;)</code></pre>
 <pre class="r"><code>seu[[&quot;percent.mt&quot;]] &lt;- PercentageFeatureSet(seu, pattern = &quot;^MT-&quot;)
 
-saveRDS(seu, here::here(&quot;data/rds_raw&quot;,paste0(sample_name, &quot;.rds&quot;)))
+saveRDS(seu, here::here(&quot;data/rds_raw&quot;, paste0(sample_name, &quot;.rds&quot;)))
 counts.renamed[1:5, 1:5]</code></pre>
 <pre><code>5 x 5 sparse Matrix of class &quot;dgCMatrix&quot;
          cell20312_AAAAAAAAAAAACA cell20312_AAACATTGGCGGAA
@@ -747,12 +870,12 @@ A1BG-AS1     .     1     .     .     .
 A1CF         3     .     2     2     2
 A2M          .     .     .     .     .
 A2M-AS1      1     1     .     .     .</code></pre>
-<pre class="r"><code>seu &lt;- CreateSeuratObject(counts, project = paste0(&quot;VS2020_&quot;, sample_name), min.features=1, min.cells = 1)</code></pre>
+<pre class="r"><code>seu &lt;- CreateSeuratObject(counts, project = paste0(&quot;VS2020_&quot;, sample_name), min.features = 1, min.cells = 1)</code></pre>
 <pre><code>Warning: Feature names cannot have underscores (&#39;_&#39;), replacing with dashes
 (&#39;-&#39;)</code></pre>
 <pre class="r"><code>seu[[&quot;percent.mt&quot;]] &lt;- PercentageFeatureSet(seu, pattern = &quot;^MT-&quot;)
 
-saveRDS(seu, here::here(&quot;data/rds_raw&quot;,paste0(sample_name, &quot;.rds&quot;)))
+saveRDS(seu, here::here(&quot;data/rds_raw&quot;, paste0(sample_name, &quot;.rds&quot;)))
 dim(counts)</code></pre>
 <pre><code>[1] 25435   953</code></pre>
 <pre class="r"><code>dim(seu)</code></pre>
@@ -768,13 +891,13 @@ rm(sample_name)</code></pre>
 </p>
 <div id="workflowr-sessioninfo" class="collapse">
 <pre class="r"><code>sessionInfo()</code></pre>
-<pre><code>R version 4.0.0 (2020-04-24)
+<pre><code>R version 4.1.2 (2021-11-01)
 Platform: x86_64-pc-linux-gnu (64-bit)
-Running under: Ubuntu 18.04.5 LTS
+Running under: Ubuntu 20.04.3 LTS
 
 Matrix products: default
-BLAS:   /usr/lib/x86_64-linux-gnu/blas/libblas.so.3.7.1
-LAPACK: /usr/lib/x86_64-linux-gnu/lapack/liblapack.so.3.7.1
+BLAS:   /usr/lib/x86_64-linux-gnu/blas/libblas.so.3.9.0
+LAPACK: /usr/lib/x86_64-linux-gnu/lapack/liblapack.so.3.9.0
 
 locale:
  [1] LC_CTYPE=en_US.UTF-8       LC_NUMERIC=C              
@@ -788,56 +911,58 @@ attached base packages:
 [1] stats     graphics  grDevices utils     datasets  methods   base     
 
 other attached packages:
-[1] SeuratObject_4.0.2 Seurat_4.0.3       workflowr_1.6.2   
+[1] SeuratObject_4.0.4 Seurat_4.0.5       workflowr_1.6.2   
 
 loaded via a namespace (and not attached):
-  [1] BiocFileCache_1.14.0   plyr_1.8.6             igraph_1.2.6          
-  [4] lazyeval_0.2.2         splines_4.0.0          listenv_0.8.0         
-  [7] scattermore_0.7        ggplot2_3.3.5          digest_0.6.27         
- [10] htmltools_0.5.1.1      fansi_0.5.0            magrittr_2.0.1        
- [13] memoise_2.0.0          tensor_1.5             cluster_2.1.0         
- [16] ROCR_1.0-11            globals_0.14.0         matrixStats_0.59.0    
- [19] askpass_1.1            spatstat.sparse_2.0-0  prettyunits_1.1.1     
- [22] colorspace_2.0-2       rappdirs_0.3.3         blob_1.2.1            
- [25] ggrepel_0.9.1          xfun_0.24              dplyr_1.0.7           
- [28] crayon_1.4.1           jsonlite_1.7.2         spatstat.data_2.1-0   
- [31] survival_3.2-7         zoo_1.8-9              glue_1.4.2            
- [34] polyclip_1.10-0        gtable_0.3.0           leiden_0.3.8          
- [37] future.apply_1.7.0     BiocGenerics_0.36.1    abind_1.4-5           
- [40] scales_1.1.1           DBI_1.1.1              miniUI_0.1.1.1        
- [43] Rcpp_1.0.6             viridisLite_0.4.0      xtable_1.8-4          
- [46] progress_1.2.2         reticulate_1.20        spatstat.core_2.2-0   
- [49] bit_4.0.4              stats4_4.0.0           htmlwidgets_1.5.3     
- [52] httr_1.4.2             RColorBrewer_1.1-2     ellipsis_0.3.2        
- [55] ica_1.0-2              pkgconfig_2.0.3        XML_3.99-0.6          
- [58] dbplyr_2.1.1           sass_0.4.0             uwot_0.1.10           
- [61] deldir_0.2-10          utf8_1.2.1             here_1.0.1            
- [64] tidyselect_1.1.1       rlang_0.4.11           reshape2_1.4.4        
- [67] later_1.2.0            AnnotationDbi_1.52.0   munsell_0.5.0         
- [70] tools_4.0.0            cachem_1.0.5           generics_0.1.0        
- [73] RSQLite_2.2.7          ggridges_0.5.3         evaluate_0.14         
- [76] stringr_1.4.0          fastmap_1.1.0          yaml_2.2.1            
- [79] goftest_1.2-2          knitr_1.33             bit64_4.0.5           
- [82] fs_1.5.0               fitdistrplus_1.1-5     purrr_0.3.4           
- [85] RANN_2.6.1             pbapply_1.4-3          future_1.21.0         
- [88] nlme_3.1-152           whisker_0.4            mime_0.11             
- [91] xml2_1.3.2             biomaRt_2.46.3         compiler_4.0.0        
- [94] curl_4.3.2             plotly_4.9.4.1         png_0.1-7             
- [97] spatstat.utils_2.2-0   tibble_3.1.2           bslib_0.2.5.1         
-[100] stringi_1.6.2          lattice_0.20-41        Matrix_1.3-4          
-[103] vctrs_0.3.8            pillar_1.6.1           lifecycle_1.0.0       
-[106] spatstat.geom_2.2-0    lmtest_0.9-38          jquerylib_0.1.4       
-[109] RcppAnnoy_0.0.18       data.table_1.14.0      cowplot_1.1.1         
-[112] irlba_2.3.3            httpuv_1.6.1           patchwork_1.1.1       
-[115] R6_2.5.0               promises_1.2.0.1       KernSmooth_2.23-17    
-[118] gridExtra_2.3          IRanges_2.24.1         parallelly_1.26.0     
-[121] codetools_0.2-16       MASS_7.3-51.6          assertthat_0.2.1      
-[124] openssl_1.4.4          rprojroot_2.0.2        withr_2.4.2           
-[127] sctransform_0.3.2.9008 S4Vectors_0.28.1       mgcv_1.8-33           
-[130] parallel_4.0.0         hms_1.1.0              grid_4.0.0            
-[133] rpart_4.1-15           tidyr_1.1.3            rmarkdown_2.9         
-[136] Rtsne_0.15             git2r_0.26.1           Biobase_2.50.0        
-[139] shiny_1.6.0           </code></pre>
+  [1] BiocFileCache_2.0.0    plyr_1.8.6             igraph_1.2.9          
+  [4] lazyeval_0.2.2         splines_4.1.2          listenv_0.8.0         
+  [7] scattermore_0.7        GenomeInfoDb_1.28.4    ggplot2_3.3.5         
+ [10] digest_0.6.29          htmltools_0.5.2        fansi_0.5.0           
+ [13] magrittr_2.0.1         memoise_2.0.0          tensor_1.5            
+ [16] cluster_2.1.2          ROCR_1.0-11            globals_0.14.0        
+ [19] Biostrings_2.60.2      matrixStats_0.61.0     spatstat.sparse_2.0-0 
+ [22] prettyunits_1.1.1      colorspace_2.0-2       rappdirs_0.3.3        
+ [25] blob_1.2.2             ggrepel_0.9.1          xfun_0.28             
+ [28] dplyr_1.0.7            crayon_1.4.2           RCurl_1.98-1.5        
+ [31] jsonlite_1.7.2         spatstat.data_2.1-0    survival_3.2-13       
+ [34] zoo_1.8-9              glue_1.5.1             polyclip_1.10-0       
+ [37] gtable_0.3.0           zlibbioc_1.38.0        XVector_0.32.0        
+ [40] leiden_0.3.9           future.apply_1.8.1     BiocGenerics_0.38.0   
+ [43] abind_1.4-5            scales_1.1.1           DBI_1.1.1             
+ [46] miniUI_0.1.1.1         Rcpp_1.0.7             progress_1.2.2        
+ [49] viridisLite_0.4.0      xtable_1.8-4           reticulate_1.22       
+ [52] spatstat.core_2.3-2    bit_4.0.4              stats4_4.1.2          
+ [55] htmlwidgets_1.5.4      httr_1.4.2             RColorBrewer_1.1-2    
+ [58] ellipsis_0.3.2         ica_1.0-2              pkgconfig_2.0.3       
+ [61] XML_3.99-0.8           dbplyr_2.1.1           sass_0.4.0            
+ [64] uwot_0.1.11            deldir_1.0-6           utf8_1.2.2            
+ [67] here_1.0.1             tidyselect_1.1.1       rlang_0.4.12          
+ [70] reshape2_1.4.4         later_1.3.0            AnnotationDbi_1.54.1  
+ [73] munsell_0.5.0          tools_4.1.2            cachem_1.0.6          
+ [76] generics_0.1.1         RSQLite_2.2.9          ggridges_0.5.3        
+ [79] evaluate_0.14          stringr_1.4.0          fastmap_1.1.0         
+ [82] yaml_2.2.1             goftest_1.2-3          knitr_1.36            
+ [85] bit64_4.0.5            fs_1.5.2               fitdistrplus_1.1-6    
+ [88] purrr_0.3.4            RANN_2.6.1             KEGGREST_1.32.0       
+ [91] pbapply_1.5-0          future_1.23.0          nlme_3.1-152          
+ [94] whisker_0.4            mime_0.12              xml2_1.3.3            
+ [97] biomaRt_2.48.3         compiler_4.1.2         filelock_1.0.2        
+[100] curl_4.3.2             plotly_4.10.0          png_0.1-7             
+[103] spatstat.utils_2.3-0   tibble_3.1.6           bslib_0.3.1           
+[106] stringi_1.7.6          lattice_0.20-45        Matrix_1.4-0          
+[109] vctrs_0.3.8            pillar_1.6.4           lifecycle_1.0.1       
+[112] spatstat.geom_2.3-1    lmtest_0.9-39          jquerylib_0.1.4       
+[115] RcppAnnoy_0.0.19       bitops_1.0-7           data.table_1.14.2     
+[118] cowplot_1.1.1          irlba_2.3.5            httpuv_1.6.3          
+[121] patchwork_1.1.1        R6_2.5.1               promises_1.2.0.1      
+[124] KernSmooth_2.23-20     gridExtra_2.3          IRanges_2.26.0        
+[127] parallelly_1.29.0      codetools_0.2-18       MASS_7.3-54           
+[130] assertthat_0.2.1       rprojroot_2.0.2        withr_2.4.3           
+[133] sctransform_0.3.2.9008 GenomeInfoDbData_1.2.6 S4Vectors_0.30.2      
+[136] hms_1.1.1              mgcv_1.8-38            parallel_4.1.2        
+[139] grid_4.1.2             rpart_4.1-15           tidyr_1.1.4           
+[142] rmarkdown_2.11         Rtsne_0.15             git2r_0.29.0          
+[145] Biobase_2.52.0         shiny_1.7.1           </code></pre>
 </div>
 </div>
 
@@ -853,6 +978,8 @@ footer is added to webpages before the MathJax javascript. -->
     "HTML-CSS": { availableFonts: ["TeX"] }
   });
 </script>
+
+
 
 
 

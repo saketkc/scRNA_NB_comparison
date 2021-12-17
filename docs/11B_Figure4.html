@@ -1,0 +1,1361 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+
+
+<title>Figure 4</title>
+
+<script src="site_libs/header-attrs-2.11/header-attrs.js"></script>
+<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/simplex.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-9.12.0/textmate.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+<link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
+
+<link rel="icon" href="https://github.com/workflowr/workflowr-assets/raw/master/img/reproducible.png">
+<!-- Add a small amount of space between sections. -->
+<style type="text/css">
+div.section {
+  padding-top: 12px;
+}
+</style>
+
+
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+<style type="text/css">code{white-space: pre;}</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+
+
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+pre code {
+  padding: 0;
+}
+</style>
+
+
+<style type="text/css">
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #adb5bd;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script type="text/javascript">
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.tab('show');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+
+</style>
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">scRNA_NB_comparison</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="index.html">Home</a>
+</li>
+<li>
+  <a href="about.html">About</a>
+</li>
+<li>
+  <a href="license.html">License</a>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+  <a href="https://github.com/saketkc/scRNA_NB_comparison">
+    <span class="fa fa-github"></span>
+     
+    Source code
+  </a>
+</li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div id="header">
+
+
+
+<h1 class="title toc-ignore">Figure 4</h1>
+
+</div>
+
+
+<p>
+<button type="button" class="btn btn-default btn-workflowr btn-workflowr-report" data-toggle="collapse" data-target="#workflowr-report">
+<span class="glyphicon glyphicon-list" aria-hidden="true"></span> workflowr <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span>
+</button>
+</p>
+<div id="workflowr-report" class="collapse">
+<ul class="nav nav-tabs">
+<li class="active">
+<a data-toggle="tab" href="#summary">Summary</a>
+</li>
+<li>
+<a data-toggle="tab" href="#checks"> Checks <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> </a>
+</li>
+<li>
+<a data-toggle="tab" href="#versions">Past versions</a>
+</li>
+</ul>
+<div class="tab-content">
+<div id="summary" class="tab-pane fade in active">
+<p>
+<strong>Last updated:</strong> 2021-12-17
+</p>
+<p>
+<strong>Checks:</strong> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> 7 <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span> 0
+</p>
+<p>
+<strong>Knit directory:</strong> <code>sct2_revision/</code> <span class="glyphicon glyphicon-question-sign" aria-hidden="true" title="This is the local directory in which the code in this file was executed."> </span>
+</p>
+<p>
+This reproducible <a href="http://rmarkdown.rstudio.com">R Markdown</a> analysis was created with <a
+  href="https://github.com/jdblischak/workflowr">workflowr</a> (version 1.6.2). The <em>Checks</em> tab describes the reproducibility checks that were applied when the results were created. The <em>Past versions</em> tab lists the development history.
+</p>
+<hr>
+</div>
+<div id="checks" class="tab-pane fade">
+<div id="workflowr-checks" class="panel-group">
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRMarkdownfilestronguptodate"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>R Markdown file:</strong> up-to-date </a>
+</p>
+</div>
+<div id="strongRMarkdownfilestronguptodate" class="panel-collapse collapse">
+<div class="panel-body">
+<p>Great! Since the R Markdown file has been committed to the Git repository, you know the exact version of the code that produced these results.</p>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongEnvironmentstrongempty"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Environment:</strong> empty </a>
+</p>
+</div>
+<div id="strongEnvironmentstrongempty" class="panel-collapse collapse">
+<div class="panel-body">
+<p>Great job! The global environment was empty. Objects defined in the global environment can affect the analysis in your R Markdown file in unknown ways. For reproduciblity it’s best to always run the code in an empty environment.</p>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongSeedstrongcodesetseed20210706code"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Seed:</strong> <code>set.seed(20210706)</code> </a>
+</p>
+</div>
+<div id="strongSeedstrongcodesetseed20210706code" class="panel-collapse collapse">
+<div class="panel-body">
+<p>The command <code>set.seed(20210706)</code> was run prior to running the code in the R Markdown file. Setting a seed ensures that any results that rely on randomness, e.g. subsampling or permutations, are reproducible.</p>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongSessioninformationstrongrecorded"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Session information:</strong> recorded </a>
+</p>
+</div>
+<div id="strongSessioninformationstrongrecorded" class="panel-collapse collapse">
+<div class="panel-body">
+<p>Great job! Recording the operating system, R version, and package versions is critical for reproducibility.</p>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongCachestrongnone"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Cache:</strong> none </a>
+</p>
+</div>
+<div id="strongCachestrongnone" class="panel-collapse collapse">
+<div class="panel-body">
+<p>Nice! There were no cached chunks for this analysis, so you can be confident that you successfully produced the results during this run.</p>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongFilepathsstrongrelative"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>File paths:</strong> relative </a>
+</p>
+</div>
+<div id="strongFilepathsstrongrelative" class="panel-collapse collapse">
+<div class="panel-body">
+<p>Great job! Using relative paths to the files within your workflowr project makes it easier to run your code on other machines.</p>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomsaketkcscRNANBcomparisontree8afc4867872b849d56f119090f10b0bf46fa9bd4targetblank8afc486a"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/saketkc/scRNA_NB_comparison/tree/8afc4867872b849d56f119090f10b0bf46fa9bd4" target="_blank">8afc486</a> </a>
+</p>
+</div>
+<div id="strongRepositoryversionstrongahrefhttpsgithubcomsaketkcscRNANBcomparisontree8afc4867872b849d56f119090f10b0bf46fa9bd4targetblank8afc486a" class="panel-collapse collapse">
+<div class="panel-body">
+<p>
+Great! You are using Git for version control. Tracking code development and connecting the code version to the results is critical for reproducibility.
+</p>
+<p>
+The results in this page were generated with repository version <a href="https://github.com/saketkc/scRNA_NB_comparison/tree/8afc4867872b849d56f119090f10b0bf46fa9bd4" target="_blank">8afc486</a>. See the <em>Past versions</em> tab to see a history of the changes made to the R Markdown and HTML files.
+</p>
+<p>
+Note that you need to be careful to ensure that all relevant files for the analysis have been committed to Git prior to generating the results (you can use <code>wflow_publish</code> or <code>wflow_git_commit</code>). workflowr only checks the R Markdown file, but you know if there are other scripts or data files that it depends on. Below is the status of the Git repository when the results were generated:
+</p>
+<pre><code>
+Ignored files:
+    Ignored:    .Rhistory
+    Ignored:    .Rproj.user/
+    Ignored:    data/raw_data/
+    Ignored:    data/rds_filtered/
+    Ignored:    data/rds_raw/
+    Ignored:    data/sampled_counts/
+    Ignored:    output/snakemake_output/
+
+Untracked files:
+    Untracked:  code/02_run_seurat_noclip.R
+    Untracked:  code/07AA_deseq2_muscat_simulate.R
+    Untracked:  code/07A_muscat_simulate.R
+    Untracked:  code/07A_simulate_muscat.R
+    Untracked:  code/07BB_deseq2_muscat_process.R
+    Untracked:  code/07B_muscat_process.R
+    Untracked:  code/07B_process_muscat.R
+    Untracked:  code/08_run_presto.R
+    Untracked:  code/17A_HEK_SS3_dropseq.Rmd
+    Untracked:  code/17A_HEK_SS3_dropseq_files/
+    Untracked:  code/17C_HEK_Quartzeseq2_dropseq.Rmd
+    Untracked:  code/17C_HEK_Quartzeseq2_dropseq_files/
+    Untracked:  code/17_HEK_SS3_ChromiumV3.Rmd
+    Untracked:  code/17_HEK_SS3_ChromiumV3.nb.html
+    Untracked:  code/17_HEK_SS3_ChromiumV3_files/
+    Untracked:  code/AA_process_muscat.R
+    Untracked:  code/BB_process_muscat.R
+    Untracked:  code/DD_simulate_muscat.R
+    Untracked:  code/EE_simulate_muscat.R
+    Untracked:  code/XX_process_muscat.R
+    Untracked:  code/XX_simulate_muscat.R
+    Untracked:  code/YY_simulate_muscat.R
+    Untracked:  code/ZZ_simulate_muscat.R
+    Untracked:  code/kang_muscat.R
+    Untracked:  code/prep_sce.R
+    Untracked:  code/prep_sce_ss3_dropseq.R
+    Untracked:  data/azimuth_predictions/
+    Untracked:  junk/
+    Untracked:  mamba_update_changes.txt
+    Untracked:  output/11C_VST/
+    Untracked:  output/AAmuscat_simulated/
+    Untracked:  output/BBmuscat_simulated/
+    Untracked:  output/CCmuscat_simulated/
+    Untracked:  output/CD4_NK_downsampling_DE.rds
+    Untracked:  output/DDmuscat_simulated/
+    Untracked:  output/EEmuscat_simulated/
+    Untracked:  output/KANGmuscat_simulated/
+    Untracked:  output/NK_downsampling/
+    Untracked:  output/XXmuscat_simulated/
+    Untracked:  output/YYmuscat_simulated/
+    Untracked:  output/ZZmuscat_simulated/
+    Untracked:  output/figures/
+    Untracked:  output/kang_prepsce.rds
+    Untracked:  output/muscat_simulated/
+    Untracked:  output/muscat_simulation/
+    Untracked:  output/seu_sct2_sim.rds
+    Untracked:  output/simulation_HEK_QuartzSeq2_Dropseq_downsampling/
+    Untracked:  output/simulation_HEK_SS3_ChromiumV3_downsampling/
+    Untracked:  output/simulation_HEK_SS3_Dropseq_downsampling/
+    Untracked:  output/simulation_HEK_downsampling/
+    Untracked:  output/simulation_NK_downsampling/
+    Untracked:  output/ss3_dropseq_prepsim.rds
+    Untracked:  output/tables/
+    Untracked:  output/vargenes/
+    Untracked:  snakemake/.snakemake/
+    Untracked:  snakemake/Snakefile_noclip.smk
+    Untracked:  snakemake/Snakefile_presto.smk
+    Untracked:  snakemake/cluster.yaml
+    Untracked:  snakemake/install_glm.R
+    Untracked:  snakemake/jobscript.sh
+    Untracked:  snakemake/jobscript_ncells.sh
+    Untracked:  snakemake/local_run_downsampling.sh
+    Untracked:  snakemake/local_run_glm.sh
+    Untracked:  snakemake/local_run_ncells.sh
+    Untracked:  snakemake/local_run_noclip.sh
+    Untracked:  snakemake/local_run_presto.sh
+    Untracked:  snakemake/local_run_time.sh
+    Untracked:  snakemake/run_glm.sh
+    Untracked:  snakemake/run_ncells.sh
+    Untracked:  snakemake/sct2_revision_env.yml
+    Untracked:  temp_figures/
+
+Unstaged changes:
+    Deleted:    analysis/04_PBMC68k.Rmd
+    Modified:   code/02_run_seurat.R
+    Modified:   code/03_run_vst2_downsample.R
+    Modified:   code/04_run_vst_ncells.R
+    Modified:   code/06_run_sct.R
+    Modified:   data/datasets.csv
+    Modified:   snakemake/Snakefile_downsampling.smk
+    Modified:   snakemake/Snakefile_glm_seurat.smk
+    Modified:   snakemake/Snakefile_metacell.smk
+
+</code></pre>
+<p>
+Note that any generated files, e.g. HTML, png, CSS, etc., are not included in this status report because it is ok for generated content to have uncommitted changes.
+</p>
+</div>
+</div>
+</div>
+</div>
+<hr>
+</div>
+<div id="versions" class="tab-pane fade">
+
+<p>
+These are the previous versions of the repository in which changes were made to the R Markdown (<code>analysis/11B_Figure4.Rmd</code>) and HTML (<code>docs/11B_Figure4.html</code>) files. If you’ve configured a remote Git repository (see <code>?wflow_git_remote</code>), click on the hyperlinks in the table below to view the files as they were in that past version.
+</p>
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+File
+</th>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+<th>
+Message
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/saketkc/scRNA_NB_comparison/blob/8afc4867872b849d56f119090f10b0bf46fa9bd4/analysis/11B_Figure4.Rmd" target="_blank">8afc486</a>
+</td>
+<td>
+Saket Choudhary
+</td>
+<td>
+2021-12-17
+</td>
+<td>
+workflowr::wflow_publish("analysis/*")
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<hr>
+</div>
+</div>
+</div>
+<pre class="r"><code>suppressMessages({
+  library(Seurat)
+  library(ggpubr)
+  library(ggridges)
+  library(patchwork)
+  library(dplyr)
+  library(ggupset)
+  library(tidyverse)
+  library(ggplot2)
+  library(xtable)
+  library(ComplexUpset)
+  library(SeuratData)
+
+})</code></pre>
+<pre><code>Warning in if (is.na(desc)) {: the condition has length &gt; 1 and only the first
+element will be used
+
+Warning in if (is.na(desc)) {: the condition has length &gt; 1 and only the first
+element will be used
+
+Warning in if (is.na(desc)) {: the condition has length &gt; 1 and only the first
+element will be used
+
+Warning in if (is.na(desc)) {: the condition has length &gt; 1 and only the first
+element will be used
+
+Warning in if (is.na(desc)) {: the condition has length &gt; 1 and only the first
+element will be used
+
+Warning in if (is.na(desc)) {: the condition has length &gt; 1 and only the first
+element will be used
+
+Warning in if (is.na(desc)) {: the condition has length &gt; 1 and only the first
+element will be used
+
+Warning in if (is.na(desc)) {: the condition has length &gt; 1 and only the first
+element will be used
+
+Warning in if (is.na(desc)) {: the condition has length &gt; 1 and only the first
+element will be used
+
+Warning in if (is.na(desc)) {: the condition has length &gt; 1 and only the first
+element will be used
+
+Warning in if (is.na(desc)) {: the condition has length &gt; 1 and only the first
+element will be used
+
+Warning in if (is.na(desc)) {: the condition has length &gt; 1 and only the first
+element will be used</code></pre>
+<pre class="r"><code>data(&quot;bmcite&quot;)
+knitr::opts_chunk$set(warning = FALSE, message = FALSE)
+
+theme_set(theme_pubr())</code></pre>
+<div id="meta-marker-coverage" class="section level1">
+<h1>Meta marker coverage</h1>
+<pre class="r"><code>datasets &lt;- read.csv(here::here(&quot;data/datasets.csv&quot;))
+n_markers &lt;- readRDS(here::here(&quot;output/vargenes/n_markers.rds&quot;))
+# select datasets where we detect at least 3000 markers
+n_markers_3k &lt;- n_markers %&gt;% filter(n_markers &gt; 2999)
+
+
+var_genes_df &lt;- readRDS(here::here(&quot;output/vargenes/compare_variable_genes_df_long.rds&quot;))
+var_genes_df &lt;- left_join(var_genes_df, datasets, by = &quot;sample_name&quot;)
+var_genes_df &lt;- var_genes_df[var_genes_df$sample_name %in% n_markers_3k$sample_name,]
+
+var_genes_df_summary2 &lt;- var_genes_df %&gt;%
+  group_by(technology, variable, rank) %&gt;%
+  summarise(median_overlap = median(value)) %&gt;%
+  ungroup()
+
+var_genes_df_summary3 &lt;- var_genes_df %&gt;%
+  group_by(tissue, variable, rank) %&gt;%
+  summarise(median_overlap = median(value)) %&gt;%
+  ungroup()
+
+
+
+
+var_genes_prop_df &lt;- readRDS(here::here(&quot;output/vargenes/compare_variable_genes_prop_df_long.rds&quot;))
+var_genes_prop_df &lt;- left_join(var_genes_prop_df, datasets, by = &quot;sample_name&quot;)
+var_genes_prop_df &lt;- var_genes_prop_df[var_genes_prop_df$sample_name %in% n_markers_3k$sample_name,]
+
+var_genes_prop_df_summary2 &lt;- var_genes_prop_df %&gt;%
+  group_by(technology, variable, rank) %&gt;%
+  summarise(median_overlap = median(value)) %&gt;%
+  ungroup()
+var_genes_prop_df_summary3 &lt;- var_genes_prop_df %&gt;%
+  group_by(tissue, variable, rank) %&gt;%
+  summarise(median_overlap = median(value)) %&gt;%
+  ungroup()
+
+var_genes_prop_df_summary2$variable &lt;- factor(as.character(var_genes_prop_df_summary2$variable),
+  levels = c(&quot;offset100&quot;, &quot;offset10&quot;, &quot;sct&quot;, &quot;sct2&quot;)
+)
+
+var_genes_prop_df_summary3$variable &lt;- factor(as.character(var_genes_prop_df_summary3$variable),
+  levels = c(&quot;offset100&quot;, &quot;offset10&quot;, &quot;sct&quot;, &quot;sct2&quot;)
+)
+
+labels &lt;- c(expression(theta == 100), expression(theta == 10), &quot;SCT v1&quot;, &quot;SCT v2&quot;)
+names(labels) &lt;- c(&quot;offset100&quot;, &quot;offset10&quot;, &quot;sct&quot;, &quot;sct2&quot;)
+
+
+p1.tech &lt;- ggplot(var_genes_prop_df_summary2, aes(rank, median_overlap, color = variable)) +
+  geom_point(size = 0.1) +
+  facet_wrap(~technology, scales = &quot;free_y&quot;) +
+  # geom_line() +
+  scale_color_brewer(type = &quot;qual&quot;, palette = &quot;Set1&quot;, name = &quot;&quot;, labels = labels) +
+  guides(colour = guide_legend(override.aes = list(size = 2))) +
+  xlab(&quot;Variable feature rank&quot;) +
+  ylab(&quot;Median proportion of marker genes&quot;) 
+
+
+
+p1.system &lt;- ggplot(var_genes_prop_df_summary3, aes(rank, median_overlap, color = variable)) +
+  geom_point(size = 0.1) +
+  facet_wrap(~tissue, scales = &quot;free_y&quot;, ncol = 4) +
+  # geom_line() +
+  scale_color_brewer(type = &quot;qual&quot;, palette = &quot;Set2&quot;, name = &quot;&quot;, labels = labels) +
+  guides(colour = guide_legend(override.aes = list(size = 2))) +
+  xlab(&quot;Variable feature rank&quot;) +
+  ylab(&quot;Median proportion of marker genes&quot;) #+ theme(legend.position = c(0.9, 0.24),legend.background=element_blank(), legend.text.align = 0)
+p1.system</code></pre>
+<p><img src="figure/11B_Figure4.Rmd/unnamed-chunk-2-1.png" width="1152" style="display: block; margin: auto;" /></p>
+<pre class="r"><code>summary_df &lt;- var_genes_prop_df_summary3[var_genes_prop_df_summary3$rank %in% c(1000,2000,3000), ]
+
+print(xtable(summary_df, type = &quot;latex&quot;, digits=3), include.rownames = FALSE)</code></pre>
+<pre><code>% latex table generated in R 4.1.2 by xtable 1.8-4 package
+% Fri Dec 17 10:18:45 2021
+\begin{table}[ht]
+\centering
+\begin{tabular}{llrr}
+  \hline
+tissue &amp; variable &amp; rank &amp; median\_overlap \\ 
+  \hline
+Bone Marrow &amp; offset100 &amp; 1000 &amp; 0.204 \\ 
+  Bone Marrow &amp; offset100 &amp; 2000 &amp; 0.305 \\ 
+  Bone Marrow &amp; offset100 &amp; 3000 &amp; 0.367 \\ 
+  Bone Marrow &amp; offset10 &amp; 1000 &amp; 0.189 \\ 
+  Bone Marrow &amp; offset10 &amp; 2000 &amp; 0.276 \\ 
+  Bone Marrow &amp; offset10 &amp; 3000 &amp; 0.337 \\ 
+  Bone Marrow &amp; sct &amp; 1000 &amp; 0.194 \\ 
+  Bone Marrow &amp; sct &amp; 2000 &amp; 0.279 \\ 
+  Bone Marrow &amp; sct &amp; 3000 &amp; 0.337 \\ 
+  Bone Marrow &amp; sct2 &amp; 1000 &amp; 0.290 \\ 
+  Bone Marrow &amp; sct2 &amp; 2000 &amp; 0.427 \\ 
+  Bone Marrow &amp; sct2 &amp; 3000 &amp; 0.536 \\ 
+  Cortex &amp; offset100 &amp; 1000 &amp; 0.263 \\ 
+  Cortex &amp; offset100 &amp; 2000 &amp; 0.415 \\ 
+  Cortex &amp; offset100 &amp; 3000 &amp; 0.544 \\ 
+  Cortex &amp; offset10 &amp; 1000 &amp; 0.249 \\ 
+  Cortex &amp; offset10 &amp; 2000 &amp; 0.402 \\ 
+  Cortex &amp; offset10 &amp; 3000 &amp; 0.529 \\ 
+  Cortex &amp; sct &amp; 1000 &amp; 0.216 \\ 
+  Cortex &amp; sct &amp; 2000 &amp; 0.353 \\ 
+  Cortex &amp; sct &amp; 3000 &amp; 0.470 \\ 
+  Cortex &amp; sct2 &amp; 1000 &amp; 0.292 \\ 
+  Cortex &amp; sct2 &amp; 2000 &amp; 0.474 \\ 
+  Cortex &amp; sct2 &amp; 3000 &amp; 0.586 \\ 
+  Fetus &amp; offset100 &amp; 1000 &amp; 0.210 \\ 
+  Fetus &amp; offset100 &amp; 2000 &amp; 0.356 \\ 
+  Fetus &amp; offset100 &amp; 3000 &amp; 0.453 \\ 
+  Fetus &amp; offset10 &amp; 1000 &amp; 0.206 \\ 
+  Fetus &amp; offset10 &amp; 2000 &amp; 0.352 \\ 
+  Fetus &amp; offset10 &amp; 3000 &amp; 0.446 \\ 
+  Fetus &amp; sct &amp; 1000 &amp; 0.222 \\ 
+  Fetus &amp; sct &amp; 2000 &amp; 0.394 \\ 
+  Fetus &amp; sct &amp; 3000 &amp; 0.520 \\ 
+  Fetus &amp; sct2 &amp; 1000 &amp; 0.287 \\ 
+  Fetus &amp; sct2 &amp; 2000 &amp; 0.455 \\ 
+  Fetus &amp; sct2 &amp; 3000 &amp; 0.542 \\ 
+  PBMC &amp; offset100 &amp; 1000 &amp; 0.190 \\ 
+  PBMC &amp; offset100 &amp; 2000 &amp; 0.292 \\ 
+  PBMC &amp; offset100 &amp; 3000 &amp; 0.385 \\ 
+  PBMC &amp; offset10 &amp; 1000 &amp; 0.165 \\ 
+  PBMC &amp; offset10 &amp; 2000 &amp; 0.264 \\ 
+  PBMC &amp; offset10 &amp; 3000 &amp; 0.345 \\ 
+  PBMC &amp; sct &amp; 1000 &amp; 0.145 \\ 
+  PBMC &amp; sct &amp; 2000 &amp; 0.217 \\ 
+  PBMC &amp; sct &amp; 3000 &amp; 0.287 \\ 
+  PBMC &amp; sct2 &amp; 1000 &amp; 0.282 \\ 
+  PBMC &amp; sct2 &amp; 2000 &amp; 0.459 \\ 
+  PBMC &amp; sct2 &amp; 3000 &amp; 0.571 \\ 
+   \hline
+\end{tabular}
+\end{table}</code></pre>
+<pre class="r"><code>summary_df &lt;- tidyr::spread(summary_df, key = &quot;variable&quot;, value = &quot;median_overlap&quot;)
+print(xtable(summary_df, type = &quot;latex&quot;, digits=3), include.rownames = FALSE)</code></pre>
+<pre><code>% latex table generated in R 4.1.2 by xtable 1.8-4 package
+% Fri Dec 17 10:18:45 2021
+\begin{table}[ht]
+\centering
+\begin{tabular}{lrrrrr}
+  \hline
+tissue &amp; rank &amp; offset100 &amp; offset10 &amp; sct &amp; sct2 \\ 
+  \hline
+Bone Marrow &amp; 1000 &amp; 0.204 &amp; 0.189 &amp; 0.194 &amp; 0.290 \\ 
+  Bone Marrow &amp; 2000 &amp; 0.305 &amp; 0.276 &amp; 0.279 &amp; 0.427 \\ 
+  Bone Marrow &amp; 3000 &amp; 0.367 &amp; 0.337 &amp; 0.337 &amp; 0.536 \\ 
+  Cortex &amp; 1000 &amp; 0.263 &amp; 0.249 &amp; 0.216 &amp; 0.292 \\ 
+  Cortex &amp; 2000 &amp; 0.415 &amp; 0.402 &amp; 0.353 &amp; 0.474 \\ 
+  Cortex &amp; 3000 &amp; 0.544 &amp; 0.529 &amp; 0.470 &amp; 0.586 \\ 
+  Fetus &amp; 1000 &amp; 0.210 &amp; 0.206 &amp; 0.222 &amp; 0.287 \\ 
+  Fetus &amp; 2000 &amp; 0.356 &amp; 0.352 &amp; 0.394 &amp; 0.455 \\ 
+  Fetus &amp; 3000 &amp; 0.453 &amp; 0.446 &amp; 0.520 &amp; 0.542 \\ 
+  PBMC &amp; 1000 &amp; 0.190 &amp; 0.165 &amp; 0.145 &amp; 0.282 \\ 
+  PBMC &amp; 2000 &amp; 0.292 &amp; 0.264 &amp; 0.217 &amp; 0.459 \\ 
+  PBMC &amp; 3000 &amp; 0.385 &amp; 0.345 &amp; 0.287 &amp; 0.571 \\ 
+   \hline
+\end{tabular}
+\end{table}</code></pre>
+<pre class="r"><code>summary_df &lt;- var_genes_df_summary3[var_genes_df_summary3$rank %in% c(1000,2000,3000), ]
+
+summary_df &lt;- tidyr::spread(summary_df, key = &quot;variable&quot;, value = &quot;median_overlap&quot;)
+print(xtable(summary_df, type = &quot;latex&quot;, digits=1), include.rownames = FALSE)</code></pre>
+<pre><code>% latex table generated in R 4.1.2 by xtable 1.8-4 package
+% Fri Dec 17 10:18:45 2021
+\begin{table}[ht]
+\centering
+\begin{tabular}{lrrrrr}
+  \hline
+tissue &amp; rank &amp; offset100 &amp; offset10 &amp; sct &amp; sct2 \\ 
+  \hline
+Bone Marrow &amp; 1000 &amp; 611.0 &amp; 567.0 &amp; 582.0 &amp; 871.0 \\ 
+  Bone Marrow &amp; 2000 &amp; 916.0 &amp; 829.0 &amp; 836.0 &amp; 1281.0 \\ 
+  Bone Marrow &amp; 3000 &amp; 1100.0 &amp; 1012.0 &amp; 1012.0 &amp; 1607.0 \\ 
+  Cortex &amp; 1000 &amp; 788.5 &amp; 747.5 &amp; 649.5 &amp; 876.5 \\ 
+  Cortex &amp; 2000 &amp; 1245.0 &amp; 1205.0 &amp; 1058.5 &amp; 1422.0 \\ 
+  Cortex &amp; 3000 &amp; 1633.0 &amp; 1586.5 &amp; 1408.5 &amp; 1757.5 \\ 
+  Fetus &amp; 1000 &amp; 631.0 &amp; 618.0 &amp; 667.0 &amp; 862.0 \\ 
+  Fetus &amp; 2000 &amp; 1068.0 &amp; 1056.0 &amp; 1182.0 &amp; 1366.0 \\ 
+  Fetus &amp; 3000 &amp; 1360.0 &amp; 1337.0 &amp; 1559.0 &amp; 1626.0 \\ 
+  PBMC &amp; 1000 &amp; 569.0 &amp; 495.0 &amp; 436.0 &amp; 847.0 \\ 
+  PBMC &amp; 2000 &amp; 877.0 &amp; 793.0 &amp; 650.0 &amp; 1376.0 \\ 
+  PBMC &amp; 3000 &amp; 1155.0 &amp; 1035.0 &amp; 860.0 &amp; 1712.0 \\ 
+   \hline
+\end{tabular}
+\end{table}</code></pre>
+</div>
+<div id="contrast-feature-lists" class="section level1">
+<h1>Contrast feature lists</h1>
+<pre class="r"><code>datasets &lt;- read.csv(here::here(&quot;data/datasets.csv&quot;))
+read_gene_attr &lt;- function(filepath) {
+  gene_attr &lt;- read.csv(filepath, row.names = 1)
+  gene_attr$gene &lt;- rownames(gene_attr)
+  gene_attr &lt;- gene_attr %&gt;%
+    arrange(desc(residual_variance)) %&gt;%
+    pull(gene)
+  return(gene_attr[1:3000])
+}
+
+dataset_sub &lt;- datasets[datasets$key == &quot;PBMC__ChromiumV3&quot;, ]
+
+overlap_list &lt;- list()
+overlap_list_prop &lt;- list()
+sample_name &lt;- unique(dataset_sub$sample_name)
+dataset &lt;- unique(dataset_sub$key)
+all_genes &lt;- rownames(read.csv(here::here(&quot;output/snakemake_output/seurat_output&quot;, dataset, &quot;glmGamPoi&quot;, &quot;gene_attr.csv&quot;), row.names = 1))
+gene_attr &lt;- read.csv(here::here(&quot;output/snakemake_output/seurat_output&quot;, dataset, &quot;glmGamPoi&quot;, &quot;gene_attr.csv&quot;), row.names = 1)
+gene_attr$gene &lt;- rownames(gene_attr)
+sct &lt;- read_gene_attr(here::here(&quot;output/snakemake_output/seurat_output&quot;, dataset, &quot;glmGamPoi&quot;, &quot;gene_attr.csv&quot;))
+
+offset100 &lt;- read_gene_attr(here::here(&quot;output/snakemake_output/seurat_output&quot;, dataset, &quot;offset-100&quot;, &quot;gene_attr.csv&quot;))
+offset10 &lt;- read_gene_attr(here::here(&quot;output/snakemake_output/seurat_output&quot;, dataset, &quot;offset-10&quot;, &quot;gene_attr.csv&quot;))
+
+sct2 &lt;- read_gene_attr(here::here(&quot;output/snakemake_output/seurat_output&quot;, dataset, &quot;vst2&quot;, &quot;gene_attr.csv&quot;))
+
+
+presto_output &lt;- readRDS(here::here(&quot;output/snakemake_output/presto_output&quot;, dataset, &quot;presto_markers.rds&quot;))
+#marker_genes &lt;- unique(presto_output %&gt;% filter(p_val_adj &lt; 0.01) %&gt;% filter(avg_log2FC &gt; 0.5) %&gt;% arrange(p_val_adj) %&gt;% pull(gene))
+
+presto_subset &lt;- presto_output %&gt;%
+    group_by(gene) %&gt;%
+    arrange(desc(avg_log2FC)) %&gt;%
+    filter(row_number() == 1) %&gt;%
+    ungroup() %&gt;%
+    filter(p_val &lt; 0.05) %&gt;%
+    filter(avg_log2FC &gt; 0.25)
+
+  # marker_genes &lt;- unique(presto_output %&gt;% filter(p_val_adj &lt; 0.01) %&gt;% filter(avg_log2FC &gt; 0.5) %&gt;% arrange(p_val_adj) %&gt;% pull(gene))
+  marker_genes &lt;- presto_subset %&gt;%
+    arrange(desc(avg_log2FC), p_val_adj) %&gt;%
+    pull(gene)
+  if (length(marker_genes) &gt; length(sct2)) {
+    marker_genes &lt;- marker_genes[1:length(sct2)]
+  }
+  
+all_methods &lt;- list(sct2 = sct2, offset10 = offset10, offset100 = offset100, sct = sct)
+
+gene_methods_list &lt;- list()
+index &lt;- 1
+for (gene in unique(unlist(all_methods))) {
+  gene_methods &lt;- c()
+  for (method in names(all_methods)) {
+    if (gene %in% all_methods[[method]]) {
+      gene_methods &lt;- c(gene_methods, method)
+    }
+  }
+  gene_methods_list[[index]] &lt;- list(gene = gene, methods = gene_methods)
+  index &lt;- index + 1
+}
+gene_methods_list_df &lt;- data.frame(gene = names(gene_methods_list))
+gene_methods_list_df$methods &lt;- gene_methods_list[gene_methods_list_df$gene]
+
+
+gene_methods_df &lt;- data.frame(gene = unique(unlist(all_methods)))
+rownames(gene_methods_df) &lt;- gene_methods_df$gene
+for (method in names(all_methods)) {
+  gene_methods_df[, method] &lt;- 0
+  gene_methods_df[all_methods[[method]], method] &lt;- 1
+}
+gene_methods_df &lt;- left_join(gene_methods_df, gene_attr, by = &quot;gene&quot;)
+gene_methods_df$marker_prop &lt;- 0
+gene_methods_df$marker_prop[gene_methods_df$gene %in% marker_genes] &lt;- 100*1/length(marker_genes)
+
+gene_methods_df$is_marker &lt;- &quot;No&quot;
+gene_methods_df$is_marker[gene_methods_df$gene %in% marker_genes] &lt;- &quot;Yes&quot;
+
+gene_methods_df &lt;- as_tibble(gene_methods_df)
+
+gene_methods_df[, &quot;SCT v1&quot;] &lt;- gene_methods_df$sct
+gene_methods_df[, &quot;SCT v2&quot;] &lt;- gene_methods_df$sct2
+gene_methods_df[, &quot;Offset 100&quot;] &lt;- gene_methods_df$offset100
+gene_methods_df[, &quot;Offset 10&quot;] &lt;- gene_methods_df$offset10
+sct_sp_genes &lt;- setdiff(sct, union(sct2, union(offset10, offset100)))
+summary(gene_methods_df[gene_methods_df$gene %in% sct_sp_genes,] %&gt;% pull(gmean))</code></pre>
+<pre><code>    Min.  1st Qu.   Median     Mean  3rd Qu.     Max. 
+0.003539 0.004248 0.004958 0.005965 0.006795 0.028845 </code></pre>
+<pre class="r"><code>sct2_sp_genes &lt;- setdiff(sct2, union(sct, union(offset10, offset100)))
+summary(gene_methods_df[gene_methods_df$gene %in% sct2_sp_genes,] %&gt;% pull(gmean))</code></pre>
+<pre><code>   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+0.02746 0.06597 0.10432 0.12552 0.16410 0.43309 </code></pre>
+<pre class="r"><code>length(intersect(sct2_sp_genes, marker_genes))</code></pre>
+<pre><code>[1] 269</code></pre>
+<pre class="r"><code>p2 &lt;- upset(
+  gene_methods_df,
+  c(&quot;SCT v1&quot;, &quot;SCT v2&quot;, &quot;Offset 100&quot;, &quot;Offset 10&quot;),
+  base_annotations=list(
+        &#39;Intersection size&#39;=intersection_size(
+            counts=TRUE,
+            mapping=aes(fill=is_marker), 
+
+        ) + scale_fill_brewer(type=&quot;qual&quot;, palette =  &quot;Dark2&quot;, name = &quot;Top 3000 marker&quot;)
+  ),
+  annotations = list(
+    &quot;log2(1 + Gene mean)&quot; = ggplot(mapping = aes(x = intersection, y = log(1+gmean, base = 2)))
+    +
+      ggbeeswarm::geom_quasirandom(groupOnX = TRUE, size = 0.1) +
+      stat_summary(
+        geom = &quot;crossbar&quot;, color = &quot;red&quot;,
+        fun = median, fun.min = median, fun.max = median,
+        fatten = 1.2, width = 0.5
+      ) + ylim(0,3)
+  ),
+ 
+  min_size = 10,
+  width_ratio = 0.1,
+  set_sizes = FALSE
+)
+p2 </code></pre>
+<p><img src="figure/11B_Figure4.Rmd/unnamed-chunk-3-1.png" width="672" style="display: block; margin: auto;" /></p>
+<pre class="r"><code>all_fdr_tpr_df_melt &lt;- readRDS(here::here(&quot;output/muscat_simulation/results/all_fdr_tpr_df_melt.rds&quot;))
+all_fdr_tpr_df_melt[all_fdr_tpr_df_melt$method == &quot;SCT2&quot;, &quot;method&quot;] &lt;- &quot;SCT v2&quot;
+all_fdr_tpr_df_melt[all_fdr_tpr_df_melt$method == &quot;SCT&quot;, &quot;method&quot;] &lt;- &quot;SCT v1&quot;
+all_fdr_tpr_df_melt$method &lt;- factor(all_fdr_tpr_df_melt$method, levels = c(&quot;lognorm&quot;, &quot;scran&quot;, &quot;SCT v1&quot;, &quot;SCT v2&quot;))
+
+labels &lt;- c(&quot;LogNorm&quot;, &quot;Scran&quot;, &quot;SCT v1&quot;, &quot;SCT v2&quot;)
+names(labels) &lt;- c(&quot;LogNorm&quot;, &quot;Scran&quot;, &quot;SCT v1&quot;, &quot;SCT v2&quot;)
+
+
+p3 &lt;- ggplot(all_fdr_tpr_df_melt[all_fdr_tpr_df_melt$de_percent &gt; 0.01, ], aes(FDR, TPR, color = method)) +
+  geom_point() +
+  geom_line() +
+  geom_vline(xintercept = c(0.01, 0.05, 0.1), linetype = &quot;dashed&quot;) +
+  xlim(0, 1) +
+  scale_x_continuous(trans = &quot;log&quot;, breaks = c(0.01, 0.05, 0.1, 0.5,1), guide = guide_axis(angle = 50)) +
+  facet_wrap(~de_percent, ncol = 4) +
+  theme_pubr() +
+  theme(
+    panel.grid.minor = element_line(size = (0.2), colour = &quot;grey&quot;)
+  ) +
+  scale_color_brewer(type = &quot;qual&quot;, palette = &quot;Dark2&quot;, name = &quot;&quot;, labels = labels) + 
+  theme(axis.text.x=element_text(size=rel(0.7), angle=45))
+p3</code></pre>
+<p><img src="figure/11B_Figure4.Rmd/unnamed-chunk-4-1.png" width="672" style="display: block; margin: auto;" /></p>
+<pre class="r"><code>nk_markers &lt;- readRDS(here::here(&quot;output/simulation_NK_downsampling/NK_downsampling_DE_sig.rds&quot;))
+
+nk_markers$method &lt;- factor(nk_markers$method, levels = c(&quot;LogNorm&quot;, &quot;Scran&quot;, &quot;SCT v1&quot;, &quot;SCT v2&quot;))
+nk_markers_summary &lt;- nk_markers %&gt;%
+  group_by(method) %&gt;%
+  summarise(count = n())
+nk_markers_empty &lt;- data.frame(method = c(&quot;LogNorm&quot;, &quot;Scran&quot;, &quot;SCT v1&quot;, &quot;SCT v2&quot;))
+nk_markers_empty$count &lt;- 1
+nk_markers_summary2 &lt;- rbind(nk_markers_empty, nk_markers_summary)
+nk_markers_summary2 &lt;- nk_markers_summary2 %&gt;%
+  group_by(method) %&gt;%
+  summarise(count = sum(count))
+
+
+p4 &lt;- ggplot(nk_markers_summary2, aes(method, y = count, fill = method)) +
+  geom_bar(width = 0.5, stat = &quot;identity&quot;) +
+  scale_y_log10() +
+  scale_fill_brewer(type = &quot;qual&quot;, palette = &quot;Dark2&quot;, name = &quot;&quot;) +
+  ylab(&quot;Number of DE genes&quot;) +
+  xlab(&quot;&quot;) +
+  scale_x_discrete(guide = guide_axis(angle = 30)) +
+  NoLegend()
+p4</code></pre>
+<p><img src="figure/11B_Figure4.Rmd/unnamed-chunk-5-1.png" width="672" style="display: block; margin: auto;" /></p>
+<pre class="r"><code>layout &lt;- &quot;
+AAABB
+CCDBB&quot;
+
+p &lt;- p1.system + p2 + p3 + p4
+p + plot_layout(design = layout) &amp; plot_annotation(tag_levels = &quot;A&quot;) &amp; theme(plot.tag = element_text(face = &quot;bold&quot;))</code></pre>
+<p><img src="figure/11B_Figure4.Rmd/unnamed-chunk-6-1.png" width="1536" style="display: block; margin: auto;" /></p>
+<pre class="r"><code>ggsave(here::here(&quot;output/figures/Figure4.pdf&quot;))#, width = 14, height = 8)
+ggsave(here::here(&quot;output/figures/Figure4.png&quot;))#, width = 12, height = 8)</code></pre>
+<pre class="r"><code>nbfits.sct &lt;- readRDS(here::here(&quot;output/11C_VST/nbfits.sct.rds&quot;))
+nbfits.sct2 &lt;- readRDS(here::here(&quot;output/11C_VST/nbfits.sct2.rds&quot;))
+
+pl &lt;- VlnPlot(bmcite, &quot;RP11-290C10.1&quot;, slot = &quot;counts&quot;, group.by = &quot;celltype.l2&quot;) + NoLegend()
+pr &lt;- VlnPlot(bmcite, &quot;CD86&quot;, slot = &quot;counts&quot;, group.by = &quot;celltype.l2&quot;) + NoLegend()
+px &lt;- pl | pr
+
+p1 &lt;- ggplot(nbfits.sct, aes(umi, res, color = gene)) +
+  geom_jitter(alpha = 0.5, size=0.5) +
+  scale_color_manual(values = RColorBrewer::brewer.pal(3, &quot;Set1&quot;), name = &quot;&quot;) +
+  ylab(&quot;Pearson residual&quot;) + xlab(&quot;UMI&quot;)
+p3 &lt;- ggplot(nbfits.sct, aes(sd, res, color = gene)) +
+  geom_jitter(alpha = 0.5, size=0.5) +
+  scale_color_manual(values = RColorBrewer::brewer.pal(3, &quot;Set1&quot;), name = &quot;&quot;) +
+  ylab(&quot;Pearson residual&quot;) + xlab(&quot;Standard deviation (model)&quot;)
+pup &lt;- p1 | p3 + patchwork::plot_annotation(title = &quot;sctransform (v1)&quot;)
+
+p1 &lt;- ggplot(nbfits.sct2, aes(umi, res, color = gene)) +
+  geom_jitter(alpha = 0.5, size=0.5) +
+  scale_color_manual(values = RColorBrewer::brewer.pal(3, &quot;Set1&quot;), name = &quot;&quot;) +
+  ylab(&quot;Pearson residual&quot;) + xlab(&quot;UMI&quot;)
+p3 &lt;- ggplot(nbfits.sct2, aes(sd, res, color = gene)) +
+  geom_jitter(alpha = 0.5, size=0.5) +
+  scale_color_manual(values = RColorBrewer::brewer.pal(3, &quot;Set1&quot;), name = &quot;&quot;) +
+  ylab(&quot;Pearson residual&quot;) + xlab(&quot;Standard deviation (model)&quot;)
+pdown &lt;- p1 | p3 + patchwork::plot_annotation(title = &quot;sctransform (v2)&quot;)
+
+#px / pup / pdown
+layout &lt;- &quot;
+AB
+CD
+EF&quot;
+
+p &lt;- px / pup / pdown
+p &amp; plot_annotation(tag_levels = &quot;A&quot;) &amp; theme(plot.tag = element_text(face = &quot;bold&quot;))</code></pre>
+<p><img src="figure/11B_Figure4.Rmd/unnamed-chunk-7-1.png" width="960" style="display: block; margin: auto;" /></p>
+<pre class="r"><code>ggsave(here::here(&quot;output/figures/varcomp.pdf&quot;))
+ggsave(here::here(&quot;output/figures/varcomp.png&quot;))</code></pre>
+<pre class="r"><code>sessionInfo()</code></pre>
+<pre><code>R version 4.1.2 (2021-11-01)
+Platform: x86_64-pc-linux-gnu (64-bit)
+Running under: Ubuntu 20.04.3 LTS
+
+Matrix products: default
+BLAS:   /usr/lib/x86_64-linux-gnu/blas/libblas.so.3.9.0
+LAPACK: /usr/lib/x86_64-linux-gnu/lapack/liblapack.so.3.9.0
+
+locale:
+ [1] LC_CTYPE=en_US.UTF-8       LC_NUMERIC=C              
+ [3] LC_TIME=en_US.UTF-8        LC_COLLATE=en_US.UTF-8    
+ [5] LC_MONETARY=en_US.UTF-8    LC_MESSAGES=en_US.UTF-8   
+ [7] LC_PAPER=en_US.UTF-8       LC_NAME=C                 
+ [9] LC_ADDRESS=C               LC_TELEPHONE=C            
+[11] LC_MEASUREMENT=en_US.UTF-8 LC_IDENTIFICATION=C       
+
+attached base packages:
+[1] stats     graphics  grDevices utils     datasets  methods   base     
+
+other attached packages:
+ [1] thp1.eccite.SeuratData_3.1.5 pbmcsca.SeuratData_3.0.0    
+ [3] pbmc3k.SeuratData_3.1.4      panc8.SeuratData_3.0.2      
+ [5] hcabm40k.SeuratData_3.0.0    bmcite.SeuratData_0.3.0     
+ [7] SeuratData_0.2.1             ComplexUpset_1.3.3          
+ [9] xtable_1.8-4                 forcats_0.5.1               
+[11] stringr_1.4.0                purrr_0.3.4                 
+[13] readr_2.1.1                  tidyr_1.1.4                 
+[15] tibble_3.1.6                 tidyverse_1.3.1             
+[17] ggupset_0.3.0                dplyr_1.0.7                 
+[19] patchwork_1.1.1              ggridges_0.5.3              
+[21] ggpubr_0.4.0                 ggplot2_3.3.5               
+[23] SeuratObject_4.0.4           Seurat_4.0.5                
+[25] workflowr_1.6.2             
+
+loaded via a namespace (and not attached):
+  [1] readxl_1.3.1           backports_1.4.1        plyr_1.8.6            
+  [4] igraph_1.2.9           lazyeval_0.2.2         splines_4.1.2         
+  [7] listenv_0.8.0          scattermore_0.7        digest_0.6.29         
+ [10] htmltools_0.5.2        fansi_0.5.0            magrittr_2.0.1        
+ [13] tensor_1.5             cluster_2.1.2          ROCR_1.0-11           
+ [16] tzdb_0.2.0             globals_0.14.0         modelr_0.1.8          
+ [19] matrixStats_0.61.0     spatstat.sparse_2.0-0  colorspace_2.0-2      
+ [22] rappdirs_0.3.3         rvest_1.0.2            ggrepel_0.9.1         
+ [25] haven_2.4.3            xfun_0.28              crayon_1.4.2          
+ [28] jsonlite_1.7.2         spatstat.data_2.1-0    survival_3.2-13       
+ [31] zoo_1.8-9              glue_1.5.1             polyclip_1.10-0       
+ [34] gtable_0.3.0           leiden_0.3.9           car_3.0-12            
+ [37] future.apply_1.8.1     abind_1.4-5            scales_1.1.1          
+ [40] DBI_1.1.1              rstatix_0.7.0          miniUI_0.1.1.1        
+ [43] Rcpp_1.0.7             viridisLite_0.4.0      reticulate_1.22       
+ [46] spatstat.core_2.3-2    htmlwidgets_1.5.4      httr_1.4.2            
+ [49] RColorBrewer_1.1-2     ellipsis_0.3.2         ica_1.0-2             
+ [52] farver_2.1.0           pkgconfig_2.0.3        sass_0.4.0            
+ [55] uwot_0.1.11            dbplyr_2.1.1           deldir_1.0-6          
+ [58] here_1.0.1             utf8_1.2.2             labeling_0.4.2        
+ [61] tidyselect_1.1.1       rlang_0.4.12           reshape2_1.4.4        
+ [64] later_1.3.0            cellranger_1.1.0       munsell_0.5.0         
+ [67] tools_4.1.2            cli_3.1.0              generics_0.1.1        
+ [70] broom_0.7.10           evaluate_0.14          fastmap_1.1.0         
+ [73] yaml_2.2.1             goftest_1.2-3          knitr_1.36            
+ [76] fs_1.5.2               fitdistrplus_1.1-6     RANN_2.6.1            
+ [79] pbapply_1.5-0          future_1.23.0          nlme_3.1-152          
+ [82] whisker_0.4            mime_0.12              xml2_1.3.3            
+ [85] rstudioapi_0.13        compiler_4.1.2         beeswarm_0.4.0        
+ [88] plotly_4.10.0          png_0.1-7              ggsignif_0.6.3        
+ [91] spatstat.utils_2.3-0   reprex_2.0.1           bslib_0.3.1           
+ [94] stringi_1.7.6          highr_0.9              lattice_0.20-45       
+ [97] Matrix_1.4-0           vctrs_0.3.8            pillar_1.6.4          
+[100] lifecycle_1.0.1        spatstat.geom_2.3-1    lmtest_0.9-39         
+[103] jquerylib_0.1.4        RcppAnnoy_0.0.19       data.table_1.14.2     
+[106] cowplot_1.1.1          irlba_2.3.5            httpuv_1.6.3          
+[109] R6_2.5.1               promises_1.2.0.1       KernSmooth_2.23-20    
+[112] gridExtra_2.3          vipor_0.4.5            parallelly_1.29.0     
+[115] codetools_0.2-18       MASS_7.3-54            assertthat_0.2.1      
+[118] rprojroot_2.0.2        withr_2.4.3            sctransform_0.3.2.9008
+[121] mgcv_1.8-38            parallel_4.1.2         hms_1.1.1             
+[124] grid_4.1.2             rpart_4.1-15           rmarkdown_2.11        
+[127] carData_3.0-4          Rtsne_0.15             git2r_0.29.0          
+[130] shiny_1.7.1            lubridate_1.8.0        ggbeeswarm_0.6.0      </code></pre>
+<br>
+<p>
+<button type="button" class="btn btn-default btn-workflowr btn-workflowr-sessioninfo" data-toggle="collapse" data-target="#workflowr-sessioninfo" style="display: block;">
+<span class="glyphicon glyphicon-wrench" aria-hidden="true"></span> Session information
+</button>
+</p>
+<div id="workflowr-sessioninfo" class="collapse">
+<pre class="r"><code>sessionInfo()</code></pre>
+<pre><code>R version 4.1.2 (2021-11-01)
+Platform: x86_64-pc-linux-gnu (64-bit)
+Running under: Ubuntu 20.04.3 LTS
+
+Matrix products: default
+BLAS:   /usr/lib/x86_64-linux-gnu/blas/libblas.so.3.9.0
+LAPACK: /usr/lib/x86_64-linux-gnu/lapack/liblapack.so.3.9.0
+
+locale:
+ [1] LC_CTYPE=en_US.UTF-8       LC_NUMERIC=C              
+ [3] LC_TIME=en_US.UTF-8        LC_COLLATE=en_US.UTF-8    
+ [5] LC_MONETARY=en_US.UTF-8    LC_MESSAGES=en_US.UTF-8   
+ [7] LC_PAPER=en_US.UTF-8       LC_NAME=C                 
+ [9] LC_ADDRESS=C               LC_TELEPHONE=C            
+[11] LC_MEASUREMENT=en_US.UTF-8 LC_IDENTIFICATION=C       
+
+attached base packages:
+[1] stats     graphics  grDevices utils     datasets  methods   base     
+
+other attached packages:
+ [1] thp1.eccite.SeuratData_3.1.5 pbmcsca.SeuratData_3.0.0    
+ [3] pbmc3k.SeuratData_3.1.4      panc8.SeuratData_3.0.2      
+ [5] hcabm40k.SeuratData_3.0.0    bmcite.SeuratData_0.3.0     
+ [7] SeuratData_0.2.1             ComplexUpset_1.3.3          
+ [9] xtable_1.8-4                 forcats_0.5.1               
+[11] stringr_1.4.0                purrr_0.3.4                 
+[13] readr_2.1.1                  tidyr_1.1.4                 
+[15] tibble_3.1.6                 tidyverse_1.3.1             
+[17] ggupset_0.3.0                dplyr_1.0.7                 
+[19] patchwork_1.1.1              ggridges_0.5.3              
+[21] ggpubr_0.4.0                 ggplot2_3.3.5               
+[23] SeuratObject_4.0.4           Seurat_4.0.5                
+[25] workflowr_1.6.2             
+
+loaded via a namespace (and not attached):
+  [1] readxl_1.3.1           backports_1.4.1        plyr_1.8.6            
+  [4] igraph_1.2.9           lazyeval_0.2.2         splines_4.1.2         
+  [7] listenv_0.8.0          scattermore_0.7        digest_0.6.29         
+ [10] htmltools_0.5.2        fansi_0.5.0            magrittr_2.0.1        
+ [13] tensor_1.5             cluster_2.1.2          ROCR_1.0-11           
+ [16] tzdb_0.2.0             globals_0.14.0         modelr_0.1.8          
+ [19] matrixStats_0.61.0     spatstat.sparse_2.0-0  colorspace_2.0-2      
+ [22] rappdirs_0.3.3         rvest_1.0.2            ggrepel_0.9.1         
+ [25] haven_2.4.3            xfun_0.28              crayon_1.4.2          
+ [28] jsonlite_1.7.2         spatstat.data_2.1-0    survival_3.2-13       
+ [31] zoo_1.8-9              glue_1.5.1             polyclip_1.10-0       
+ [34] gtable_0.3.0           leiden_0.3.9           car_3.0-12            
+ [37] future.apply_1.8.1     abind_1.4-5            scales_1.1.1          
+ [40] DBI_1.1.1              rstatix_0.7.0          miniUI_0.1.1.1        
+ [43] Rcpp_1.0.7             viridisLite_0.4.0      reticulate_1.22       
+ [46] spatstat.core_2.3-2    htmlwidgets_1.5.4      httr_1.4.2            
+ [49] RColorBrewer_1.1-2     ellipsis_0.3.2         ica_1.0-2             
+ [52] farver_2.1.0           pkgconfig_2.0.3        sass_0.4.0            
+ [55] uwot_0.1.11            dbplyr_2.1.1           deldir_1.0-6          
+ [58] here_1.0.1             utf8_1.2.2             labeling_0.4.2        
+ [61] tidyselect_1.1.1       rlang_0.4.12           reshape2_1.4.4        
+ [64] later_1.3.0            cellranger_1.1.0       munsell_0.5.0         
+ [67] tools_4.1.2            cli_3.1.0              generics_0.1.1        
+ [70] broom_0.7.10           evaluate_0.14          fastmap_1.1.0         
+ [73] yaml_2.2.1             goftest_1.2-3          knitr_1.36            
+ [76] fs_1.5.2               fitdistrplus_1.1-6     RANN_2.6.1            
+ [79] pbapply_1.5-0          future_1.23.0          nlme_3.1-152          
+ [82] whisker_0.4            mime_0.12              xml2_1.3.3            
+ [85] rstudioapi_0.13        compiler_4.1.2         beeswarm_0.4.0        
+ [88] plotly_4.10.0          png_0.1-7              ggsignif_0.6.3        
+ [91] spatstat.utils_2.3-0   reprex_2.0.1           bslib_0.3.1           
+ [94] stringi_1.7.6          highr_0.9              lattice_0.20-45       
+ [97] Matrix_1.4-0           vctrs_0.3.8            pillar_1.6.4          
+[100] lifecycle_1.0.1        spatstat.geom_2.3-1    lmtest_0.9-39         
+[103] jquerylib_0.1.4        RcppAnnoy_0.0.19       data.table_1.14.2     
+[106] cowplot_1.1.1          irlba_2.3.5            httpuv_1.6.3          
+[109] R6_2.5.1               promises_1.2.0.1       KernSmooth_2.23-20    
+[112] gridExtra_2.3          vipor_0.4.5            parallelly_1.29.0     
+[115] codetools_0.2-18       MASS_7.3-54            assertthat_0.2.1      
+[118] rprojroot_2.0.2        withr_2.4.3            sctransform_0.3.2.9008
+[121] mgcv_1.8-38            parallel_4.1.2         hms_1.1.1             
+[124] grid_4.1.2             rpart_4.1-15           rmarkdown_2.11        
+[127] carData_3.0-4          Rtsne_0.15             git2r_0.29.0          
+[130] shiny_1.7.1            lubridate_1.8.0        ggbeeswarm_0.6.0      </code></pre>
+</div>
+</div>
+
+
+<!-- Adjust MathJax settings so that all math formulae are shown using
+TeX fonts only; see
+http://docs.mathjax.org/en/latest/configuration.html.  This will make
+the presentation more consistent at the cost of the webpage sometimes
+taking slightly longer to load. Note that this only works because the
+footer is added to webpages before the MathJax javascript. -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    "HTML-CSS": { availableFonts: ["TeX"] }
+  });
+</script>
+
+
+
+
+</div>
+</div>
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+
+<script>
+$(document).ready(function ()  {
+
+    // temporarily add toc-ignore selector to headers for the consistency with Pandoc
+    $('.unlisted.unnumbered').addClass('toc-ignore')
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = true;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

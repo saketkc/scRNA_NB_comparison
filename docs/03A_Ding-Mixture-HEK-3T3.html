@@ -13,7 +13,8 @@
 
 <title>Create Ding et al. datasets - Mixture 3T3/HEK</title>
 
-<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<script src="site_libs/header-attrs-2.11/header-attrs.js"></script>
+<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/simplex.min.css" rel="stylesheet" />
 <script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
@@ -41,6 +42,8 @@ div.section {
   padding-top: 12px;
 }
 </style>
+
+
 
 <style type="text/css">
   code{white-space: pre-wrap;}
@@ -302,13 +305,13 @@ $(document).ready(function () {
 <div class="tab-content">
 <div id="summary" class="tab-pane fade in active">
 <p>
-<strong>Last updated:</strong> 2021-07-07
+<strong>Last updated:</strong> 2021-12-17
 </p>
 <p>
 <strong>Checks:</strong> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> 7 <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span> 0
 </p>
 <p>
-<strong>Knit directory:</strong> <code>scRNA_NB_comparison/</code> <span class="glyphicon glyphicon-question-sign" aria-hidden="true" title="This is the local directory in which the code in this file was executed."> </span>
+<strong>Knit directory:</strong> <code>sct2_revision/</code> <span class="glyphicon glyphicon-question-sign" aria-hidden="true" title="This is the local directory in which the code in this file was executed."> </span>
 </p>
 <p>
 This reproducible <a href="http://rmarkdown.rstudio.com">R Markdown</a> analysis was created with <a
@@ -393,22 +396,24 @@ This reproducible <a href="http://rmarkdown.rstudio.com">R Markdown</a> analysis
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomsaketkcscRNANBcomparisontree052425faff377cce4936df52b27fe35bc6e8896etargetblank052425fa"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/saketkc/scRNA_NB_comparison/tree/052425faff377cce4936df52b27fe35bc6e8896e" target="_blank">052425f</a> </a>
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomsaketkcscRNANBcomparisontree8afc4867872b849d56f119090f10b0bf46fa9bd4targetblank8afc486a"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/saketkc/scRNA_NB_comparison/tree/8afc4867872b849d56f119090f10b0bf46fa9bd4" target="_blank">8afc486</a> </a>
 </p>
 </div>
-<div id="strongRepositoryversionstrongahrefhttpsgithubcomsaketkcscRNANBcomparisontree052425faff377cce4936df52b27fe35bc6e8896etargetblank052425fa" class="panel-collapse collapse">
+<div id="strongRepositoryversionstrongahrefhttpsgithubcomsaketkcscRNANBcomparisontree8afc4867872b849d56f119090f10b0bf46fa9bd4targetblank8afc486a" class="panel-collapse collapse">
 <div class="panel-body">
 <p>
 Great! You are using Git for version control. Tracking code development and connecting the code version to the results is critical for reproducibility.
 </p>
 <p>
-The results in this page were generated with repository version <a href="https://github.com/saketkc/scRNA_NB_comparison/tree/052425faff377cce4936df52b27fe35bc6e8896e" target="_blank">052425f</a>. See the <em>Past versions</em> tab to see a history of the changes made to the R Markdown and HTML files.
+The results in this page were generated with repository version <a href="https://github.com/saketkc/scRNA_NB_comparison/tree/8afc4867872b849d56f119090f10b0bf46fa9bd4" target="_blank">8afc486</a>. See the <em>Past versions</em> tab to see a history of the changes made to the R Markdown and HTML files.
 </p>
 <p>
 Note that you need to be careful to ensure that all relevant files for the analysis have been committed to Git prior to generating the results (you can use <code>wflow_publish</code> or <code>wflow_git_commit</code>). workflowr only checks the R Markdown file, but you know if there are other scripts or data files that it depends on. Below is the status of the Git repository when the results were generated:
 </p>
 <pre><code>
 Ignored files:
+    Ignored:    .Rhistory
+    Ignored:    .Rproj.user/
     Ignored:    data/raw_data/
     Ignored:    data/rds_filtered/
     Ignored:    data/rds_raw/
@@ -416,8 +421,88 @@ Ignored files:
     Ignored:    output/snakemake_output/
 
 Untracked files:
+    Untracked:  code/02_run_seurat_noclip.R
+    Untracked:  code/07AA_deseq2_muscat_simulate.R
+    Untracked:  code/07A_muscat_simulate.R
+    Untracked:  code/07A_simulate_muscat.R
+    Untracked:  code/07BB_deseq2_muscat_process.R
+    Untracked:  code/07B_muscat_process.R
+    Untracked:  code/07B_process_muscat.R
+    Untracked:  code/08_run_presto.R
+    Untracked:  code/17A_HEK_SS3_dropseq.Rmd
+    Untracked:  code/17A_HEK_SS3_dropseq_files/
+    Untracked:  code/17C_HEK_Quartzeseq2_dropseq.Rmd
+    Untracked:  code/17C_HEK_Quartzeseq2_dropseq_files/
+    Untracked:  code/17_HEK_SS3_ChromiumV3.Rmd
+    Untracked:  code/17_HEK_SS3_ChromiumV3.nb.html
+    Untracked:  code/17_HEK_SS3_ChromiumV3_files/
+    Untracked:  code/AA_process_muscat.R
+    Untracked:  code/BB_process_muscat.R
+    Untracked:  code/DD_simulate_muscat.R
+    Untracked:  code/EE_simulate_muscat.R
+    Untracked:  code/XX_process_muscat.R
+    Untracked:  code/XX_simulate_muscat.R
+    Untracked:  code/YY_simulate_muscat.R
+    Untracked:  code/ZZ_simulate_muscat.R
+    Untracked:  code/kang_muscat.R
+    Untracked:  code/prep_sce.R
+    Untracked:  code/prep_sce_ss3_dropseq.R
+    Untracked:  data/azimuth_predictions/
+    Untracked:  junk/
+    Untracked:  mamba_update_changes.txt
+    Untracked:  output/11C_VST/
+    Untracked:  output/AAmuscat_simulated/
+    Untracked:  output/BBmuscat_simulated/
+    Untracked:  output/CCmuscat_simulated/
+    Untracked:  output/CD4_NK_downsampling_DE.rds
+    Untracked:  output/DDmuscat_simulated/
+    Untracked:  output/EEmuscat_simulated/
+    Untracked:  output/KANGmuscat_simulated/
+    Untracked:  output/NK_downsampling/
+    Untracked:  output/XXmuscat_simulated/
+    Untracked:  output/YYmuscat_simulated/
+    Untracked:  output/ZZmuscat_simulated/
     Untracked:  output/figures/
+    Untracked:  output/kang_prepsce.rds
+    Untracked:  output/muscat_simulated/
+    Untracked:  output/muscat_simulation/
+    Untracked:  output/seu_sct2_sim.rds
+    Untracked:  output/simulation_HEK_QuartzSeq2_Dropseq_downsampling/
+    Untracked:  output/simulation_HEK_SS3_ChromiumV3_downsampling/
+    Untracked:  output/simulation_HEK_SS3_Dropseq_downsampling/
+    Untracked:  output/simulation_HEK_downsampling/
+    Untracked:  output/simulation_NK_downsampling/
+    Untracked:  output/ss3_dropseq_prepsim.rds
     Untracked:  output/tables/
+    Untracked:  output/vargenes/
+    Untracked:  snakemake/.snakemake/
+    Untracked:  snakemake/Snakefile_noclip.smk
+    Untracked:  snakemake/Snakefile_presto.smk
+    Untracked:  snakemake/cluster.yaml
+    Untracked:  snakemake/install_glm.R
+    Untracked:  snakemake/jobscript.sh
+    Untracked:  snakemake/jobscript_ncells.sh
+    Untracked:  snakemake/local_run_downsampling.sh
+    Untracked:  snakemake/local_run_glm.sh
+    Untracked:  snakemake/local_run_ncells.sh
+    Untracked:  snakemake/local_run_noclip.sh
+    Untracked:  snakemake/local_run_presto.sh
+    Untracked:  snakemake/local_run_time.sh
+    Untracked:  snakemake/run_glm.sh
+    Untracked:  snakemake/run_ncells.sh
+    Untracked:  snakemake/sct2_revision_env.yml
+    Untracked:  temp_figures/
+
+Unstaged changes:
+    Deleted:    analysis/04_PBMC68k.Rmd
+    Modified:   code/02_run_seurat.R
+    Modified:   code/03_run_vst2_downsample.R
+    Modified:   code/04_run_vst_ncells.R
+    Modified:   code/06_run_sct.R
+    Modified:   data/datasets.csv
+    Modified:   snakemake/Snakefile_downsampling.smk
+    Modified:   snakemake/Snakefile_glm_seurat.smk
+    Modified:   snakemake/Snakefile_metacell.smk
 
 </code></pre>
 <p>
@@ -456,6 +541,23 @@ Message
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/saketkc/scRNA_NB_comparison/d736ec81cfc39938f365e9236e8b1fc69ed5283d/docs/03A_Ding-Mixture-HEK-3T3.html" target="_blank">d736ec8</a>
+</td>
+<td>
+Saket Choudhary
+</td>
+<td>
+2021-07-07
+</td>
+<td>
+Build site.
+</td>
+</tr>
 <tr>
 <td>
 Rmd
@@ -796,13 +898,13 @@ names(split_mixture_mm10)</code></pre>
   }
 }</code></pre>
 <pre class="r"><code>sessionInfo()</code></pre>
-<pre><code>R version 4.0.0 (2020-04-24)
+<pre><code>R version 4.1.2 (2021-11-01)
 Platform: x86_64-pc-linux-gnu (64-bit)
-Running under: Ubuntu 18.04.5 LTS
+Running under: Ubuntu 20.04.3 LTS
 
 Matrix products: default
-BLAS:   /usr/lib/x86_64-linux-gnu/blas/libblas.so.3.7.1
-LAPACK: /usr/lib/x86_64-linux-gnu/lapack/liblapack.so.3.7.1
+BLAS:   /usr/lib/x86_64-linux-gnu/blas/libblas.so.3.9.0
+LAPACK: /usr/lib/x86_64-linux-gnu/lapack/liblapack.so.3.9.0
 
 locale:
  [1] LC_CTYPE=en_US.UTF-8       LC_NUMERIC=C              
@@ -816,49 +918,49 @@ attached base packages:
 [1] stats     graphics  grDevices utils     datasets  methods   base     
 
 other attached packages:
-[1] XML_3.99-0.6       httr_1.4.2         stringr_1.4.0      patchwork_1.1.1   
-[5] ggplot2_3.3.5      SeuratObject_4.0.2 Seurat_4.0.3       workflowr_1.6.2   
+[1] XML_3.99-0.8       httr_1.4.2         stringr_1.4.0      patchwork_1.1.1   
+[5] ggplot2_3.3.5      SeuratObject_4.0.4 Seurat_4.0.5       workflowr_1.6.2   
 
 loaded via a namespace (and not attached):
-  [1] Rtsne_0.15             colorspace_2.0-2       deldir_0.2-10         
+  [1] Rtsne_0.15             colorspace_2.0-2       deldir_1.0-6          
   [4] ellipsis_0.3.2         ggridges_0.5.3         rprojroot_2.0.2       
-  [7] fs_1.5.0               spatstat.data_2.1-0    farver_2.1.0          
- [10] leiden_0.3.8           listenv_0.8.0          ggrepel_0.9.1         
- [13] fansi_0.5.0            codetools_0.2-16       splines_4.0.0         
- [16] knitr_1.33             polyclip_1.10-0        jsonlite_1.7.2        
- [19] ica_1.0-2              cluster_2.1.0          png_0.1-7             
- [22] uwot_0.1.10            shiny_1.6.0            sctransform_0.3.2.9008
- [25] spatstat.sparse_2.0-0  compiler_4.0.0         assertthat_0.2.1      
- [28] Matrix_1.3-4           fastmap_1.1.0          lazyeval_0.2.2        
- [31] later_1.2.0            htmltools_0.5.1.1      tools_4.0.0           
- [34] igraph_1.2.6           gtable_0.3.0           glue_1.4.2            
+  [7] fs_1.5.2               spatstat.data_2.1-0    farver_2.1.0          
+ [10] leiden_0.3.9           listenv_0.8.0          ggrepel_0.9.1         
+ [13] fansi_0.5.0            codetools_0.2-18       splines_4.1.2         
+ [16] knitr_1.36             polyclip_1.10-0        jsonlite_1.7.2        
+ [19] ica_1.0-2              cluster_2.1.2          png_0.1-7             
+ [22] uwot_0.1.11            shiny_1.7.1            sctransform_0.3.2.9008
+ [25] spatstat.sparse_2.0-0  compiler_4.1.2         assertthat_0.2.1      
+ [28] Matrix_1.4-0           fastmap_1.1.0          lazyeval_0.2.2        
+ [31] later_1.3.0            htmltools_0.5.2        tools_4.1.2           
+ [34] igraph_1.2.9           gtable_0.3.0           glue_1.5.1            
  [37] RANN_2.6.1             reshape2_1.4.4         dplyr_1.0.7           
- [40] Rcpp_1.0.6             scattermore_0.7        jquerylib_0.1.4       
- [43] vctrs_0.3.8            nlme_3.1-152           lmtest_0.9-38         
- [46] xfun_0.24              globals_0.14.0         mime_0.11             
- [49] miniUI_0.1.1.1         lifecycle_1.0.0        irlba_2.3.3           
- [52] goftest_1.2-2          future_1.21.0          MASS_7.3-51.6         
- [55] zoo_1.8-9              scales_1.1.1           spatstat.core_2.2-0   
- [58] promises_1.2.0.1       spatstat.utils_2.2-0   parallel_4.0.0        
+ [40] Rcpp_1.0.7             scattermore_0.7        jquerylib_0.1.4       
+ [43] vctrs_0.3.8            nlme_3.1-152           lmtest_0.9-39         
+ [46] xfun_0.28              globals_0.14.0         mime_0.12             
+ [49] miniUI_0.1.1.1         lifecycle_1.0.1        irlba_2.3.5           
+ [52] goftest_1.2-3          future_1.23.0          MASS_7.3-54           
+ [55] zoo_1.8-9              scales_1.1.1           spatstat.core_2.3-2   
+ [58] promises_1.2.0.1       spatstat.utils_2.3-0   parallel_4.1.2        
  [61] RColorBrewer_1.1-2     curl_4.3.2             yaml_2.2.1            
- [64] reticulate_1.20        pbapply_1.4-3          gridExtra_2.3         
- [67] sass_0.4.0             rpart_4.1-15           stringi_1.6.2         
- [70] highr_0.8              rlang_0.4.11           pkgconfig_2.0.3       
- [73] matrixStats_0.59.0     evaluate_0.14          lattice_0.20-41       
+ [64] reticulate_1.22        pbapply_1.5-0          gridExtra_2.3         
+ [67] sass_0.4.0             rpart_4.1-15           stringi_1.7.6         
+ [70] highr_0.9              rlang_0.4.12           pkgconfig_2.0.3       
+ [73] matrixStats_0.61.0     evaluate_0.14          lattice_0.20-45       
  [76] ROCR_1.0-11            purrr_0.3.4            tensor_1.5            
- [79] labeling_0.4.2         htmlwidgets_1.5.3      cowplot_1.1.1         
- [82] tidyselect_1.1.1       here_1.0.1             parallelly_1.26.0     
- [85] RcppAnnoy_0.0.18       plyr_1.8.6             magrittr_2.0.1        
- [88] R6_2.5.0               generics_0.1.0         DBI_1.1.1             
- [91] withr_2.4.2            mgcv_1.8-33            pillar_1.6.1          
- [94] whisker_0.4            fitdistrplus_1.1-5     survival_3.2-7        
- [97] abind_1.4-5            tibble_3.1.2           future.apply_1.7.0    
-[100] crayon_1.4.1           KernSmooth_2.23-17     utf8_1.2.1            
-[103] spatstat.geom_2.2-0    plotly_4.9.4.1         rmarkdown_2.9         
-[106] grid_4.0.0             data.table_1.14.0      git2r_0.26.1          
-[109] digest_0.6.27          xtable_1.8-4           tidyr_1.1.3           
-[112] httpuv_1.6.1           munsell_0.5.0          viridisLite_0.4.0     
-[115] bslib_0.2.5.1         </code></pre>
+ [79] labeling_0.4.2         htmlwidgets_1.5.4      cowplot_1.1.1         
+ [82] tidyselect_1.1.1       here_1.0.1             parallelly_1.29.0     
+ [85] RcppAnnoy_0.0.19       plyr_1.8.6             magrittr_2.0.1        
+ [88] R6_2.5.1               generics_0.1.1         DBI_1.1.1             
+ [91] withr_2.4.3            mgcv_1.8-38            pillar_1.6.4          
+ [94] whisker_0.4            fitdistrplus_1.1-6     survival_3.2-13       
+ [97] abind_1.4-5            tibble_3.1.6           future.apply_1.8.1    
+[100] crayon_1.4.2           KernSmooth_2.23-20     utf8_1.2.2            
+[103] spatstat.geom_2.3-1    plotly_4.10.0          rmarkdown_2.11        
+[106] grid_4.1.2             data.table_1.14.2      git2r_0.29.0          
+[109] digest_0.6.29          xtable_1.8-4           tidyr_1.1.4           
+[112] httpuv_1.6.3           munsell_0.5.0          viridisLite_0.4.0     
+[115] bslib_0.3.1           </code></pre>
 <br>
 <p>
 <button type="button" class="btn btn-default btn-workflowr btn-workflowr-sessioninfo" data-toggle="collapse" data-target="#workflowr-sessioninfo" style="display: block;">
@@ -867,13 +969,13 @@ loaded via a namespace (and not attached):
 </p>
 <div id="workflowr-sessioninfo" class="collapse">
 <pre class="r"><code>sessionInfo()</code></pre>
-<pre><code>R version 4.0.0 (2020-04-24)
+<pre><code>R version 4.1.2 (2021-11-01)
 Platform: x86_64-pc-linux-gnu (64-bit)
-Running under: Ubuntu 18.04.5 LTS
+Running under: Ubuntu 20.04.3 LTS
 
 Matrix products: default
-BLAS:   /usr/lib/x86_64-linux-gnu/blas/libblas.so.3.7.1
-LAPACK: /usr/lib/x86_64-linux-gnu/lapack/liblapack.so.3.7.1
+BLAS:   /usr/lib/x86_64-linux-gnu/blas/libblas.so.3.9.0
+LAPACK: /usr/lib/x86_64-linux-gnu/lapack/liblapack.so.3.9.0
 
 locale:
  [1] LC_CTYPE=en_US.UTF-8       LC_NUMERIC=C              
@@ -887,49 +989,49 @@ attached base packages:
 [1] stats     graphics  grDevices utils     datasets  methods   base     
 
 other attached packages:
-[1] XML_3.99-0.6       httr_1.4.2         stringr_1.4.0      patchwork_1.1.1   
-[5] ggplot2_3.3.5      SeuratObject_4.0.2 Seurat_4.0.3       workflowr_1.6.2   
+[1] XML_3.99-0.8       httr_1.4.2         stringr_1.4.0      patchwork_1.1.1   
+[5] ggplot2_3.3.5      SeuratObject_4.0.4 Seurat_4.0.5       workflowr_1.6.2   
 
 loaded via a namespace (and not attached):
-  [1] Rtsne_0.15             colorspace_2.0-2       deldir_0.2-10         
+  [1] Rtsne_0.15             colorspace_2.0-2       deldir_1.0-6          
   [4] ellipsis_0.3.2         ggridges_0.5.3         rprojroot_2.0.2       
-  [7] fs_1.5.0               spatstat.data_2.1-0    farver_2.1.0          
- [10] leiden_0.3.8           listenv_0.8.0          ggrepel_0.9.1         
- [13] fansi_0.5.0            codetools_0.2-16       splines_4.0.0         
- [16] knitr_1.33             polyclip_1.10-0        jsonlite_1.7.2        
- [19] ica_1.0-2              cluster_2.1.0          png_0.1-7             
- [22] uwot_0.1.10            shiny_1.6.0            sctransform_0.3.2.9008
- [25] spatstat.sparse_2.0-0  compiler_4.0.0         assertthat_0.2.1      
- [28] Matrix_1.3-4           fastmap_1.1.0          lazyeval_0.2.2        
- [31] later_1.2.0            htmltools_0.5.1.1      tools_4.0.0           
- [34] igraph_1.2.6           gtable_0.3.0           glue_1.4.2            
+  [7] fs_1.5.2               spatstat.data_2.1-0    farver_2.1.0          
+ [10] leiden_0.3.9           listenv_0.8.0          ggrepel_0.9.1         
+ [13] fansi_0.5.0            codetools_0.2-18       splines_4.1.2         
+ [16] knitr_1.36             polyclip_1.10-0        jsonlite_1.7.2        
+ [19] ica_1.0-2              cluster_2.1.2          png_0.1-7             
+ [22] uwot_0.1.11            shiny_1.7.1            sctransform_0.3.2.9008
+ [25] spatstat.sparse_2.0-0  compiler_4.1.2         assertthat_0.2.1      
+ [28] Matrix_1.4-0           fastmap_1.1.0          lazyeval_0.2.2        
+ [31] later_1.3.0            htmltools_0.5.2        tools_4.1.2           
+ [34] igraph_1.2.9           gtable_0.3.0           glue_1.5.1            
  [37] RANN_2.6.1             reshape2_1.4.4         dplyr_1.0.7           
- [40] Rcpp_1.0.6             scattermore_0.7        jquerylib_0.1.4       
- [43] vctrs_0.3.8            nlme_3.1-152           lmtest_0.9-38         
- [46] xfun_0.24              globals_0.14.0         mime_0.11             
- [49] miniUI_0.1.1.1         lifecycle_1.0.0        irlba_2.3.3           
- [52] goftest_1.2-2          future_1.21.0          MASS_7.3-51.6         
- [55] zoo_1.8-9              scales_1.1.1           spatstat.core_2.2-0   
- [58] promises_1.2.0.1       spatstat.utils_2.2-0   parallel_4.0.0        
+ [40] Rcpp_1.0.7             scattermore_0.7        jquerylib_0.1.4       
+ [43] vctrs_0.3.8            nlme_3.1-152           lmtest_0.9-39         
+ [46] xfun_0.28              globals_0.14.0         mime_0.12             
+ [49] miniUI_0.1.1.1         lifecycle_1.0.1        irlba_2.3.5           
+ [52] goftest_1.2-3          future_1.23.0          MASS_7.3-54           
+ [55] zoo_1.8-9              scales_1.1.1           spatstat.core_2.3-2   
+ [58] promises_1.2.0.1       spatstat.utils_2.3-0   parallel_4.1.2        
  [61] RColorBrewer_1.1-2     curl_4.3.2             yaml_2.2.1            
- [64] reticulate_1.20        pbapply_1.4-3          gridExtra_2.3         
- [67] sass_0.4.0             rpart_4.1-15           stringi_1.6.2         
- [70] highr_0.8              rlang_0.4.11           pkgconfig_2.0.3       
- [73] matrixStats_0.59.0     evaluate_0.14          lattice_0.20-41       
+ [64] reticulate_1.22        pbapply_1.5-0          gridExtra_2.3         
+ [67] sass_0.4.0             rpart_4.1-15           stringi_1.7.6         
+ [70] highr_0.9              rlang_0.4.12           pkgconfig_2.0.3       
+ [73] matrixStats_0.61.0     evaluate_0.14          lattice_0.20-45       
  [76] ROCR_1.0-11            purrr_0.3.4            tensor_1.5            
- [79] labeling_0.4.2         htmlwidgets_1.5.3      cowplot_1.1.1         
- [82] tidyselect_1.1.1       here_1.0.1             parallelly_1.26.0     
- [85] RcppAnnoy_0.0.18       plyr_1.8.6             magrittr_2.0.1        
- [88] R6_2.5.0               generics_0.1.0         DBI_1.1.1             
- [91] withr_2.4.2            mgcv_1.8-33            pillar_1.6.1          
- [94] whisker_0.4            fitdistrplus_1.1-5     survival_3.2-7        
- [97] abind_1.4-5            tibble_3.1.2           future.apply_1.7.0    
-[100] crayon_1.4.1           KernSmooth_2.23-17     utf8_1.2.1            
-[103] spatstat.geom_2.2-0    plotly_4.9.4.1         rmarkdown_2.9         
-[106] grid_4.0.0             data.table_1.14.0      git2r_0.26.1          
-[109] digest_0.6.27          xtable_1.8-4           tidyr_1.1.3           
-[112] httpuv_1.6.1           munsell_0.5.0          viridisLite_0.4.0     
-[115] bslib_0.2.5.1         </code></pre>
+ [79] labeling_0.4.2         htmlwidgets_1.5.4      cowplot_1.1.1         
+ [82] tidyselect_1.1.1       here_1.0.1             parallelly_1.29.0     
+ [85] RcppAnnoy_0.0.19       plyr_1.8.6             magrittr_2.0.1        
+ [88] R6_2.5.1               generics_0.1.1         DBI_1.1.1             
+ [91] withr_2.4.3            mgcv_1.8-38            pillar_1.6.4          
+ [94] whisker_0.4            fitdistrplus_1.1-6     survival_3.2-13       
+ [97] abind_1.4-5            tibble_3.1.6           future.apply_1.8.1    
+[100] crayon_1.4.2           KernSmooth_2.23-20     utf8_1.2.2            
+[103] spatstat.geom_2.3-1    plotly_4.10.0          rmarkdown_2.11        
+[106] grid_4.1.2             data.table_1.14.2      git2r_0.29.0          
+[109] digest_0.6.29          xtable_1.8-4           tidyr_1.1.4           
+[112] httpuv_1.6.3           munsell_0.5.0          viridisLite_0.4.0     
+[115] bslib_0.3.1           </code></pre>
 </div>
 </div>
 
@@ -945,6 +1047,8 @@ footer is added to webpages before the MathJax javascript. -->
     "HTML-CSS": { availableFonts: ["TeX"] }
   });
 </script>
+
+
 
 
 

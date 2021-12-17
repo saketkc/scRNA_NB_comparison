@@ -13,7 +13,8 @@
 
 <title>Figure 1</title>
 
-<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<script src="site_libs/header-attrs-2.11/header-attrs.js"></script>
+<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/simplex.min.css" rel="stylesheet" />
 <script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
@@ -43,6 +44,8 @@ div.section {
   padding-top: 12px;
 }
 </style>
+
+
 
 <style type="text/css">
   code{white-space: pre-wrap;}
@@ -304,13 +307,13 @@ $(document).ready(function () {
 <div class="tab-content">
 <div id="summary" class="tab-pane fade in active">
 <p>
-<strong>Last updated:</strong> 2021-07-07
+<strong>Last updated:</strong> 2021-12-17
 </p>
 <p>
 <strong>Checks:</strong> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> 7 <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span> 0
 </p>
 <p>
-<strong>Knit directory:</strong> <code>scRNA_NB_comparison/</code> <span class="glyphicon glyphicon-question-sign" aria-hidden="true" title="This is the local directory in which the code in this file was executed."> </span>
+<strong>Knit directory:</strong> <code>sct2_revision/</code> <span class="glyphicon glyphicon-question-sign" aria-hidden="true" title="This is the local directory in which the code in this file was executed."> </span>
 </p>
 <p>
 This reproducible <a href="http://rmarkdown.rstudio.com">R Markdown</a> analysis was created with <a
@@ -395,22 +398,24 @@ This reproducible <a href="http://rmarkdown.rstudio.com">R Markdown</a> analysis
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomsaketkcscRNANBcomparisontree052425faff377cce4936df52b27fe35bc6e8896etargetblank052425fa"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/saketkc/scRNA_NB_comparison/tree/052425faff377cce4936df52b27fe35bc6e8896e" target="_blank">052425f</a> </a>
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomsaketkcscRNANBcomparisontree8afc4867872b849d56f119090f10b0bf46fa9bd4targetblank8afc486a"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/saketkc/scRNA_NB_comparison/tree/8afc4867872b849d56f119090f10b0bf46fa9bd4" target="_blank">8afc486</a> </a>
 </p>
 </div>
-<div id="strongRepositoryversionstrongahrefhttpsgithubcomsaketkcscRNANBcomparisontree052425faff377cce4936df52b27fe35bc6e8896etargetblank052425fa" class="panel-collapse collapse">
+<div id="strongRepositoryversionstrongahrefhttpsgithubcomsaketkcscRNANBcomparisontree8afc4867872b849d56f119090f10b0bf46fa9bd4targetblank8afc486a" class="panel-collapse collapse">
 <div class="panel-body">
 <p>
 Great! You are using Git for version control. Tracking code development and connecting the code version to the results is critical for reproducibility.
 </p>
 <p>
-The results in this page were generated with repository version <a href="https://github.com/saketkc/scRNA_NB_comparison/tree/052425faff377cce4936df52b27fe35bc6e8896e" target="_blank">052425f</a>. See the <em>Past versions</em> tab to see a history of the changes made to the R Markdown and HTML files.
+The results in this page were generated with repository version <a href="https://github.com/saketkc/scRNA_NB_comparison/tree/8afc4867872b849d56f119090f10b0bf46fa9bd4" target="_blank">8afc486</a>. See the <em>Past versions</em> tab to see a history of the changes made to the R Markdown and HTML files.
 </p>
 <p>
 Note that you need to be careful to ensure that all relevant files for the analysis have been committed to Git prior to generating the results (you can use <code>wflow_publish</code> or <code>wflow_git_commit</code>). workflowr only checks the R Markdown file, but you know if there are other scripts or data files that it depends on. Below is the status of the Git repository when the results were generated:
 </p>
 <pre><code>
 Ignored files:
+    Ignored:    .Rhistory
+    Ignored:    .Rproj.user/
     Ignored:    data/raw_data/
     Ignored:    data/rds_filtered/
     Ignored:    data/rds_raw/
@@ -418,8 +423,88 @@ Ignored files:
     Ignored:    output/snakemake_output/
 
 Untracked files:
+    Untracked:  code/02_run_seurat_noclip.R
+    Untracked:  code/07AA_deseq2_muscat_simulate.R
+    Untracked:  code/07A_muscat_simulate.R
+    Untracked:  code/07A_simulate_muscat.R
+    Untracked:  code/07BB_deseq2_muscat_process.R
+    Untracked:  code/07B_muscat_process.R
+    Untracked:  code/07B_process_muscat.R
+    Untracked:  code/08_run_presto.R
+    Untracked:  code/17A_HEK_SS3_dropseq.Rmd
+    Untracked:  code/17A_HEK_SS3_dropseq_files/
+    Untracked:  code/17C_HEK_Quartzeseq2_dropseq.Rmd
+    Untracked:  code/17C_HEK_Quartzeseq2_dropseq_files/
+    Untracked:  code/17_HEK_SS3_ChromiumV3.Rmd
+    Untracked:  code/17_HEK_SS3_ChromiumV3.nb.html
+    Untracked:  code/17_HEK_SS3_ChromiumV3_files/
+    Untracked:  code/AA_process_muscat.R
+    Untracked:  code/BB_process_muscat.R
+    Untracked:  code/DD_simulate_muscat.R
+    Untracked:  code/EE_simulate_muscat.R
+    Untracked:  code/XX_process_muscat.R
+    Untracked:  code/XX_simulate_muscat.R
+    Untracked:  code/YY_simulate_muscat.R
+    Untracked:  code/ZZ_simulate_muscat.R
+    Untracked:  code/kang_muscat.R
+    Untracked:  code/prep_sce.R
+    Untracked:  code/prep_sce_ss3_dropseq.R
+    Untracked:  data/azimuth_predictions/
+    Untracked:  junk/
+    Untracked:  mamba_update_changes.txt
+    Untracked:  output/11C_VST/
+    Untracked:  output/AAmuscat_simulated/
+    Untracked:  output/BBmuscat_simulated/
+    Untracked:  output/CCmuscat_simulated/
+    Untracked:  output/CD4_NK_downsampling_DE.rds
+    Untracked:  output/DDmuscat_simulated/
+    Untracked:  output/EEmuscat_simulated/
+    Untracked:  output/KANGmuscat_simulated/
+    Untracked:  output/NK_downsampling/
+    Untracked:  output/XXmuscat_simulated/
+    Untracked:  output/YYmuscat_simulated/
+    Untracked:  output/ZZmuscat_simulated/
     Untracked:  output/figures/
+    Untracked:  output/kang_prepsce.rds
+    Untracked:  output/muscat_simulated/
+    Untracked:  output/muscat_simulation/
+    Untracked:  output/seu_sct2_sim.rds
+    Untracked:  output/simulation_HEK_QuartzSeq2_Dropseq_downsampling/
+    Untracked:  output/simulation_HEK_SS3_ChromiumV3_downsampling/
+    Untracked:  output/simulation_HEK_SS3_Dropseq_downsampling/
+    Untracked:  output/simulation_HEK_downsampling/
+    Untracked:  output/simulation_NK_downsampling/
+    Untracked:  output/ss3_dropseq_prepsim.rds
     Untracked:  output/tables/
+    Untracked:  output/vargenes/
+    Untracked:  snakemake/.snakemake/
+    Untracked:  snakemake/Snakefile_noclip.smk
+    Untracked:  snakemake/Snakefile_presto.smk
+    Untracked:  snakemake/cluster.yaml
+    Untracked:  snakemake/install_glm.R
+    Untracked:  snakemake/jobscript.sh
+    Untracked:  snakemake/jobscript_ncells.sh
+    Untracked:  snakemake/local_run_downsampling.sh
+    Untracked:  snakemake/local_run_glm.sh
+    Untracked:  snakemake/local_run_ncells.sh
+    Untracked:  snakemake/local_run_noclip.sh
+    Untracked:  snakemake/local_run_presto.sh
+    Untracked:  snakemake/local_run_time.sh
+    Untracked:  snakemake/run_glm.sh
+    Untracked:  snakemake/run_ncells.sh
+    Untracked:  snakemake/sct2_revision_env.yml
+    Untracked:  temp_figures/
+
+Unstaged changes:
+    Deleted:    analysis/04_PBMC68k.Rmd
+    Modified:   code/02_run_seurat.R
+    Modified:   code/03_run_vst2_downsample.R
+    Modified:   code/04_run_vst_ncells.R
+    Modified:   code/06_run_sct.R
+    Modified:   data/datasets.csv
+    Modified:   snakemake/Snakefile_downsampling.smk
+    Modified:   snakemake/Snakefile_glm_seurat.smk
+    Modified:   snakemake/Snakefile_metacell.smk
 
 </code></pre>
 <p>
@@ -458,6 +543,40 @@ Message
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/saketkc/scRNA_NB_comparison/blob/8afc4867872b849d56f119090f10b0bf46fa9bd4/analysis/09_Figure1.Rmd" target="_blank">8afc486</a>
+</td>
+<td>
+Saket Choudhary
+</td>
+<td>
+2021-12-17
+</td>
+<td>
+workflowr::wflow_publish("analysis/*")
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/saketkc/scRNA_NB_comparison/d736ec81cfc39938f365e9236e8b1fc69ed5283d/docs/09_Figure1.html" target="_blank">d736ec8</a>
+</td>
+<td>
+Saket Choudhary
+</td>
+<td>
+2021-07-07
+</td>
+<td>
+Build site.
+</td>
+</tr>
 <tr>
 <td>
 Rmd
@@ -659,6 +778,23 @@ heterogeneous
 </tr>
 <tr>
 <td style="text-align:left;">
+PBMC68k (ChromiumV1)
+</td>
+<td style="text-align:left;">
+heterogeneous
+</td>
+<td style="text-align:right;">
+0.011
+</td>
+<td style="text-align:right;">
+1513.0
+</td>
+<td style="text-align:right;">
+0.010
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
 HEK-m (inDrops)
 </td>
 <td style="text-align:left;">
@@ -672,23 +808,6 @@ cell line
 </td>
 <td style="text-align:right;">
 0.010
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-PBMC68k (ChromiumV1)
-</td>
-<td style="text-align:left;">
-heterogeneous
-</td>
-<td style="text-align:right;">
-0.011
-</td>
-<td style="text-align:right;">
-1513.0
-</td>
-<td style="text-align:right;">
-0.011
 </td>
 </tr>
 <tr>
@@ -744,23 +863,6 @@ heterogeneous
 </tr>
 <tr>
 <td style="text-align:left;">
-HEK-r1 (inDrops)
-</td>
-<td style="text-align:left;">
-cell line
-</td>
-<td style="text-align:right;">
-0.042
-</td>
-<td style="text-align:right;">
-3132.0
-</td>
-<td style="text-align:right;">
-0.017
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
 PBMC-r1 (Seq-Well)
 </td>
 <td style="text-align:left;">
@@ -771,6 +873,23 @@ heterogeneous
 </td>
 <td style="text-align:right;">
 1200.0
+</td>
+<td style="text-align:right;">
+0.017
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+HEK-r1 (inDrops)
+</td>
+<td style="text-align:left;">
+cell line
+</td>
+<td style="text-align:right;">
+0.042
+</td>
+<td style="text-align:right;">
+3132.0
 </td>
 <td style="text-align:right;">
 0.017
@@ -841,7 +960,7 @@ heterogeneous
 6848.0
 </td>
 <td style="text-align:right;">
-0.021
+0.020
 </td>
 </tr>
 <tr>
@@ -858,7 +977,7 @@ cell line
 3973.0
 </td>
 <td style="text-align:right;">
-0.027
+0.026
 </td>
 </tr>
 <tr>
@@ -892,7 +1011,7 @@ heterogeneous
 2486.5
 </td>
 <td style="text-align:right;">
-0.028
+0.027
 </td>
 </tr>
 <tr>
@@ -926,7 +1045,24 @@ heterogeneous
 3980.5
 </td>
 <td style="text-align:right;">
-0.036
+0.037
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+HEK-r1 (Drop-seq)
+</td>
+<td style="text-align:left;">
+cell line
+</td>
+<td style="text-align:right;">
+0.053
+</td>
+<td style="text-align:right;">
+6015.5
+</td>
+<td style="text-align:right;">
+0.038
 </td>
 </tr>
 <tr>
@@ -944,23 +1080,6 @@ cell line
 </td>
 <td style="text-align:right;">
 0.038
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-HEK-r1 (Drop-seq)
-</td>
-<td style="text-align:left;">
-cell line
-</td>
-<td style="text-align:right;">
-0.053
-</td>
-<td style="text-align:right;">
-6015.5
-</td>
-<td style="text-align:right;">
-0.039
 </td>
 </tr>
 <tr>
@@ -994,7 +1113,7 @@ cell line
 4666.5
 </td>
 <td style="text-align:right;">
-0.041
+0.042
 </td>
 </tr>
 <tr>
@@ -1011,7 +1130,7 @@ heterogeneous
 3501.5
 </td>
 <td style="text-align:right;">
-0.046
+0.045
 </td>
 </tr>
 <tr>
@@ -1045,7 +1164,7 @@ heterogeneous
 3013.5
 </td>
 <td style="text-align:right;">
-0.050
+0.049
 </td>
 </tr>
 <tr>
@@ -1062,7 +1181,7 @@ cell line
 6609.5
 </td>
 <td style="text-align:right;">
-0.061
+0.062
 </td>
 </tr>
 <tr>
@@ -1079,7 +1198,7 @@ heterogeneous
 6992.0
 </td>
 <td style="text-align:right;">
-0.064
+0.063
 </td>
 </tr>
 <tr>
@@ -1113,7 +1232,7 @@ heterogeneous
 3094.0
 </td>
 <td style="text-align:right;">
-0.068
+0.067
 </td>
 </tr>
 <tr>
@@ -1147,7 +1266,7 @@ cell line
 11490.0
 </td>
 <td style="text-align:right;">
-0.072
+0.071
 </td>
 </tr>
 <tr>
@@ -1169,6 +1288,23 @@ heterogeneous
 </tr>
 <tr>
 <td style="text-align:left;">
+Bone Marrow (CITE-seq)
+</td>
+<td style="text-align:left;">
+heterogeneous
+</td>
+<td style="text-align:right;">
+0.093
+</td>
+<td style="text-align:right;">
+12585.0
+</td>
+<td style="text-align:right;">
+0.111
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
 HEK (ChromiumV3)
 </td>
 <td style="text-align:left;">
@@ -1181,7 +1317,7 @@ cell line
 41054.5
 </td>
 <td style="text-align:right;">
-0.116
+0.115
 </td>
 </tr>
 <tr>
@@ -1198,7 +1334,7 @@ cell line
 1907.5
 </td>
 <td style="text-align:right;">
-0.116
+0.118
 </td>
 </tr>
 <tr>
@@ -1249,7 +1385,7 @@ cell line
 14057.0
 </td>
 <td style="text-align:right;">
-0.141
+0.142
 </td>
 </tr>
 <tr>
@@ -1283,7 +1419,7 @@ cell line
 9199.0
 </td>
 <td style="text-align:right;">
-0.150
+0.151
 </td>
 </tr>
 <tr>
@@ -1300,7 +1436,7 @@ cell line
 13298.0
 </td>
 <td style="text-align:right;">
-0.152
+0.153
 </td>
 </tr>
 <tr>
@@ -1317,7 +1453,7 @@ cell line
 43670.0
 </td>
 <td style="text-align:right;">
-0.158
+0.159
 </td>
 </tr>
 <tr>
@@ -1334,7 +1470,7 @@ cell line
 52973.0
 </td>
 <td style="text-align:right;">
-0.160
+0.161
 </td>
 </tr>
 <tr>
@@ -1351,7 +1487,7 @@ cell line
 25193.5
 </td>
 <td style="text-align:right;">
-0.164
+0.162
 </td>
 </tr>
 <tr>
@@ -1368,7 +1504,7 @@ cell line
 23444.0
 </td>
 <td style="text-align:right;">
-0.168
+0.169
 </td>
 </tr>
 <tr>
@@ -1402,7 +1538,7 @@ cell line
 3266.5
 </td>
 <td style="text-align:right;">
-0.176
+0.175
 </td>
 </tr>
 <tr>
@@ -1487,7 +1623,7 @@ cell line
 5304.5
 </td>
 <td style="text-align:right;">
-0.570
+0.572
 </td>
 </tr>
 <tr>
@@ -1504,7 +1640,7 @@ cell line
 73333.5
 </td>
 <td style="text-align:right;">
-0.617
+0.616
 </td>
 </tr>
 <tr>
@@ -1521,7 +1657,7 @@ heterogeneous
 197151.0
 </td>
 <td style="text-align:right;">
-0.627
+0.628
 </td>
 </tr>
 <tr>
@@ -1538,7 +1674,7 @@ cell line
 167199.0
 </td>
 <td style="text-align:right;">
-0.643
+0.647
 </td>
 </tr>
 </tbody>
@@ -1606,10 +1742,10 @@ TechCtrl1 (ChromiumV1)
 TechCtrl2 (ChromiumV1)
 </td>
 <td style="text-align:right;">
-0.5942029
+0.5869565
 </td>
 <td style="text-align:right;">
-82
+81
 </td>
 <td style="text-align:right;">
 138
@@ -1640,10 +1776,10 @@ TechCtrl (inDrops)
 3T3 (ChromiumV3)
 </td>
 <td style="text-align:right;">
-0.5739750
+0.5779857
 </td>
 <td style="text-align:right;">
-1288
+1297
 </td>
 <td style="text-align:right;">
 2244
@@ -1674,10 +1810,10 @@ TechCtrl (inDrops)
 3T3-r1 (ChromiumV2)
 </td>
 <td style="text-align:right;">
-0.8469945
+0.8497268
 </td>
 <td style="text-align:right;">
-1550
+1555
 </td>
 <td style="text-align:right;">
 1830
@@ -1691,10 +1827,10 @@ TechCtrl (inDrops)
 3T3-r1 (Drop-seq)
 </td>
 <td style="text-align:right;">
-0.6404293
+0.6440072
 </td>
 <td style="text-align:right;">
-358
+360
 </td>
 <td style="text-align:right;">
 559
@@ -1708,10 +1844,10 @@ TechCtrl (inDrops)
 3T3-r1 (inDrops)
 </td>
 <td style="text-align:right;">
-0.8095238
+0.8231293
 </td>
 <td style="text-align:right;">
-238
+242
 </td>
 <td style="text-align:right;">
 294
@@ -1725,10 +1861,10 @@ TechCtrl (inDrops)
 3T3-r1 (sci-RNA-seq)
 </td>
 <td style="text-align:right;">
-0.5337150
+0.5419847
 </td>
 <td style="text-align:right;">
-839
+852
 </td>
 <td style="text-align:right;">
 1572
@@ -1742,10 +1878,10 @@ TechCtrl (inDrops)
 3T3-r2 (CEL-seq2)
 </td>
 <td style="text-align:right;">
-0.5292932
+0.5329213
 </td>
 <td style="text-align:right;">
-3939
+3966
 </td>
 <td style="text-align:right;">
 7442
@@ -1759,10 +1895,10 @@ TechCtrl (inDrops)
 3T3-r2 (ChromiumV2)
 </td>
 <td style="text-align:right;">
-0.7796818
+0.7731538
 </td>
 <td style="text-align:right;">
-1911
+1895
 </td>
 <td style="text-align:right;">
 2451
@@ -1776,10 +1912,10 @@ TechCtrl (inDrops)
 3T3-r2 (Drop-seq)
 </td>
 <td style="text-align:right;">
-0.5175953
+0.5073314
 </td>
 <td style="text-align:right;">
-353
+346
 </td>
 <td style="text-align:right;">
 682
@@ -1793,10 +1929,10 @@ TechCtrl (inDrops)
 3T3-r2 (inDrops)
 </td>
 <td style="text-align:right;">
-0.5410200
+0.5365854
 </td>
 <td style="text-align:right;">
-488
+484
 </td>
 <td style="text-align:right;">
 902
@@ -1810,10 +1946,10 @@ TechCtrl (inDrops)
 3T3-r2 (sci-RNA-seq)
 </td>
 <td style="text-align:right;">
-0.8837209
+0.8871124
 </td>
 <td style="text-align:right;">
-1824
+1831
 </td>
 <td style="text-align:right;">
 2064
@@ -1827,10 +1963,10 @@ TechCtrl (inDrops)
 HEK (ChromiumV3)
 </td>
 <td style="text-align:right;">
-0.6252152
+0.6261718
 </td>
 <td style="text-align:right;">
-3268
+3273
 </td>
 <td style="text-align:right;">
 5227
@@ -1844,10 +1980,10 @@ HEK (ChromiumV3)
 HEK (Smart-seq3)
 </td>
 <td style="text-align:right;">
-0.7991825
+0.7987632
 </td>
 <td style="text-align:right;">
-7625
+7621
 </td>
 <td style="text-align:right;">
 9541
@@ -1861,10 +1997,10 @@ HEK (Smart-seq3)
 HEK-r1 (CEL-seq2)
 </td>
 <td style="text-align:right;">
-0.5020683
+0.5012410
 </td>
 <td style="text-align:right;">
-4248
+4241
 </td>
 <td style="text-align:right;">
 8461
@@ -1878,10 +2014,10 @@ HEK-r1 (CEL-seq2)
 HEK-r1 (ChromiumV2)
 </td>
 <td style="text-align:right;">
-0.8846924
+0.8884120
 </td>
 <td style="text-align:right;">
-3092
+3105
 </td>
 <td style="text-align:right;">
 3495
@@ -1895,10 +2031,10 @@ HEK-r1 (ChromiumV2)
 HEK-r1 (Drop-seq)
 </td>
 <td style="text-align:right;">
-0.5256125
+0.5241277
 </td>
 <td style="text-align:right;">
-708
+706
 </td>
 <td style="text-align:right;">
 1347
@@ -1929,10 +2065,10 @@ HEK-r1 (inDrops)
 HEK-r1 (sci-RNA-seq)
 </td>
 <td style="text-align:right;">
-0.5555202
+0.5590200
 </td>
 <td style="text-align:right;">
-1746
+1757
 </td>
 <td style="text-align:right;">
 3143
@@ -1946,10 +2082,10 @@ HEK-r1 (sci-RNA-seq)
 HEK-r2 (CEL-seq2)
 </td>
 <td style="text-align:right;">
-0.5539335
+0.5554204
 </td>
 <td style="text-align:right;">
-4098
+4109
 </td>
 <td style="text-align:right;">
 7398
@@ -1963,10 +2099,10 @@ HEK-r2 (CEL-seq2)
 HEK-r2 (ChromiumV2)
 </td>
 <td style="text-align:right;">
-0.9304878
+0.9317073
 </td>
 <td style="text-align:right;">
-3052
+3056
 </td>
 <td style="text-align:right;">
 3280
@@ -1980,10 +2116,10 @@ HEK-r2 (ChromiumV2)
 HEK-r2 (Drop-seq)
 </td>
 <td style="text-align:right;">
-0.6598891
+0.6626617
 </td>
 <td style="text-align:right;">
-714
+717
 </td>
 <td style="text-align:right;">
 1082
@@ -1997,10 +2133,10 @@ HEK-r2 (Drop-seq)
 HEK-r2 (inDrops)
 </td>
 <td style="text-align:right;">
-0.6548387
+0.6451613
 </td>
 <td style="text-align:right;">
-406
+400
 </td>
 <td style="text-align:right;">
 620
@@ -2014,10 +2150,10 @@ HEK-r2 (inDrops)
 HEK-r2 (sci-RNA-seq)
 </td>
 <td style="text-align:right;">
-0.9221675
+0.9238095
 </td>
 <td style="text-align:right;">
-2808
+2813
 </td>
 <td style="text-align:right;">
 3045
@@ -2031,10 +2167,10 @@ HEK-r2 (sci-RNA-seq)
 HEK-m (CEL-seq2)
 </td>
 <td style="text-align:right;">
-0.6930805
+0.7002563
 </td>
 <td style="text-align:right;">
-6761
+6831
 </td>
 <td style="text-align:right;">
 9755
@@ -2048,10 +2184,10 @@ HEK-m (CEL-seq2)
 HEK-m (ChromiumV2)
 </td>
 <td style="text-align:right;">
-0.9761956
+0.9770573
 </td>
 <td style="text-align:right;">
-9063
+9071
 </td>
 <td style="text-align:right;">
 9284
@@ -2099,10 +2235,10 @@ HEK-m (ddSeq)
 HEK-m (Drop-seq)
 </td>
 <td style="text-align:right;">
-0.9843505
+0.9874804
 </td>
 <td style="text-align:right;">
-629
+631
 </td>
 <td style="text-align:right;">
 639
@@ -2150,10 +2286,10 @@ HEK-m (MARS-seq)
 HEK-m (mcSCRB-seq)
 </td>
 <td style="text-align:right;">
-0.9458333
+0.9375000
 </td>
 <td style="text-align:right;">
-1135
+1125
 </td>
 <td style="text-align:right;">
 1200
@@ -2167,10 +2303,10 @@ HEK-m (mcSCRB-seq)
 HEK-m (Quartz-Seq2)
 </td>
 <td style="text-align:right;">
-0.9814356
+0.9835809
 </td>
 <td style="text-align:right;">
-11895
+11921
 </td>
 <td style="text-align:right;">
 12120
@@ -2201,10 +2337,10 @@ Cortex-r1 (ChromiumV2)
 Cortex-r1 (DroNc-seq)
 </td>
 <td style="text-align:right;">
-0.9180887
+0.9146758
 </td>
 <td style="text-align:right;">
-269
+268
 </td>
 <td style="text-align:right;">
 293
@@ -2235,10 +2371,10 @@ Cortex-r1 (sci-RNA-seq)
 Cortex-r2 (ChromiumV2)
 </td>
 <td style="text-align:right;">
-0.8245614
+0.8120301
 </td>
 <td style="text-align:right;">
-329
+324
 </td>
 <td style="text-align:right;">
 399
@@ -2252,10 +2388,10 @@ Cortex-r2 (ChromiumV2)
 Cortex-r2 (DroNc-seq)
 </td>
 <td style="text-align:right;">
-0.9213251
+0.9171843
 </td>
 <td style="text-align:right;">
-445
+443
 </td>
 <td style="text-align:right;">
 483
@@ -2303,10 +2439,10 @@ Fibroblasts (Smart-seq3)
 PBMC-r1 (CEL-seq2)
 </td>
 <td style="text-align:right;">
-0.4225513
+0.4236902
 </td>
 <td style="text-align:right;">
-371
+372
 </td>
 <td style="text-align:right;">
 878
@@ -2320,10 +2456,10 @@ PBMC-r1 (CEL-seq2)
 PBMC-r1 (ChromiumV2A)
 </td>
 <td style="text-align:right;">
-0.9219512
+0.9073171
 </td>
 <td style="text-align:right;">
-189
+186
 </td>
 <td style="text-align:right;">
 205
@@ -2354,10 +2490,10 @@ PBMC-r1 (ChromiumV2B)
 PBMC-r1 (ChromiumV3)
 </td>
 <td style="text-align:right;">
-0.8385214
+0.8287938
 </td>
 <td style="text-align:right;">
-431
+426
 </td>
 <td style="text-align:right;">
 514
@@ -2371,10 +2507,10 @@ PBMC-r1 (ChromiumV3)
 PBMC-r1 (Drop-seq)
 </td>
 <td style="text-align:right;">
-0.8555556
+0.8833333
 </td>
 <td style="text-align:right;">
-154
+159
 </td>
 <td style="text-align:right;">
 180
@@ -2456,10 +2592,10 @@ PBMC-r2 (ChromiumV2)
 PBMC-r2 (Drop-seq)
 </td>
 <td style="text-align:right;">
-0.9432314
+0.9475983
 </td>
 <td style="text-align:right;">
-216
+217
 </td>
 <td style="text-align:right;">
 229
@@ -2473,10 +2609,10 @@ PBMC-r2 (Drop-seq)
 PBMC-r2 (inDrops)
 </td>
 <td style="text-align:right;">
-0.9754601
+0.9693252
 </td>
 <td style="text-align:right;">
-159
+158
 </td>
 <td style="text-align:right;">
 163
@@ -2490,10 +2626,10 @@ PBMC-r2 (inDrops)
 PBMC-r2 (Seq-Well)
 </td>
 <td style="text-align:right;">
-0.9411765
+0.9264706
 </td>
 <td style="text-align:right;">
-64
+63
 </td>
 <td style="text-align:right;">
 68
@@ -2507,10 +2643,10 @@ PBMC-r2 (Seq-Well)
 PBMC68k (ChromiumV1)
 </td>
 <td style="text-align:right;">
-0.8490566
+0.8364780
 </td>
 <td style="text-align:right;">
-135
+133
 </td>
 <td style="text-align:right;">
 159
@@ -2524,10 +2660,10 @@ PBMC68k (ChromiumV1)
 PBMC (ChromiumV3)
 </td>
 <td style="text-align:right;">
-0.7309645
+0.7335025
 </td>
 <td style="text-align:right;">
-576
+578
 </td>
 <td style="text-align:right;">
 788
@@ -2541,10 +2677,10 @@ PBMC (ChromiumV3)
 PBMC (Smart-seq3)
 </td>
 <td style="text-align:right;">
-0.9763514
+0.9746622
 </td>
 <td style="text-align:right;">
-1156
+1154
 </td>
 <td style="text-align:right;">
 1184
@@ -2568,6 +2704,23 @@ Fetal (sci-RNA-seq3)
 </td>
 <td style="text-align:right;">
 46844
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Bone Marrow (CITE-seq)
+</td>
+<td style="text-align:right;">
+0.9523810
+</td>
+<td style="text-align:right;">
+240
+</td>
+<td style="text-align:right;">
+252
+</td>
+<td style="text-align:right;">
+17009
 </td>
 </tr>
 </tbody>
@@ -2605,7 +2758,7 @@ plot.dots &lt;- ggplot(nonpoismeanwise_filtered, aes(sample_name, mean_quantile,
   guides(x = guide_axis(angle = 90)) +
   xlab(&quot;&quot;) +
   ylab(&quot;Gene mean&quot;) +
-  theme(legend.position = c(0.8, 1.05))
+  theme(legend.position = c(0.8, 1.06))
 
 plot.dots</code></pre>
 <p><img src="figure/09_Figure1.Rmd/fig1a-1.png" width="768" style="display: block; margin: auto;" /></p>
@@ -2724,16 +2877,16 @@ NA
 TechCtrl2 (ChromiumV1)
 </td>
 <td style="text-align:right;">
-0.0002289
+0.0003051
 </td>
 <td style="text-align:right;">
 0.0001568
 </td>
 <td style="text-align:right;">
-0.0181219
+0.0214168
 </td>
 <td style="text-align:right;">
-0.5090909
+0.5000000
 </td>
 <td style="text-align:right;">
 NA
@@ -2788,16 +2941,16 @@ NA
 3T3 (ChromiumV3)
 </td>
 <td style="text-align:right;">
-0.0016598
+0.0015412
 </td>
 <td style="text-align:right;">
-0.0071594
+0.0064665
 </td>
 <td style="text-align:right;">
-0.0664159
+0.0675734
 </td>
 <td style="text-align:right;">
-0.4941676
+0.4989396
 </td>
 <td style="text-align:right;">
 0.9889503
@@ -2852,16 +3005,16 @@ NA
 3T3-r1 (ChromiumV2)
 </td>
 <td style="text-align:right;">
-0.0044398
+0.0039175
 </td>
 <td style="text-align:right;">
-0.0108141
+0.0120156
 </td>
 <td style="text-align:right;">
-0.1958763
+0.1991565
 </td>
 <td style="text-align:right;">
-0.8197038
+0.8229234
 </td>
 <td style="text-align:right;">
 1.0000000
@@ -2884,16 +3037,16 @@ NA
 3T3-r1 (Drop-seq)
 </td>
 <td style="text-align:right;">
-0.0015552
+0.0018663
 </td>
 <td style="text-align:right;">
-0.0006245
+0.0010408
 </td>
 <td style="text-align:right;">
-0.0542621
+0.0565152
 </td>
 <td style="text-align:right;">
-0.6019802
+0.6059406
 </td>
 <td style="text-align:right;">
 1.0000000
@@ -2922,10 +3075,10 @@ NA
 0.0010646
 </td>
 <td style="text-align:right;">
-0.0463543
+0.0478577
 </td>
 <td style="text-align:right;">
-0.7786561
+0.7944664
 </td>
 <td style="text-align:right;">
 1.0000000
@@ -2948,16 +3101,16 @@ NA
 3T3-r1 (sci-RNA-seq)
 </td>
 <td style="text-align:right;">
-0.0007918
+0.0015835
 </td>
 <td style="text-align:right;">
-0.0033213
+0.0024155
 </td>
 <td style="text-align:right;">
-0.0558642
+0.0617210
 </td>
 <td style="text-align:right;">
-0.4965612
+0.5055021
 </td>
 <td style="text-align:right;">
 0.9873418
@@ -2980,22 +3133,22 @@ NA
 3T3-r2 (CEL-seq2)
 </td>
 <td style="text-align:right;">
-0.0075930
+0.0091116
 </td>
 <td style="text-align:right;">
-0.0091783
+0.0083042
 </td>
 <td style="text-align:right;">
-0.1038343
+0.0990764
 </td>
 <td style="text-align:right;">
-0.3863328
+0.3896331
 </td>
 <td style="text-align:right;">
-0.7697466
+0.7749627
 </td>
 <td style="text-align:right;">
-0.9505247
+0.9550225
 </td>
 <td style="text-align:right;">
 1.0000000
@@ -3015,13 +3168,13 @@ NA
 0.0081105
 </td>
 <td style="text-align:right;">
-0.0062435
+0.0076309
 </td>
 <td style="text-align:right;">
-0.1431002
+0.1400062
 </td>
 <td style="text-align:right;">
-0.7383721
+0.7306202
 </td>
 <td style="text-align:right;">
 1.0000000
@@ -3047,13 +3200,13 @@ NA
 0.0012251
 </td>
 <td style="text-align:right;">
-NA
+0.0006667
 </td>
 <td style="text-align:right;">
 0.0386980
 </td>
 <td style="text-align:right;">
-0.4691558
+0.4577922
 </td>
 <td style="text-align:right;">
 0.9534884
@@ -3079,13 +3232,13 @@ NA
 0.0009862
 </td>
 <td style="text-align:right;">
-0.0005052
+0.0007578
 </td>
 <td style="text-align:right;">
-0.0289113
+0.0272644
 </td>
 <td style="text-align:right;">
-0.4843554
+0.4793492
 </td>
 <td style="text-align:right;">
 0.9710145
@@ -3108,16 +3261,16 @@ NA
 3T3-r2 (sci-RNA-seq)
 </td>
 <td style="text-align:right;">
-0.0048852
+0.0043967
 </td>
 <td style="text-align:right;">
-0.0075633
+0.0082210
 </td>
 <td style="text-align:right;">
-0.2089249
+0.2092370
 </td>
 <td style="text-align:right;">
-0.8717263
+0.8754677
 </td>
 <td style="text-align:right;">
 1.0000000
@@ -3140,19 +3293,19 @@ NA
 HEK (ChromiumV3)
 </td>
 <td style="text-align:right;">
-0.0030717
+0.0027539
 </td>
 <td style="text-align:right;">
-0.0063885
+0.0061889
 </td>
 <td style="text-align:right;">
-0.0762431
+0.0778216
 </td>
 <td style="text-align:right;">
-0.5129495
+0.5137038
 </td>
 <td style="text-align:right;">
-0.9671642
+0.9701493
 </td>
 <td style="text-align:right;">
 1.0000000
@@ -3172,16 +3325,16 @@ HEK (ChromiumV3)
 HEK (Smart-seq3)
 </td>
 <td style="text-align:right;">
-0.0124555
+0.0119471
 </td>
 <td style="text-align:right;">
-0.0121248
+0.0116812
 </td>
 <td style="text-align:right;">
-0.1717452
+0.1745152
 </td>
 <td style="text-align:right;">
-0.7031738
+0.7025160
 </td>
 <td style="text-align:right;">
 0.9428066
@@ -3207,19 +3360,19 @@ HEK-r1 (CEL-seq2)
 NA
 </td>
 <td style="text-align:right;">
-0.0084314
+0.0085905
 </td>
 <td style="text-align:right;">
-0.0921942
+0.0954722
 </td>
 <td style="text-align:right;">
-0.3756942
+0.3765109
 </td>
 <td style="text-align:right;">
-0.7605156
+0.7530529
 </td>
 <td style="text-align:right;">
-0.9398734
+0.9382911
 </td>
 <td style="text-align:right;">
 1.0000000
@@ -3236,16 +3389,16 @@ NA
 HEK-r1 (ChromiumV2)
 </td>
 <td style="text-align:right;">
-0.0054479
+0.0048426
 </td>
 <td style="text-align:right;">
-0.0179791
+0.0168411
 </td>
 <td style="text-align:right;">
-0.1583698
+0.1570022
 </td>
 <td style="text-align:right;">
-0.8531876
+0.8579235
 </td>
 <td style="text-align:right;">
 1.0000000
@@ -3268,16 +3421,16 @@ NA
 HEK-r1 (Drop-seq)
 </td>
 <td style="text-align:right;">
-0.0004613
+0.0007688
 </td>
 <td style="text-align:right;">
-0.0029189
+0.0027243
 </td>
 <td style="text-align:right;">
-0.0376685
+0.0353954
 </td>
 <td style="text-align:right;">
-0.4732069
+0.4715581
 </td>
 <td style="text-align:right;">
 1.0000000
@@ -3338,10 +3491,10 @@ HEK-r1 (sci-RNA-seq)
 0.0069048
 </td>
 <td style="text-align:right;">
-0.0763099
+0.0778780
 </td>
 <td style="text-align:right;">
-0.5151621
+0.5189962
 </td>
 <td style="text-align:right;">
 0.9710145
@@ -3367,19 +3520,19 @@ HEK-r2 (CEL-seq2)
 0.0051769
 </td>
 <td style="text-align:right;">
-0.0080345
+0.0078385
 </td>
 <td style="text-align:right;">
-0.0847489
+0.0873059
 </td>
 <td style="text-align:right;">
-0.4479185
+0.4496459
 </td>
 <td style="text-align:right;">
-0.9014228
+0.9004065
 </td>
 <td style="text-align:right;">
-0.9844098
+0.9888641
 </td>
 <td style="text-align:right;">
 1.0000000
@@ -3396,16 +3549,16 @@ HEK-r2 (CEL-seq2)
 HEK-r2 (ChromiumV2)
 </td>
 <td style="text-align:right;">
-0.0055034
+0.0060403
 </td>
 <td style="text-align:right;">
-0.0191110
+0.0195405
 </td>
 <td style="text-align:right;">
-0.2030820
+0.2029444
 </td>
 <td style="text-align:right;">
-0.9113186
+0.9128744
 </td>
 <td style="text-align:right;">
 1.0000000
@@ -3431,13 +3584,13 @@ HEK-r2 (Drop-seq)
 0.0012235
 </td>
 <td style="text-align:right;">
-0.0031302
+0.0034984
 </td>
 <td style="text-align:right;">
 0.0587045
 </td>
 <td style="text-align:right;">
-0.6178609
+0.6209761
 </td>
 <td style="text-align:right;">
 1.0000000
@@ -3463,13 +3616,13 @@ HEK-r2 (inDrops)
 0.0008364
 </td>
 <td style="text-align:right;">
-0.0027337
+0.0025515
 </td>
 <td style="text-align:right;">
-0.0275229
+0.0270036
 </td>
 <td style="text-align:right;">
-0.6014898
+0.5903166
 </td>
 <td style="text-align:right;">
 1.0000000
@@ -3492,16 +3645,16 @@ NA
 HEK-r2 (sci-RNA-seq)
 </td>
 <td style="text-align:right;">
-0.0058964
+0.0055562
 </td>
 <td style="text-align:right;">
-0.0177192
+0.0186279
 </td>
 <td style="text-align:right;">
-0.2650504
+0.2636884
 </td>
 <td style="text-align:right;">
-0.9149013
+0.9166966
 </td>
 <td style="text-align:right;">
 1.0000000
@@ -3527,19 +3680,19 @@ HEK-m (CEL-seq2)
 NA
 </td>
 <td style="text-align:right;">
-0.0187520
+0.0181054
 </td>
 <td style="text-align:right;">
-0.1357605
+0.1380288
 </td>
 <td style="text-align:right;">
-0.6062354
+0.6144760
 </td>
 <td style="text-align:right;">
-0.9279762
+0.9327381
 </td>
 <td style="text-align:right;">
-0.9898990
+0.9932660
 </td>
 <td style="text-align:right;">
 1.0000000
@@ -3556,19 +3709,19 @@ NA
 HEK-m (ChromiumV2)
 </td>
 <td style="text-align:right;">
-0.1884058
+0.1739130
 </td>
 <td style="text-align:right;">
-0.2037037
+0.1944444
 </td>
 <td style="text-align:right;">
-0.6752822
+0.6612867
 </td>
 <td style="text-align:right;">
-0.9689714
+0.9702465
 </td>
 <td style="text-align:right;">
-0.9984825
+0.9977238
 </td>
 <td style="text-align:right;">
 1.0000000
@@ -3620,13 +3773,13 @@ NA
 HEK-m (ddSeq)
 </td>
 <td style="text-align:right;">
-0.2215190
+0.2278481
 </td>
 <td style="text-align:right;">
-0.4792910
+0.4828010
 </td>
 <td style="text-align:right;">
-0.9116033
+0.9124015
 </td>
 <td style="text-align:right;">
 0.9945972
@@ -3652,16 +3805,16 @@ NA
 HEK-m (Drop-seq)
 </td>
 <td style="text-align:right;">
-0.0058252
+0.0038835
 </td>
 <td style="text-align:right;">
-0.0138690
+0.0125822
 </td>
 <td style="text-align:right;">
-0.2911326
+0.2866858
 </td>
 <td style="text-align:right;">
-0.9819820
+0.9855856
 </td>
 <td style="text-align:right;">
 1.0000000
@@ -3751,13 +3904,13 @@ HEK-m (mcSCRB-seq)
 NA
 </td>
 <td style="text-align:right;">
-0.0069649
+0.0066553
 </td>
 <td style="text-align:right;">
-0.3341531
+0.3362846
 </td>
 <td style="text-align:right;">
-0.9397032
+0.9304267
 </td>
 <td style="text-align:right;">
 1.0000000
@@ -3780,19 +3933,19 @@ NA
 HEK-m (Quartz-Seq2)
 </td>
 <td style="text-align:right;">
-0.1029412
+0.1176471
 </td>
 <td style="text-align:right;">
-0.1327694
+0.1485840
 </td>
 <td style="text-align:right;">
-0.5254979
+0.5538624
 </td>
 <td style="text-align:right;">
-0.9590783
+0.9636866
 </td>
 <td style="text-align:right;">
-0.9990378
+0.9993586
 </td>
 <td style="text-align:right;">
 1.0000000
@@ -3844,16 +3997,16 @@ NA
 Cortex-r1 (DroNc-seq)
 </td>
 <td style="text-align:right;">
-0.0012027
+0.0013364
 </td>
 <td style="text-align:right;">
-0.0074363
+0.0070822
 </td>
 <td style="text-align:right;">
-0.1999300
+0.2039531
 </td>
 <td style="text-align:right;">
-0.9130435
+0.9094203
 </td>
 <td style="text-align:right;">
 1.0000000
@@ -3876,13 +4029,13 @@ NA
 Cortex-r1 (sci-RNA-seq)
 </td>
 <td style="text-align:right;">
-0.0013945
+0.0016481
 </td>
 <td style="text-align:right;">
-0.0112205
+0.0116785
 </td>
 <td style="text-align:right;">
-0.2579739
+0.2611836
 </td>
 <td style="text-align:right;">
 0.9734694
@@ -3908,16 +4061,16 @@ NA
 Cortex-r2 (ChromiumV2)
 </td>
 <td style="text-align:right;">
-0.0008931
+0.0010207
 </td>
 <td style="text-align:right;">
-0.0064958
+0.0062638
 </td>
 <td style="text-align:right;">
-0.1039261
+0.1050808
 </td>
 <td style="text-align:right;">
-0.8044693
+0.7905028
 </td>
 <td style="text-align:right;">
 1.0000000
@@ -3940,16 +4093,16 @@ NA
 Cortex-r2 (DroNc-seq)
 </td>
 <td style="text-align:right;">
-0.0021138
+0.0019376
 </td>
 <td style="text-align:right;">
-0.0066360
+0.0071465
 </td>
 <td style="text-align:right;">
-0.2039794
+0.2034228
 </td>
 <td style="text-align:right;">
-0.9168490
+0.9124726
 </td>
 <td style="text-align:right;">
 1.0000000
@@ -3972,13 +4125,13 @@ NA
 Cortex-r2 (sci-RNA-seq)
 </td>
 <td style="text-align:right;">
-0.0010578
+0.0006347
 </td>
 <td style="text-align:right;">
-0.0098976
+0.0088618
 </td>
 <td style="text-align:right;">
-0.2184623
+0.2202040
 </td>
 <td style="text-align:right;">
 0.9862069
@@ -4004,13 +4157,13 @@ NA
 Fibroblasts (Smart-seq3)
 </td>
 <td style="text-align:right;">
-0.0478043
+0.0450250
 </td>
 <td style="text-align:right;">
-0.2743703
+0.2737935
 </td>
 <td style="text-align:right;">
-0.7986547
+0.7973094
 </td>
 <td style="text-align:right;">
 0.9859772
@@ -4039,16 +4192,16 @@ PBMC-r1 (CEL-seq2)
 0.0009934
 </td>
 <td style="text-align:right;">
-0.0009949
+0.0012436
 </td>
 <td style="text-align:right;">
-0.0172458
+0.0168625
 </td>
 <td style="text-align:right;">
 0.3147139
 </td>
 <td style="text-align:right;">
-0.9459459
+0.9594595
 </td>
 <td style="text-align:right;">
 1.0000000
@@ -4068,16 +4221,16 @@ NA
 PBMC-r1 (ChromiumV2A)
 </td>
 <td style="text-align:right;">
-0.0004382
+0.0003506
 </td>
 <td style="text-align:right;">
 0.0041029
 </td>
 <td style="text-align:right;">
-0.1088867
+0.1083984
 </td>
 <td style="text-align:right;">
-0.8717949
+0.8461538
 </td>
 <td style="text-align:right;">
 0.9800000
@@ -4100,13 +4253,13 @@ NA
 PBMC-r1 (ChromiumV2B)
 </td>
 <td style="text-align:right;">
-0.0005757
+0.0004798
 </td>
 <td style="text-align:right;">
-0.0021887
+0.0023103
 </td>
 <td style="text-align:right;">
-0.0786216
+0.0792907
 </td>
 <td style="text-align:right;">
 0.7988827
@@ -4132,19 +4285,19 @@ NA
 PBMC-r1 (ChromiumV3)
 </td>
 <td style="text-align:right;">
-0.0017724
+0.0013785
 </td>
 <td style="text-align:right;">
-0.0112500
+0.0125000
 </td>
 <td style="text-align:right;">
-0.1449508
+0.1441478
 </td>
 <td style="text-align:right;">
-0.7815789
+0.7710526
 </td>
 <td style="text-align:right;">
-1.0000000
+0.9772727
 </td>
 <td style="text-align:right;">
 1.0000000
@@ -4164,16 +4317,16 @@ NA
 PBMC-r1 (Drop-seq)
 </td>
 <td style="text-align:right;">
-0.0001596
+0.0000798
 </td>
 <td style="text-align:right;">
-0.0020492
+0.0019028
 </td>
 <td style="text-align:right;">
-0.1284247
+0.1227169
 </td>
 <td style="text-align:right;">
-0.8289474
+0.8618421
 </td>
 <td style="text-align:right;">
 1.0000000
@@ -4228,13 +4381,13 @@ NA
 PBMC-r1 (Seq-Well)
 </td>
 <td style="text-align:right;">
-0.0008199
+0.0006708
 </td>
 <td style="text-align:right;">
-0.0049993
+0.0037138
 </td>
 <td style="text-align:right;">
-0.2137652
+0.2056680
 </td>
 <td style="text-align:right;">
 0.9586777
@@ -4266,7 +4419,7 @@ NA
 0.0005705
 </td>
 <td style="text-align:right;">
-0.0128744
+0.0127430
 </td>
 <td style="text-align:right;">
 0.3000000
@@ -4324,16 +4477,16 @@ NA
 PBMC-r2 (Drop-seq)
 </td>
 <td style="text-align:right;">
-0.0009927
+0.0009164
 </td>
 <td style="text-align:right;">
-0.0044129
+0.0041455
 </td>
 <td style="text-align:right;">
-0.2064865
+0.2072072
 </td>
 <td style="text-align:right;">
-0.9150327
+0.9215686
 </td>
 <td style="text-align:right;">
 1.0000000
@@ -4356,16 +4509,16 @@ NA
 PBMC-r2 (inDrops)
 </td>
 <td style="text-align:right;">
-0.0008128
+0.0007112
 </td>
 <td style="text-align:right;">
 0.0051697
 </td>
 <td style="text-align:right;">
-0.1449184
+0.1436637
 </td>
 <td style="text-align:right;">
-0.9646018
+0.9557522
 </td>
 <td style="text-align:right;">
 1.0000000
@@ -4394,10 +4547,10 @@ PBMC-r2 (Seq-Well)
 NA
 </td>
 <td style="text-align:right;">
-0.0953177
+0.1003344
 </td>
 <td style="text-align:right;">
-0.9344262
+0.9180328
 </td>
 <td style="text-align:right;">
 NA
@@ -4420,16 +4573,16 @@ NA
 PBMC68k (ChromiumV1)
 </td>
 <td style="text-align:right;">
-0.0002238
+0.0002984
 </td>
 <td style="text-align:right;">
-0.0030616
+0.0024876
 </td>
 <td style="text-align:right;">
-0.0694683
+0.0626072
 </td>
 <td style="text-align:right;">
-0.7578947
+0.7368421
 </td>
 <td style="text-align:right;">
 0.9772727
@@ -4452,16 +4605,16 @@ NA
 PBMC (ChromiumV3)
 </td>
 <td style="text-align:right;">
-0.0017918
+0.0016126
 </td>
 <td style="text-align:right;">
-0.0107268
+0.0098021
 </td>
 <td style="text-align:right;">
-0.1112391
+0.1115682
 </td>
 <td style="text-align:right;">
-0.6618123
+0.6650485
 </td>
 <td style="text-align:right;">
 0.9464286
@@ -4484,16 +4637,16 @@ NA
 PBMC (Smart-seq3)
 </td>
 <td style="text-align:right;">
-0.0307981
+0.0311889
 </td>
 <td style="text-align:right;">
-0.3588126
+0.3590994
 </td>
 <td style="text-align:right;">
-0.8935789
+0.8952417
 </td>
 <td style="text-align:right;">
-0.9724138
+0.9704433
 </td>
 <td style="text-align:right;">
 1.0000000
@@ -4516,10 +4669,10 @@ NA
 Fetal (sci-RNA-seq3)
 </td>
 <td style="text-align:right;">
-0.1163244
+0.1162671
 </td>
 <td style="text-align:right;">
-0.6171036
+0.6176148
 </td>
 <td style="text-align:right;">
 0.9902142
@@ -4535,6 +4688,38 @@ NA
 </td>
 <td style="text-align:right;">
 NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Bone Marrow (CITE-seq)
+</td>
+<td style="text-align:right;">
+0.0086455
+</td>
+<td style="text-align:right;">
+0.0720512
+</td>
+<td style="text-align:right;">
+0.5624242
+</td>
+<td style="text-align:right;">
+0.9315068
+</td>
+<td style="text-align:right;">
+0.9354839
+</td>
+<td style="text-align:right;">
+1.0000000
+</td>
+<td style="text-align:right;">
+1.0000000
 </td>
 <td style="text-align:right;">
 NA
@@ -4918,7 +5103,7 @@ Sampled 10,000 UMI/cell
 0.0366162
 </td>
 <td style="text-align:right;">
-0.4677393
+0.4672177
 </td>
 </tr>
 <tr>
@@ -4935,7 +5120,7 @@ Sampled 7,500 UMI/cell
 0.0280000
 </td>
 <td style="text-align:right;">
-0.3953927
+0.3952419
 </td>
 </tr>
 <tr>
@@ -4969,7 +5154,7 @@ Sampled 2,000 UMI/cell
 0.0140000
 </td>
 <td style="text-align:right;">
-0.0219026
+0.0224812
 </td>
 </tr>
 <tr>
@@ -4986,7 +5171,7 @@ Sampled 1,000 UMI/cell
 0.0110000
 </td>
 <td style="text-align:right;">
-0.0049998
+0.0047246
 </td>
 </tr>
 </tbody>
@@ -5046,13 +5231,13 @@ Saket Choudhary
 </div>
 <pre class="r"><code>ggsave(here::here(&quot;output&quot;, &quot;figures&quot;, &quot;01_Figure1.pdf&quot;), width = 12, height = 15)</code></pre>
 <pre class="r"><code>sessionInfo()</code></pre>
-<pre><code>R version 4.0.0 (2020-04-24)
+<pre><code>R version 4.1.2 (2021-11-01)
 Platform: x86_64-pc-linux-gnu (64-bit)
-Running under: Ubuntu 18.04.5 LTS
+Running under: Ubuntu 20.04.3 LTS
 
 Matrix products: default
-BLAS:   /usr/lib/x86_64-linux-gnu/blas/libblas.so.3.7.1
-LAPACK: /usr/lib/x86_64-linux-gnu/lapack/liblapack.so.3.7.1
+BLAS:   /usr/lib/x86_64-linux-gnu/blas/libblas.so.3.9.0
+LAPACK: /usr/lib/x86_64-linux-gnu/lapack/liblapack.so.3.9.0
 
 locale:
  [1] LC_CTYPE=en_US.UTF-8       LC_NUMERIC=C              
@@ -5066,58 +5251,56 @@ attached base packages:
 [1] stats     graphics  grDevices utils     datasets  methods   base     
 
 other attached packages:
- [1] xtable_1.8-4            sparseMatrixStats_1.2.1 MatrixGenerics_1.2.1   
- [4] matrixStats_0.59.0      SeuratObject_4.0.2      Seurat_4.0.3           
- [7] scattermore_0.7         reshape2_1.4.4          readr_1.4.0            
+ [1] xtable_1.8-4            sparseMatrixStats_1.4.2 MatrixGenerics_1.4.3   
+ [4] matrixStats_0.61.0      SeuratObject_4.0.4      Seurat_4.0.5           
+ [7] scattermore_0.7         reshape2_1.4.4          readr_2.1.1            
 [10] RColorBrewer_1.1-2      patchwork_1.1.1         kableExtra_1.3.4       
 [13] here_1.0.1              ggridges_0.5.3          ggpubr_0.4.0           
 [16] ggplot2_3.3.5           dplyr_1.0.7             workflowr_1.6.2        
 
 loaded via a namespace (and not attached):
-  [1] readxl_1.3.1           backports_1.2.1        systemfonts_1.0.2     
-  [4] plyr_1.8.6             igraph_1.2.6           lazyeval_0.2.2        
-  [7] splines_4.0.0          listenv_0.8.0          digest_0.6.27         
- [10] htmltools_0.5.1.1      fansi_0.5.0            magrittr_2.0.1        
- [13] tensor_1.5             cluster_2.1.0          ROCR_1.0-11           
- [16] openxlsx_4.2.4         globals_0.14.0         svglite_2.0.0         
- [19] spatstat.sparse_2.0-0  colorspace_2.0-2       rvest_1.0.0           
- [22] ggrepel_0.9.1          textshaping_0.3.5      haven_2.4.1           
- [25] xfun_0.24              crayon_1.4.1           jsonlite_1.7.2        
- [28] spatstat.data_2.1-0    survival_3.2-7         zoo_1.8-9             
- [31] glue_1.4.2             polyclip_1.10-0        gtable_0.3.0          
- [34] webshot_0.5.2          leiden_0.3.8           car_3.0-10            
- [37] future.apply_1.7.0     abind_1.4-5            scales_1.1.1          
- [40] DBI_1.1.1              rstatix_0.7.0          miniUI_0.1.1.1        
- [43] Rcpp_1.0.6             viridisLite_0.4.0      reticulate_1.20       
- [46] spatstat.core_2.2-0    foreign_0.8-79         htmlwidgets_1.5.3     
- [49] httr_1.4.2             ellipsis_0.3.2         ica_1.0-2             
- [52] farver_2.1.0           pkgconfig_2.0.3        uwot_0.1.10           
- [55] sass_0.4.0             deldir_0.2-10          utf8_1.2.1            
- [58] labeling_0.4.2         tidyselect_1.1.1       rlang_0.4.11          
- [61] later_1.2.0            munsell_0.5.0          cellranger_1.1.0      
- [64] tools_4.0.0            generics_0.1.0         broom_0.7.8           
- [67] evaluate_0.14          stringr_1.4.0          fastmap_1.1.0         
- [70] ragg_1.1.3             yaml_2.2.1             goftest_1.2-2         
- [73] knitr_1.33             fs_1.5.0               fitdistrplus_1.1-5    
- [76] zip_2.2.0              purrr_0.3.4            RANN_2.6.1            
- [79] pbapply_1.4-3          future_1.21.0          nlme_3.1-152          
- [82] whisker_0.4            mime_0.11              xml2_1.3.2            
- [85] compiler_4.0.0         rstudioapi_0.13        plotly_4.9.4.1        
- [88] curl_4.3.2             png_0.1-7              ggsignif_0.6.2        
- [91] spatstat.utils_2.2-0   tibble_3.1.2           bslib_0.2.5.1         
- [94] stringi_1.6.2          highr_0.8              forcats_0.5.1         
- [97] lattice_0.20-41        Matrix_1.3-4           vctrs_0.3.8           
-[100] pillar_1.6.1           lifecycle_1.0.0        spatstat.geom_2.2-0   
-[103] lmtest_0.9-38          jquerylib_0.1.4        RcppAnnoy_0.0.18      
-[106] data.table_1.14.0      cowplot_1.1.1          irlba_2.3.3           
-[109] httpuv_1.6.1           R6_2.5.0               promises_1.2.0.1      
-[112] KernSmooth_2.23-17     gridExtra_2.3          rio_0.5.27            
-[115] parallelly_1.26.0      codetools_0.2-16       MASS_7.3-51.6         
-[118] assertthat_0.2.1       rprojroot_2.0.2        withr_2.4.2           
-[121] sctransform_0.3.2.9008 mgcv_1.8-33            parallel_4.0.0        
-[124] hms_1.1.0              rpart_4.1-15           grid_4.0.0            
-[127] tidyr_1.1.3            rmarkdown_2.9          carData_3.0-4         
-[130] Rtsne_0.15             git2r_0.26.1           shiny_1.6.0           </code></pre>
+  [1] backports_1.4.1        systemfonts_1.0.3      plyr_1.8.6            
+  [4] igraph_1.2.9           lazyeval_0.2.2         splines_4.1.2         
+  [7] listenv_0.8.0          digest_0.6.29          htmltools_0.5.2       
+ [10] fansi_0.5.0            magrittr_2.0.1         tensor_1.5            
+ [13] cluster_2.1.2          ROCR_1.0-11            tzdb_0.2.0            
+ [16] globals_0.14.0         vroom_1.5.7            svglite_2.0.0         
+ [19] spatstat.sparse_2.0-0  colorspace_2.0-2       rvest_1.0.2           
+ [22] ggrepel_0.9.1          xfun_0.28              crayon_1.4.2          
+ [25] jsonlite_1.7.2         spatstat.data_2.1-0    survival_3.2-13       
+ [28] zoo_1.8-9              glue_1.5.1             polyclip_1.10-0       
+ [31] gtable_0.3.0           webshot_0.5.2          leiden_0.3.9          
+ [34] car_3.0-12             future.apply_1.8.1     abind_1.4-5           
+ [37] scales_1.1.1           DBI_1.1.1              rstatix_0.7.0         
+ [40] miniUI_0.1.1.1         Rcpp_1.0.7             viridisLite_0.4.0     
+ [43] reticulate_1.22        spatstat.core_2.3-2    bit_4.0.4             
+ [46] htmlwidgets_1.5.4      httr_1.4.2             ellipsis_0.3.2        
+ [49] ica_1.0-2              farver_2.1.0           pkgconfig_2.0.3       
+ [52] sass_0.4.0             uwot_0.1.11            deldir_1.0-6          
+ [55] utf8_1.2.2             labeling_0.4.2         tidyselect_1.1.1      
+ [58] rlang_0.4.12           later_1.3.0            munsell_0.5.0         
+ [61] tools_4.1.2            generics_0.1.1         broom_0.7.10          
+ [64] evaluate_0.14          stringr_1.4.0          fastmap_1.1.0         
+ [67] yaml_2.2.1             goftest_1.2-3          knitr_1.36            
+ [70] bit64_4.0.5            fs_1.5.2               fitdistrplus_1.1-6    
+ [73] purrr_0.3.4            RANN_2.6.1             pbapply_1.5-0         
+ [76] future_1.23.0          nlme_3.1-152           whisker_0.4           
+ [79] mime_0.12              xml2_1.3.3             compiler_4.1.2        
+ [82] rstudioapi_0.13        plotly_4.10.0          png_0.1-7             
+ [85] ggsignif_0.6.3         spatstat.utils_2.3-0   tibble_3.1.6          
+ [88] bslib_0.3.1            stringi_1.7.6          highr_0.9             
+ [91] lattice_0.20-45        Matrix_1.4-0           vctrs_0.3.8           
+ [94] pillar_1.6.4           lifecycle_1.0.1        spatstat.geom_2.3-1   
+ [97] lmtest_0.9-39          jquerylib_0.1.4        RcppAnnoy_0.0.19      
+[100] data.table_1.14.2      cowplot_1.1.1          irlba_2.3.5           
+[103] httpuv_1.6.3           R6_2.5.1               promises_1.2.0.1      
+[106] KernSmooth_2.23-20     gridExtra_2.3          parallelly_1.29.0     
+[109] codetools_0.2-18       MASS_7.3-54            assertthat_0.2.1      
+[112] rprojroot_2.0.2        withr_2.4.3            sctransform_0.3.2.9008
+[115] mgcv_1.8-38            parallel_4.1.2         hms_1.1.1             
+[118] grid_4.1.2             rpart_4.1-15           tidyr_1.1.4           
+[121] rmarkdown_2.11         carData_3.0-4          Rtsne_0.15            
+[124] git2r_0.29.0           shiny_1.7.1           </code></pre>
 <br>
 <p>
 <button type="button" class="btn btn-default btn-workflowr btn-workflowr-sessioninfo" data-toggle="collapse" data-target="#workflowr-sessioninfo" style="display: block;">
@@ -5126,13 +5309,13 @@ loaded via a namespace (and not attached):
 </p>
 <div id="workflowr-sessioninfo" class="collapse">
 <pre class="r"><code>sessionInfo()</code></pre>
-<pre><code>R version 4.0.0 (2020-04-24)
+<pre><code>R version 4.1.2 (2021-11-01)
 Platform: x86_64-pc-linux-gnu (64-bit)
-Running under: Ubuntu 18.04.5 LTS
+Running under: Ubuntu 20.04.3 LTS
 
 Matrix products: default
-BLAS:   /usr/lib/x86_64-linux-gnu/blas/libblas.so.3.7.1
-LAPACK: /usr/lib/x86_64-linux-gnu/lapack/liblapack.so.3.7.1
+BLAS:   /usr/lib/x86_64-linux-gnu/blas/libblas.so.3.9.0
+LAPACK: /usr/lib/x86_64-linux-gnu/lapack/liblapack.so.3.9.0
 
 locale:
  [1] LC_CTYPE=en_US.UTF-8       LC_NUMERIC=C              
@@ -5146,58 +5329,56 @@ attached base packages:
 [1] stats     graphics  grDevices utils     datasets  methods   base     
 
 other attached packages:
- [1] xtable_1.8-4            sparseMatrixStats_1.2.1 MatrixGenerics_1.2.1   
- [4] matrixStats_0.59.0      SeuratObject_4.0.2      Seurat_4.0.3           
- [7] scattermore_0.7         reshape2_1.4.4          readr_1.4.0            
+ [1] xtable_1.8-4            sparseMatrixStats_1.4.2 MatrixGenerics_1.4.3   
+ [4] matrixStats_0.61.0      SeuratObject_4.0.4      Seurat_4.0.5           
+ [7] scattermore_0.7         reshape2_1.4.4          readr_2.1.1            
 [10] RColorBrewer_1.1-2      patchwork_1.1.1         kableExtra_1.3.4       
 [13] here_1.0.1              ggridges_0.5.3          ggpubr_0.4.0           
 [16] ggplot2_3.3.5           dplyr_1.0.7             workflowr_1.6.2        
 
 loaded via a namespace (and not attached):
-  [1] readxl_1.3.1           backports_1.2.1        systemfonts_1.0.2     
-  [4] plyr_1.8.6             igraph_1.2.6           lazyeval_0.2.2        
-  [7] splines_4.0.0          listenv_0.8.0          digest_0.6.27         
- [10] htmltools_0.5.1.1      fansi_0.5.0            magrittr_2.0.1        
- [13] tensor_1.5             cluster_2.1.0          ROCR_1.0-11           
- [16] openxlsx_4.2.4         globals_0.14.0         svglite_2.0.0         
- [19] spatstat.sparse_2.0-0  colorspace_2.0-2       rvest_1.0.0           
- [22] ggrepel_0.9.1          textshaping_0.3.5      haven_2.4.1           
- [25] xfun_0.24              crayon_1.4.1           jsonlite_1.7.2        
- [28] spatstat.data_2.1-0    survival_3.2-7         zoo_1.8-9             
- [31] glue_1.4.2             polyclip_1.10-0        gtable_0.3.0          
- [34] webshot_0.5.2          leiden_0.3.8           car_3.0-10            
- [37] future.apply_1.7.0     abind_1.4-5            scales_1.1.1          
- [40] DBI_1.1.1              rstatix_0.7.0          miniUI_0.1.1.1        
- [43] Rcpp_1.0.6             viridisLite_0.4.0      reticulate_1.20       
- [46] spatstat.core_2.2-0    foreign_0.8-79         htmlwidgets_1.5.3     
- [49] httr_1.4.2             ellipsis_0.3.2         ica_1.0-2             
- [52] farver_2.1.0           pkgconfig_2.0.3        uwot_0.1.10           
- [55] sass_0.4.0             deldir_0.2-10          utf8_1.2.1            
- [58] labeling_0.4.2         tidyselect_1.1.1       rlang_0.4.11          
- [61] later_1.2.0            munsell_0.5.0          cellranger_1.1.0      
- [64] tools_4.0.0            generics_0.1.0         broom_0.7.8           
- [67] evaluate_0.14          stringr_1.4.0          fastmap_1.1.0         
- [70] ragg_1.1.3             yaml_2.2.1             goftest_1.2-2         
- [73] knitr_1.33             fs_1.5.0               fitdistrplus_1.1-5    
- [76] zip_2.2.0              purrr_0.3.4            RANN_2.6.1            
- [79] pbapply_1.4-3          future_1.21.0          nlme_3.1-152          
- [82] whisker_0.4            mime_0.11              xml2_1.3.2            
- [85] compiler_4.0.0         rstudioapi_0.13        plotly_4.9.4.1        
- [88] curl_4.3.2             png_0.1-7              ggsignif_0.6.2        
- [91] spatstat.utils_2.2-0   tibble_3.1.2           bslib_0.2.5.1         
- [94] stringi_1.6.2          highr_0.8              forcats_0.5.1         
- [97] lattice_0.20-41        Matrix_1.3-4           vctrs_0.3.8           
-[100] pillar_1.6.1           lifecycle_1.0.0        spatstat.geom_2.2-0   
-[103] lmtest_0.9-38          jquerylib_0.1.4        RcppAnnoy_0.0.18      
-[106] data.table_1.14.0      cowplot_1.1.1          irlba_2.3.3           
-[109] httpuv_1.6.1           R6_2.5.0               promises_1.2.0.1      
-[112] KernSmooth_2.23-17     gridExtra_2.3          rio_0.5.27            
-[115] parallelly_1.26.0      codetools_0.2-16       MASS_7.3-51.6         
-[118] assertthat_0.2.1       rprojroot_2.0.2        withr_2.4.2           
-[121] sctransform_0.3.2.9008 mgcv_1.8-33            parallel_4.0.0        
-[124] hms_1.1.0              rpart_4.1-15           grid_4.0.0            
-[127] tidyr_1.1.3            rmarkdown_2.9          carData_3.0-4         
-[130] Rtsne_0.15             git2r_0.26.1           shiny_1.6.0           </code></pre>
+  [1] backports_1.4.1        systemfonts_1.0.3      plyr_1.8.6            
+  [4] igraph_1.2.9           lazyeval_0.2.2         splines_4.1.2         
+  [7] listenv_0.8.0          digest_0.6.29          htmltools_0.5.2       
+ [10] fansi_0.5.0            magrittr_2.0.1         tensor_1.5            
+ [13] cluster_2.1.2          ROCR_1.0-11            tzdb_0.2.0            
+ [16] globals_0.14.0         vroom_1.5.7            svglite_2.0.0         
+ [19] spatstat.sparse_2.0-0  colorspace_2.0-2       rvest_1.0.2           
+ [22] ggrepel_0.9.1          xfun_0.28              crayon_1.4.2          
+ [25] jsonlite_1.7.2         spatstat.data_2.1-0    survival_3.2-13       
+ [28] zoo_1.8-9              glue_1.5.1             polyclip_1.10-0       
+ [31] gtable_0.3.0           webshot_0.5.2          leiden_0.3.9          
+ [34] car_3.0-12             future.apply_1.8.1     abind_1.4-5           
+ [37] scales_1.1.1           DBI_1.1.1              rstatix_0.7.0         
+ [40] miniUI_0.1.1.1         Rcpp_1.0.7             viridisLite_0.4.0     
+ [43] reticulate_1.22        spatstat.core_2.3-2    bit_4.0.4             
+ [46] htmlwidgets_1.5.4      httr_1.4.2             ellipsis_0.3.2        
+ [49] ica_1.0-2              farver_2.1.0           pkgconfig_2.0.3       
+ [52] sass_0.4.0             uwot_0.1.11            deldir_1.0-6          
+ [55] utf8_1.2.2             labeling_0.4.2         tidyselect_1.1.1      
+ [58] rlang_0.4.12           later_1.3.0            munsell_0.5.0         
+ [61] tools_4.1.2            generics_0.1.1         broom_0.7.10          
+ [64] evaluate_0.14          stringr_1.4.0          fastmap_1.1.0         
+ [67] yaml_2.2.1             goftest_1.2-3          knitr_1.36            
+ [70] bit64_4.0.5            fs_1.5.2               fitdistrplus_1.1-6    
+ [73] purrr_0.3.4            RANN_2.6.1             pbapply_1.5-0         
+ [76] future_1.23.0          nlme_3.1-152           whisker_0.4           
+ [79] mime_0.12              xml2_1.3.3             compiler_4.1.2        
+ [82] rstudioapi_0.13        plotly_4.10.0          png_0.1-7             
+ [85] ggsignif_0.6.3         spatstat.utils_2.3-0   tibble_3.1.6          
+ [88] bslib_0.3.1            stringi_1.7.6          highr_0.9             
+ [91] lattice_0.20-45        Matrix_1.4-0           vctrs_0.3.8           
+ [94] pillar_1.6.4           lifecycle_1.0.1        spatstat.geom_2.3-1   
+ [97] lmtest_0.9-39          jquerylib_0.1.4        RcppAnnoy_0.0.19      
+[100] data.table_1.14.2      cowplot_1.1.1          irlba_2.3.5           
+[103] httpuv_1.6.3           R6_2.5.1               promises_1.2.0.1      
+[106] KernSmooth_2.23-20     gridExtra_2.3          parallelly_1.29.0     
+[109] codetools_0.2-18       MASS_7.3-54            assertthat_0.2.1      
+[112] rprojroot_2.0.2        withr_2.4.3            sctransform_0.3.2.9008
+[115] mgcv_1.8-38            parallel_4.1.2         hms_1.1.1             
+[118] grid_4.1.2             rpart_4.1-15           tidyr_1.1.4           
+[121] rmarkdown_2.11         carData_3.0-4          Rtsne_0.15            
+[124] git2r_0.29.0           shiny_1.7.1           </code></pre>
 </div>
 </div>
 
@@ -5213,6 +5394,8 @@ footer is added to webpages before the MathJax javascript. -->
     "HTML-CSS": { availableFonts: ["TeX"] }
   });
 </script>
+
+
 
 
 
