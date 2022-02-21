@@ -1,7 +1,7 @@
 # scRNA_NB_comparison
 
 This repository contains scripts and notebooks to generate figures for our paper [Comparison and evaluation of statistical error models for scRNA-seq
-](https://www.biorxiv.org/content/10.1101/2021.07.07.451498v1).
+](https://genomebiology.biomedcentral.com/articles/10.1186/s13059-021-02584-9).
 
 # Associated software
 
